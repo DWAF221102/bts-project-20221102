@@ -176,12 +176,16 @@ body {
     line-height: 1.25rem;
 }
 
+.title {
+    margin-top: 0.3rem;
+}
+
 .general-login-id-input {
-    margin-top: 0.25rem;
+    margin-top: 0.3rem;
 
     border: 1px solid rgb(209, 213, 219);
     border-radius: 0.375rem;
-    height: 2.25rem;
+    height: 2.6rem;
 
     padding: 5px;
 

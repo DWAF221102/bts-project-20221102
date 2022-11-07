@@ -1,7 +1,9 @@
 header {
+    border-bottom: 1px solid rgb(229 231 235);
     width: 100%;
-    height: 200px;
-    background-color: black;
+    height: 100px;
+    text-align: center;
+
 }
 
 /* 메인 영역 */
@@ -10,70 +12,180 @@ main {
     justify-content: center;
     width: 100%;
     height: 1200px;
-    background-color: red;
 }
 
 /* 마이 프로필 영역 */
 .myprofile-container {
     width: 70%;
     height: 1200px;
-    background-color: orange;
 }
 
 .myprofile-title {
-    margin-top: 50px;
-
-    background-color: yellow;
+    margin-top: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgb(229 231 235);
+    font-size: 22px;
 }
 
 /* 회원 정보 영역 */
 .myprofile-area {
-    margin-top: 50px;
-
-    background-color: green;
+    padding-top: 35px;
 }
 
 .myprofile-info {
     display: flex;
     justify-content: space-between;
 
+    border-bottom: 1px solid rgb(229 231 235);
     width: 100%;
-    height: 800px;
-
-    background-color: blue;
+    height: 450px;
 }
 
 .myprofile-info-area {
     display: flex;
     flex-direction: column;
 
-    margin-top: 40px;
-    width: 60%;
-    height: 800px;
-    background-color: navy;
+
+    width: 55%;
+    height: 550px;
+    padding-top: 40px;
 }
 
 .myprofile-info-title {
-    margin-left: 10px;
+    margin-left: 2px;
     font-size: 16px;
 }
 
 .myprofile-info-input {
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
+    border: 1px solid rgb(209 213 219);
+    border-radius: 0.375rem;
     width: 100%;
     height: 40px;
+    padding: 0.5rem 0.75rem;
+
+    /* box-shadow: ; */
 }
 
 /* 프로필 사진 영역 */
-.myprofile-image {
+.myprofile-image-area {
+
+    /* border-left: 1px solid rgb(209 213 219); */
     width: 40%;
-    background-color: purple;
+    padding-top: 50px;
+    padding-left: 150px;
+}
+
+.myprofile-image {
+    border: 1px solid rgb(209 213 219);
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+
+    cursor: pointer;
+
+    background-color: antiquewhite;
 }
 
 
-footer {
+/* 비밀 번호 영역 */
+.password-area {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(229 231 235);
+    width: 100%;
+    height: 170px;
+}
+
+.password-change-area {
+    display: flex;
+    justify-content: right;
+    padding-top: 50px;
+}
+
+.password-title {
+    padding-top: 20px;
+
+}
+
+.password-change-button {
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+    width: 12rem;
+    height: 2.5rem;
+
+    /* padding-top: 60px; */
+    /* margin-right: 50px; */
+
+
+    font-weight: 600;
+    font-size: 0.875rem;
+
+    /* line-height: 1.25rem; */
+    text-transform: none;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(220 38 38);
+}
+
+
+/* 계정 삭제 영역 */
+
+.account-delete {
+    margin-top: 20px;
+}
+
+.account-delete-title {
+    width: 100%;
+    height: 50px;
+}
+
+.account-delete-info {
+    display: inline-block;
+
+    border: 1px solid rgb(229 231 235);
+    border-radius: 0.375rem;
     width: 100%;
     height: 200px;
-    background-color: aquamarine;
+    padding: 0.75rem;
+}
+
+.account-delete-agree {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 30px;
+    width: 100%;
+    height: 50px;
+
+}
+
+.account-delete-button {
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+    width: 12rem;
+    height: 2.5rem;
+
+    font-weight: 600;
+    font-size: 0.875rem;
+
+    line-height: 1.25rem;
+    text-transform: none;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(220 38 38);
+}
+
+
+
+
+/* 푸터 영역 */
+footer {
+    border-top: 1px solid rgb(229 231 235);
+
+    width: 100%;
+    height: 100px;
+    text-align: center;
 }
