@@ -117,7 +117,12 @@ section {
     height: 80px;
 
     padding: 16px 0px;
+    border-top: 1px solid rgb(212, 213, 215);
 
+}
+
+.board-list ul li:first-child {
+    border-top: none;
 }
 
 .board-list-top {
