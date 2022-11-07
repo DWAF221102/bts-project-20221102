@@ -28,6 +28,7 @@
     align-items: center;
 }
 
+
 .mini-profile img {
     margin-right: 5px;
     width: 22px;
@@ -36,6 +37,10 @@
     border-radius: 50%;
 
     background-color: #9CA3AF;
+}
+
+.mini-profile a:hover {
+    color: #999b9c;
 }
 
 .score {
