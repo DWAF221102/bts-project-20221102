@@ -1,0 +1,58 @@
+/*aside 파트*/
+.aside-container {
+    width: 180px;
+}
+
+.aside-title {
+    color: #4B5563;
+    font-weight: 700;
+}
+
+.aside-list {
+    margin-top: 16px;
+    border-top: 1px solid rgb(212, 213, 215);
+}
+
+.aside-list ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 24px;
+
+    margin-top: 16px;
+}
+
+.mini-profile {
+    display: flex;
+    align-items: center;
+}
+
+.mini-profile img {
+    margin-right: 5px;
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    background-color: #9CA3AF;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score .fa-star {
+    font-size: 12px;
+    color: yellow;
+}
+
+.score .fa-money-bill {
+    font-size: 12px;
+}
+
+.aside-list li a, .aside-list li span {
+    font-size: 12px;
+}

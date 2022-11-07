@@ -10,4 +10,9 @@ public class PageController {
     public String test() {
         return "test";
     }
+
+    @GetMapping({"/", "/index"})
+    public  String index() {
+        return "index";
+    }
 }
