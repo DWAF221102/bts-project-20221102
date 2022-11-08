@@ -9,7 +9,10 @@
 body {
     font-size: 14px;
     font-family: 'Noto Sans KR', sans-serif;
+<<<<<<< HEAD
     color: black;
+=======
+>>>>>>> origin/jaehyo
 }
 
 img {
@@ -27,8 +30,11 @@ ul, li {
     list-style-type: none;
 }
 
+<<<<<<< HEAD
+=======
 button {
     cursor: pointer;
 }
 
 
+>>>>>>> origin/jaehyo
