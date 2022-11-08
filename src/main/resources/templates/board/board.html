@@ -19,10 +19,10 @@
                 <div class="category">
                     <div>카테고리</div>
                     <ul class="category-menu">
-                        <li>전체</li>
-                        <li>프로그래밍</li>
-                        <li>건축</li>
-                        <li>영상</li>
+                        <li><a href="">전체</a></li>
+                        <li><a href="">프로그래밍</a></li>
+                        <li><a href="">건축</a></li>
+                        <li><a href="">영상</a></li>
                     </ul>
                 </div>
             </aside>
@@ -40,30 +40,30 @@
                     </div>
                     <div class="subcategory">
                         <nav class="subcategory-nav">
-                        <button>#java</button>
-                        <button>#python</button>
-                        <button>#c</button>
-                        <button>#spring</button>
-                        <button>전체</button>  
+                            <button type="button">java</button>
+                            <button type="button">python</button>
+                            <button type="button">c</button>
+                            <button type="button">spring</button>
+                            <button type="button">전체</button>  
                         </nav>
                     </div>
                     <div class="show">
                         <div class="show-button">
-                            <button><i class="fa-light fa-arrow-down-wide-short"></i>최신순</button>
+                            <button type="button"><i class="fa-light fa-arrow-down-wide-short"></i>최신순</button>
                         </div>
                         <div class="show-list invisible">
-                            <button>최신순</button>
-                            <button>추천순</button>
-                            <button>조회순</button>
+                            <button type="button">최신순</button>
+                            <button type="button">추천순</button>
+                            <button type="button">조회순</button>
                         </div>
                     </div>
                 </div>
                 <div class="board-main-search">
                     <div class="search-reload">
-                        <button><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button type="button"><i class="fa-solid fa-arrows-rotate"></i></button>
                     </div>
                     <div class="search-input">
-                        <button><i class="fa-thin fa-magnifying-glass"></i></button>
+                        <button type="button"><i class="fa-thin fa-magnifying-glass"></i></button>
                         <input type="text" placeholder="지식 내에서 검색">
                     </div>
                     <div class="search-page">
@@ -71,16 +71,49 @@
                             <span>1/6</span>
                         </div>
                         <div class="search-page-button">
-                            <button><i class="fa-regular fa-arrow-left"></i></button>
-                            <button><i class="fa-regular fa-arrow-right"></i></button>
+                            <button type="button"><i class="fa-regular fa-arrow-left"></i></button>
+                            <button type="button"><i class="fa-regular fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
                 <div class="board-main-list">
                     <ul class="board-list">
                         <li>
-                            <div class="board-list-top">
-                                <span>작성자&#183;1시간 전</span>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <a href="">java</a>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-light fa-eye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
                             </div>
                             <div class="board-list-title">
                                 <a href="">글 제목</a>
@@ -90,7 +123,6 @@
                                     <a href="">프로그래밍</a>
                                     <div class="board-list-subcategory">
                                         <a href="">#java</a>
-                                        <a href="">#spring</a>
                                     </div>
                                 </div>
                                 <div class="board-list-prefer">
@@ -101,8 +133,15 @@
                             </div>
                         </li>
                         <li>
-                            <div class="board-list-top">
-                                <span>작성자&#183;1시간 전</span>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
                             </div>
                             <div class="board-list-title">
                                 <a href="">글 제목</a>
@@ -112,7 +151,6 @@
                                     <a href="">프로그래밍</a>
                                     <div class="board-list-subcategory">
                                         <a href="">#java</a>
-                                        <a href="">#spring</a>
                                     </div>
                                 </div>
                                 <div class="board-list-prefer">
@@ -123,8 +161,15 @@
                             </div>
                         </li>
                         <li>
-                            <div class="board-list-top">
-                                <span>작성자&#183;1시간 전</span>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
                             </div>
                             <div class="board-list-title">
                                 <a href="">글 제목</a>
@@ -134,7 +179,6 @@
                                     <a href="">프로그래밍</a>
                                     <div class="board-list-subcategory">
                                         <a href="">#java</a>
-                                        <a href="">#spring</a>
                                     </div>
                                 </div>
                                 <div class="board-list-prefer">
@@ -145,8 +189,15 @@
                             </div>
                         </li>
                         <li>
-                            <div class="board-list-top">
-                                <span>작성자&#183;1시간 전</span>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
                             </div>
                             <div class="board-list-title">
                                 <a href="">글 제목</a>
@@ -156,7 +207,6 @@
                                     <a href="">프로그래밍</a>
                                     <div class="board-list-subcategory">
                                         <a href="">#java</a>
-                                        <a href="">#spring</a>
                                     </div>
                                 </div>
                                 <div class="board-list-prefer">
@@ -167,8 +217,15 @@
                             </div>
                         </li>
                         <li>
-                            <div class="board-list-top">
-                                <span>작성자&#183;1시간 전</span>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
                             </div>
                             <div class="board-list-title">
                                 <a href="">글 제목</a>
@@ -178,7 +235,6 @@
                                     <a href="">프로그래밍</a>
                                     <div class="board-list-subcategory">
                                         <a href="">#java</a>
-                                        <a href="">#spring</a>
                                     </div>
                                 </div>
                                 <div class="board-list-prefer">
@@ -189,8 +245,15 @@
                             </div>
                         </li>
                         <li>
-                            <div class="board-list-top">
-                                <span>작성자&#183;1시간 전</span>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
                             </div>
                             <div class="board-list-title">
                                 <a href="">글 제목</a>
@@ -200,7 +263,6 @@
                                     <a href="">프로그래밍</a>
                                     <div class="board-list-subcategory">
                                         <a href="">#java</a>
-                                        <a href="">#spring</a>
                                     </div>
                                 </div>
                                 <div class="board-list-prefer">
@@ -211,8 +273,15 @@
                             </div>
                         </li>
                         <li>
-                            <div class="board-list-top">
-                                <span>작성자&#183;1시간 전</span>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
                             </div>
                             <div class="board-list-title">
                                 <a href="">글 제목</a>
@@ -222,7 +291,6 @@
                                     <a href="">프로그래밍</a>
                                     <div class="board-list-subcategory">
                                         <a href="">#java</a>
-                                        <a href="">#spring</a>
                                     </div>
                                 </div>
                                 <div class="board-list-prefer">
@@ -233,8 +301,15 @@
                             </div>
                         </li>
                         <li>
-                            <div class="board-list-top">
-                                <span>작성자&#183;1시간 전</span>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
                             </div>
                             <div class="board-list-title">
                                 <a href="">글 제목</a>
@@ -244,7 +319,6 @@
                                     <a href="">프로그래밍</a>
                                     <div class="board-list-subcategory">
                                         <a href="">#java</a>
-                                        <a href="">#spring</a>
                                     </div>
                                 </div>
                                 <div class="board-list-prefer">
@@ -255,8 +329,15 @@
                             </div>
                         </li>
                         <li>
-                            <div class="board-list-top">
-                                <span>작성자&#183;1시간 전</span>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
                             </div>
                             <div class="board-list-title">
                                 <a href="">글 제목</a>
@@ -266,7 +347,6 @@
                                     <a href="">프로그래밍</a>
                                     <div class="board-list-subcategory">
                                         <a href="">#java</a>
-                                        <a href="">#spring</a>
                                     </div>
                                 </div>
                                 <div class="board-list-prefer">
@@ -277,8 +357,15 @@
                             </div>
                         </li>
                         <li>
-                            <div class="board-list-top">
-                                <span>작성자&#183;1시간 전</span>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
                             </div>
                             <div class="board-list-title">
                                 <a href="">글 제목</a>
@@ -288,7 +375,6 @@
                                     <a href="">프로그래밍</a>
                                     <div class="board-list-subcategory">
                                         <a href="">#java</a>
-                                        <a href="">#spring</a>
                                     </div>
                                 </div>
                                 <div class="board-list-prefer">
@@ -299,8 +385,15 @@
                             </div>
                         </li>
                         <li>
-                            <div class="board-list-top">
-                                <span>작성자&#183;1시간 전</span>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
                             </div>
                             <div class="board-list-title">
                                 <a href="">글 제목</a>
@@ -310,7 +403,174 @@
                                     <a href="">프로그래밍</a>
                                     <div class="board-list-subcategory">
                                         <a href="">#java</a>
-                                        <a href="">#spring</a>
+                                    </div>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-light fa-eye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <div class="board-list-subcategory">
+                                        <a href="">#java</a>
+                                    </div>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-light fa-eye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <div class="board-list-subcategory">
+                                        <a href="">#java</a>
+                                    </div>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-light fa-eye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <div class="board-list-subcategory">
+                                        <a href="">#java</a>
+                                    </div>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-light fa-eye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <div class="board-list-subcategory">
+                                        <a href="">#java</a>
+                                    </div>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-light fa-eye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <div class="board-list-subcategory">
+                                        <a href="">#java</a>
+                                    </div>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-light fa-eye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <div class="board-list-subcategory">
+                                        <a href="">#java</a>
                                     </div>
                                 </div>
                                 <div class="board-list-prefer">
@@ -324,16 +584,16 @@
                 </div>
                 <div class="board-main-page">
                     <div class="previous-button">
-                        <button><i class="fa-thin fa-arrow-left"></i><span>Previous</span></button>
+                        <button type="button"><i class="fa-thin fa-arrow-left"></i><span>Previous</span></button>
                     </div>
                     <nav class="page-num">
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
+                        <button type="button">1</button>
+                        <button type="button">2</button>
+                        <button type="button">3</button>
+                        <button type="button">4</button>
                     </nav>
                     <div class="next-button">
-                        <button><span>Next</span><i class="fa-light fa-arrow-right"></i></button>
+                        <button type="button"><span>Next</span><i class="fa-light fa-arrow-right"></i></button>
                     </div>
                 </div>
             </section>

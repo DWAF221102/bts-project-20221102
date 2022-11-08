@@ -29,20 +29,30 @@
                 <div class="article-container">
                     <div class="article-category">
                         <a href="">지식</a>
-                        <a href="">java</a>
+                        <span>/</span>
+                        <a href="">프로그래밍</a>
                     </div>
-                    <div>
+                    <div class="article-content">
                         <div class="user-info">
-                            <img src="/static/images/profile-icon_34378.png">
-                            <div>
-                                <div>작성자</div>
-                                <div>
-                                    <span>1시간 전&#183;</span>
-                                    <i class="fa-light fa-eye"></i><span>53</span>
+                            <div class="user-info-container">
+                                <div class="user-img">
+                                    <a href="">
+                                        <img src="/static/images/profile-icon_34378.png">
+                                    </a>
+                                </div>
+                                <div class="user-detail">
+                                    <a class="user-nickname">작성자</a>
+                                    <div class="user-brief">
+                                        <span>1시간 전</span>
+                                        <span>&#183;</span>
+                                        <i class="fa-light fa-eye"></i><span>53</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <i class="fa-regular fa-thumbs-up"></i><span>13</span>
+                            <div class="user-reputation">
+                                <div class="user-star">
+                                    <i class="fa-regular fa-thumbs-up"></i><span>13</span>
+                                </div>
                             </div>
                         </div>
                         <div class="article-title">
@@ -66,63 +76,210 @@ keydown, keyup 등 사용해서는 어려울 것 같아요(패스워드가 8자�
                     </div>
                 </div>
                 <div class="comment-container">
-                    <div>
+                    <div class="comment-num">
                         <h2>2개의 댓글</h2>
                     </div>
-                    <div>
-                        <div>
-                            <div>
-                                <img src="/static/images/profile-icon_34378.png">
-                            </div>
-                            <div>
-                                <textarea name="" id="" placeholder="댓글을 입력해주세요."></textarea>
-                            </div>
+                    <div class="comment-write">
+                        <div class="user-img">
+                            <img src="/static/images/profile-icon_34378.png">
                         </div>
-                        <div>
-                            <button>댓글 쓰기</button>
+                        <div class="form-container">
+                            <form class="comment-form">
+                                <div class="comment-textarea">
+                                    <textarea class="test" placeholder="댓글을 입력해주세요."></textarea>
+                                </div>
+                            </form>
+                            <div class="write-button">
+                                <button>댓글 쓰기</button>
+                            </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="comment">
                         <ul>
                             <li>
-                                <div>
-                                    <div>
-                                        <img src="/static/images/profile-icon_34378.png">
-                                    <div>
-                                        <div>작성자</div>
-                                        <div>
-                                            <span>1시간 전&#183;</span>
+                                <div class="user-info">
+                                    <div class="user-info-container">
+                                        <div class="user-img">
+                                            <a href="">
+                                                <img src="/static/images/profile-icon_34378.png">
+                                            </a>
+                                        </div>
+                                        <div class="user-detail">
+                                            <a class="user-nickname">작성자</a>
+                                            <div class="user-brief">
+                                                <span>1시간 전</span>
+                                                <span>&#183;</span>
+                                                <i class="fa-light fa-eye"></i><span>53</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <i class="fa-regular fa-thumbs-up"></i><span>13</span>
+                                    <div class="user-reputation">
+                                        <div class="user-star">
+                                            <i class="fa-regular fa-thumbs-up"></i><span>13</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="comment-content">
                                     <p>blur 이벤트 쓰시는건 어떤가요</p>
                                 </div>
-                                <div>
-                                    <div>
-                                        <div>
-                                            <div>
+                                <div class="recomment-container">
+                                    <div class="recomment-button">
+                                        <button>
+                                            <i class="fa-regular fa-chevron-up"></i>
+                                            <div>댓글 모두 숨기기</div>
+                                        </button>
+                                        <button>댓글 쓰기</button>
+                                    </div>
+                                    <div class="recomment">
+                                        <div class="comment-write">
+                                            <div class="user-img">
                                                 <img src="/static/images/profile-icon_34378.png">
-                                            <div>
-                                                <div>작성자</div>
-                                                <div>
-                                                    <span>1시간 전&#183;</span>
+                                            </div>
+                                            <div class="form-container">
+                                                <form class="comment-form">
+                                                    <div class="comment-textarea">
+                                                        <textarea class="test" placeholder="댓글을 입력해주세요."></textarea>
+                                                    </div>
+                                                </form>
+                                                <div class="recomment-write-button">
+                                                    <button>취소</button>
+                                                    <button>댓글 쓰기</button>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <i class="fa-regular fa-thumbs-up"></i><span>13</span>
-                                            </div>
                                         </div>
-                                        <div>
-                                            <p>blur 이벤트 쓰시는건 어떤가요</p>
-                                        </div>
+                                        <ul>
+                                            <li>
+                                                <div class="user-info">
+                                                    <div class="user-info-container">
+                                                        <div class="user-img">
+                                                            <a href="">
+                                                                <img src="/static/images/profile-icon_34378.png">
+                                                            </a>
+                                                        </div>
+                                                        <div class="user-detail">
+                                                            <a class="user-nickname">작성자</a>
+                                                            <div class="user-brief">
+                                                                <span>1시간 전</span>
+                                                                <span>&#183;</span>
+                                                                <i class="fa-light fa-eye"></i><span>53</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="user-reputation">
+                                                        <div class="user-star">
+                                                            <i class="fa-regular fa-thumbs-up"></i><span>13</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-content">
+                                                    <p>blur 이벤트 쓰시는건 어떤가요</p>
+                                                </div>
+                                                <div class="recomment-container">
+                                                    <div class="recomment-button">
+                                                        <button>
+                                                            <i class="fa-regular fa-chevron-up"></i>
+                                                            <div>댓글 모두 숨기기</div>
+                                                        </button>
+                                                        <button>댓글 쓰기</button>
+                                                    </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </li>
                         </ul>
+
+                        <li>
+                            <div class="user-info">
+                                <div class="user-info-container">
+                                    <div class="user-img">
+                                        <a href="">
+                                            <img src="/static/images/profile-icon_34378.png">
+                                        </a>
+                                    </div>
+                                    <div class="user-detail">
+                                        <a class="user-nickname">작성자</a>
+                                        <div class="user-brief">
+                                            <span>1시간 전</span>
+                                            <span>&#183;</span>
+                                            <i class="fa-light fa-eye"></i><span>53</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="user-reputation">
+                                    <div class="user-star">
+                                        <i class="fa-regular fa-thumbs-up"></i><span>13</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                <p>blur 이벤트 쓰시는건 어떤가요</p>
+                            </div>
+                            <div class="recomment-container">
+                                <div class="recomment-button">
+                                    <button>
+                                        <i class="fa-regular fa-chevron-up"></i>
+                                        <div>댓글 모두 숨기기</div>
+                                    </button>
+                                    <button>댓글 쓰기</button>
+                                </div>
+                                <div class="recomment">
+                                    <div class="comment-write">
+                                        <div class="user-img">
+                                            <img src="/static/images/profile-icon_34378.png">
+                                        </div>
+                                        <div class="form-container">
+                                            <form class="comment-form">
+                                                <div class="comment-textarea">
+                                                    <textarea class="test" placeholder="댓글을 입력해주세요."></textarea>
+                                                </div>
+                                            </form>
+                                            <div class="recomment-write-button">
+                                                <button>취소</button>
+                                                <button>댓글 쓰기</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <div class="user-info">
+                                                <div class="user-info-container">
+                                                    <div class="user-img">
+                                                        <a href="">
+                                                            <img src="/static/images/profile-icon_34378.png">
+                                                        </a>
+                                                    </div>
+                                                    <div class="user-detail">
+                                                        <a class="user-nickname">작성자</a>
+                                                        <div class="user-brief">
+                                                            <span>1시간 전</span>
+                                                            <span>&#183;</span>
+                                                            <i class="fa-light fa-eye"></i><span>53</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="user-reputation">
+                                                    <div class="user-star">
+                                                        <i class="fa-regular fa-thumbs-up"></i><span>13</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="comment-content">
+                                                <p>blur 이벤트 쓰시는건 어떤가요</p>
+                                            </div>
+                                            <div class="recomment-container">
+                                                <div class="recomment-button">
+                                                    <button>
+                                                        <i class="fa-regular fa-chevron-up"></i>
+                                                        <div>댓글 모두 숨기기</div>
+                                                    </button>
+                                                    <button>댓글 쓰기</button>
+                                                </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
                     </div>
                 </div>
             </section>
