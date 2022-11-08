@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 프로필</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/myProfile.css">
+</head>
+
+<body>
+    <header>
+        <h1>헤더 영역</h1>
+    </header>
+
+
+
+    <main>
+        <div class="myprofile-container">
+            <div class="myprofile-title">
+                <h2>내 계정</h2>
+            </div>
+
+            <!-- 회원 정보 영역 -->
+            <div class="myprofile-area">
+                <h2>회원 정보</h2>
+                <div class="myprofile-info">
+                    <div class="myprofile-info-area">
+                        <div>
+                            <label class="myprofile-info-title" for="">이름</label>
+                            <input class="myprofile-info-input" type="text">
+                        </div>
+                        <div>
+                            <label class="myprofile-info-title" for="">닉네임</label>
+                            <input class="myprofile-info-input" type="text">
+                        </div>
+                        <div>
+                            <label class="myprofile-info-title" for="">전화 번호</label>
+                            <input class="myprofile-info-input" type="text">
+                        </div>
+                        <div>
+                            <label class="myprofile-info-title" for="">관심있는 기술 태그 입력</label>
+                            <input class="myprofile-info-input" type="text" placeholder="기술 태그를 입력해주세요.">
+                        </div>
+                    </div>
+
+                    <!-- 프로필 영역 -->
+                    <div class="myprofile-image-area">
+                        <input class="myprofile-image" type="image" src="/static/images/logo_bts.png">
+                    </div>
+                </div>
+
+                <div class="save-button-area">
+                    <button class="save-button" type="button">저장</button>
+                </div>
+
+            </div>
+
+            <!-- 비밀 번호 변경 영역 -->
+            <div class="password-area">
+                <div class="password-title">
+                    <h2>비밀 번호</h2>
+                </div>
+                <div class="password-change-area">
+                    <button class="password-change-button">
+                        비밀번호 변경
+                    </button>
+                </div>
+            </div>
+
+            <!-- 계정 삭제 영역 -->
+            <div class="account-delete">
+                <div class="account-delete-title">
+                    <h2>계정 삭제</h2>
+                </div>
+                <div class="account-delete-info">
+                    <p>회원 탈퇴일로부터 계정과 닉네임을 포함한 계정 정보(이메일/이름/닉네임/전화번호)는<br>
+                        <a>개인정보 보호방침</a>
+                        에 따라
+                        <strong>60일간 보관(잠김)</strong>
+                        되며, 60일 경과된 후에는 모든 개인 정보는 완전히 삭제되며 더 이상 복구할 수 없게 됩니다.
+                    </p>
+                    <br>
+                    <p>작성된 게시물은 삭제되지 않으며, 익명처리 후 ~~~로 소유권이 귀속 됩니다.</p>
+                </div>
+                <div class="account-delete-agree">
+                    <div class="account-delete-agree-area">
+                        <input class="account-delete-agree-checkbox" type="checkbox">
+                        <label class="account-delete-agree-content" for="">계정 삭제에 관한 정책을 읽고 이에 동의합니다.</label>
+                    </div>
+                    <div>
+                        <button class="account-delete-button">회원 탈퇴</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </main>
+
+
+    <footer>
+        <h1>푸터 영역</h1>
+    </footer>
+
+</body>
+
+</html>

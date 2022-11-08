@@ -1,0 +1,324 @@
+/* 전체 바디 영역 */
+body {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0;
+    width: 100%;
+    height: 1169px;
+}
+
+.wrap {
+    width: 100%;
+    height: 862px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 8rem;
+    width: 100%;
+    height: 670px;
+    padding-bottom: 4rem;
+}
+
+
+/* 로그인 전체 영역 */
+.signup-area {
+    display: flex;
+    flex-direction: column;
+    width: 448px;
+    height: 670px;
+}
+
+/* 로고영역 */
+
+.logo-img-area {
+    display: flex;
+    margin-bottom: 24px;
+    width: 100%;
+    height: 48px;
+
+}
+
+.logo-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+
+    cursor: pointer;
+}
+
+.logo-image {
+    width: 25%;
+    height: 3rem;
+    margin: 0 auto;
+}
+
+/* 문구 영역 */
+
+.signup-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+.signup-content {
+    margin-top: 0.5rem;
+
+
+    font-size: .875rem;
+    line-height: 1.25rem;
+    text-align: center;
+}
+
+
+/* 회원가입 영역 */
+.signup-box {
+    display: flex;
+    flex-direction: column;
+
+    height: 502px;
+}
+
+/* SNS 회원가입 영역 */
+.oauth-signup {
+    margin-top: 2rem;
+}
+
+.oauth-signup-title {
+    font-size: .875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+}
+
+.oauth-signup-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin-top: 20px;
+    height: 88px;
+}
+
+.oauth-login-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 20px;
+    height: 3rem;
+}
+
+.oauth-login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid rgb(209, 213, 219);
+    border-radius: 5px;
+
+    width: 49%;
+    height: 38px;
+    box-shadow: 1px 1px 0 rgba(117, 116, 116, 0.5);
+}
+
+.oauth-login-button:hover {
+    border: 1px solid rgb(41, 37, 37);
+}
+
+.naver-btn {
+    background-color: #19ce60;
+
+}
+
+.kakao-btn {
+    background-color: #FEE500;
+}
+
+.oauth-login-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+
+.oauth-login-logo img {
+    width: 100%;
+}
+
+.naver-login-text,
+.kakao-login-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 60%;
+
+    font-size: 13px;
+    color: black;
+}
+
+.naver-login-text {
+    color: white;
+}
+
+/* 일반 로그인 영역 */
+.general-signup {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+
+    height: 30px;
+}
+
+.general-signup-border {
+
+    width: 100%;
+    border-top: 1px solid #e5e7eb;
+}
+
+.general-signup-title {
+    margin-top: 18px;
+    width: 100%;
+    font-weight: 500;
+}
+
+.general-signup-area {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.2rem;
+
+    /* background-color: #FEE500; */
+}
+
+/* 클래스명 확인 */
+/* .general-login-account-area {} */
+
+.general-signup-box {
+    display: flex;
+    flex-direction: column;
+    height: 90px;
+
+    /* background-color: #15c654; */
+}
+
+.general-signup-title {
+    font-weight: 400;
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+.general-signup-input {
+    margin-top: 0.25rem;
+
+    border: 1px solid rgb(209, 213, 219);
+    border-radius: 0.375rem;
+    height: 2.8rem;
+    padding: 5px;
+
+    box-shadow: 1px 1px 0 rgba(117, 116, 116, 0.5);
+
+
+}
+
+.general-signup-password-area {
+    display: flex;
+    flex-direction: column;
+    height: 66px;
+}
+
+.general-signup-password-title {
+    font-weight: 400;
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+.general-signup-password-input {
+    margin-top: 0.25rem;
+
+    border: 1px solid rgb(209, 213, 219);
+    border-radius: 0.375rem;
+    height: 2.5rem;
+    padding: 5px;
+}
+
+/* 계정 찾기 영역 */
+.service-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 24px 0;
+    width: 100%;
+}
+
+.service-info-area {
+    display: flex;
+    justify-content: space-between;
+
+    width: 200px;
+}
+
+.service-info-box {
+    font-size: .875rem;
+    line-height: 1.25rem;
+    color: rgb(0 144 249);
+}
+
+.service-info-box:hover {
+    opacity: 0.8;
+}
+
+/* 로그인 버튼 */
+button:hover {
+    opacity: 0.8;
+}
+
+.general-signup-button {
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+
+    width: 100%;
+
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    font-weight: 600;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    text-transform: none;
+    cursor: pointer;
+    color: #fff;
+    box-shadow: 1px 1px 0 rgba(117, 116, 116, 0.5);
+
+    background-color: rgb(0 144 249);
+}
+
+/* 회원가입 영역 */
+.recommend-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    height: 20px;
+}
+
+.login {
+    margin-left: 5px;
+    text-decoration: underline;
+    color: rgb(0 144 249);
+}
+
+.login:hover {
+    opacity: 0.8;
+}
