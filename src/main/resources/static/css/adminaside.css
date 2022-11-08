@@ -1,0 +1,59 @@
+/* aside css */
+aside {
+    width: 300px;
+    height: 975px;
+    padding: 25px;
+
+    background-color: black;
+}
+.logo {
+    display: flex;
+    justify-content: center;
+
+    width: 250px;
+    height: 80px;
+
+    padding: 10px;
+
+    border-bottom: 1px solid rgb(197, 191, 191);
+}
+
+.logo img {
+    width: 150px;
+    height: 60px;
+    background-color: white;
+}
+
+.categorys {
+    display: flex;
+    flex-direction: column;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    
+    margin-top: 20px;
+
+    width: 250px;
+}
+
+.category i {
+    padding: 10px;
+    font-size: 24px;
+
+    color: white;
+}
+
+.category a {
+    padding: 10px;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: white;
+}
+
+.category a:hover {
+    color: rgb(0, 144, 249);
+}

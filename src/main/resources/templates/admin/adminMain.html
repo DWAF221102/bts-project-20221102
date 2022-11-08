@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragment/adminhead :: adminhead}"></head>
+<head>
+    <title>adminMain</title>
+    <link rel="stylesheet" href="/static/css/adminMain.css">
+</head>
+<body>
+    <div id="container">
+        <main>
+            <div class="main-container">
+                <aside th:replace="~{admin/fragment/adminaside :: adminaside}"></aside>
+                <section>
+                    <div class="section-container">
+                        <img src="/static/images/logo.png" alt="">
+                        <h1>관리자 페이지입니다.</h1>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

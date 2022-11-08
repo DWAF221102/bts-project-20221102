@@ -85,19 +85,24 @@ public class PageController {
 
 
     // admin 페이지
+
+    @GetMapping("/admin")
+    public String adminMain() {
+        return "admin/adminMain";
+    }
     @GetMapping("/admin/userlist")
     public String userlist() {
-        return "admin/userlist";
+        return "admin/adminUserlist";
     }
 
     @GetMapping("/admin/questionlist")
     public String questionlist() {
-        return "admin/questionlist";
+        return "admin/adminQnAList";
     }
 
     @GetMapping("/admin/boardlist")
     public String boardlist() {
-        return "admin/boardlist";
+        return "admin/adminBoardList";
     }
 
     @GetMapping("/admin/knowledge/write")
