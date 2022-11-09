@@ -87,7 +87,7 @@ section {
     padding: 0px 32px;
     border-radius: 10px;
 
-    background: center/cover no-repeat url('/static/images/title-back.jpg');
+    background: center/cover no-repeat url('/static/images/title-pattern.jpg');
 }
 
 .quick-board-title a {
@@ -102,10 +102,26 @@ section {
     text-decoration: underline;
 }
 
-.quick-board-title img {
-    width: 100px;
-    height: 64px;
+.question-title img {
+    width: 145px;
+    height: 68px;
 }
+
+.community-title img {
+    width: 116px;
+    height: 76px;
+}
+
+.knowledge-title img {
+    width: 117px;
+    height: 73px;
+}
+
+.notice-title img {
+    width: 118px;
+    height: 70px;
+}
+
 
 .board-list ul {
     width: 400px;
