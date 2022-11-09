@@ -1,30 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragment/head :: head}"></head>
 <head>
-    <meta charset="UTF-8">
+    <!-- <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/css/qnaCreate.css">
-    <title>작성하기기</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/qna/qnaCreate.css">
+    <title>qnaCreate</title>
 </head>
 <body>
     <div class="container">
-        <header><img src="/static/images/KakaoTalk_20221104_152222935.png" alt=""></header>
+        <header th:replace="~{fragment/header :: header}"></header>
         <main>
-            <aside>
-                <div class="category">
-                    <div>카테고리</div>
-                    <ul class="category-menu">
-                        <li>전체</li>
-                        <li>프로그래밍</li>
-                        <li>건축</li>
-                        <li>영상</li>
-                    </ul>
-                </div>
-            </aside>
+
             <section>
                 <div class="write-text">
                     <h3>지식 궁금증 해결하기</h3>
@@ -90,29 +81,9 @@
                 </div>
             </section>
 
-            <aside>
-                <div class="category">
-                    <div>카테고리</div>
-                    <ul class="category-menu">
-                        <li>전체</li>
-                        <li>프로그래밍</li>
-                        <li>건축</li>
-                        <li>영상</li>
-                    </ul>
-                </div>
-                <div class="category">
-                    <div>카테고리</div>
-                    <ul class="category-menu">
-                        <li>전체</li>
-                        <li>프로그래밍</li>
-                        <li>건축</li>
-                        <li>영상</li>
-                    </ul>
-                </div>
-            </aside>
             
         </main>
-        <footer></footer>
+        <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
 </body>
 </html>
