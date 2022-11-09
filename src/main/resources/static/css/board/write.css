@@ -1,22 +1,3 @@
-header {
-    width: 100%;
-    height: 50px;
-    z-index: 10;
-
-    background-color: rgb(130, 10, 250);
-}
-
-header img {
-    width: 100px;
-    height: 100%;
-}
-
-footer {
-    width: 100%;
-    height: 50px;
-
-    background-color: black;
-}
 
 main {
     display: flex;
@@ -228,4 +209,8 @@ form {
     border: 1px solid #dbdbdb;
 
     background-color: white;
+}
+
+.right-aside aside:nth-child(1){
+    margin-bottom: 40px;
 }
