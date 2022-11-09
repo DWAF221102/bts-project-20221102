@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="~{fragment/head :: head}"></head>
+    <link rel="stylesheet" href="/static/css/board/board.css">
+    <title>공지사항</title>
+</head>
+<body>
+    <div class="container">
+        <header th:replace="~{fragment/header :: header}"></header>
+        <main>
+            <div>
+                <aside th:replace="~{fragment/categoryaside :: categoryaside}"></aside>
+            </div>
+            <section>
+                <div class="board-main-head">
+                    <span class="board-main-header-title">공지사항</span>
+                    <span class="board-main-header-content">bts의 새소식, 이벤트, 행사 정보를 공유하는 공간입니다.</span>
+                    <div class="board-main-header-img">
+                        <img src="/static/images/questions.svg">
+                    </div>
+                </div>
+                <div class="board-main-menu">
+                    <div class="write">
+                        <a href="/community/write"><i class="fa-solid fa-pencil"></i>작성하기</a>
+                    </div>
+                    <div class="subcategory">
+                        <nav class="subcategory-nav">
+                            <button type="button">java</button>
+                            <button type="button">python</button>
+                            <button type="button">c</button>
+                            <button type="button">spring</button>
+                            <button type="button">전체</button>  
+                        </nav>
+                    </div>
+                    <div class="show">
+                        <div class="show-button">
+                            <button type="button"><i class="fa-solid fa-bars"></i>최신순</button>
+                        </div>
+                        <div class="show-list invisible">
+                            <button type="button">최신순</button>
+                            <button type="button">추천순</button>
+                            <button type="button">조회순</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-main-search">
+                    <div class="search-reload">
+                        <button type="button"><i class="fa-solid fa-arrows-rotate"></i></button>
+                    </div>
+                    <div class="search-input">
+                        <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <input type="text" placeholder="지식 내에서 검색">
+                    </div>
+                    <div class="search-page">
+                        <div class="search-page-num">
+                            <span>1</span>
+                            <span>/ 6</span>
+                        </div>
+                        <div class="search-page-button">
+                            <button type="button"><i class="fa-solid fa-left-long"></i></button>
+                            <button type="button"><i class="fa-solid fa-right-long"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-main-list">
+                    <ul class="board-list">
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="/article">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <a href="">java</a>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-sharp fa-solid fa-bullseye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <a href="">java</a>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-sharp fa-solid fa-bullseye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <a href="">java</a>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-sharp fa-solid fa-bullseye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <a href="">java</a>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-sharp fa-solid fa-bullseye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <a href="">java</a>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-sharp fa-solid fa-bullseye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <a href="">java</a>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-sharp fa-solid fa-bullseye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <a href="">java</a>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-sharp fa-solid fa-bullseye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <a href="">java</a>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-sharp fa-solid fa-bullseye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <a href="">java</a>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-sharp fa-solid fa-bullseye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="board-list-user">
+                                <div class="user-img">
+                                    <a href=""> <img src="/static/images/profile-icon_34378.png"></a>
+                                </div>
+                                <div class="user-detail">
+                                    <a href="">작성자</a>
+                                    <span>&#183;</span> 
+                                    <span>1시간 전</span>
+                                </div>
+                            </div>
+                            <div class="board-list-title">
+                                <a href="">글 제목</a>
+                            </div>
+                            <div class="board-list-bottum">
+                                <div class="board-list-category">
+                                    <a href="">프로그래밍</a>
+                                    <a href="">java</a>
+                                </div>
+                                <div class="board-list-prefer">
+                                    <div class="views"><i class="fa-sharp fa-solid fa-bullseye"></i><span>53</span></div>
+                                    <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>4</span></div>
+                                    <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>13</span></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="board-main-page">
+                    <div class="previous-button">
+                        <button type="button"><i class="fa-solid fa-left-long"></i><span>Previous</span></button>
+                    </div>
+                    <nav class="page-num">
+                        <button type="button">1</button>
+                        <button type="button">2</button>
+                        <button type="button">3</button>
+                        <button type="button">4</button>
+                    </nav>
+                    <div class="next-button">
+                        <button type="button"><span>Next</span><i class="fa-solid fa-right-long"></i></button>
+                    </div>
+                </div>
+            </section>
+            <div class="right-aside">
+                <aside th:replace="~{fragment/rankaside :: rankaside}"></aside>
+                <aside th:replace="~{fragment/priceaside :: priceaside}"></aside>
+            </div>
+            
+        </main>
+        <footer th:replace="~{fragment/footer :: footer}"></footer>
+    </div>
+</body>
+</html>

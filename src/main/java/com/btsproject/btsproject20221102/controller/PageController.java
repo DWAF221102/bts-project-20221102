@@ -60,7 +60,7 @@ public class PageController {
     // QNA
     @GetMapping("/question")
     public String question() {
-        return "board/board";
+        return "board/knowledgeBoard";
     }
 
     @GetMapping("/question/write")
@@ -72,23 +72,24 @@ public class PageController {
     // 나머지 카테고리(지식, 커뮤니티, 공지)
     @GetMapping("/knowledge")
     public String knowledge() {
-        return "board/board";
+        return "board/knowledgeBoard";
     }
 
     @GetMapping("/community")
     public String community() {
-        return "board/board";
-    }
-
-    @GetMapping("/community/write")
-    public String communitWrite() {
-        return "board/write";
+        return "board/communityBoard";
     }
 
     @GetMapping("/notice")
     public String notice() {
-        return "board/board";
+        return "board/noticeBoard";
     }
+
+    @GetMapping("/write")
+    public String write() {
+        return "board/write";
+    }
+
 
     // article 은 나중에 pathvariable을 통해 들어가도록 만들어야함
     @GetMapping("/article")

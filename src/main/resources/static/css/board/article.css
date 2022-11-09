@@ -1,22 +1,3 @@
-header {
-    width: 100%;
-    height: 50px;
-    z-index: 10;
-
-    background-color: rgb(130, 10, 250);
-}
-
-header img {
-    width: 100px;
-    height: 100%;
-}
-
-footer {
-    width: 100%;
-    height: 50px;
-
-    background-color: black;
-}
 
 main {
     display: flex;
@@ -108,6 +89,10 @@ section {
     color: rgb(0, 144, 249);
 }
 
+.article-category a:hover {
+    color: black;
+}
+
 .user-info {
     display: flex;
     justify-content: space-between;
@@ -158,9 +143,23 @@ section {
     font-weight: 400;
 }
 
+.user-brief i {
+    margin-right: 4px;
+}
+
 .user-star i{
     width: 24px;
     height: 24px;
+}
+
+.user-star button {
+    margin-right: 4px;
+    border: none;
+    background-color: white;
+}
+
+.user-star button:hover {
+    color: rgb(0, 144, 249);
 }
 
 .article-title {
@@ -188,12 +187,13 @@ section {
 
 .article-info a:nth-child(1) {
     margin-right: 15px;
+    border-radius: 5px;
     padding: 2px 10px;
 
     font-size: 12px;
     font-weight: 500;
     color: rgb(0, 144, 249);
-    background-color: rgb(240, 246, 250);
+    background-color: rgb(159, 217, 255);
 }
 
 .article-info a:nth-child(2){
@@ -204,6 +204,10 @@ section {
     font-weight: 400;
 
     color: rgb(107, 114, 128);
+}
+
+.article-info a:nth-child(2):hover {
+    color: black;
 }
 
 .comment-container {
@@ -293,17 +297,33 @@ section {
 
 .recomment-button button {
     border: none;
+    background-color: white;
+}
+
+.recomment-button span:hover {
+    text-decoration: underline;
+}
+
+.rerecomment-write {
+    border: none;
 
     color: #7f7f7f;
     background-color: white;
 }
-
-.recomment-button button:nth-child(1) {
+.show-recomment {
     display: flex;
     align-items: center;
 
     margin-right: 16px;
 
+    color: rgb(0, 144, 249);
+}
+
+.fa-chevrons-down {
+    width: 24px;
+    height: 24px;
+
+    margin-right: 4px;
     color: rgb(0, 144, 249);
 }
 
@@ -332,3 +352,6 @@ section {
     background-color: rgb(0, 144, 249);
 }
 
+.right-aside aside:nth-child(1){
+    margin-bottom: 40px;
+}
