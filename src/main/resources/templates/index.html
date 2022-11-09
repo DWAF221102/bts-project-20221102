@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="~{fragment/head :: head}"></head>
+
 <head>
     <title>index</title>
     <link rel="stylesheet" href="/static/css/index.css">
 </head>
+
 <body>
     <div id="container">
         <header th:replace="~{fragment/header :: header}"></header>
@@ -27,7 +30,7 @@
                             <div class="quick-board-title">
                                 <a href="/question">Q&A</a>
                                 <img src="/static/images/qna-icon.png">
-                            </div>  
+                            </div>
                             <div class="qna-board-list board-list">
                                 <ul>
                                     <li>
@@ -130,7 +133,7 @@
                                             <span>&#8361; 10,000원</span>
                                         </div>
                                     </li>
-                                    
+
                                 </ul>
                             </div>
                         </div>
@@ -139,7 +142,7 @@
                             <div class="quick-board-title">
                                 <a href="/community">커뮤니티</a>
                                 <img src="/static/images/community-icon.png">
-                            </div>  
+                            </div>
                             <div class="community-board-list board-list">
                                 <ul>
                                     <li>
@@ -257,7 +260,7 @@
                                             <a href="#">채무 4천, 노령의 부모님 그리고 긴 방황만 해왔는데 지금...</a>
                                         </div>
                                     </li>
-                                    
+
                                 </ul>
                             </div>
                         </div>
@@ -524,4 +527,5 @@
         <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
 </body>
+
 </html>
