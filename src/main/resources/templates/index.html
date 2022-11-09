@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="~{fragment/head :: head}"></head>
+
 <head>
     <title>index</title>
     <link rel="stylesheet" href="/static/css/index.css">
 </head>
+
 <body>
     <div id="container">
         <header th:replace="~{fragment/header :: header}"></header>
@@ -26,8 +29,13 @@
                         <div class="qna-board all-board">
                             <div class="quick-board-title question-title">
                                 <a href="/question">Q&A</a>
+<<<<<<< HEAD
                                 <img src="/static/images/questions.svg">
                             </div>  
+=======
+                                <img src="/static/images/qna-icon.png">
+                            </div>
+>>>>>>> origin/duckhyeon
                             <div class="qna-board-list board-list">
                                 <ul>
                                     <li>
@@ -130,7 +138,7 @@
                                             <span>&#8361; 10,000원</span>
                                         </div>
                                     </li>
-                                    
+
                                 </ul>
                             </div>
                         </div>
@@ -138,8 +146,13 @@
                         <div class="community-board all-board">
                             <div class="quick-board-title community-title">
                                 <a href="/community">커뮤니티</a>
+<<<<<<< HEAD
                                 <img src="/static/images/community.svg">
                             </div>  
+=======
+                                <img src="/static/images/community-icon.png">
+                            </div>
+>>>>>>> origin/duckhyeon
                             <div class="community-board-list board-list">
                                 <ul>
                                     <li>
@@ -257,7 +270,7 @@
                                             <a href="#">채무 4천, 노령의 부모님 그리고 긴 방황만 해왔는데 지금...</a>
                                         </div>
                                     </li>
-                                    
+
                                 </ul>
                             </div>
                         </div>
@@ -524,4 +537,5 @@
         <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
 </body>
+
 </html>

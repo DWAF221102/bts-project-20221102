@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="stylesheet" href="/static/css/account/login.css">
     <link rel="stylesheet" href="/static/css/reset.css">
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script src="/static/js/account/login.js"></script>
     <title>로그인 페이지</title>
 </head>
 
@@ -14,19 +16,22 @@
     <div class="wrap">
         <div class="container">
             <div class="login-area">
+                <!-- 상단 부분 -->
                 <div class="logo-img-area">
-                    <a class="logo-img" href="">
+                    <a class="logo-img" href="/">
                         <img class="logo-image" src="/static/images/logo_bts.png" alt="logo">
                     </a>
                 </div>
                 <h2 class="login-title">OKKY에 오신것을 환영합니다.</h2>
                 <p class="login-content">OKKY는 소프트웨어 개발자를 위한 지식공유 플랫폼입니다.</p>
 
-
+                <!-- 로그인 영역 -->
                 <div class="login-box">
+                    <!-- SNS 로그인 영역 -->
                     <div class="oauth-login">
                         <span class="oauth-login-title">SNS 로그인</span>
                         <div class="oauth-login-area">
+                            <!-- NAVER 로그인 영역 -->
                             <a class="oauth-login-button naver-btn" href="">
                                 <div class="oauth-login-logo">
                                     <img src="/static/images/btnW_아이콘원형.png">
@@ -35,6 +40,7 @@
                                     NAVER 로그인
                                 </div>
                             </a>
+                            <!-- 카카오 로그인 영역 -->
                             <a class="oauth-login-button kakao-btn" href="">
                                 <div class="oauth-login-logo">
                                     <img src="/static/images/join_kakao.png">
@@ -45,49 +51,46 @@
                             </a>
                         </div>
                     </div>
+                    <!-- 일반 로그인 영역 -->
                     <div class="general-login">
                         <div class="general-login-border"></div>
                         <div class="general-login-title">
                             <span>OKKY 아이디로 로그인</span>
                         </div>
-                        <!-- <div class=" general-login-border"></div> -->
                     </div>
-
+                    <!-- 로그인 정보 입력 영역 -->
                     <form class="general-login-area" action="">
                         <div class="general-login-account-area">
-                            <!-- 클래스명 확인 -->
+                            <!-- 아이디 -->
                             <div class="general-login-id-area">
-                                <label class="general-login-title" for="">아이디</label>
+                                <label class="general-login-title">아이디</label>
                                 <input class="general-login-input" type="text" maxlength="15"
                                     placeholder="아이디를 입력해주세요.">
-
                             </div>
+                            <!-- 비밀번호 -->
                             <div class="general-login-password-area">
-                                <label class="general-login-title" for="">비밀번호</label>
+                                <label class="general-login-title">비밀번호</label>
                                 <input class="general-login-input" type="password" placeholder="비밀번호를 입력해주세요.">
                             </div>
                         </div>
+                        <!-- 계정 찾기 영역 -->
                         <div class="account-search">
-                            <a class="account-search-box" href="">계정 찾기</a>
-
-
+                            <a class="account-search-box" href="/forgot">계정 찾기</a>
                         </div>
+                        <!-- 로그인 버튼 -->
                         <div>
                             <button class="general-login-button" type="button">로그인</button>
                         </div>
+                        <!-- 회원가입 영역 -->
                         <div class="recommend-signup">
                             <span class="ask-signup">아직 회원이 아니신가요?</span>
-                            <a class="sign" href="">회원가입</a>
+                            <a class="sign" href="/signup">회원가입</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <footer>
-
-    </footer>
 </body>
 
 </html>
