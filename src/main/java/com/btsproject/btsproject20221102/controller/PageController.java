@@ -92,7 +92,7 @@ public class PageController {
 
     // article 은 나중에 pathvariable을 통해 들어가도록 만들어야함
     @GetMapping("/article")
-    public String article() { return "board/article"; }
+    public String article() { return "board/articles"; }
 
     @GetMapping("/qnaarticle")
     public String qnaArticle() {
