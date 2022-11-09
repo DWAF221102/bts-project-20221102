@@ -199,6 +199,8 @@ body {
     height: 66px;
 }
 
+
+
 .general-login-title {
     margin-top: 0.3rem;
     font-weight: 400;
@@ -218,6 +220,14 @@ body {
     padding: 5px;
     box-shadow: 1px 1px 0 rgba(117, 116, 116, 0.5);
 }
+
+.general-login-input:focus {
+    outline: none;
+    border-color: #007aff;
+    border-width: medium;
+    /* 테두리 굵기 조절 */
+}
+
 
 .general-login-password-area {
     display: flex;
