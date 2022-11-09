@@ -5,19 +5,18 @@ body {
 
     margin: 0;
     width: 100%;
-    height: 1169px;
 }
 
 .wrap {
     width: 100%;
-    height: 862px;
+    height: 1000px;
 }
 
 .container {
     display: flex;
     justify-content: center;
 
-    margin-top: 8rem;
+    margin: 40px 0px;
     width: 100%;
     height: 670px;
     padding-bottom: 4rem;

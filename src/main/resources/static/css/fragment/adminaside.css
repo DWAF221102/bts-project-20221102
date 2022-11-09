@@ -6,6 +6,11 @@ aside {
 
     background-color: black;
 }
+
+.main-btn i {
+    color: white;
+}
+
 .logo {
     display: flex;
     justify-content: center;

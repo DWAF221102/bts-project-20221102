@@ -1,547 +1,527 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="~{fragment/head :: head}"></head>
-
 <head>
     <title>index</title>
     <link rel="stylesheet" href="/static/css/index.css">
 </head>
-
 <body>
-    <div id="container">
-        <header th:replace="~{fragment/header :: header}"></header>
+<div id="container">
+    <header th:replace="~{fragment/header :: header}"></header>
 
-        <main>
-            <div class="main-container">
-                <div>
-                    <aside th:replace="~{fragment/rankaside :: rankaside}"></aside>
-                    <div class="bug-sos">
-                        <div class="sos-icon">
-                            <a href="/notice"><i class="fa-sharp fa-solid fa-bullhorn"></i></a>
+    <main>
+        <div class="main-container">
+            <div>
+                <aside th:replace="~{fragment/rankaside :: rankaside}"></aside>
+                <div class="bug-sos">
+                    <div class="sos-icon">
+                        <a href="/notice"><i class="fa-sharp fa-solid fa-bullhorn"></i></a>
+                    </div>
+                    <span>버그와 제안은 여기에 댓글로 남겨주세요.</span>
+                </div>
+            </div>
+
+            <section>
+                <div class="quick-board">
+                    <div class="qna-board all-board">
+                        <div class="quick-board-title question-title">
+                            <a href="/question">Q&A</a>
+                            <img src="/static/images/questions.svg">
                         </div>
-                        <span>버그와 제안은 여기에 댓글로 남겨주세요.</span>
+                        <div class="qna-board-list board-list">
+                            <ul>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: red;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
+                                        </div>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </div>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                    <div class="qna-list-bottom">
+                                        <a href="#">선생님들.. 제발 도와주세요. 파이썬 인공...</a>
+                                        <span>&#8361; 10,000원</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: coral;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
+                                        </div>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </div>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                    <div class="qna-list-bottom">
+                                        <a href="#">선생님들.. 제발 도와주세요. 파이썬 인공...</a>
+                                        <span>&#8361; 10,000원</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: yellow;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
+                                        </div>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </div>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                    <div class="qna-list-bottom">
+                                        <a href="#">선생님들.. 제발 도와주세요. 파이썬 인공...</a>
+                                        <span>&#8361; 10,000원</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: green;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
+                                        </div>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </div>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                    <div class="qna-list-bottom">
+                                        <a href="#">선생님들.. 제발 도와주세요. 파이썬 인공...</a>
+                                        <span>&#8361; 10,000원</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: blue;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
+                                        </div>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </div>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                    <div class="qna-list-bottom">
+                                        <a href="#">선생님들.. 제발 도와주세요. 파이썬 인공...</a>
+                                        <span>&#8361; 10,000원</span>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="community-board all-board">
+                        <div class="quick-board-title community-title">
+                            <a href="/community">커뮤니티</a>
+                            <img src="/static/images/community.svg">
+                        </div>
+                        <div class="community-board-list board-list">
+                            <ul>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: navy;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
+                                        </div>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </div>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
+                                            </div>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">채무 4천, 노령의 부모님 그리고 긴 방황만 해왔는데 지금...</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: purple;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
+                                        </div>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </div>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
+                                            </div>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">채무 4천, 노령의 부모님 그리고 긴 방황만 해왔는데 지금...</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: yellowgreen;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
+                                        </div>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </div>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
+                                            </div>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">채무 4천, 노령의 부모님 그리고 긴 방황만 해왔는데 지금...</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: pink;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
+                                        </div>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </div>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
+                                            </div>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">채무 4천, 노령의 부모님 그리고 긴 방황만 해왔는데 지금...</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: brown;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
+                                        </div>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </div>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
+                                            </div>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">채무 4천, 노령의 부모님 그리고 긴 방황만 해왔는데 지금...</a>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <section>
-                    <div class="quick-board">
-                        <div class="qna-board all-board">
-                            <div class="quick-board-title question-title">
-                                <a href="/question">Q&A</a>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/geonho
-                                <img src="/static/images/questions.svg">
-                            </div>  
-=======
-                                <img src="/static/images/qna-icon.png">
-                            </div>
->>>>>>> origin/duckhyeon
-                            <div class="qna-board-list board-list">
-                                <ul>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: red;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
-                                            </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                            </div>
-                                        </div>
-                                        <div class="qna-list-bottom">
-                                            <a href="#">선생님들.. 제발 도와주세요. 파이썬 인공...</a>
-                                            <span>&#8361; 10,000원</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: coral;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
-                                            </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                            </div>
-                                        </div>
-                                        <div class="qna-list-bottom">
-                                            <a href="#">선생님들.. 제발 도와주세요. 파이썬 인공...</a>
-                                            <span>&#8361; 10,000원</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: yellow;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
-                                            </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                            </div>
-                                        </div>
-                                        <div class="qna-list-bottom">
-                                            <a href="#">선생님들.. 제발 도와주세요. 파이썬 인공...</a>
-                                            <span>&#8361; 10,000원</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: green;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
-                                            </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                            </div>
-                                        </div>
-                                        <div class="qna-list-bottom">
-                                            <a href="#">선생님들.. 제발 도와주세요. 파이썬 인공...</a>
-                                            <span>&#8361; 10,000원</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: blue;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
-                                            </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                            </div>
-                                        </div>
-                                        <div class="qna-list-bottom">
-                                            <a href="#">선생님들.. 제발 도와주세요. 파이썬 인공...</a>
-                                            <span>&#8361; 10,000원</span>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                            </div>
+                <div class="quick-board">
+                    <div class="knowledge-board all-board">
+                        <div class="quick-board-title knowledge-title">
+                            <a href="/knowledge">지식</a>
+                            <img src="/static/images/knowledge.svg">
                         </div>
-
-                        <div class="community-board all-board">
-                            <div class="quick-board-title community-title">
-                                <a href="/community">커뮤니티</a>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/geonho
-                                <img src="/static/images/community.svg">
-                            </div>  
-=======
-                                <img src="/static/images/community-icon.png">
-                            </div>
->>>>>>> origin/duckhyeon
-                            <div class="community-board-list board-list">
-                                <ul>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: navy;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
-                                            </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
-                                            </div>
+                        <div class="knowledge-board-list board-list">
+                            <ul>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: aqua;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
                                         </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">채무 4천, 노령의 부모님 그리고 긴 방황만 해왔는데 지금...</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: purple;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
                                             </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
                                             </div>
+                                            <span>3</span>
                                         </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">채무 4천, 노령의 부모님 그리고 긴 방황만 해왔는데 지금...</a>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">컴퓨터 계층의 관점에서 보는 프로그래머의 분업</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: palevioletred;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: yellowgreen;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
                                             </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
                                             </div>
+                                            <span>3</span>
                                         </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">채무 4천, 노령의 부모님 그리고 긴 방황만 해왔는데 지금...</a>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">컴퓨터 계층의 관점에서 보는 프로그래머의 분업</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: gold;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: pink;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
                                             </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
                                             </div>
+                                            <span>3</span>
                                         </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">채무 4천, 노령의 부모님 그리고 긴 방황만 해왔는데 지금...</a>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">컴퓨터 계층의 관점에서 보는 프로그래머의 분업</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: olive;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: brown;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
                                             </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
                                             </div>
+                                            <span>3</span>
                                         </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">채무 4천, 노령의 부모님 그리고 긴 방황만 해왔는데 지금...</a>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">컴퓨터 계층의 관점에서 보는 프로그래머의 분업</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/profileImg.png" style="background-color: rosybrown;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
                                         </div>
-                                    </li>
-
-                                </ul>
-                            </div>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </div>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
+                                            </div>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">컴퓨터 계층의 관점에서 보는 프로그래머의 분업</a>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
-                    <div class="quick-board">
-                        <div class="knowledge-board all-board">
-                            <div class="quick-board-title knowledge-title">
-                                <a href="/knowledge">지식</a>
-                                <img src="/static/images/knowledge.svg">
-                            </div>
-                            <div class="knowledge-board-list board-list">
-                                <ul>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: aqua;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
-                                            </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
-                                            </div>
-                                        </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">컴퓨터 계층의 관점에서 보는 프로그래머의 분업</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: palevioletred;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
-                                            </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
-                                            </div>
-                                        </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">컴퓨터 계층의 관점에서 보는 프로그래머의 분업</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: gold;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
-                                            </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
-                                            </div>
-                                        </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">컴퓨터 계층의 관점에서 보는 프로그래머의 분업</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: olive;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
-                                            </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
-                                            </div>
-                                        </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">컴퓨터 계층의 관점에서 보는 프로그래머의 분업</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/profileImg.png" style="background-color: rosybrown;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
-                                            </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
-                                            </div>
-                                        </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">컴퓨터 계층의 관점에서 보는 프로그래머의 분업</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="notice-board all-board">
+                        <div class="quick-board-title notice-title">
+                            <a href="/notice">공지</a>
+                            <img src="/static/images/notice.svg">
                         </div>
-
-                        <div class="notice-board all-board">
-                            <div class="quick-board-title notice-title">
-                                <a href="/notice">공지</a>
-                                <img src="/static/images/notice.svg">
-                            </div>
-                            <div class="knowledge-board-list board-list">
-                                <ul>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/logo.png" style="background-color: #dbdbdb;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
-                                            </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
-                                            </div>
+                        <div class="knowledge-board-list board-list">
+                            <ul>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/logo.png" style="background-color: #dbdbdb;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
                                         </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">[중요 알림] OKKY v2.1.1 릴리즈</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/logo.png" style="background-color: #dbdbdb;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
                                             </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
                                             </div>
+                                            <span>3</span>
                                         </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">[중요 알림] OKKY v2.1.1 릴리즈</a>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">[중요 알림] OKKY v2.1.1 릴리즈</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/logo.png" style="background-color: #dbdbdb;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/logo.png" style="background-color: #dbdbdb;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
                                             </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
                                             </div>
+                                            <span>3</span>
                                         </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">[중요 알림] OKKY v2.1.1 릴리즈</a>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">[중요 알림] OKKY v2.1.1 릴리즈</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/logo.png" style="background-color: #dbdbdb;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/logo.png" style="background-color: #dbdbdb;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
                                             </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
                                             </div>
+                                            <span>3</span>
                                         </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">[중요 알림] OKKY v2.1.1 릴리즈</a>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">[중요 알림] OKKY v2.1.1 릴리즈</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/logo.png" style="background-color: #dbdbdb;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <div class="board-list-top">
-                                            <div class="board-profile">
-                                                <a href="#"><img src="/static/images/logo.png" style="background-color: pal;"></a>
-                                                <a href="#" class="board-profile-nick">userNick1</a>
-                                                <span>·</span>
-                                                <span>약 1시간 전</span>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
                                             </div>
-                                            <div class="recommendation-icon">
-                                                <div>
-                                                    <i class="fa-regular fa-thumbs-up"></i>
-                                                </div>
-                                                <span>3</span>
-                                                <div>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                </div>
-                                                <span>3</span>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
                                             </div>
+                                            <span>3</span>
                                         </div>
-                                        <div class="board-list-bottom">
-                                            <a href="#">[중요 알림] OKKY v2.1.1 릴리즈</a>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">[중요 알림] OKKY v2.1.1 릴리즈</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="board-list-top">
+                                        <div class="board-profile">
+                                            <a href="#"><img src="/static/images/logo.png" style="background-color: pal;"></a>
+                                            <a href="#" class="board-profile-nick">userNick1</a>
+                                            <span>·</span>
+                                            <span>약 1시간 전</span>
                                         </div>
-                                    </li>
-                                </ul>
-                            </div>
+                                        <div class="recommendation-icon">
+                                            <div>
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </div>
+                                            <span>3</span>
+                                            <div>
+                                                <i class="fa-regular fa-comment-dots"></i>
+                                            </div>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                    <div class="board-list-bottom">
+                                        <a href="#">[중요 알림] OKKY v2.1.1 릴리즈</a>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <aside th:replace="~{fragment/priceaside :: priceaside}"></aside>
-            </div>
-        </main>
-        <footer th:replace="~{fragment/footer :: footer}"></footer>
-    </div>
+            <aside th:replace="~{fragment/priceaside :: priceaside}"></aside>
+        </div>
+    </main>
+    <footer th:replace="~{fragment/footer :: footer}"></footer>
+</div>
 </body>
-
 </html>
