@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragment/head :: head}"></head>
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="/static/css/reset.css">
+=======
+    <title>totalSearch</title>
+>>>>>>> origin/geonho
     <link rel="stylesheet" href="/static/css/totalSearch.css">
-    <title>지식</title>
 </head>
 <body>
     <div class="container">
-        <header><img src="/static/images/KakaoTalk_20221104_152222935.png" alt=""></header>
+        <header th:replace="~{fragment/header :: header}"></header>
     
         <main>
-            <aside>
-                <div class="category">
-                    <div>카테고리</div>
-                    <ul class="category-menu">
-                        <li>전체</li>
-                        <li>프로그래밍</li>
-                        <li>건축</li>
-                        <li>영상</li>
-                    </ul>
-                </div>
-            </aside>
+            <aside th:replace="~{fragment/rankaside :: rankaside}"></aside>
             <div>
                 <section>
                     <div class="board-main-header board-title-header">
@@ -554,34 +548,10 @@
                         </ul>
                     </div>
                 </section>
-            </div>
- 
-
-            
-
-            <aside>
-                <div class="category">
-                    <div>카테고리</div>
-                    <ul class="category-menu">
-                        <li>전체</li>
-                        <li>프로그래밍</li>
-                        <li>건축</li>
-                        <li>영상</li>
-                    </ul>
-                </div>
-                <div class="category">
-                    <div>카테고리</div>
-                    <ul class="category-menu">
-                        <li>전체</li>
-                        <li>프로그래밍</li>
-                        <li>건축</li>
-                        <li>영상</li>
-                    </ul>
-                </div>
-            </aside>
-            
+            </div>        
+            <aside th:replace="~{fragment/priceaside :: priceaside}"></aside>
         </main>
-        <footer></footer>
+        <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
 </body>
 </html>
