@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <aside th:fragment="adminaside">
+        <div class="aside-container">
+            <div class="logo">
+                <a href="/admin"><img src="/static/images/logo.png"></a> 
+            </div>
+            <div class="categorys">
+                <div class="category">
+                    <div>
+                        <i class="fa-regular fa-user"></i>
+                    </div>
+                    <a href="/admin/userlist">회원관리</a>
+                </div>
+                <div class="category">
+                    <div>
+                        <i class="fa-solid fa-clipboard-question"></i>
+                    </div>
+                    <a href="/admin/questionlist">QnA관리</a>
+                </div>
+                <div class="category">
+                    <div>
+                        <i class="fa-solid fa-clipboard-list"></i>
+                    </div>
+                    <a href="/admin/boardlist">게시글관리</a>
+                </div>
+            </div>
+        </div>
+    </aside>
+</body>
+</html>

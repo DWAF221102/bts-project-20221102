@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragment/adminhead :: adminhead}"></head>
+<head>
+    <title>adminUserList</title>
+    <link rel="stylesheet" href="/static/css/admin/adminList.css">
+</head>
+<body>
+    <div id="container">
+        <main>
+            <div class="main-container">
+                <aside th:replace="~{admin/fragment/adminaside :: adminaside}"></aside>
+                <section>
+                    <div class="section-container">
+                        <div class="section-title">
+                            <h2>회원 목록</h2>
+                        </div>
+                        <div class="userlist-search">
+                            <select>
+                                <option value="ALL">전체</option>
+                                <option value="ID">아이디</option>
+                                <option value="NAME">이름</option>
+                                <option value="NICKNAME">닉네임</option>
+                                <option value="roles">권한</option>
+                            </select>
+                            <div class="userlist-search-button">
+                                <input type="text">
+                                <div>
+                                    <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-table user-table">
+                            <table class="user-list">
+                                <thead class="list-head">
+                                    <tr>
+                                        <th>아이디</th>
+                                        <th>이름</th>
+                                        <th>닉네임</th>
+                                        <th>휴대폰</th>
+                                        <th>권한</th>
+                                        <th>삭제</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="list-body">
+                                    <tr>
+                                        <td>aaaa@naver.com</td>
+                                        <td>홍길동</td>
+                                        <td>동해번쩍서해번쩍</td>
+                                        <td>010-0000-0000</td>
+                                        <td>관리자</td>
+                                        <td><button type="button">삭제</button></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

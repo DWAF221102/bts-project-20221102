@@ -9,6 +9,7 @@
 body {
     font-size: 14px;
     font-family: 'Noto Sans KR', sans-serif;
+    color: black;
 }
 
 img {
@@ -17,11 +18,15 @@ img {
 
 a {
     text-decoration: none;
+    color: black;
 }
 
-ul,
-li {
+ul, li {
     margin: 0px;
     padding: 0px;
     list-style-type: none;
+}
+
+button {
+    cursor: pointer;
 }

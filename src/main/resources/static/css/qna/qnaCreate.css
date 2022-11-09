@@ -1,0 +1,510 @@
+header {
+    width: 100%;
+    height: 50px;
+    z-index: 10;
+
+    background-color: rgb(130, 10, 250);
+}
+
+header img {
+    width: 100px;
+    height: 100%;
+}
+
+footer {
+    width: 100%;
+    height: 50px;
+
+    background-color: black;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    margin-top: 60px;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+}
+
+
+.board {
+    display: flex;
+    justify-content: center;
+}
+
+aside {
+    width: 180px;
+
+}
+
+.category {
+    width: 100%;
+    margin-bottom: 50px;
+    padding: 0px;
+}
+
+.category div {
+    margin-bottom: 10px;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+}
+
+.category li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #7f7f7f;
+    padding-bottom: 10px;
+
+    list-style: none;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 840px;
+    height: 863px;
+
+    margin: 0px 40px;
+}
+
+.write-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 100%;
+}
+
+.write-text h3{
+    text-align: start;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.write-text p{
+    margin-top: 8px;
+    color: rgb(107, 114, 128);
+}
+
+form {
+    width: 100%;
+
+    margin-top: 40px;
+}
+
+.write-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.write-category {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    margin-bottom: 15px;
+}
+
+.write-category label{
+    font-weight: 500;
+}
+
+.write-category select {
+    height: 42px;
+
+    margin-top: 4px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    padding: 8px 40px 8px 12px;
+
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.write-subcategory {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    margin-bottom: 15px;
+}
+
+.write-subcategory label{
+    font-weight: 500;
+}
+
+.write-subcategory select {
+    height: 42px;
+
+    margin-top: 4px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    padding: 8px 40px 8px 12px;
+
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.write-title {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    margin-bottom: 15px;
+}
+
+.write-title label{
+    font-weight: 500;
+}
+
+.write-title input {
+    height: 42px;
+
+    margin-top: 4px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    padding: 8px 40px 8px 12px;
+
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.write-textarea {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    margin-bottom: 15px;
+}
+
+.write-textarea label{
+    font-weight: 500;
+}
+
+.write-textarea textarea {
+    height: 337px;
+
+    margin-top: 4px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    padding: 8px 40px 8px 12px;
+    
+    font-weight: 400;
+    resize: none;
+}
+
+.qna-image-box {
+    padding-bottom: 15px;
+}
+
+.qna-image {
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+}
+
+.qna-image-button {
+    width: 50px;
+    height: 30px;
+}
+
+.qna-money {
+    display: flex;
+    justify-content: space-between;
+}
+
+.money-title {
+    font-weight: 500;
+    padding-top: 5px;
+}
+
+.money-input {
+    display: flex;
+    justify-content: center;
+}
+
+.money-inputs {
+    padding: 5px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.money-won {
+    padding-top: 5px;
+    padding-left: 4px;
+}
+
+
+.write-buttons {
+    display: flex;
+    justify-content: flex-end;
+
+    width: 100%;
+
+    margin-top: 20px;
+}
+
+.write-buttons button:hover {
+    cursor: pointer;
+}
+
+.write-buttons button {
+    width: 85px;
+    height: 40px;
+    padding: 8px 16px;
+    border-radius: 5px;
+
+}
+
+.write-buttons button:nth-child(1) {
+    margin-right: 12px;
+    border: none;
+
+    color: white;
+    background-color: rgb(0, 144, 249);
+}
+
+.write-buttons button:nth-child(2) {
+    border: 1px solid #dbdbdb;
+
+    background-color: white;
+}
+    header {
+        width: 100%;
+        height: 50px;
+        z-index: 10;
+    
+        background-color: rgb(130, 10, 250);
+    }
+    
+    header img {
+        width: 100px;
+        height: 100%;
+    }
+    
+    footer {
+        width: 100%;
+        height: 50px;
+    
+        background-color: black;
+    }
+    
+    main {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    
+        margin-top: 60px;
+        padding: 0;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: column;
+        margin: 0px auto;
+    }
+    
+    
+    .board {
+        display: flex;
+        justify-content: center;
+    }
+    
+    aside {
+        width: 180px;
+    
+    }
+    
+    .category {
+        width: 100%;
+        margin-bottom: 50px;
+        padding: 0px;
+    }
+    
+    .category div {
+        margin-bottom: 10px;
+        border-bottom: 2px solid black;
+        padding-bottom: 10px;
+    }
+    
+    .category li {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #7f7f7f;
+        padding-bottom: 10px;
+    
+        list-style: none;
+    }
+    
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 840px;
+        height: 100%;
+    
+        margin: 0px 40px 40px 40px;
+    }
+    
+    .write-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    
+        width: 100%;
+    }
+    
+    .write-text h3{
+        text-align: start;
+        font-size: 30px;
+        font-weight: 500;
+    }
+    
+    .write-text p{
+        margin-top: 8px;
+        color: rgb(107, 114, 128);
+    }
+    
+    form {
+        width: 100%;
+    
+        margin-top: 40px;
+    }
+    
+    .write-menu {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .write-category {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    
+        margin-bottom: 15px;
+    }
+    
+    .write-category label{
+        font-weight: 500;
+    }
+    
+    .write-category select {
+        height: 42px;
+    
+        margin-top: 4px;
+        border: 1px solid #dbdbdb;
+        border-radius: 5px;
+        padding: 8px 40px 8px 12px;
+    
+        font-size: 16px;
+        font-weight: 400;
+    }
+    
+    .write-subcategory {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    
+        margin-bottom: 15px;
+    }
+    
+    .write-subcategory label{
+        font-weight: 500;
+    }
+    
+    .write-subcategory select {
+        height: 42px;
+    
+        margin-top: 4px;
+        border: 1px solid #dbdbdb;
+        border-radius: 5px;
+        padding: 8px 40px 8px 12px;
+    
+        font-size: 16px;
+        font-weight: 400;
+    }
+    
+    .write-title {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    
+        margin-bottom: 15px;
+    }
+    
+    .write-title label{
+        font-weight: 500;
+    }
+    
+    .write-title input {
+        height: 42px;
+    
+        margin-top: 4px;
+        border: 1px solid #dbdbdb;
+        border-radius: 5px;
+        padding: 8px 40px 8px 12px;
+    
+        font-size: 16px;
+        font-weight: 400;
+    }
+    
+    .write-textarea {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    
+        margin-bottom: 15px;
+    }
+    
+    .write-textarea label{
+        font-weight: 500;
+    }
+    
+    .write-textarea textarea {
+        height: 337px;
+    
+        margin-top: 4px;
+        border: 1px solid #dbdbdb;
+        border-radius: 5px;
+        padding: 8px 40px 8px 12px;
+        
+        font-weight: 400;
+    }
+    
+    /* .write-buttons {
+        display: flex;
+        justify-content: flex-end;
+    
+        width: 100%;
+    
+        margin-top: 54px;
+    } */
+    
+    .write-buttons button {
+        width: 85px;
+        height: 40px;
+        padding: 8px 16px;
+        border-radius: 5px;
+    
+    }
+    
+    .write-buttons button:nth-child(1) {
+        margin-right: 12px;
+        border: none;
+    
+        color: white;
+        background-color: rgb(0, 144, 249);
+    }
+    
+    .write-buttons button:nth-child(2) {
+        border: 1px solid #dbdbdb;
+    
+        background-color: white;
+    }

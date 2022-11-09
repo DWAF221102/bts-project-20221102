@@ -1,0 +1,169 @@
+#container {
+    width: 100%;
+    height: 100%;
+    scrollbar-width: none;
+}
+
+.main-container {
+    display: flex;
+}
+
+/* section css */
+section {
+    width: 100%;
+    background-color: #dbdbdb;
+}
+
+.section-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 1600px;
+    padding: 30px;
+}
+
+.section-title {
+    width: 100%;
+    padding: 22.5px 0px;
+
+    border-bottom: 1px solid darkgray;
+}
+
+.userlist-search {
+    display: flex;
+    align-items: center;
+
+    margin: 100px auto;
+    width: 1000px;
+
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.userlist-search select {
+    width: 100px;
+    height: 30px;
+
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.userlist-search-button {
+    display: flex;
+    align-items: center;
+}
+
+.userlist-search-button input {
+    width: 870px;
+    height: 30px;
+
+    border: none;
+    outline: none;
+}
+
+.userlist-search-button button {
+    padding: 0px 4px;
+    border: none;
+    background-color: white;
+
+    cursor: pointer;
+}
+
+.userlist-search-button i {
+    width: 20px;
+    height: 20px;
+    /* background-color: black; */
+}
+
+.list-table {
+    height: 480px;
+
+    margin: 0px auto;
+    padding: 10px;
+
+    border: 1px solid white;
+    border-radius: 5px;
+    overflow-y: scroll;
+
+    background-color: white;
+}
+
+.user-list {
+    width: 1200px;
+    border-collapse: collapse;
+}
+
+.list-head {
+    text-align: left;
+}
+
+.list-body tr {
+    height: 30px;
+}
+
+.list-body td {
+    border-bottom: 1px solid darkgray;
+}
+
+.list-body button {
+    font-weight: 900;
+    cursor: pointer;
+}
+
+/*상세보기*/
+.detail-invisible {
+    display: none;
+}
+
+.detail-box {
+    margin: 10px 0px;
+
+    width: 1200px;
+    height: 300px;
+
+    outline: none;
+    resize: none;
+
+    background-color: white;
+}
+
+/*게시판, 유저 리스트 필요부분*/
+.board-table, .user-table {
+    margin-top: 23px;
+}
+
+/*qna페이지 필요부분*/
+.qna-category-flex {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.qna-status-category {
+    display: flex;
+    justify-content: start;
+
+    width: 1240px;
+}
+
+.qna-list-table {
+    border-radius: 0px 5px 5px 5px;
+}
+
+.qna-status-category button {
+    margin-right: 5px;
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: none;
+
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.qna-status-category button:hover {
+    background-color: darkgray;
+}

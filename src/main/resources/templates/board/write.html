@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/board/write.css">
+    <title>작성하기기</title>
+</head>
+<body>
+    <div class="container">
+        <header><img src="/static/images/KakaoTalk_20221104_152222935.png" alt=""></header>
+        <main>
+            <aside>
+                <div class="category">
+                    <div>카테고리</div>
+                    <ul class="category-menu">
+                        <li>전체</li>
+                        <li>프로그래밍</li>
+                        <li>건축</li>
+                        <li>영상</li>
+                    </ul>
+                </div>
+            </aside>
+            <section>
+                <div class="write-text">
+                    <h3>지식 궁금증 해결하기</h3>
+                    <p>
+                        <strong>작성자</strong>님 지식공유 플렛폼 bts에서 궁금증을 해결하세요
+                    </p>
+                </div>
+                <form action="">
+                    <div class="write-menu">
+                        <div class="write-category">
+                            <label for="categoryCode">카테고리</label>
+                            <select name="categoryCode" id="categoryCode">
+                                <option value="none" selected>category를 선택해주세요</option>
+                                <option value="programing">프로그래밍</option>
+                                <option value="build">건축</option>
+                                <option value="video">영상</option>
+                            </select>
+                        </div>
+                        <div class="write-subcategory">
+                            <label for="subcategoryCode">서브카테고리</label>
+                            <select type="text" id="subcategoryCode" name="subcategoryCode">
+                                <option value="none" selected>subcategory를 선택해주세요</option>
+                                <option value="java">java</option>
+                                <option value="python">python</option>
+                                <option value="c">c</option>
+                                <option value="spring">spring</option>
+                                <option value="etc">기타</option>
+                            </select> 
+                        </div>
+                        <div class="write-title">
+                            <label for="title">제목</label>
+                            <input type="text" id="title" name="title" placeholder="제목을 입력해주세요">
+                        </div>
+                    </div>
+                    <div class="write-textarea">
+                        <label for="textarea">본문</label>
+                        <textarea class="text-input" placeholder="내용을 입력해주세요."></textarea>
+                    </div>
+                </form>
+                <div class="write-buttons">
+                    <button>등록</button>
+                    <button>취소</button>
+                </div>
+            </section>
+
+            <aside>
+                <div class="category">
+                    <div>카테고리</div>
+                    <ul class="category-menu">
+                        <li>전체</li>
+                        <li>프로그래밍</li>
+                        <li>건축</li>
+                        <li>영상</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <div>카테고리</div>
+                    <ul class="category-menu">
+                        <li>전체</li>
+                        <li>프로그래밍</li>
+                        <li>건축</li>
+                        <li>영상</li>
+                    </ul>
+                </div>
+            </aside>
+            
+        </main>
+        <footer></footer>
+    </div>
+</body>
+</html>
