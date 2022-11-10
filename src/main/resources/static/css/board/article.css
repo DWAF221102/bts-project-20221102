@@ -1,3 +1,8 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+}
 
 main {
     display: flex;
@@ -6,43 +11,6 @@ main {
 
     margin-top: 60px;
     padding: 0;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    margin: 0px auto;
-}
-
-
-.board {
-    display: flex;
-    justify-content: center;
-}
-
-aside {
-    width: 180px;
-
-}
-
-.category {
-    width: 100%;
-    margin-bottom: 50px;
-    padding: 0px;
-}
-
-.category div {
-    margin-bottom: 10px;
-    border-bottom: 2px solid black;
-    padding-bottom: 10px;
-}
-
-.category li {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #7f7f7f;
-    padding-bottom: 10px;
-
-    list-style: none;
 }
 
 section {
