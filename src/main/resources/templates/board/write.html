@@ -3,6 +3,15 @@
 <head>
     <head th:replace="~{fragment/head :: head}"></head>
     <link rel="stylesheet" href="/static/css/board/write.css">
+   
+    <link rel="stylesheet" href="/static/css/summernote/summernote-lite.css">
+    <script src="/static/js/summernote/summernote-lite.js"></script>
+    <script src="/static/js/summernote/lang/summernote-ko-KR.js"></script>
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+
     <title>작성하기기</title>
 </head>
 <body>
@@ -45,9 +54,9 @@
                     </div>
                     <div class="write-textarea">
                         <label for="textarea">본문</label>
-                        <textarea class="text-input" placeholder="내용을 입력해주세요."></textarea>
+                        <textarea id="summernote" name="editordata"></textarea>
                     </div>
-                </form>
+                </form >
                 <div class="write-buttons">
                     <button>등록</button>
                     <button>취소</button>
@@ -56,5 +65,6 @@
         </main>
         <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
+    <script src="/static/js/summernote/summernote.js"></script>
 </body>
 </html>

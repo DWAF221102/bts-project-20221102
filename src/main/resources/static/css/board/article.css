@@ -290,6 +290,12 @@ section {
     padding-left: 16px;
 }
 
+.recomment-container{
+    border-bottom: 1px solid #bdbdbd;
+
+    padding-bottom: 15px;
+}
+
 .recomment-button {
     display: flex;
     align-items: center;

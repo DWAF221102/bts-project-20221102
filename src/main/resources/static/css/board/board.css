@@ -38,6 +38,8 @@ section {
 
     background-color:  rgb(159, 217, 255);
     overflow: hidden;
+
+    background: center/cover no-repeat url('/static/images/title-pattern.jpg');
 }
 
 .back-img {

@@ -20,6 +20,11 @@
     list-style: none;
 }
 
+.category li:hover {
+    color: rgb(0, 144, 249);
+    border-bottom: 1px solid rgb(0, 144, 249);
+}
+
 .category button {
     border: none;
     background-color: white;
