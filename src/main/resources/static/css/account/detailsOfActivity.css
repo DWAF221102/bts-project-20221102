@@ -35,9 +35,10 @@ main {
     height: 55%;
 }
 
-.profile-detail {
+.profile-detail-area {
     display: flex;
     justify-content: flex-start;
+    /* align-items: center; */
 
     width: 75%;
     height: 100%;
@@ -172,8 +173,14 @@ main {
     color: rgb(107 114 128);
 }
 
+.menu-list a:nth-child(1) {
+    border-bottom: 2px solid #0090f9;
+    color: #0090f9;
+}
+
 .menu-list a:hover {
-    color: black;
+    border-bottom: 2px solid #0090f9;
+    color: #0090f9;
 }
 
 
