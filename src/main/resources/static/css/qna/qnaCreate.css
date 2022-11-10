@@ -207,8 +207,22 @@ form {
 }
 
 .qna-image-button {
-    width: 50px;
+    /* width: 50px;
+    height: 30px; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
     height: 30px;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 6px;
+    border: 0px;
+    margin-left: 10px;
+    /* background-color: rgba(142, 142, 142, 0.8); */
+    background-color: rgb(0, 144, 249);
+    color: #ffffff;
 }
 
 .qna-money {
@@ -227,15 +241,19 @@ form {
 }
 
 .money-inputs {
+    width: 165px;
+    height: 35px;
+
     padding: 5px;
     border: 1px solid #dbdbdb;
     border-radius: 5px;
-    height: 30px;
 }
 
 .money-won {
     padding-top: 5px;
-    padding-left: 4px;
+    padding-left: 7px;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 

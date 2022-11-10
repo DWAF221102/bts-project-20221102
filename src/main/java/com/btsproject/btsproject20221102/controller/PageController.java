@@ -60,12 +60,17 @@ public class PageController {
     // QNA
     @GetMapping("/question")
     public String question() {
-        return "board/knowledgeBoard";
+        return "qna/qnaBoard";
     }
 
     @GetMapping("/question/write")
     public String questionWrite() {
         return "qna/qnaCreate";
+    }
+
+    @GetMapping("/question/article")
+    public String questionArticle() {
+        return "qna/qnaBoardArticle";
     }
 
 

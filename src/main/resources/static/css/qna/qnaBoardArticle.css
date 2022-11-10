@@ -1,0 +1,523 @@
+.qna-board-container {
+display: flex;
+justify-content: center;
+
+}
+
+.qna-board-center {
+    display: flex;
+    justify-content: center;
+
+    width: 840px;
+    /* height: 100%; */
+    padding-top: 30px;
+
+    /* background-color: beige; */
+}
+
+.qna-board-left {
+
+    width: 420px;
+    height: 100%;
+
+    /* background-color: rgb(135, 135, 209); */
+}
+
+.qna-board-img {
+    width: 400px;
+    height: 400px;
+    /* background-color: rgb(35, 35, 211); */
+    
+}
+
+.img-content {
+    width: 400px;
+    height: 400px;
+    /* object-fit: cover; */
+    /* 이미지 비율이 무너지지만 크게 상관없어서 그냥 400*400
+    꽉 차게 보이도록 우선 넣음 */
+}
+
+.qna-board-profile {
+    width: 400px;
+    height: 44px;
+
+    /* background-color: rgb(188, 105, 105); */
+}
+
+.qna-board-profile-flex {
+    display: flex;
+    margin-top: 4px;
+
+}
+
+.qna-profile-img {
+    width: 44px;
+    height: 44px;
+    background-color: rgb(105, 105, 105);
+    border-radius: 50%;
+}
+
+.qna-board-profile-details {
+    padding-top: 2px;
+    padding-left: 7px;
+}
+
+.qna-profile-name {
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000;
+}
+
+.qna-profile-text {
+    font-size: 12px;
+    font-weight: 400;
+    color: #6b7280;
+}
+
+
+
+
+
+.qna-board-right {
+    width: 420px;
+    height: 100%;
+
+    padding-left: 20px;
+    border-left: 1px solid #ebebeb;
+    /* background-color: rgb(187, 140, 231); */
+}
+
+.qna-board-top {
+    display: flex;
+    width: 400px;
+    /* 높이는 글자크기에 따라 100%로 해야함 */
+
+    /* background-color: aqua; */
+}
+
+.qna-board-category {
+    font-size: 16px;
+    font-weight:bolder;
+    border-bottom: 2px solid #4b5563;
+    color: #4b5563;
+}
+
+.qna-content-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    
+
+}
+
+.qna-board-req {
+    width: 400px;
+    /* background-color: rgb(58, 150, 130); */
+    padding-top: 30px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.qna-board-req-title {
+    font-size: 16px;
+    font-weight: bolder;
+    color: #4b5563;
+}
+
+.qna-board-req-lists {
+    display: flex;
+}
+
+.qna-board-req-list {
+    margin: 5px 10px 15px 0px;
+}
+
+
+.qna-board-price {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.qna-board-price-left {
+    font-size: 12px;
+    font-weight: 400;
+    color: #4b5563;
+    padding-top: 3px;
+}
+
+.qna-board-price-right {
+    font-size: 18px;
+    font-weight: bolder;
+
+}
+
+.request-button {
+    width: 100%;
+    height: 60px;
+    border-radius: 10px;
+    border: 0px;
+    background-color: #0090f9;
+}
+
+.request-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.request-time {
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+
+.qna-board-info {
+    width: 400px;
+    /* background-color: rgb(177, 69, 130); */
+
+
+}
+
+.qna-board-info-category {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+
+    border-bottom: 1px solid #ebebeb;
+
+}
+
+.qna-board-info-category-left {
+    font-size: 12px;
+    font-weight: 400;
+    color: #4b5563;
+}
+
+.qna-board-info-category-right {
+    font-size: 12px;
+    font-weight: 400;
+    color: #000000;
+
+}
+
+.qna-error {
+
+}
+
+.qna-error-title {
+    font-size: 16px;
+    font-weight: bolder;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    color: #4b5563;
+}
+
+.qna-error-description {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.error-details {
+    font-size: 14px;
+    /* margin-top: 10px; */
+    font-weight: 400;
+    color: #4B5563;
+}
+
+
+
+
+
+
+
+.qna-board-reference {
+    width: 400px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    /* background-color: rgb(45, 122, 122); */
+}
+
+.reference-name {
+    font-size: 16px;
+    font-weight: bolder;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ebebeb;
+    color: #4b5563;
+}
+
+.reference-detail-box {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 10px 0px;
+    border-bottom: 1px solid #ebebeb;
+
+}
+
+.reference-details {
+    font-size: 12px;
+    font-weight: 400;
+    color: #4b5563;
+
+}
+
+.qna-bottom {
+    /* display: flex;
+    justify-content: center; */
+    width: 840px;
+}
+
+
+.answer-title {
+    margin-top: 80px;
+    border-top: 1px solid #ebebeb;
+    padding-top: 30px;
+
+    font-size: 16px;
+    font-weight: bolder;
+    color: #4b5563;
+}
+
+.answer-profile {
+    width: 400px;
+    height: 44px;
+    margin-top: 8px;
+
+    /* background-color: rgb(188, 105, 105); */
+}
+
+.answer-detail {
+    font-size: 14px;
+    color: #000000;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ebebeb;
+
+}
+
+.answer-details {
+    font-size: 14px;
+    color: #4b5563;
+    padding-top: 10px;
+}
+
+.answer-solutions {
+    font-size: 14px;
+    color: #4b5563;
+    padding-top: 10px;
+    padding-bottom: 40px;
+}
+
+
+
+
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    /* display: flex; */
+    display: none;
+    /* 나중에 none으로 하고 js 만들어야함 */
+
+    background-color: rgba(0, 0, 0, 0.4);
+
+    /* backgroun-color가 페이지 한면에만 먹히고 스크롤을 내렸을 때 안먹힘 */
+}
+
+.modal-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  
+    width: 400px;
+    height: 600px;
+  
+    padding: 15px 25px 15px 25px;
+  
+    text-align: center;
+  
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+.modal-title {
+    font-size: 16px;
+    font-weight: bolder;
+    color: #4b5563;
+    /* padding-bottom: 5px;
+    border-bottom: 1px solid #ebebeb; */
+}
+
+.modal-detail {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 400; 
+    color: #000000;
+    padding-top: 5px;
+    margin-top: 10px;
+    padding-bottom: 5px;
+    border-top: 1px solid #ebebeb;
+}
+
+.modal-textarea {
+    width: 100%;
+    height: 100%;
+    /* border: none; */
+    resize: none;
+    border-radius: 5px;
+    padding: 5px;
+
+    margin-bottom: 5px;
+}
+
+.modal-description {
+    font-size: 12px;
+    color: #4B5563;
+}
+
+.modal-button {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-button-left {
+    margin-top: 7px;
+    font-size: 16px;
+    font-weight:400;
+    color: #ffffff;
+    background-color: #0090f9;
+    border-radius: 10px;
+    border: 0px;
+
+    width: 60px;
+    height: 30px;
+}
+
+.modal-button-right {
+    margin-top: 7px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffff;
+    background-color: #848485;
+    border-radius: 10px;
+    border: 0px;
+
+    width: 60px;
+    height: 30px;
+}
+
+
+.modal-user {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    /* display: flex; */
+    display: none;
+    /* 나중에 none으로 하고 js 만들어야함 */
+
+    background-color: rgba(0, 0, 0, 0.4);
+
+    /* backgroun-color가 페이지 한면에만 먹히고 스크롤을 내렸을 때 안먹힘 */
+}
+
+.modal-user-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  
+    width: 400px;
+    height: 400px;
+  
+    padding: 15px 25px 15px 25px;
+  
+    text-align: center;
+  
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.modal-user-review {
+font-size: 16px;
+font-weight: bolder;
+color: #4b5563;
+padding-bottom: 3px;
+border-bottom: 1px solid #ebebeb;
+}
+
+.modal-user-detail {
+display: flex;
+padding-top: 13px;
+}
+
+.modal-user-title {
+width: 50px;
+/* text-align: left; */
+/* justify-content: center; */
+
+font-size: 14px;
+font-weight: 400; 
+color: #4B5563;
+}
+
+.modal-titles {
+width: 50px;
+text-align: left;
+}
+
+.star-title {
+ padding-top: 5px;
+}
+
+.modal-star {
+/* display: flex; */
+font-size: 25px;
+
+}
+
+  .modal-user-description {
+    font-size: 12px;
+    font-weight: 300; 
+    color: #4B5563;
+  }
+
+  .modal-user-content {
+    font-size: 14px;
+    font-weight: 400; 
+    color: #000000;
+  }
+
+  .user-textarea {
+    width: 100%;
+    height: 100%;
+    /* border: none; */
+    resize: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+
+    font-size: 14px;
+    font-weight: 400; 
+    color: #000000;
+  }
