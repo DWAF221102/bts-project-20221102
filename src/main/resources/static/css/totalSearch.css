@@ -55,7 +55,7 @@ section {
     align-items: center;
     width: 840px;
 
-    margin: 0px 40px 20px;
+    margin: 0px 40px 10px;
 }
 
 .board-main-header {
@@ -442,14 +442,19 @@ section {
 
 .more-details {
 
-    width: 60px;
-    height: 30px;
+    width: 50px;
+    height: 25px;
     border-radius: 8px;
     border: 0px;
-    background-color: #0090f9;
+    background-color: rgb(0, 144, 249);
     color:#ffffff;
-    font-size: 16px;
-    font-weight: bolder;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.more-details:hover {
+    background-color: rgb(82, 175, 241);
 }
 
 .previous-button button {
