@@ -76,8 +76,6 @@ header {
 
     color: rgb(118, 118, 118);
     font-size: 11px;
-
-    cursor: pointer;
 }
 
 .search-box:focus-within {
