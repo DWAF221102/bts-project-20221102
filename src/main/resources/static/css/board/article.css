@@ -325,7 +325,3 @@ section {
     color: white;
     background-color: rgb(0, 144, 249);
 }
-
-.right-aside aside:nth-child(1){
-    margin-bottom: 40px;
-}
