@@ -68,6 +68,11 @@ public class PageController {
         return "qna/qnaCreate";
     }
 
+    @GetMapping("/question/article")
+    public String questionArticle() {
+        return "qna/qnaBoardArticle";
+    }
+
 
     // 나머지 카테고리(지식, 커뮤니티, 공지)
     @GetMapping("/knowledge")
