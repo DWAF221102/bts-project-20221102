@@ -13,7 +13,7 @@
         <header th:replace="~{fragment/header :: header}"></header>
         <main>
             <div>
-                <aside th:replace="~{fragment/categoryaside :: categoryaside}"></aside>
+                <aside th:replace="~{fragment/rankaside :: rankaside}"></aside>
             </div>
             <section>
                 <div class="board-main-head">
@@ -26,15 +26,6 @@
                 <div class="board-main-menu">
                     <div class="write">
                         <a href="/admin/notice/write"><i class="fa-solid fa-pencil"></i>작성하기</a>
-                    </div>
-                    <div class="subcategory">
-                        <nav class="subcategory-nav">
-                            <button type="button">java</button>
-                            <button type="button">python</button>
-                            <button type="button">c</button>
-                            <button type="button">spring</button>
-                            <button type="button">전체</button>
-                        </nav>
                     </div>
                     <div class="show">
                         <div class="show-button">
@@ -356,7 +347,6 @@
                 </div>
             </section>
             <div class="right-aside">
-                <aside th:replace="~{fragment/rankaside :: rankaside}"></aside>
                 <aside th:replace="~{fragment/priceaside :: priceaside}"></aside>
             </div>
 

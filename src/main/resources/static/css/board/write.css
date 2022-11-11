@@ -162,7 +162,7 @@ form {
     font-weight: 500;
 }
 
-.write-textarea textarea {
+.write-textarea textarea {  
     height: 337px;
 
     margin-top: 4px;
