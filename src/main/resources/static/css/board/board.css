@@ -259,10 +259,8 @@ section {
 
 }
 
-.search-input:focus-within   {
-    outline: none;
-    border-color: #007aff;
-    border-width: medium; 
+.search-input:focus-within {
+    border:1px solid #007aff;
 }
 
 .search-input button {
