@@ -260,6 +260,10 @@ justify-content: center;
 
 }
 
+.reference-detail-box i:hover {
+    cursor: pointer;
+}
+
 .reference-details {
     font-size: 12px;
     font-weight: 400;
@@ -374,7 +378,7 @@ justify-content: center;
 }
 
 .modal-textarea {
-    width: 100%;
+    width: 390px;
     height: 100%;
     /* border: none; */
     resize: none;
@@ -429,7 +433,7 @@ justify-content: center;
     width: 100%;
     height: 100%;
 
-    /* display: flex; */
+    display: flex;
     display: none;
     /* 나중에 none으로 하고 js 만들어야함 */
 
@@ -467,7 +471,7 @@ border-bottom: 1px solid #ebebeb;
 
 .modal-user-detail {
 display: flex;
-padding-top: 13px;
+padding-top: 20px;
 }
 
 .modal-user-title {
