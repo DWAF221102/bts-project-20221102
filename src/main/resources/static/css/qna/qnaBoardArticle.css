@@ -1,6 +1,6 @@
 .qna-board-container {
-display: flex;
-justify-content: center;
+    display: flex;
+    justify-content: center;
 
 }
 
@@ -27,7 +27,7 @@ justify-content: center;
     width: 400px;
     height: 400px;
     /* background-color: rgb(35, 35, 211); */
-    
+
 }
 
 .img-content {
@@ -98,7 +98,7 @@ justify-content: center;
 
 .qna-board-category {
     font-size: 16px;
-    font-weight:bolder;
+    font-weight: bolder;
     border-bottom: 2px solid #4b5563;
     color: #4b5563;
 }
@@ -107,7 +107,7 @@ justify-content: center;
     font-size: 16px;
     font-weight: 600;
     color: #000000;
-    
+
 
 }
 
@@ -137,10 +137,10 @@ justify-content: center;
     width: 400px;
     display: flex;
     justify-content: space-between;
-    
+
     margin-top: 10px;
     margin-bottom: 10px;
-    
+
 }
 
 .qna-board-price-left {
@@ -206,9 +206,7 @@ justify-content: center;
 
 }
 
-.qna-error {
-
-}
+.qna-error {}
 
 .qna-error-title {
     font-size: 16px;
@@ -329,7 +327,6 @@ justify-content: center;
 
     width: 100%;
     height: 100%;
-
     /* display: flex; */
     display: none;
     /* 나중에 none으로 하고 js 만들어야함 */
@@ -343,20 +340,20 @@ justify-content: center;
     position: absolute;
     top: 50%;
     left: 50%;
-  
+
     width: 400px;
     height: 600px;
-  
+
     padding: 15px 25px 15px 25px;
-  
+
     text-align: center;
-  
+
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-  
+
     transform: translateX(-50%) translateY(-50%);
-  }
+}
 
 .modal-title {
     font-size: 16px;
@@ -369,7 +366,7 @@ justify-content: center;
 .modal-detail {
     text-align: left;
     font-size: 14px;
-    font-weight: 400; 
+    font-weight: 400;
     color: #000000;
     padding-top: 5px;
     margin-top: 10px;
@@ -396,12 +393,14 @@ justify-content: center;
 .modal-button {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
 }
 
 .modal-button-left {
     margin-top: 7px;
     font-size: 16px;
-    font-weight:400;
+    font-weight: 400;
     color: #ffffff;
     background-color: #0090f9;
     border-radius: 10px;
@@ -432,9 +431,8 @@ justify-content: center;
 
     width: 100%;
     height: 100%;
-
     display: flex;
-    display: none;
+    /* display: none; */
     /* 나중에 none으로 하고 js 만들어야함 */
 
     background-color: rgba(0, 0, 0, 0.4);
@@ -446,72 +444,91 @@ justify-content: center;
     position: absolute;
     top: 50%;
     left: 50%;
-  
-    width: 400px;
-    height: 400px;
-  
+
+    width: 20%;
+    height: 45%;
+
     padding: 15px 25px 15px 25px;
-  
+
     text-align: center;
-  
+
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-  
+
     transform: translateX(-50%) translateY(-50%);
 }
 
 .modal-user-review {
-font-size: 16px;
-font-weight: bolder;
-color: #4b5563;
-padding-bottom: 3px;
-border-bottom: 1px solid #ebebeb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bolder;
+    color: #4b5563;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #ebebeb;
 }
 
 .modal-user-detail {
-display: flex;
-padding-top: 20px;
+    width: 100%;
+    display: flex;
+    padding-top: 20px;
 }
 
 .modal-user-title {
-width: 50px;
-/* text-align: left; */
-/* justify-content: center; */
+    width: 50px;
+    /* text-align: left; */
+    /* justify-content: center; */
 
-font-size: 14px;
-font-weight: 400; 
-color: #4B5563;
+    font-size: 14px;
+    font-weight: 400;
+    color: #4B5563;
 }
 
 .modal-titles {
-width: 50px;
-text-align: left;
+    width: 50px;
+    text-align: left;
 }
 
 .star-title {
- padding-top: 5px;
+    padding-top: 5px;
+}
+
+.modal-star-area {
+    width: 100%;
 }
 
 .modal-star {
-/* display: flex; */
-font-size: 25px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
 }
 
-  .modal-user-description {
+.modal-user-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    margin: 0;
     font-size: 12px;
-    font-weight: 300; 
+    font-weight: 300;
     color: #4B5563;
-  }
+}
 
-  .modal-user-content {
+.modal-user-description p {
+    margin: 0;
+    margin-top: 5px;
+}
+
+.modal-user-content {
     font-size: 14px;
-    font-weight: 400; 
+    font-weight: 400;
     color: #000000;
-  }
+}
 
-  .user-textarea {
+.user-textarea {
     width: 100%;
     height: 100%;
     /* border: none; */
@@ -522,6 +539,6 @@ font-size: 25px;
     margin-bottom: 5px;
 
     font-size: 14px;
-    font-weight: 400; 
+    font-weight: 400;
     color: #000000;
-  }
+}
