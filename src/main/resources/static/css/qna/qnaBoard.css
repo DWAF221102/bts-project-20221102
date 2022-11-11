@@ -379,10 +379,6 @@ section {
     width: 100%;
 }
 
-/* .board-list-title:hover {
-    text-decoration: underline;
-} */
-
 .board-list-title a{
     font-size: 16px;
     font-weight: 600;

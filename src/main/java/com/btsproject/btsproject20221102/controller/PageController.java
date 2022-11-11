@@ -85,26 +85,21 @@ public class PageController {
         return "board/communityBoard";
     }
 
+    @GetMapping("/community/write")
+    public String write() {
+        return "board/communityWrite";
+    }
+
     @GetMapping("/notice")
     public String notice() {
         return "board/noticeBoard";
     }
 
-    @GetMapping("/board/write")
-    public String write() {
-        return "board/write";
-    }
 
 
     // article 은 나중에 pathvariable을 통해 들어가도록 만들어야함
     @GetMapping("/article")
     public String article() { return "board/article"; }
-
-    @GetMapping("/qnaarticle")
-    public String qnaArticle() {
-        return "qna/qnaBoard";
-    }
-
 
     // admin 페이지
 

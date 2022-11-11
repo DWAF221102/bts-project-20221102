@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/css/fragment/footer.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    
+    <link rel="stylesheet" href="/static/css/summernote/summernote-lite.css">
+    <script src="/static/js/summernote/summernote-lite.js"></script>
+    <script src="/static/js/summernote/lang/summernote-ko-KR.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/fragment/header.css">
+    <link rel="stylesheet" href="/static/css/board/write.css">
+    <title>커뮤니티글 작성하기</title>
+</head>
+<body>
+    <div class="container">
+        <header th:replace="~{fragment/header :: header}"></header>
+        <main>
+            <section>
+                <div class="write-text">
+                    <h3>함께 할 때 더 즐거운 순간</h3>
+                    <p>
+                        <strong>작성자</strong>님 지식공유 플렛폼 bts에서 다양한 사람을 만나고 생각의 폭을 넓혀보세요.
+                    </p>
+                </div>
+                <form action="">
+                    <div class="write-menu">
+                        <div class="write-category">
+                            <label for="categoryCode">카테고리</label>
+                            <select name="categoryCode" id="categoryCode">
+                                <option value="none" selected>category를 선택해주세요</option>
+                                <option value="programing">프로그래밍</option>
+                                <option value="build">건축</option>
+                                <option value="video">영상</option>
+                            </select>
+                        </div>
+                        <div class="write-subcategory">
+                            <label for="subcategoryCode">서브카테고리</label>
+                            <select type="text" id="subcategoryCode" name="subcategoryCode">
+                                <option value="none" selected>subcategory를 선택해주세요</option>
+                                <option value="daily">일상</option>
+                                <option value="tip">팁</option>
+                                <option value="study">모임&스터디</option>
+                            </select> 
+                        </div>
+                        <div class="write-title">
+                            <label for="title">제목</label>
+                            <input type="text" id="title" name="title" placeholder="제목을 입력해주세요">
+                        </div>
+                    </div>
+                    <div class="write-textarea">
+                        <label for="textarea">본문</label>
+                        <textarea id="summernote" name="editordata"></textarea>
+                    </div>
+                </form >
+                <div class="write-buttons">
+                    <button>등록</button>
+                    <button>취소</button>
+                </div>
+            </section>
+        </main>
+        <footer th:replace="~{fragment/footer :: footer}"></footer>
+    </div>
+    <script src="/static/js/summernote/summernote.js"></script>
+</body>
+</html>
