@@ -1,3 +1,9 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0px auto;
+}
 
 main {
     display: flex;
@@ -6,12 +12,6 @@ main {
 
     margin-top: 18px;
     padding: 0;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    margin: 0px auto;
 }
 
 section {
@@ -122,7 +122,7 @@ section {
 }
 
 .subcategory-nav button:hover {
-    color: black;
+    color: rgb(0, 144, 249);
 }
 
 .subcategory-nav button:nth-child(1) {
@@ -172,7 +172,7 @@ section {
     bottom: -204px;
 
     width: 152px;
-    height: auto;
+    height: 115px;
 
     margin-top: 16px;
     padding: 4px 0px;
@@ -195,7 +195,7 @@ section {
 }
 
 .show-list button:hover {
-    color: black;
+    color: rgb(0, 144, 249);
 }
 
 .show-list button:nth-child(1) {
@@ -254,9 +254,7 @@ section {
 }
 
 .search-input:focus-within   {
-    outline: none;
-    border-color: #007aff;
-    border-width: medium; 
+    border:1px solid #007aff;
 }
 
 .search-input button {
