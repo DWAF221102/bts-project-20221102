@@ -1,6 +1,7 @@
-main {
+.container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    margin: 0px auto;
 }
 
 main {
@@ -12,11 +13,6 @@ main {
     padding: 0;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    margin: 0px auto;
-}
 
 
 .board {
