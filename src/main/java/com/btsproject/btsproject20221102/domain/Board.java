@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Board {
-    private int boardId;
+    private int board_id;
 
-    private int menuId;
-    private int categoryId;
-    private int subcategoryId;
+    private int menu_id;
+    private int category_id;
+    private int subcategory_id;
 
-    private int userId;
+    private int user_id;
     private String title;
     private String content;
-    private int viewCount;
+    private int view_count;
 }
