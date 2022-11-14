@@ -101,8 +101,8 @@ public class PageController {
     @GetMapping("/article")
     public String article() { return "board/article"; }
 
-    // admin 페이지
 
+    // admin 페이지
     @GetMapping("/admin")
     public String adminMain() {
         return "admin/adminMain";

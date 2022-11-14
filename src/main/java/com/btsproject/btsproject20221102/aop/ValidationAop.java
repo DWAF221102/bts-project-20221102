@@ -1,5 +1,6 @@
 package com.btsproject.btsproject20221102.aop;
 
+import com.btsproject.btsproject20221102.exception.CustomValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -40,7 +41,7 @@ public class ValidationAop {
                 errorMap.put(error.getField(), error.getDefaultMessage());
             });
 
-            System.out.println("오류 파일 없음요."); // exception에 CustomValidationException 만들어 줘야해요.
+            throw new CustomValidationException("Validation failed", errorMap);
         }
     }
 

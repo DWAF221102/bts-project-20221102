@@ -2,7 +2,6 @@ package com.btsproject.btsproject20221102.aop;
 
 import com.btsproject.btsproject20221102.aop.annotation.LogAspect;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class LogAop {
-    @Pointcut("annotation(com.btsproject.btsproject20221102.aop.annotation.LogAspect)")
+    @Pointcut("@annotation(com.btsproject.btsproject20221102.aop.annotation.LogAspect)")
     private void annotationPointcut(){}
 
     @Around("annotationPointcut()")

@@ -1,6 +1,5 @@
 package com.btsproject.btsproject20221102.config;
 
-import org.hibernate.validator.internal.util.privilegedactions.GetResource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -21,7 +20,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         WebMvcConfigurer.super.addResourceHandlers(registry);
-        registry.addResourceHandler("/image/**")
+        registry.addResourceHandler("/images/**")
                 .addResourceLocations("file:///" + filePath)
                 .setCachePeriod(60*60)
                 .resourceChain(true)
