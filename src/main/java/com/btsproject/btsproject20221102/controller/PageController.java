@@ -80,6 +80,11 @@ public class PageController {
         return "board/knowledgeBoard";
     }
 
+    @GetMapping("/knowledge/write")
+    public String knowledgeWrite() {
+        return "board/knowledgeWrite";
+    }
+
     @GetMapping("/community")
     public String community() {
         return "board/communityBoard";
@@ -95,7 +100,10 @@ public class PageController {
         return "board/noticeBoard";
     }
 
-
+    @GetMapping("/notice/write")
+    public String noticeWrite() {
+        return "board/noticeWrite";
+    }
 
     // article 은 나중에 pathvariable을 통해 들어가도록 만들어야함
     @GetMapping("/article")
@@ -123,14 +131,4 @@ public class PageController {
     }
 
 
-    //////////////////////////////////////////////////////////////////
-    @GetMapping("/admin/knowledge/write")
-    public String knowledgeWrite() {
-        return "admin/knowledgeWrite";
-    }
-
-    @GetMapping("/admin/notice/write")
-    public String noticeWrite() {
-        return "admin/noticeWrite";
-    }
 }
