@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity  //기존의 WebSecurityConfigurerAdapter 클래스를 해당 SecurityConfig로 대체함.
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+//    암호화
 //    @Bean
 //    public BCryptPasswordEncoder passwordEncoder(){
 //        return new BCryptPasswordEncoder();
@@ -24,7 +24,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.hasRole("ADMIN")  하나만의 권할을 줄때
                 .access("hasRole('ADMIN') or hasRole('MANAGER')")
                 .antMatchers("/**")
-                .permitAll();  //모든 접근 허용
-    }
+                .permitAll()  //모든 접근 허용
+
+                .and()
+                .formLogin()
+                .usernameParameter("username")
+                .loginPage("/account/login")           // GET 요청
+                .loginProcessingUrl("/account/login");  // 로그인 로직(PrincipalDetailsService) POST 요청
+    }           //.failureHandler(new AuthFailureHandler())  실패핸들러
+                //.defaultSuccessUrl("/index");
 
 }
