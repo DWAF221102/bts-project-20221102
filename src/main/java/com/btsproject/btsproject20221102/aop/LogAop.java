@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class LogAop {
-    @Pointcut("annotation(com.btsproject.btsproject20221102.aop.annotation.LogAspect)")
+    @Pointcut("@annotation(com.btsproject.btsproject20221102.aop.annotation.LogAspect)")
     private void annotationPointcut(){}
 
     @Around("annotationPointcut()")
