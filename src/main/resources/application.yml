@@ -15,10 +15,4 @@ mybatis:
     - /mappers/*.xml
 
 file:
-  path: C:\jaehyo\web\springboot\bts-project-20221102\upload
-
-
-file:
   path: C:\project\bts-project-20221102/upload
-
-
