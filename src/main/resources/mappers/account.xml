@@ -2,12 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.btsproject.btsproject20221102.domain.User">
+<mapper namespace="com.btsproject.btsproject20221102.repository.account.AccountRepository">
     <resultMap id="role" type="com.btsproject.btsproject20221102.domain.Role">
         <result property="id" column="id"></result>
         <result property="role" column="role"></result>
         <result property="role_name" column="role_name"></result>
     </resultMap>
+
     <resultMap id="user" type="com.btsproject.btsproject20221102.domain.User">
         <result property="id" column="id"></result>
         <result property="username" column="username"></result>
@@ -24,23 +25,27 @@
         <collection property="role" resultMap="role"></collection>
     </resultMap>
 
-    <insert id="save" parameterType="com.btsproject.btsproject20221102.domain.User">
+    <insert id="save"
+            parameterType="com.btsproject.btsproject20221102.domain.User"
+            useGeneratedKeys="true"
+            keyProperty="id">
         insert into
             user_mst
         values(
-        0,
-        #{username},
-        #{oauth_username},
-        #{password},
-        #{name},
-        #{phone},
-        #{nickname},
-        #{skill},
-        #{provider},
-        #{user_img},
-        #{role_id},
-        now(),
-        now()
+            0,
+            #{username},
+            #{oauth_username},
+            #{password},
+            #{name},
+            #{phone},
+            #{nickname},
+            #{skill},
+            #{provider},
+            #{user_img},
+            #{role_id},
+            now(),
+            now()
+        );
     </insert>
 
 
