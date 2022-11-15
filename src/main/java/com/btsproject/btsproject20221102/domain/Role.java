@@ -1,4 +1,5 @@
-package com.btsproject.btsproject20221102.repository.domain;
+package com.btsproject.btsproject20221102.domain;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
