@@ -33,6 +33,7 @@
             user_mst
         values(
             0,
+            #{role_id},
             #{username},
             #{oauth_username},
             #{password},
@@ -42,7 +43,6 @@
             #{skill},
             #{provider},
             #{user_img},
-            #{role_id},
             now(),
             now()
         );
@@ -68,7 +68,7 @@
             um.update_date
         from
             user_mst um
-            left outer join role_mst rm on (rm.role_id = um.role_id)
+            left outer join role_mst rm on (rm.id = um.role_id)
         where
             username = #{username}
     </select>
