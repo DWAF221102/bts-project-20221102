@@ -6,7 +6,7 @@ spring:
     static-path-pattern: /static/**
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://web-study.cf6og1l7mjlg.ap-northeast-2.rds.amazonaws.com:3306/stussy-20220929-yeonho?allowMultiQueries=true
+    url: jdbc:mariadb://web-study.cf6og1l7mjlg.ap-northeast-2.rds.amazonaws.com:3306/bts-project?allowMultiQueries=true
     username: admin
     password: 1q2w3e4r!
 
