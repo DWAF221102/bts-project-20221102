@@ -318,3 +318,13 @@ button:hover {
 .login:hover {
     opacity: 0.8;
 }
+
+
+.error-msg {
+    display: none;
+
+    margin: 5px 0px 0px 2px;
+    font-size: 12px;
+    color: red;
+}
+
