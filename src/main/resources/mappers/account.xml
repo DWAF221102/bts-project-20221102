@@ -47,6 +47,31 @@
             now()
         );
     </insert>
+    <select id="findUserByEmail" parameterType="String" resultMap="user">
+        select
+            um.id,
+            um.role_id,
+            um.username,
+            um.oauth_username,
+            um.password,
+            um.name,
+            um.phone,
+            um.nickname,
+            um.skill,
+            um.provider,
+            um.user_img,
+
+            rm.role,
+            rm.role_name,
+
+            um.create_date,
+            um.update_date
+        from
+            user_mst um
+            left outer join role_mst rm on (rm.role_id = um.role_id)
+        where
+            username = #{username}
+    </select>
 
 
 </mapper>

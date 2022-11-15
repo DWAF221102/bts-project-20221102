@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.File;
 import java.time.LocalDateTime;
 
 @Data
@@ -24,6 +23,7 @@ public class User {
     private String skill;
     private String provider;
     private String user_img;
+    private Role role;
     private LocalDateTime create_date;
     private LocalDateTime update_date;
 }
