@@ -17,8 +17,9 @@ public class PrincipalDetails implements UserDetails {
         this.user = user;
     }
 
+    //계정의 권한 목록(ADMIN,MANAGER,MEMBER)을 리턴하는것.
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {  //계정의 권한 목록(ADMIN,MANAGER,MEMBER)을 리턴하는것.
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(()->user.getRole().getRole());
         return authorities;
@@ -36,21 +37,21 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return true;                        // true = 계정이 만료되지 않음
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return true;                        // true = 계정이 잠금되지 않음
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return true;                        // true = 패스워드가 만료되지 않음
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return true;                        // true = 계정 사용가능함.
     }
 }

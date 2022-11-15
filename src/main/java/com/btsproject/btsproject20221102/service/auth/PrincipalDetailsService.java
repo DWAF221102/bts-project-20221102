@@ -14,7 +14,7 @@ public class PrincipalDetailsService implements UserDetailsService {
 
     private final AccountRepository accountRepository;
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { //SecurityConfig의 username이 매개값으로 들어옴
         // 로그인을 하기 위해 가입된 user 정보를 조회하는 메소드
         User user = accountRepository.findUserByEmail(username);
 

@@ -29,9 +29,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .usernameParameter("username")
-                .loginPage("/account/login")           // GET 요청
-                .loginProcessingUrl("/account/login");  // 로그인 로직(PrincipalDetailsService) POST 요청
-    }           //.failureHandler(new AuthFailureHandler())  실패핸들러
-                //.defaultSuccessUrl("/index");
+//                .loginPage("/account/login")                 // GET 요청
+//                .loginProcessingUrl("/account/login")        // 로그인 로직(PrincipalDetailsService) POST 요청
+//                .failureHandler(new AuthFailureHandler())  //실패핸들러
+                .defaultSuccessUrl("/index");                // 로그인 성공 후 리다이렉트 주소
+    }
 
 }
