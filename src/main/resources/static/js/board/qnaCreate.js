@@ -33,20 +33,17 @@ function getImagePreview() {
     reader.onload = (e) => {
         productImages.innerHTML +=`
             <div class="img-box">
-                <i class='fa-solid fa-xmark"></i>
                 <img class="product-img" src="${e.target.result}">
             </div>
         `;
     }
 
     productImageFiles.forEach((file, i) => {
-        
         const reader = new FileReader();
 
         reader.onload = (e) => {
             productImages.innerHTML +=`
                 <div class="img-box">
-                    <i class='fa-solid fa-xmark"></i>
                     <img class="product-img" src="${e.target.result}">
                 </div>
             `;
@@ -62,8 +59,7 @@ function getImagePreview() {
                 };
             })
         }
-        // setTimeout(() => {reader.readAsDataURL(file), (i*100);
-        // });
+        setTimeout(() => {reader.readAsDataURL(file), (i*100);});
         // 이거는 나중에 다시 확인
     });
 }
@@ -84,7 +80,7 @@ submitButton.onclick = () => {
         formData.append("files",file);
     });
 
-    requestAnimationFrame(formData);
+    request(formData);
 
 }
 
@@ -92,7 +88,7 @@ function request(formData) {
     $.ajax({
         async: false,
         type: "post",
-        url: "/api/admin/boardlist", //api 확인
+        url: "/api/qna", //api 확인
         enctype: "mutipart/form-data",
         contentType: false,
         processData: false,

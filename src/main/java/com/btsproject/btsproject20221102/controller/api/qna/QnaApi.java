@@ -6,7 +6,6 @@ import com.btsproject.btsproject20221102.aop.annotation.ValidAspect;
 import com.btsproject.btsproject20221102.dto.CMRespDto;
 import com.btsproject.btsproject20221102.dto.Validation.ValidationSequence;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
-import com.btsproject.btsproject20221102.exception.CustomInternalServerErrorException;
 import com.btsproject.btsproject20221102.service.board.QnaCreateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/qna")
 @RestController
 @RequiredArgsConstructor
-public class QnaCreateApi {
+public class QnaApi {
 
     private final QnaCreateService qnaCreateService;
 
     @ValidAspect
     @LogAspect
-    @PostMapping("/create")
+    @PostMapping("")
     public ResponseEntity<?> qnaCreate(@Validated(ValidationSequence.class) QnaCreateReqDto qnaCreateReqDto, BindingResult bindingResult) throws Exception{
 
         return ResponseEntity
