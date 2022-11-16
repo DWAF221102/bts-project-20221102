@@ -30,6 +30,7 @@ header {
 .left-nav {
     display: flex;
     align-items: center;
+    width: 50%;
 }
 
 .logo img {
@@ -37,11 +38,11 @@ header {
     height: 28px;
 }
 
-.nav ul{
+.nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 105px ;
+    margin-left: 105px;
 
     width: 419px;
     height: 28px;
@@ -53,13 +54,20 @@ header {
 
 .right-nav {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 35%;
+    height: 35px;
+
+
 }
 
 .search-box {
     display: flex;
     align-items: center;
 
-    width: 235px;
+    width: 55%;
     height: 35px;
 
     border: 1px solid rgb(229, 231, 235);
@@ -92,16 +100,38 @@ header {
     cursor: pointer;
 }
 
-.right-nav a {
-    width: 85px;
+.account-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 45%;
     height: 35px;
+    padding-left: 25px;
+}
+
+.account-area-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 85%;
+}
+
+.account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 47%;
+}
+
+.account a {
+    width: 95%;
+    height: 100%;
     text-align: center;
     font-size: 12px;
     border-radius: 20px;
 }
 
 .login-button {
-    margin-left: 40px;
     border: 1px solid rgb(0, 144, 249);
     color: rgb(0, 144, 249);
     line-height: 2.6;
@@ -112,7 +142,6 @@ header {
 }
 
 .signup-button {
-    margin-left: 10px;
     background-color: rgb(0, 144, 249);
     color: white;
     line-height: 2.8;
@@ -120,4 +149,104 @@ header {
 
 .signup-button:hover {
     background-color: rgb(5, 90, 151);
+}
+
+/* 로그인 후 헤더 innerhtml */
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    font-size: 19px;
+}
+
+.icon:hover {
+    color: rgb(0, 144, 249)
+}
+
+.i {
+    width: 100%;
+    height: 100%;
+    font-size: 19px;
+}
+
+.profile-img-area {
+    width: 32px;
+    height: 32px;
+
+}
+
+.profile-img-button {
+
+    border-width: 1px solid #e5e7eb;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+}
+
+/* 프로필 이미지 클릭시 이벤트 */
+
+.mybox-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 200px;
+    height: 150px;
+}
+
+
+.mybox {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    position: absolute;
+    top: 5px;
+    right: 89px;
+
+
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+
+    width: 200px;
+    height: 150px;
+
+    box-shadow: 1px 1px 0 rgba(117, 116, 116, 0.5);
+    background-color: white;
+}
+
+.mybox-invisible {
+    display: none;
+}
+
+.mybox a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 30%;
+    font-size: 15px;
+}
+
+.mybox a:hover {
+    font-size: 16px;
+    font-weight: 500px;
+    color: rgb(0, 144, 249);
+
+}
+
+.mybox a:nth-child(2) {
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
 }

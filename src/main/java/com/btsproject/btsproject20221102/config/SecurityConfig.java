@@ -55,8 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 로그아웃 관련
                 .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/account/logout"))
-                .logoutSuccessUrl("/account/login")
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/index")
                 .invalidateHttpSession(true)  // 인증정보를 지우고 세션을 무효화
 
                 // 세션 관련
