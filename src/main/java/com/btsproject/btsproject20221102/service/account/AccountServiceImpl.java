@@ -23,7 +23,7 @@ public class AccountServiceImpl implements AccountService{
         User user = accountRepository.findUserByEmail(username);
         if(user != null) {
             Map<String, String> errorMap = new HashMap<String, String>();
-            errorMap.put("checkUsernameFlag", "이미 가입된 이메일입니다.");
+            errorMap.put("username", "이미 가입된 이메일입니다.");
             throw new CustomValidationException("CheckUsername Error", errorMap);
         }
 

@@ -41,15 +41,13 @@ signupButton.onclick = () => {
 }
 
 function validationError(error) {
+    let errorMap = new Map(Object.entries(error));
+
     const errorMsg = document.querySelectorAll(".error-msg");
-    const errorValues = Object.keys();
-
-    for(let i = 0; i < errorMsg.length; i++) {
-        errorMsg[i].innerHTML = "";
-        console.log(errorValues[i])
-    }
-
-
-    errorMsg.classList.remove("error-invisible");
+    errorMsg[0].textContent = errorMap.get("username");
+    errorMsg[1].textContent = errorMap.get("password");
+    errorMsg[2].textContent = errorMap.get("name");
+    errorMsg[3].textContent = errorMap.get("phone");
+    errorMsg[4].textContent = errorMap.get("nickName");
 }
 

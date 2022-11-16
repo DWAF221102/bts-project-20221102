@@ -1,5 +1,6 @@
 package com.btsproject.btsproject20221102.controller.api.account;
 
+import com.btsproject.btsproject20221102.aop.annotation.ValidAspect;
 import com.btsproject.btsproject20221102.dto.CMRespDto;
 import com.btsproject.btsproject20221102.dto.Validation.ValidationSequence;
 import com.btsproject.btsproject20221102.dto.account.SignupReqDto;
@@ -13,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Slf4j
 @RequestMapping("/api/account")
 @RestController
@@ -21,8 +24,9 @@ public class AccountApi {
 
     private final AccountService accountService;
 
+    @ValidAspect
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@Validated(ValidationSequence.class) @RequestBody SignupReqDto signupReqDto, BindingResult bindingResult) throws Exception {
+    public ResponseEntity<?> signup(@Valid @RequestBody SignupReqDto signupReqDto, BindingResult bindingResult) throws Exception {
 
         accountService.checkUsername(signupReqDto.getUsername());
 
