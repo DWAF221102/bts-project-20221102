@@ -8,4 +8,6 @@ public interface AccountRepository {
     public int save(User user);
 
     public User findUserByEmail(String username);
+
+    public int deleteUser(int id);
 }

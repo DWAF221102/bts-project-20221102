@@ -47,6 +47,7 @@
             now()
         );
     </insert>
+
     <select id="findUserByEmail" parameterType="String" resultMap="user">
         select
             um.id,
@@ -73,5 +74,11 @@
             username = #{username}
     </select>
 
-
+    <delete id="deleteUser" parameterType="com.btsproject.btsproject20221102.domain.User">
+        delete
+        from
+            user_mst
+        where
+            id = #{id}
+    </delete>
 </mapper>
