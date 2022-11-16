@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<header>
+    <div id="User_header">
+        <ul class="User_header_List">
+            <li><a href="/auth/login">로그인</a></li><span>&#124;</span>
+            <li><a href="/auth/signup">회원가입</a></li><span>&#124;</span>
+            <li><a href="/user/mypage">마이페이지</a></li>
+        </ul>
+    </div>
+    <div class="mainMenu_List">
+        <h1 id="logo">
+            <a href="/mainpage"><img th:if="${logo == 'main'}" src="/static/images/mainpageLogo.png"></a>
+            <a href="/mainpage"><img th:if="${logo != 'main'}" src="/static/images/logo.jpg"> </a>
+        </h1>
+        <nav>
+            <ul class="mainMenu">
+                <li>
+                    <a href="/book/notice"><span>열린공간</span></a>
+                    <ul class="subMenu">
+                        <li><a href="/book/notice">공지사항</a></li>
+                        <li><a href="/book/bulletin">자유게시판</a></li>
+                        <li><a href="/book/qAndA">Q&A</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/book/bookselect"><span>자료검색</span></a>
+                    <ul class="subMenu">
+                        <li><a href="/book/bestbook">인기도서</a></li>
+                        <li><a href="/book/newbook">신간도서</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/giude/libDirection"><span>도서관 안내</span></a>
+                    <ul class="subMenu">
+                        <li><a href="/giude/libDirection">찾아오시는길</a></li>
+                        <li><a href="/guide/facilityStatus">시설현황</a></li>
+                        <li><a href="/guide/infoUse">이용안내</a></li>
+                    </ul>
+                </li>
+                <li class=mypage-Menue>
+                    <a href="/lib/loanbook"><span>내 서재</span></a>
+                    <ul class="subMenu">
+                        <li><a href="/lib/loanbook">대여도서</a></li>
+                        <li><a href="/lib/latebook">연체도서</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <script type="text/javascript" src="/static/js/authentication/principal.js"></script>
+    <script type="text/javascript" src="/static/js/all/header.js"></script>
+</header>
+
+</html>
