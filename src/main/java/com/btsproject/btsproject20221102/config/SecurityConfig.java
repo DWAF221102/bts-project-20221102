@@ -22,8 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/admin/**","/api/admin/**")//지정한 주소를 가지고 권한을 줄건지 정함.
                 //.hasRole("ADMIN")  하나만의 권할을 줄때
-                .access("hasRole('ADMIN') or hasRole('MANAGER')")
-                .antMatchers("/**")
+//                .access("hasRole('ADMIN') or hasRole('MANAGER')")
+//                .antMatchers("/**")
                 .permitAll();  //모든 접근 허용
     }
 
