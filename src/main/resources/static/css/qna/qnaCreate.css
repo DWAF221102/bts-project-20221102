@@ -226,6 +226,7 @@ form {
 }
 
 .qna-money {
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -294,11 +295,9 @@ form {
     background-color: white;
 }
 
-    
-
-    
-
-    
+.file-input {
+    display: none;
+}
 
     
 
