@@ -85,4 +85,9 @@ public class QnaCreateServiceImpl implements QnaCreateService{
 
         return qnaImgFiles;
     }
+
+    @Override
+    public void getQnaList(int pageNumber, String category, String searchText) throws Exception {
+
+    }
 }

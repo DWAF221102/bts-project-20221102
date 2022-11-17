@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class QnaCreateReqDto {
     private int category;
-    private String subcategory;
+    private int subcategory;
     private String title;
     private String info;
     private String wantInfo;
@@ -20,6 +20,7 @@ public class QnaCreateReqDto {
     public Qna toQnaEntity() {
         return Qna.builder()
                 .category(category)
+                .subcategory(subcategory)
                 .title(title)
                 .info(info)
                 .want_info(wantInfo)

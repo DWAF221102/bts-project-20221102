@@ -16,7 +16,7 @@ import java.util.List;
 public class Qna {
     private int id;
     private int category;
-    private String subcategory;
+    private int subcategory;
     private String title;
     private String info;
     private String want_info;

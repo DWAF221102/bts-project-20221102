@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.btsproject.btsproject20221102.repository.qna.QnaRepository">
     <resultMap id="qna_img_files" type="com.btsproject.btsproject20221102.domain.QnaImgFile">
-        <result property="id" column="id"></result>
+        <result property="id" column="img_id"></result>
         <result property="qna_board_id" column="qna_board_id"></result>
         <result property="origin_name" column="origin_name"></result>
         <result property="temp_name" column="temp_name"></result>
@@ -24,19 +24,22 @@
         <collection property="qna_img_files" javaType="list" resultMap="qna_img_files"></collection>
     </resultMap>
 
-    <insert id="saveQna" parameterType="com.btsproject.btsproject20221102.domain.User">
+    <insert id="saveQna" parameterType="com.btsproject.btsproject20221102.domain.User" useGeneratedKeys="true" keyProperty="id">
 <!--       쿼리 어떻게 짜야되는지 질문-->
         insert into
             qna_board_mst
         values(
         0,
-        #{menu_id},
-        #{category_id},
-        #{category_sub_id},
-        #{status_id},
-        #{user_id},
+<!--        #{menu_id},-->
+        1,
+        #{category},
+        #{subcategory},
+<!--        #{status_id},-->
+        1,
+<!--        #{user_id},-->
+        0,
         #{title},
-        #{content},
+        #{info},
         #{price},
         now(),
         now()
@@ -60,6 +63,35 @@
 
 
     </insert>
+    
+    <select id="getQnaList" parameterType="java.util.HashMap" resultMap="qna">
+        select
+            qm.id,
+            qm.menu_id,
+            qm.category_id,
+            qm.category_sub_id,
+            qm.status_id,
+            qm.user_id,
+            qm.title,
+            qm.content,
+            qm.price,
+            qm.create_date,
+            qm.update_date,
+            qim.id AS img_id,
+            qim.qna_board_id,
+            qim.origin_name,
+            qim.temp_name
+        from
+            (select
+            *
+            from
+                qna_board_mst
+            <choose></choose>
+            where
+
+            limit #{index},10) qm
+            left outer join qna_board_img qim on(qim.qna_board_id = qm.id);
+    </select>
 
 
 </mapper>
