@@ -1,6 +1,7 @@
 package com.btsproject.btsproject20221102.config;
 
 import com.btsproject.btsproject20221102.handler.auth.AuthFailureHandler;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,11 +13,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+@RequiredArgsConstructor
 @EnableWebSecurity  //기존의 WebSecurityConfigurerAdapter 클래스를 해당 SecurityConfig로 대체함.
 @Configuration      // config Bean이라는 것을 명시해주는 어노테이션.
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    private final AuthenticationFailureHandler authenticationFailureHandler;
+    // Spring Security에 정의되어 있는 Interface로 이 핸들러를 구현해주고 SecurityConfig에서 설정을 해주면 자동으로 핸들러로 등록이 된다.
+    private final AuthenticationFailureHandler authenticationFailureHandler;
 
     // 비밀번호 암호화
     @Bean
