@@ -36,8 +36,7 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public boolean deleteUser(PrincipalDetails principalDetails) throws Exception {
-        int id = principalDetails.getUser().getId();
+    public boolean deleteUser(int id) throws Exception {
         accountRepository.deleteUser(id);
 
         return true;
