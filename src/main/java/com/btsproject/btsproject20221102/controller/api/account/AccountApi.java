@@ -3,6 +3,7 @@ package com.btsproject.btsproject20221102.controller.api.account;
 import com.btsproject.btsproject20221102.aop.annotation.ValidAspect;
 import com.btsproject.btsproject20221102.dto.CMRespDto;
 import com.btsproject.btsproject20221102.dto.Validation.ValidationSequence;
+import com.btsproject.btsproject20221102.dto.account.LoginReqDto;
 import com.btsproject.btsproject20221102.dto.account.SignupReqDto;
 import com.btsproject.btsproject20221102.service.account.AccountService;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
@@ -35,6 +36,7 @@ public class AccountApi {
 
         return ResponseEntity.ok().body(new CMRespDto<>(1, "회원가입 완료", signupReqDto));
     }
+
 
 //    @DeleteMapping("/delete")
 //    public ResponseEntity<?> delete(int id) throws Exception {

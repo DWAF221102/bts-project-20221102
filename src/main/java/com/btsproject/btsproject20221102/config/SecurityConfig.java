@@ -9,11 +9,14 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity  //기존의 WebSecurityConfigurerAdapter 클래스를 해당 SecurityConfig로 대체함.
 @Configuration      // config Bean이라는 것을 명시해주는 어노테이션.
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+//    private final AuthenticationFailureHandler authenticationFailureHandler;
 
     // 비밀번호 암호화
     @Bean
