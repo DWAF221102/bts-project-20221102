@@ -21,26 +21,16 @@ $('#summernote').summernote({
 
     callbacks: {
         onImageUpload: function(files) {
-            console.log(files);
-            WriteFormData.getInstance().setFile(files, this);
+            for (var i = files.length - 1; i >= 0; i--) {
+                WriteFormData.getInstance().uploadImg(files[i], this);
+            }
         }
-
-        // onChange: function(content) {
-        //     console.log(content);
-        //     for(let i = 0; i < content.length; i++){
-        //         if(i == content.length - 1){
-        //             WriteFormData.getInstance().setContent(content[i],this);
-        //         }
-        //     }
-            
-        // }
 
     }
 });
 
 $('.note-statusbar').hide(); 
 
-// let content = $('#summernote').summernote('insertText', value)
 
 
 class WriteFormData {
@@ -55,15 +45,12 @@ class WriteFormData {
 
     formData;
 
-    constructor() {
-        this.formData = new FormData(document.querySelector("form"));
-    }
-
 
     getFormData() {
         const uri = location.href;
         const menu = uri.substring(uri.indexOf("/", uri.indexOf("/") + 2) + 1, uri.lastIndexOf("/"));
        
+        this.formData = new FormData(document.querySelector("form"));
         this.formData.append("userId", 1);
         this.formData.append("menu", menu);
 
@@ -71,22 +58,65 @@ class WriteFormData {
         return this.formData;
     }
 
-    setFile(files, editor) {
-        if(files != null) {
-            const imgFiles = new Array();
-
-            for(let i = 0; i < files.length; i++) {
-            imgFiles.push(files[i]);
-            //this.formData.append("file", files[i]); 
-            }
-            this.formData.append("file", imgFiles);
-            console.log(this.formData.get("file"));
-        }
+    setContent() { 
+        $('#summernote').summernote('pasteHTML', data);
     }
 
-    setContent() {
-        $('#summernote').summernote('pasteHTML', data);
-        this.formData.append("content", data);
+    uploadImg(file, editor) {
+        let data = new FormData();
+        data.append("file", file);
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "/api/uploadimg",
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            data: data,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+                $(editor).summernote('insertImage', "/image" + response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+
+    }
+}
+
+class NullCheck {
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new NullCheck();
+        }
+        return this.#instance;
+    }
+
+
+    nullCheck(formData) {
+        var summernoteContent = $('#summernote').summernote('code');        //썸머노트(설명)
+        console.log("summernoteContent : " + summernoteContent);
+
+        if(formData.get("category") != "none" && formData.get("subcategory") != "none") {
+            if(formData.get("title") != null && formData.get("title") != "" && formData.get("title").replaceAll(" ", "") != "") {
+                if(formData.get("content") != null && formData.get("content") != "" && formData.get("content") != "<p><br></p>" && formData.get("content") != "<p>&nbsp;</p>" && formData.get("content") != "<p><br></p><p><br></p>") {
+                    return true;
+                }else {
+                    alert("내용을 입력해주세요");
+                    return false;
+                }
+            }else {
+                alert("제목을 입력해주세요");
+                return false;
+            }
+        }else {
+            alert("카테고리를 선택해주세요");
+            return false;
+        }
     }
 }
 
@@ -100,9 +130,7 @@ class WriteApi {
         return this.#instance;
     }
 
-    write() {
-        let formData = WriteFormData.getInstance().getFormData();
-
+    write(formData) {
         $.ajax({
             async: false,
             type: "post",
@@ -114,21 +142,23 @@ class WriteApi {
             dataType: "json",
             success: (response) => {
                 console.log(response);
-                //$(editor).summernote('insertImage', formData.get("file"));
+                
             },
             error: (error) => {
                 console.log(error);
             }
         })
-    }
+    } 
+
+    
 }
 
-class WriteService {
+class writeButtons {
     static #instance = null;
 
     static getInstance() {
         if(this.#instance == null) {
-            this.#instance = new WriteService();
+            this.#instance = new writeButtons();
         }
         return this.#instance;
     }
@@ -142,12 +172,15 @@ class WriteService {
         };
 
         writeButton.onclick = () => {
-            //location.href = `/${WriteReqParam.getInstance().getFormData().menu}`;
-            WriteApi.getInstance().write();
-        };
+            let formData = WriteFormData.getInstance().getFormData();
+
+            if(NullCheck.getInstance().nullCheck(formData)){
+                WriteApi.getInstance().write(formData);
+            }
+        }
     }
 }
 
 window.onload = () => {
-    WriteService.getInstance().addButtonEvenet();
+    writeButtons.getInstance().addButtonEvenet();
 }

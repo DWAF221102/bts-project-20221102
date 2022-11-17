@@ -20,7 +20,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         WebMvcConfigurer.super.addResourceHandlers(registry);
-        registry.addResourceHandler("/images/**")
+        registry.addResourceHandler("/image/**")
                 .addResourceLocations("file:///" + filePath)
                 .setCachePeriod(60*60)
                 .resourceChain(true)
@@ -30,6 +30,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         resourcePath = URLDecoder.decode(resourcePath, StandardCharsets.UTF_8);
                         return super.getResource(resourcePath, location);
                     }
-                });;
+                });
     }
 }
