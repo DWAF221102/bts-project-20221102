@@ -7,7 +7,7 @@ for(let i = 0; i < signupInput.length; i++) {
             if(i != 4) {
                 signupInput[i + 1].focus();
             } else {
-                signupInput.click();
+                signupButton.click();
             }
         }
     }
@@ -31,6 +31,7 @@ signupButton.onclick = () => {
         data: JSON.stringify(signupInfo),
         dataType: "json",
         success: (response) => {
+            alert("회원가입 완료.")
             location.replace("/login");
         },
         error: (error) => {

@@ -1,14 +1,12 @@
 package com.btsproject.btsproject20221102.dto.account;
 
 import com.btsproject.btsproject20221102.domain.User;
-import com.btsproject.btsproject20221102.dto.Validation.ValidationGroups;
 import lombok.Data;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 @Data
 public class SignupReqDto {
@@ -28,7 +26,7 @@ public class SignupReqDto {
     @Pattern(regexp="^010-?([0-9]{4})-?([0-9]{4})$", message = "휴대폰번호를 제대로 입력해주세요.")
     private String phone;
 
-    @Pattern(regexp = "^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$", message = "2자 이상 16자 이하, 영어 또는 숫자 또는 한글로 구성해야합니다.")
+    @Pattern(regexp = "^(?=.*[a-zA-Z0-9가-힣])[a-zA-Z0-9가-힣]{2,16}$", message = "2자 이상 16자 이하, 영어 또는 숫자 또는 한글로 구성해야합니다.")
     private String nickName;
 
     public User toUserEntity() {

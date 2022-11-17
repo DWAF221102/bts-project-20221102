@@ -9,5 +9,5 @@ public interface AccountService {
 
     public boolean signup(SignupReqDto signupReqDto) throws Exception;
 
-    public boolean deleteUser(PrincipalDetails principalDetails) throws Exception;
+    public boolean deleteUser(int id) throws Exception;
 }
