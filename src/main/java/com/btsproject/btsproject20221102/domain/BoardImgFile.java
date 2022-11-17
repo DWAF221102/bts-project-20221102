@@ -6,26 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Board {
+public class BoardImgFile {
     private int id;
-
-    private int menu_id;
-    private int category_id;
-    private int subcategory_id;
-    private int user_id;
-
-    private String title;
-    private String content;
-    private int view_count;
-
+    private int board_id;
+    private String origin_name;
+    private String temp_name;
     private LocalDateTime create_date;
     private LocalDateTime update_date;
 }

@@ -41,20 +41,15 @@
                             <label for="category">카테고리</label>
                             <select name="category" id="category">
                                 <option value="none" selected>category를 선택해주세요</option>
-                                <option value="programing">프로그래밍</option>
-                                <option value="build">건축</option>
-                                <option value="video">영상</option>
+                                <option value="4">프로그래밍</option>
+                                <option value="5">건축</option>
+                                <option value="6">영상</option>
                             </select>
                         </div>
                         <div class="write-subcategory">
                             <label for="subcategory">서브카테고리</label>
                             <select name="subcategory" id="subcategory">
-                                <option value="none" selected>공지사항</option>
-                                <option value="java">java</option>
-                                <option value="python">python</option>
-                                <option value="c">c</option>
-                                <option value="spring">spring</option>
-                                <option value="etc">기타</option>
+                                <option value="none" selected>category를 먼저 선택해주세요</option>
                             </select>
                         </div>
                         <div class="write-title">
@@ -75,7 +70,8 @@
         </main>
         <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
-    <script src="/static/js/summernote/summernote.js"></script>
+    <script src="/static/js/board/knowledgeWrite.js"></script>
+    <script src="/static/js/board/write.js"></script>
 </body>
 
 </html>
