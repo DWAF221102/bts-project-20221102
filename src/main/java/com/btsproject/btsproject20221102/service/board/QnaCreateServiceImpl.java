@@ -3,6 +3,7 @@ package com.btsproject.btsproject20221102.service.board;
 import com.btsproject.btsproject20221102.domain.Qna;
 import com.btsproject.btsproject20221102.domain.QnaImgFile;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
+import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
 import com.btsproject.btsproject20221102.exception.CustomInternalServerErrorException;
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -87,7 +86,16 @@ public class QnaCreateServiceImpl implements QnaCreateService{
     }
 
     @Override
-    public void getQnaList(int pageNumber, String category, String searchText) throws Exception {
+    public List<QnaCreateRespDto> getQnaList(int pageNumber, String category, String searchText) throws Exception {
+        Map<String, Object> paramsMap = new HashMap<String, Object>();
+        paramsMap.put("index", (pageNumber - 1) * 10);
 
+        List<QnaCreateRespDto> qnaCreateListRespDto = new ArrayList<QnaCreateRespDto>();
+
+        qnaRepository.getQnaList(paramsMap).forEach(qna -> {
+            qnaCreateListRespDto.add(qna.toListRespDto());
+        });
+
+        return qnaCreateListRespDto;
     }
 }

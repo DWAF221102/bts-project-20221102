@@ -23,7 +23,7 @@ public class QnaApi {
 
     @ValidAspect
     @LogAspect
-    @PostMapping("")
+    @PostMapping("/")
     public ResponseEntity<?> qnaCreate(@Validated(ValidationSequence.class) QnaCreateReqDto qnaCreateReqDto, BindingResult bindingResult) throws Exception{
 
         return ResponseEntity
@@ -34,8 +34,10 @@ public class QnaApi {
     @GetMapping("/qnaLists")
      public ResponseEntity<?> getQnaCreateList(@RequestParam int pageNumber,
                                                @RequestParam @Nullable String category,
-                                               @RequestParam @Nullable String searchText) {
-        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", null));
+                                               @RequestParam @Nullable String searchText) throws Exception {
+
+
+        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", qnaCreateService.getQnaList(pageNumber, category, searchText)));
      }
 
 }

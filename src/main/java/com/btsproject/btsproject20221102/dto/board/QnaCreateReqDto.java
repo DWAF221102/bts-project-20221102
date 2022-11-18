@@ -19,8 +19,8 @@ public class QnaCreateReqDto {
 
     public Qna toQnaEntity() {
         return Qna.builder()
-                .category(category)
-                .subcategory(subcategory)
+                .category_id(category)
+                .category_sub_id(subcategory)
                 .title(title)
                 .info(info)
                 .want_info(wantInfo)

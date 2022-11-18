@@ -1,5 +1,6 @@
 package com.btsproject.btsproject20221102.domain;
 
+import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,8 +16,11 @@ import java.util.List;
 @Data
 public class Qna {
     private int id;
-    private int category;
-    private int subcategory;
+    private int menu_id;
+    private int category_id;
+    private int category_sub_id;
+    private int status_id;
+    private String user_id;
     private String title;
     private String info;
     private String want_info;
@@ -27,4 +31,12 @@ public class Qna {
     private LocalDateTime create_date;
     private LocalDateTime update_date;
 
+    public QnaCreateRespDto toListRespDto() {
+        return QnaCreateRespDto.builder()
+                .userId(user_id)
+                .subcategory(category_sub_id)
+                .title(title)
+                .statusId(status_id)
+                .build();
+    }
 }

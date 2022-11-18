@@ -1,14 +1,15 @@
 let page = 1;
 
 window.onload = () => {
-
+    getList();
 }
+
 
 function getList() {
     $.ajax({
         async: false,
         type: "get",
-        url: "/api/admin/qnaLists",
+        url: "/api/qna/qnaLists",
         data: {
             pageNumber: page,
             category: "",
@@ -17,10 +18,47 @@ function getList() {
         dataType: "json",
         success: (response) => {
             console.log(response);
+            addCreate(response.data);
         },
         error: (error) => {
             console.log(error);
         }
 
     });
+}
+
+function addCreate(qnaLists) {
+    const listBody = document.querySelector(".list-body");
+
+    listBody.innerHTML = "";
+
+    qnaLists.forEach((qna) => {
+        listBody.innerHTML += `
+    <tr>
+        <td class="user-id">${qna.user_id}</td>
+        <td>${qna.subcategory}</td>
+        <td>${qna.title}</td>
+        <td>${qna.statusId}</td>
+        <td><button type="button" class="detail-button">상세보기</button></td>
+        <td><button type="button" class="delete-button">삭제</button></td>
+    </tr>
+    <tr class="detail-invisible qna-detail">
+        <td colspan="6">
+            <textarea class="detail-box" disabled>그냥 모르겠습니다.</textarea>
+        </td>
+    </tr>
+        `;
+    });
+
+    const detailButtons = document.querySelectorAll(".detail-button");
+    const qnaDetail = document.querySelectorAll(".qna_detail");
+
+    detailButtons.forEach((detailButton, index) => {
+        detailButton.onclick = () => {
+            qnaDetail[index].classList.toggle("detail-invisible");
+        }
+    })
+
+
+
 }

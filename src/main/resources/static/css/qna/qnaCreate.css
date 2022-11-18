@@ -85,8 +85,10 @@ form {
 
 
 .write-menu {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    margin-top: 40px;
 }
 
 
@@ -224,6 +226,55 @@ form {
     background-color: rgb(0, 144, 249);
     color: #ffffff;
 }
+
+/* 이미지 박스 */
+
+.product-images {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    margin-bottom: 15px;
+
+    width: 100%;
+}
+
+.img-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 2.5% 10px;
+    width: 20%;
+    height: 200px;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+.fa-xmark {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+
+    color: white;
+    background-color: rgb(255, 81, 81);
+    cursor: pointer;
+}
+
+.product-img {
+    width: 100%;
+}
+
+
+
 
 .qna-money {
     width: 100%;

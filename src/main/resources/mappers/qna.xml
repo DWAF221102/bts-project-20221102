@@ -9,7 +9,7 @@
         <result property="origin_name" column="origin_name"></result>
         <result property="temp_name" column="temp_name"></result>
     </resultMap>
-    <resultMap id="qna" type="com.btsproject.btsproject20221102.domain.User">
+    <resultMap id="qna" type="com.btsproject.btsproject20221102.domain.Qna">
         <result property="id" column="id"></result>
         <result property="menu_id" column="menu_id"></result>
         <result property="category_id" column="category_id"></result>
@@ -32,14 +32,15 @@
         0,
 <!--        #{menu_id},-->
         1,
-        #{category},
-        #{subcategory},
+        #{category_id},
+        #{category_sub_id},
 <!--        #{status_id},-->
         1,
 <!--        #{user_id},-->
         0,
         #{title},
         #{info},
+        #{want_info},
         #{price},
         now(),
         now()
@@ -73,7 +74,8 @@
             qm.status_id,
             qm.user_id,
             qm.title,
-            qm.content,
+            qm.info,
+            qm.want_info,
             qm.price,
             qm.create_date,
             qm.update_date,
@@ -86,9 +88,6 @@
             *
             from
                 qna_board_mst
-            <choose></choose>
-            where
-
             limit #{index},10) qm
             left outer join qna_board_img qim on(qim.qna_board_id = qm.id);
     </select>
