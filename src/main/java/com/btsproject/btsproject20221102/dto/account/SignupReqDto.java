@@ -37,6 +37,7 @@ public class SignupReqDto {
                 .name(name)
                 .phone(phone)
                 .nickname(nickName)
+                .enabled(0)
                 .build();
     }
 }

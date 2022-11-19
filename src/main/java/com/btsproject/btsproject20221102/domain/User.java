@@ -23,6 +23,7 @@ public class User {
     private String skill;
     private String provider;
     private String user_img;
+    private int enabled;
     private Role role;
     private LocalDateTime create_date;
     private LocalDateTime update_date;

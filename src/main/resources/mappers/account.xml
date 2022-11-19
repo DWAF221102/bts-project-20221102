@@ -43,6 +43,7 @@
             #{skill},
             #{provider},
             #{user_img},
+            #{enabled},
             now(),
             now()
         );
@@ -61,6 +62,7 @@
             um.skill,
             um.provider,
             um.user_img,
+            um.enabled,
 
             rm.role,
             rm.role_name,
