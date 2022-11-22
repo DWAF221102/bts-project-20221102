@@ -4,6 +4,7 @@
 <head>
     <title>adminQnAList</title>
     <link rel="stylesheet" href="/static/css/admin/adminList.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
     <div id="container">
@@ -52,15 +53,15 @@
                                     </thead>
                                     <tbody class="list-body">
                                         <tr>
-                                            <td>닉네임5789</td>
+                                            <td class="user-id">닉네임5789</td>
                                             <td>자바</td>
                                             <td>완전히 모르겠습니다 알려주세요.</td>
                                             <td>대기중</td>
-                                            <td><button type="button">상세보기</button></td>
-                                            <td><button type="button">삭제</button></td>
+                                            <td><button type="button" class="detail-button">상세보기</button></td>
+                                            <td><button type="button" class="delete-button">삭제</button></td>
                                         </tr>
                                         <tr class="detail-invisible">
-                                            <td colspan="6">
+                                            <td colspan="6" >
                                                 <textarea class="detail-box" disabled>그냥 모르겠습니다.</textarea>
                                             </td>
                                         </tr>
@@ -73,5 +74,6 @@
             </div>
         </main>
     </div>
+    <script src="/static/js/admin/adminQnAList.js"></script>
 </body>
 </html>

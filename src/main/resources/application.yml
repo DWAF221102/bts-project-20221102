@@ -9,10 +9,24 @@ spring:
     url: jdbc:mariadb://web-study.cf6og1l7mjlg.ap-northeast-2.rds.amazonaws.com:3306/bts-project?allowMultiQueries=true
     username: admin
     password: 1q2w3e4r!
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: yeonho4698@gmail.com
+    password: skosucaxgioctlcj
+    properties:
+      mail:
+        debug: true
+        smtp:
+          connectiontimeout: 5000
+          auth: true
+          starttls:
+            enable: true
+
 
 mybatis:
   mapper-locations:
     - /mappers/*.xml
 
 file:
-  path: C:/project/bts-project-20221102/upload
+  path: C:/project/bts-project-20221102/upload/

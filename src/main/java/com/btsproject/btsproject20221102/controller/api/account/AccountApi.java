@@ -8,8 +8,10 @@ import com.btsproject.btsproject20221102.dto.Validation.ValidationSequence;
 import com.btsproject.btsproject20221102.dto.account.LoginReqDto;
 import com.btsproject.btsproject20221102.dto.account.ModifyReqDto;
 import com.btsproject.btsproject20221102.dto.account.PwChangeReqDto;
+import com.btsproject.btsproject20221102.dto.account.CertifiedDto;
 import com.btsproject.btsproject20221102.dto.account.SignupReqDto;
 import com.btsproject.btsproject20221102.service.account.AccountService;
+import com.btsproject.btsproject20221102.service.account.MailService;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetailsService;
 import com.google.gson.JsonObject;
@@ -39,8 +41,8 @@ import java.util.Map;
 public class AccountApi {
 
     private final AccountService accountService;
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+    private final MailService mailService;
 
     @ValidAspect
     @PostMapping("/signup")
@@ -88,4 +90,6 @@ public class AccountApi {
         id = principalDetails.getUser().getId();
         return ResponseEntity.ok(new CMRespDto<>(1, "회원탈퇴 완료", accountService.deleteUser(id)));
     }
+
+
 }

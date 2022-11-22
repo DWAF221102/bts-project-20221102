@@ -1,44 +1,21 @@
 package com.btsproject.btsproject20221102.service.board;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import com.btsproject.btsproject20221102.domain.BoardImgFile;
+import com.btsproject.btsproject20221102.dto.board.BoardRespDto;
+import com.btsproject.btsproject20221102.dto.board.WriteReqDto;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.UUID;
+import java.util.List;
 
-@Service
-public class BoardService {
+public interface BoardService {
+    public BoardImgFile uploadImgService(MultipartFile file);
 
-    @Value("${file.path}")
-    private String filePath;
+    public boolean saveBoard(WriteReqDto writeReqDto) throws Exception;
 
-    public String uploadImgService(MultipartFile file) {
-
-        String originalFileName = file.getOriginalFilename();    //오리지날 파일명
-        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));    //파일 확장자
-        String tempFileName = UUID.randomUUID() + extension;    //저장될 파일 명
-
-        Path uploadPath = Paths.get(filePath + "/board/" + tempFileName);
-
-        File f = new File(filePath + "/board");
-
-        if (!f.exists()) {
-            f.mkdirs();
-        }
-        String response;
-        try {
-            Files.write(uploadPath, file.getBytes());
-            response = "/board/" + tempFileName;
-        } catch (IOException e) {
-
-            throw new RuntimeException(e);
-        }
-        return response;
-    }
-
+    public List<BoardRespDto> loadBoard(int page,
+                                        int menuId,
+                                        int categoryId,
+                                        String subcategoryId,
+                                        String showList,
+                                        String searchValue) throws Exception;
 }

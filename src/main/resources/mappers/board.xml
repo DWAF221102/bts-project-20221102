@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.btsproject.btsproject20221102.repository.board.BoardRepository">
+    <resultMap id="files" type="com.btsproject.btsproject20221102.domain.BoardImgFile">
+        <result property="id" column="img_id"></result>
+        <result property="board_id" column="board_id"></result>
+        <result property="origin_name" column="origin_name"></result>
+        <result property="temp_name" column="temp_name"></result>
+    </resultMap>
+    <resultMap id="board" type="com.btsproject.btsproject20221102.domain.Board">
+        <result property="id" column="id"></result>
+        <result property="menu_id" column="menu_id"></result>
+        <result property="category_id" column="category_id"></result>
+        <result property="subcategory_id" column="subcategory_id"></result>
+        <result property="user_id" column="user_id"></result>
+        <result property="title" column="title"></result>
+        <result property="content" column="content"></result>
+        <result property="view_count" column="view_count"></result>
+        <result property="create_date" column="create_date"></result>
+        <result property="update_date" column="update_date"></result>
+    </resultMap>
+
+    <insert id="saveBoard"
+            parameterType="com.btsproject.btsproject20221102.domain.Board"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        insert into
+            board_mst
+        values(
+            0,
+            #{menu_id},
+            #{category_id},
+            #{subcategory_id},
+            #{user_id},
+            #{title},
+            #{content},
+            0,
+            now(),
+            now()
+        )
+    </insert>
+    <insert id="saveBoardImg"
+            parameterType="java.util.List"
+    >
+        insert into
+            board_img
+        values
+        <foreach item="file" collection="list" separator=",">
+            (
+                0,
+                #{file.board_id},
+                #{file.origin_name},
+                #{file.temp_name},
+                now(),
+                now()
+            )
+        </foreach>
+
+    </insert>
+
+    <select id="loadBoard"
+            parameterType="hashmap"
+            resultType="com.btsproject.btsproject20221102.domain.LoadList"
+    >
+        SELECT
+            um.nickname,
+            um.user_img,
+
+            bm.title,
+            bm.view_count,
+            bm.create_date,
+
+            cd.category_name,
+            sd.subcategory_name,
+
+            ifnull(cm.comment_count,0),
+            ifnull(rm.recomment_count,0),
+            ifnull(lm.like_count,0),
+
+            pc.total_count
+        from
+            board_mst bm
+            LEFT OUTER JOIN user_mst um ON(um.id = bm.user_id)
+            LEFT OUTER JOIN category_dtl cd ON (cd.id = bm.category_id)
+            LEFT OUTER JOIN subcategory_dtl sd ON (sd.id = bm.subcategory_id)
+            LEFT OUTER JOIN (SELECT
+                                board_id,
+                                COUNT(*) AS comment_count
+                            from
+                                comment_mst
+                            GROUP BY
+                                board_id) cm ON (cm.board_id = bm.id)
+            LEFT OUTER JOIN (select
+                                comment_id,
+                                COUNT(*) AS recomment_count
+                            from
+                                recomment_mst
+                            GROUP BY
+                                comment_id) rm ON (rm.comment_id = cm.board_id)
+            LEFT OUTER JOIN (select
+                                board_id,
+                                COUNT(*) AS like_count
+                            from
+                                like_mst
+                            GROUP BY
+                                board_id) lm ON (lm.board_id = bm.id)
+                LEFT OUTER JOIN (SELECT
+                                    COUNT(*) AS total_count
+                                from
+                                    board_mst bm
+                                where
+                                    bm.menu_id = #{menu_id}
+
+                                ) pc ON (1=1)
+        WHERE
+            bm.menu_id = #{menu_id}
+        ORDER BY create_date DESC
+        limit
+            #{page},10
+    </select>
+</mapper>
