@@ -63,7 +63,7 @@ public class AccountApi {
     @PutMapping("/myprofile")
     public ResponseEntity<?> modifyProfile(@RequestBody User user, ModifyReqDto modifyReqDto) throws Exception {
         accountService.modifyProfile(modifyReqDto);
-
+        
         // 변경된 세션 등록
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword()));
