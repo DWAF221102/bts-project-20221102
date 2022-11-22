@@ -73,6 +73,17 @@
         where
             username = #{username}
     </select>
+    <update id="modifyPassword" parameterType="com.btsproject.btsproject20221102.domain.User">
+        UPDATE
+            user_mst
+        SET
+            password = #{password}
+        WHERE
+            id = #{id}
+    </update>
+    <update id="modifyProfile">
+
+    </update>
 
     <delete id="deleteUser" parameterType="com.btsproject.btsproject20221102.domain.User">
         delete

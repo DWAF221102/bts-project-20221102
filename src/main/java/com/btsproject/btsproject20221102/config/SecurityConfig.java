@@ -4,6 +4,7 @@ import com.btsproject.btsproject20221102.handler.auth.AuthFailureHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -27,13 +28,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-
-
 //    @Override
 //    public void configure(WebSecurity web) throws Exception {
 //        // 인증을 무시하기 위한 설정
 //        web.ignoring().antMatchers("/css/**","/js/**","/img/**");
 //    }
+
+    //AuthenticationManager Bean 등록
+    @Bean
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+        // AuthenticationManager: 그냥 username, password가 아닌 토큰을 받아서 객체를 만듦.
+        return super.authenticationManager();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -70,8 +77,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .maximumSessions(-1)  //세션 최대 허용수. -1은 무제한
                 .maxSessionsPreventsLogin(true);  // true: 중복로그인 막음. false: 이전 로그인의 세션을 해제
-
-
     }
 
 }

@@ -1,10 +1,10 @@
 const signupButton = document.querySelector(".general-signup-button");
 const signupInput = document.querySelectorAll(".general-signup-input");
 
-for(let i = 0; i < signupInput.length; i++) {
+for (let i = 0; i < signupInput.length; i++) {
     signupInput[i].onkeyup = () => {
-        if(window.event.keyCode === 13) {
-            if(i != 4) {
+        if (window.event.keyCode === 13) {
+            if (i != 4) {
                 signupInput[i + 1].focus();
             } else {
                 signupButton.click();
