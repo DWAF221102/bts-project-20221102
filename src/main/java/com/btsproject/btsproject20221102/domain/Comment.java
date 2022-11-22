@@ -12,18 +12,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Board {
+public class Comment {
     private int id;
-
-    private int menu_id;
-    private int category_id;
-    private int subcategory_id;
+    private int board_id;
     private int user_id;
-
-    private String title;
     private String content;
-    private int view_count;
-
     private LocalDateTime create_date;
     private LocalDateTime update_date;
 }
