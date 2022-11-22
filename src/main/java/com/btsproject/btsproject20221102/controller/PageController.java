@@ -2,10 +2,12 @@ package com.btsproject.btsproject20221102.controller;
 
 import com.btsproject.btsproject20221102.aop.annotation.ValidAspect;
 import lombok.RequiredArgsConstructor;
+import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
@@ -82,8 +84,9 @@ public class PageController {
         return "qna/qnaCreate";
     }
 
-    @GetMapping("/question/article")
-    public String questionArticle() {
+    @GetMapping("/question/article/{id}")
+    public String questionArticle(@PathVariable int id) {
+
         return "qna/qnaBoardArticle";
     }
 

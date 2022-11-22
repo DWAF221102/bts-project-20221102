@@ -33,6 +33,7 @@ function getImagePreview() {
     reader.onload = (e) => {
         productImages.innerHTML +=`
             <div class="img-box">
+                <i class="fa-solid fa-xmark"><i>
                 <img class="product-img" src="${e.target.result}">
             </div>
         `;
@@ -44,6 +45,7 @@ function getImagePreview() {
         reader.onload = (e) => {
             productImages.innerHTML +=`
                 <div class="img-box">
+                    <i class="fa-solid fa-xmark"><i>
                     <img class="product-img" src="${e.target.result}">
                 </div>
             `;
@@ -88,7 +90,7 @@ function request(formData) {
     $.ajax({
         async: false,
         type: "post",
-        url: "/api/qna", //api 확인
+        url: "/api/qna/", //api 확인
         enctype: "mutipart/form-data",
         contentType: false,
         processData: false,
