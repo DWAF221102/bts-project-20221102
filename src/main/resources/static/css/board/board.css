@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+.category-aside {
+    width: 180px;
+}
+
 main {
     display: flex;
     justify-content: center;
@@ -103,7 +107,6 @@ section {
 .subcategory-ul {
     display: flex;
     justify-content: center;
-
 }
 
 .subcategory button {
@@ -125,14 +128,6 @@ section {
 
 .subcategory-ul button:nth-child(1) {
     margin-left: 0px;
-}
-
-.subcategory-ul button:nth-child(5) {
-    border: none;
-    border-radius: 5px;
-
-    color: black;
-    background-color: rgb(243, 244, 246);
 }
 
 .subcategory-all {
@@ -200,10 +195,6 @@ section {
 }
 
 .show-list button:hover {
-    color: rgb(0, 144, 249);
-}
-
-.show-list button:nth-child(1) {
     color: rgb(0, 144, 249);
 }
 
@@ -305,21 +296,16 @@ section {
 
 .search-page-button button{
     border: none;
+    color: #bdbdbd;
     background-color: white;
+}
+
+.search-page-button button:hover {
+    color: rgb(0, 144, 249);
 }
 
 .search-page-button button:nth-child(1) {
     margin-right: 16px;
-
-    color: rgb(217, 217, 217);
-}
-
-.search-page-button button:nth-child(2) {
-    color: #bdbdbd;
-}
-
-.search-page-button button:nth-child(2):hover {
-    color: black;
 }
 
 .board-main-list {
@@ -458,6 +444,10 @@ section {
     background-color: white;
 }
 
+.previous-button button:hover {
+    color: rgb(0, 144, 249);
+}
+
 .previous-button i {
     width: 16px;
     height: 16px;
@@ -481,15 +471,10 @@ section {
 }
 
 .page-num button:hover {
-    color: black;
-}
-
-.page-num button:nth-child(1) {
-    border-top: 1px solid rgb(0, 144, 249);
     color: rgb(0, 144, 249);
 }
 
-.next-button button {
+.next-button button{
     border: none;
     padding-top: 16px;
 
@@ -498,7 +483,7 @@ section {
 }
 
 .next-button button:hover {
-    color: black;
+    color: rgb(0, 144, 249);
 }
 
 .next-button span {
@@ -515,4 +500,14 @@ section {
 
 .right-aside aside:nth-child(1){
     margin-bottom: 40px;
+}
+
+.blue-button {
+    z-index: 99;
+    color: rgb(0, 144, 249);
+}
+
+.page-num-blue-button {
+    border-top: 1px solid rgb(0, 144, 249);
+    color: rgb(0, 144, 249);
 }

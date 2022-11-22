@@ -1,43 +1,33 @@
 package com.btsproject.btsproject20221102.controller.api.board;
 
-
-import com.btsproject.btsproject20221102.domain.BoardImgFile;
-import com.btsproject.btsproject20221102.dto.board.WriteReqDto;
+import com.btsproject.btsproject20221102.aop.annotation.LogAspect;
+import com.btsproject.btsproject20221102.dto.board.BoardRespDto;
 import com.btsproject.btsproject20221102.service.board.BoardService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.lang.Nullable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 
-@Slf4j
-@RequestMapping("/api")
 @RestController
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class BoardApi {
 
-    @Value("${file.path}")
-    private String filePath;
-
     private final BoardService boardService;
 
-    @PostMapping("/write")
-    public ResponseEntity<?> writeApi(WriteReqDto writeReqDto) throws Exception {
-        log.info("{}", writeReqDto);
-        boardService.saveBoard(writeReqDto);
-
-        return ResponseEntity.ok().body(writeReqDto);
-    }
-
-    @PostMapping("/uploadimg")
-    public BoardImgFile uploadImg(@RequestParam("file") MultipartFile file) {
+    @GetMapping("/board")
+    public List<BoardRespDto> loadBoard(@RequestParam int page,
+                                        @RequestParam int menuId,
+                                        @RequestParam @Nullable int categoryId,
+                                        @RequestParam @Nullable String subcategoryId,
+                                        @RequestParam @Nullable String showList,
+                                        @RequestParam @Nullable  String searchValue) throws Exception {
 
 
-        return boardService.uploadImgService(file);
+        return boardService.loadBoard(page, menuId, categoryId, subcategoryId ,showList, searchValue);
     }
 }

@@ -3,9 +3,11 @@ package com.btsproject.btsproject20221102.service.board;
 import com.btsproject.btsproject20221102.aop.annotation.LogAspect;
 import com.btsproject.btsproject20221102.domain.Board;
 import com.btsproject.btsproject20221102.domain.BoardImgFile;
+import com.btsproject.btsproject20221102.dto.board.BoardRespDto;
 import com.btsproject.btsproject20221102.dto.board.WriteReqDto;
 import com.btsproject.btsproject20221102.repository.board.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +19,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService{
@@ -54,7 +57,6 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    @LogAspect
     public boolean saveBoard(WriteReqDto writeReqDto) throws Exception {
         int result = 0;
 
@@ -71,6 +73,7 @@ public class BoardServiceImpl implements BoardService{
                         .temp_name(writeReqDto.getTempFile().get(i))
                         .build());
             }
+            log.info("{}", files);
             result = boardRepository.saveBoardImg(files);
         }
 
@@ -79,5 +82,30 @@ public class BoardServiceImpl implements BoardService{
         }
 
         return true;
+    }
+
+
+    @Override
+    public List<BoardRespDto> loadBoard(int page,
+                                        int menuId,
+                                        int categoryId,
+                                        String subcategoryId,
+                                        String showList,
+                                        String searchValue) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("page", (page - 1) * 10);
+        log.info("page >> {}", map.get("page"));
+        map.put("menu_id", menuId);
+        map.put("show_list", showList);
+
+        List<BoardRespDto> result = new ArrayList<BoardRespDto>();
+
+
+
+        boardRepository.loadBoard(map).forEach(list -> {
+            result.add(list.toBoardRespDto());
+        });
+
+        return result;
     }
 }

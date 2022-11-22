@@ -39,7 +39,7 @@
                     <div class="write-menu">
                         <div class="write-category">
                             <label for="category">카테고리</label>
-                            <select name="category" id="category">
+                            <select name="category" id="category" onchange="setSubcategory()">
                                 <option value="none" selected>category를 선택해주세요</option>
                                 <option value="4">프로그래밍</option>
                                 <option value="5">건축</option>
@@ -63,8 +63,8 @@
                     </div>
                 </form>
                 <div class="write-buttons">
-                    <button>등록</button>
-                    <button>취소</button>
+                    <button class="write-button">등록</button>
+                    <button class="cancel-button">취소</button>
                 </div>
             </section>
         </main>

@@ -41,34 +41,41 @@ class WriteFormData {
         return this.#instance;
     }
 
-    #formData = new FormData();
+    formData = new FormData();
 
     getFormData() {
-        return this.#formData;
+        return this.formData;
     }
 
     setFormData() {
-        const uri = location.href;
-        const menu = uri.substring(uri.indexOf("/", uri.indexOf("/") + 2) + 1, uri.lastIndexOf("/"));
+        let menu = this.getMenu();
         const category = document.querySelector("#category");
         const subcategory = document.querySelector("#subcategory");
         const title = document.querySelector("#title");
         const content = document.querySelector("#summernote");
 
-        this.#formData.append("userId", 1);
-        if(menu == "knowledge") {
-            this.#formData.append("menu", "2");
-        }else if(menu == "community") {
-            this.#formData.append("menu", "3");
-        }else if(menu == "notice") {
-            this.#formData.append("menu", "4");
-        }
-        this.#formData.append("category", category.value);
-        this.#formData.append("subcategory", subcategory.value);
-        this.#formData.append("title", title.value);
-        this.#formData.append("content", content.value);
 
-        return this.#formData;
+        this.formData.append("userId", 1);
+        if(menu == "knowledge") {
+            this.formData.append("menu", "2");
+        }else if(menu == "community") {
+            this.formData.append("menu", "3");
+        }else if(menu == "notice") {
+            this.formData.append("menu", "4");
+        }
+        this.formData.append("category", category.value);
+        this.formData.append("subcategory", subcategory.value);
+        this.formData.append("title", title.value);
+        this.formData.append("content", content.value);
+
+        return this.formData;
+    }
+
+    getMenu() {
+        const uri = location.href;
+        const menu = uri.substring(uri.indexOf("/", uri.indexOf("/") + 2) + 1, uri.lastIndexOf("/"));
+
+        return menu;
     }
 
     setContent() { 
@@ -143,7 +150,7 @@ class WriteApi {
         return this.#instance;
     }
 
-    write(formData) {
+    writeRequest(formData) {
         $.ajax({
             async: false,
             type: "post",
@@ -155,6 +162,8 @@ class WriteApi {
             dataType: "json",
             success: (response) => {
                 console.log(response);
+                alert("게시글 작성 완료");
+                location.href = `/${WriteFormData.getInstance().getMenu()}`;
                 
             },
             error: (error) => {
@@ -163,6 +172,9 @@ class WriteApi {
         })
     } 
 
+    deleteImg() {
+        WriteFormData.getInstance().getFormData().get("originFile");
+    }
     
 }
 
@@ -181,7 +193,10 @@ class writeButtons {
         const writeButton = document.querySelector(".write-button");
 
         cancelButton.onclick = () => {
-            location.href = `/${WriteReqParam.getInstance().getFormData().get("menu")}`;
+            if(confirm("작성을 취소 하시겠습니까?")) {
+                location.href = `/${WriteFormData.getInstance().getMenu()}`;
+            }
+            
         };
 
         writeButton.onclick = () => {
@@ -189,7 +204,7 @@ class writeButtons {
             let formData = WriteFormData.getInstance().getFormData();
 
             if(NullCheck.getInstance().nullCheck(formData)){
-                WriteApi.getInstance().write(formData);
+                WriteApi.getInstance().writeRequest(formData);
             }
         }
     }

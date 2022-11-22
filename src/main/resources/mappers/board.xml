@@ -60,4 +60,64 @@
 
     </insert>
 
+    <select id="loadBoard"
+            parameterType="hashmap"
+            resultType="com.btsproject.btsproject20221102.domain.LoadList"
+    >
+        SELECT
+            um.nickname,
+            um.user_img,
+
+            bm.title,
+            bm.view_count,
+            bm.create_date,
+
+            cd.category_name,
+            sd.subcategory_name,
+
+            ifnull(cm.comment_count,0),
+            ifnull(rm.recomment_count,0),
+            ifnull(lm.like_count,0),
+
+            pc.total_count
+        from
+            board_mst bm
+            LEFT OUTER JOIN user_mst um ON(um.id = bm.user_id)
+            LEFT OUTER JOIN category_dtl cd ON (cd.id = bm.category_id)
+            LEFT OUTER JOIN subcategory_dtl sd ON (sd.id = bm.subcategory_id)
+            LEFT OUTER JOIN (SELECT
+                                board_id,
+                                COUNT(*) AS comment_count
+                            from
+                                comment_mst
+                            GROUP BY
+                                board_id) cm ON (cm.board_id = bm.id)
+            LEFT OUTER JOIN (select
+                                comment_id,
+                                COUNT(*) AS recomment_count
+                            from
+                                recomment_mst
+                            GROUP BY
+                                comment_id) rm ON (rm.comment_id = cm.board_id)
+            LEFT OUTER JOIN (select
+                                board_id,
+                                COUNT(*) AS like_count
+                            from
+                                like_mst
+                            GROUP BY
+                                board_id) lm ON (lm.board_id = bm.id)
+                LEFT OUTER JOIN (SELECT
+                                    COUNT(*) AS total_count
+                                from
+                                    board_mst bm
+                                where
+                                    bm.menu_id = #{menu_id}
+
+                                ) pc ON (1=1)
+        WHERE
+            bm.menu_id = #{menu_id}
+        ORDER BY create_date DESC
+        limit
+            #{page},10
+    </select>
 </mapper>
