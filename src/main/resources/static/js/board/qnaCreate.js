@@ -33,6 +33,7 @@ function getImagePreview() {
     reader.onload = (e) => {
         productImages.innerHTML +=`
             <div class="img-box">
+                <i class="fa-solid fa-xmark"><i>
                 <img class="product-img" src="${e.target.result}">
             </div>
         `;

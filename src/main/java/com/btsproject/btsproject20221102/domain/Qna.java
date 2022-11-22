@@ -31,12 +31,12 @@ public class Qna {
     private LocalDateTime create_date;
     private LocalDateTime update_date;
 
-    public QnaCreateRespDto toListRespDto() {
-        return QnaCreateRespDto.builder()
-                .userId(user_id)
-                .subcategory(category_sub_id)
-                .title(title)
-                .statusId(status_id)
-                .build();
-    }
+//    public QnaCreateRespDto toArticleRespDto() {
+//        return QnaCreateRespDto.builder()
+//                .userId(user_id)
+//                .subcategory(category_sub_id)
+//                .title(title)
+//                .statusId(status_id)
+//                .build();
+//    }
 }

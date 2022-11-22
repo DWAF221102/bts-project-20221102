@@ -8,7 +8,6 @@ import com.btsproject.btsproject20221102.exception.CustomInternalServerErrorExce
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.parsing.PassThroughSourceExtractor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -85,17 +84,48 @@ public class QnaCreateServiceImpl implements QnaCreateService{
         return qnaImgFiles;
     }
 
+//    @Override
+//    public List<QnaCreateRespDto> getQnaList(int pageNumber, String category, String searchText, int id) throws Exception {
+////        Map<String, Object> paramsMap = new HashMap<String, Object>();
+////        paramsMap.put("index", (pageNumber - 1) * 10);
+////
+////        List<QnaCreateRespDto> qnaCreateListRespDto = new ArrayList<QnaCreateRespDto>();
+////
+//        qnaRepository.getQnaList(paramsMap).forEach(qna -> {
+////            qnaCreateListRespDto.add(qna.toListRespDto());
+////        });
+////
+////        return qnaCreateListRespDto;
+//            List<QnaCreateRespDto> qnaCreateListRespDto = new ArrayList<QnaCreateRespDto>();
+//            qnaRepository.getQnaList(id).forEach(qna -> {
+//            qnaCreateListRespDto.add(qna.toListRespDto());
+//            });
+//
+//            return qnaCreateListRespDto;
+//    }
+
     @Override
-    public List<QnaCreateRespDto> getQnaList(int pageNumber, String category, String searchText) throws Exception {
-        Map<String, Object> paramsMap = new HashMap<String, Object>();
-        paramsMap.put("index", (pageNumber - 1) * 10);
-
-        List<QnaCreateRespDto> qnaCreateListRespDto = new ArrayList<QnaCreateRespDto>();
-
-        qnaRepository.getQnaList(paramsMap).forEach(qna -> {
-            qnaCreateListRespDto.add(qna.toListRespDto());
-        });
-
-        return qnaCreateListRespDto;
+    public QnaCreateRespDto getQnaArticle(int id) throws Exception {
+        QnaCreateRespDto  qnaCreateRespDto = qnaRepository.infoQna(id);
+        return qnaCreateRespDto;
     }
+
+    @Override
+    public boolean deleteQna(int id) throws Exception {
+        List<QnaImgFile> qnaImgFiles = qnaRepository.getQnaImgList(id);
+        if (qnaRepository.deleteQna(id) > 0) {
+            qnaImgFiles.forEach(qnaImgFile -> {
+                Path uploadPath = Paths.get(filePath + "/" + qnaImgFile.getTemp_name());
+
+                File file = new File(uploadPath.toUri());
+                if (file.exists()) {
+                    file.delete();
+                }
+            });
+
+            return true;
+        }
+        return false;
+    }
+
 }

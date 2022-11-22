@@ -65,31 +65,49 @@
 
     </insert>
     
-    <select id="getQnaList" parameterType="java.util.HashMap" resultMap="qna">
+<!--    <select id="infoQna" parameterType="Integer" resultMap="com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto">-->
+<!--        select-->
+<!--            qm.id,-->
+<!--            qm.menu_id,-->
+<!--            qm.category_id,-->
+<!--            qm.category_sub_id,-->
+<!--            qm.status_id,-->
+<!--            qm.user_id,-->
+<!--            qm.title,-->
+<!--            qm.info,-->
+<!--            qm.want_info,-->
+<!--            qm.price,-->
+<!--            qm.create_date,-->
+<!--            qm.update_date,-->
+<!--            qim.id AS img_id,-->
+<!--            qim.qna_board_id,-->
+<!--            qim.origin_name,-->
+<!--            qim.temp_name-->
+<!--        from-->
+<!--            (select-->
+<!--            *-->
+<!--            from-->
+<!--                qna_board_mst-->
+<!--            limit #{index},10) qm-->
+<!--            left outer join qna_board_img qim on(qim.qna_board_id = qm.id);-->
+<!--    </select>-->
+
+    <select id="infoQna" parameterType="Integer" resultMap="com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto">
         select
-            qm.id,
-            qm.menu_id,
-            qm.category_id,
-            qm.category_sub_id,
-            qm.status_id,
-            qm.user_id,
-            qm.title,
-            qm.info,
-            qm.want_info,
-            qm.price,
-            qm.create_date,
-            qm.update_date,
-            qim.id AS img_id,
-            qim.qna_board_id,
-            qim.origin_name,
-            qim.temp_name
+            id,
+            menu_id,
+            category_id,
+            category_sub_id,
+            status_id,
+            user_id,
+            title,
+            info,
+            want_info,
+            price,
+            create_date,
+            update_date
         from
-            (select
-            *
-            from
-                qna_board_mst
-            limit #{index},10) qm
-            left outer join qna_board_img qim on(qim.qna_board_id = qm.id);
+            qna_board_mst
     </select>
 
 

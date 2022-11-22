@@ -10,14 +10,31 @@ import java.util.List;
 @Builder
 @Data
 public class QnaCreateRespDto {
-    private String userId;
-    private int subcategory;
-    private String title;
+    private int id;
+    private int menuId;
+    private int categoryId;
+    private int categorySubId;
     private int statusId;
+    private int userId;
+    private String title;
+    private String info;
+    private String wantInfo;
+    private int price;
 
 
-    private List<QnaImgFile> qna_img_files;
+//    private List<QnaImgFile> qna_img_files;
 
     private LocalDateTime create_date;
     private LocalDateTime update_date;
+
+//    public QnaCreateRespDto toArticleRespDto() {
+//        return QnaCreateRespDto.builder()
+//                .id(id)
+//                .menuId(menu_id)
+//                .userId(user_id)
+//                .subcategory(category_sub_id)
+//                .title(title)
+//                .statusId(status_id)
+//                .build();
+//    }
 }

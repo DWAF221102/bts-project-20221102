@@ -58,7 +58,34 @@ function addCreate(qnaLists) {
             qnaDetail[index].classList.toggle("detail-invisible");
         }
     })
-
-
-
 }
+
+function deleteRequest(qnaListId) {
+    $.ajax({
+        async: false,
+        type: "delete",
+        url: "/api/qnaLists/" + qnaListId,
+        dataType: "json",
+        success: (response) => {
+            alert("상품 삭제 완료!");
+            location.reload();
+        },
+        error: (error) => {
+            alert("상품 삭제 실패!");
+            console.log(error);
+        }
+
+    });
+}
+
+const deleteButtons = document.querySelectorAll(".delete-button")
+deleteButtons.forEach((deleteButton, index) => {
+
+    deleteButton.onclick = () => {
+        console.log(deleteButton)
+        if(confirm("상품을 삭제하시겠습니까?")) {
+            
+            deleteRequest(responseData[index].id);
+        }
+    }
+});
