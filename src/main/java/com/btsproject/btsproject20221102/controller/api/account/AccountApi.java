@@ -2,8 +2,7 @@ package com.btsproject.btsproject20221102.controller.api.account;
 
 import com.btsproject.btsproject20221102.aop.annotation.ValidAspect;
 import com.btsproject.btsproject20221102.dto.CMRespDto;
-import com.btsproject.btsproject20221102.dto.Validation.ValidationSequence;
-import com.btsproject.btsproject20221102.dto.account.LoginReqDto;
+import com.btsproject.btsproject20221102.dto.account.CertifiedDto;
 import com.btsproject.btsproject20221102.dto.account.SignupReqDto;
 import com.btsproject.btsproject20221102.service.account.AccountService;
 import com.btsproject.btsproject20221102.service.account.MailService;
@@ -15,8 +14,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.rmi.registry.Registry;
-import java.util.Map;
 
 @Slf4j
 @RequestMapping("/api/account")
@@ -45,12 +42,4 @@ public class AccountApi {
     }
 
 
-    // 이메일 인증 api
-    @PostMapping("/signup/mailcertified")
-    public ResponseEntity<?> mailCertified(@RequestBody Map<String, Object> params) throws Exception {
-
-        log.info("email params={}", params);
-
-        return ResponseEntity.ok(new CMRespDto<>(1, "이메일 전송완료", mailService.sendEmail((String) params.get("username"), (String) params.get("subject"), (String) params.get("body"))));
-    }
 }

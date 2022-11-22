@@ -20,6 +20,7 @@
         <result property="skill" column="skill"></result>
         <result property="provider" column="provider"></result>
         <result property="user_img" column="user_img"></result>
+        <result property="enabled" column="enabled"></result>
         <result property="create_date" column="create_date"></result>
         <result property="update_date" column="update_date"></result>
         <collection property="role" resultMap="role"></collection>
@@ -49,6 +50,38 @@
         );
     </insert>
 
+    <insert id="saveKey"
+            parameterType="com.btsproject.btsproject20221102.domain.Key"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        insert into
+            key_mst(user_id, enabled_key, create_date, update_date)
+        values(
+            #{user_id},
+            #{enabled_key},
+            now(),
+            now()
+        );
+    </insert>
+
+    <update id="enabledUpdate" parameterType="com.btsproject.btsproject20221102.domain.User">
+        update
+            user_mst
+        set
+            enabled = 1,
+            update_date = now()
+        where
+            id = #{id}
+    </update>
+    <update id="updateAuthenticationStatus" parameterType="integer">
+        update
+            key_mst
+        set
+            authentication_status = 1
+        where
+            id = #{id}
+    </update>
+
     <select id="findUserByEmail" parameterType="String" resultMap="user">
         select
             um.id,
@@ -75,6 +108,21 @@
         where
             username = #{username}
     </select>
+    <select id="getAuthenticationKey" resultType="com.btsproject.btsproject20221102.domain.Key">
+        select
+            id,
+            user_id,
+            enabled_key,
+            authentication_status,
+            create_date,
+            update_date
+        from
+            key_mst
+        where
+            user_id = #{user_id}
+        and authentication_status = 0;
+
+    </select>
 
     <delete id="deleteUser" parameterType="com.btsproject.btsproject20221102.domain.User">
         delete
@@ -83,4 +131,5 @@
         where
             id = #{id}
     </delete>
+
 </mapper>

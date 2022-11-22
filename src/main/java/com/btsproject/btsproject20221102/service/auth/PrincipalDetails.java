@@ -52,6 +52,6 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return user.getEnabled() == 1 ? true : false;                        // true = 계정 사용가능함.
+        return user.getEnabled() == 1;                        // true = 계정 사용가능함.
     }
 }

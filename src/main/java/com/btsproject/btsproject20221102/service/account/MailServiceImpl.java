@@ -1,13 +1,16 @@
 package com.btsproject.btsproject20221102.service.account;
 
 
+import com.btsproject.btsproject20221102.domain.Key;
+import com.btsproject.btsproject20221102.domain.User;
+import com.btsproject.btsproject20221102.dto.email.SendMailDto;
+import com.btsproject.btsproject20221102.repository.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,69 +20,61 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class MailServiceImpl implements MailService{
 
+    private final AccountRepository accountRepository;
+
     private final JavaMailSender sender; // Bean 등록해둔 MailConfig를 불러옴
 
     @Override
-    public Map<String, Object> sendEmail(String toAddress, String subject, String body) {
-        Map<String, Object> result = new HashMap<String, Object>();
+    public void sendSignupAuthenticationEmail(SendMailDto sendMailDto) throws Exception {
+        sendMailDto.setSubject("[BTS] 회원가입 인증메일입니다.");
+        sendMailDto.setContent(createCertifiedContent(sendMailDto.getEmail()));
+        sendEmail(sendMailDto);
+    }
+
+    @Override
+    public void sendEmail(SendMailDto sendMailDto) throws MessagingException {
         MimeMessage message = sender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
         try {
-            helper.setTo(toAddress);
-            helper.setSubject(subject);
-            helper.setText(body);
-            result.put("resultCode", 200);
+            helper.setTo(sendMailDto.getEmail());
+            helper.setSubject(sendMailDto.getSubject());
+            helper.setText(sendMailDto.getContent(), true);
         } catch (MessagingException e) {
             e.printStackTrace();
-            result.put("resultCode", 500);
         }
 
         sender.send(message);
+    }
 
-        return result;
+    private String createCertifiedContent(String email) {
+        User user = accountRepository.findUserByEmail(email);
+        String token = UUID.randomUUID().toString().replaceAll("-", "");
+
+        Key key = Key.builder()
+                .user_id(user.getId())
+                .enabled_key(token)
+                .build();
+
+        accountRepository.saveKey(key);
+
+        String content = "<div>\n" +
+                "        <header style=\"width: 100%; height: 80px; background-color: aqua; font-size: 30px; display: flex; align-items: center;\">\n" +
+                "            <h3 style=\"margin-left: 10px;\">BTS홈페이지 인증메일입니다.</h3>\n" +
+                "        </header>\n" +
+                "        <main>\n" +
+                "            <div style=\"font-size: 16px; margin-top: 30px;\">\n" +
+                "                <p>회원가입을 축하드립니다.</p>\n" +
+                "                <p>메일 인증을 위하여 밑에 버튼을 클릭해서 홈페이지로 돌아가 다시 로그인해주세요.</p>\n" +
+                "            </div>\n" +
+                "            <div>\n" +
+                "                <a href=\"http://localhost:8000/authentication/certified?id=" + user.getId() + "&accessKey=" + token + "\"><button style=\"width: 200px; height:60px; margin-top: 30px; cursor: pointer; font-size: 16px; font-weight: 500; background-color: #dbdbdb; border: none;\">인증완료</button></a>\n" +
+                "            </div>\n" +
+                "        </main>\n" +
+                "    </div>";
+
+        return content;
     }
 
 
-//    // 랜덤 코드
-//    private String randomKey = UUID.randomUUID().toString().replace("-", "");  // 인증번호
-//
-//    // 메일 내용 작성
-//    @Override
-//    public MimeMessage createMessage(String to) throws MessagingException, UnsupportedEncodingException {
-//
-//        MimeMessage message = javaMailSender.createMimeMessage();
-//
-//        message.addRecipients(Message.RecipientType.TO, to); // 보내는 대상
-//        message.setSubject("BTS 회원가입 이메일 인증"); // 제목
-//
-//        String mainmsg = "";
-//        mainmsg += "<div>인증번호다</div>";
-//        mainmsg += "<div>" + randomKey;
-//        mainmsg += "</div>";
-//        // 내용, charset 타입, subtype
-//        message.setText(mainmsg, "utf-8", "html");
-//        // 보내는 사람의 이메일 주소, 보내는 사람 이름
-//        message.setFrom(new InternetAddress("hobbyseo@naver.com", "DWAF_Admin"));
-//        return message;
-//    }
-//
-//    // 메일을 발송
-//    // sendSimpleMessage의 매개변수로 들어온 to는 이메일 주소가 되고,
-//    // MimeMessage 객체 안에 내가 전송할 메일의 내용을 담는다.
-//    // 그리고 bean으로 등록해둔 javamail 객체를 사용해서 이메일 send
-//    @Override
-//    public String sendSimpleMessage(String to) throws Exception {
-//
-////         TODO Auto-generated method stub
-//        MimeMessage message = createMessage(to);
-//        try {
-//            javaMailSender.send(message);
-//        } catch (MailException e) {
-//            e.printStackTrace();
-//            throw new IllegalStateException();
-//        }
-//
-//        return randomKey;
-//    }
 }
