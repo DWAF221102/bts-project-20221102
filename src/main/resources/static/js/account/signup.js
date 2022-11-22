@@ -1,7 +1,9 @@
 const signupButton = document.querySelector(".general-signup-button");
 const signupInput = document.querySelectorAll(".general-signup-input");
 
-for (let i = 0; i < signupInput.length; i++) {
+// let randomKey = self.crypto.randomUUID().toString().replaceAll("-", "");
+
+for(let i = 0; i < signupInput.length; i++) {
     signupInput[i].onkeyup = () => {
         if (window.event.keyCode === 13) {
             if (i != 4) {
@@ -31,14 +33,16 @@ signupButton.onclick = () => {
         data: JSON.stringify(signupInfo),
         dataType: "json",
         success: (response) => {
-            alert("회원가입 완료.")
-            location.replace("/login");
+            emailSend();
+            alert("회원가입 완료. 이메일을 확인해주세요.");
+            location.replace("/index");
         },
         error: (error) => {
             console.log(error);
             validationError(error.responseJSON.data);
         }
     });
+
 }
 
 function validationError(error) {
@@ -52,3 +56,25 @@ function validationError(error) {
     errorMsg[4].textContent = errorMap.get("nickName");
 }
 
+
+/* 이메일 인증*/
+function emailSend() {
+    let params = {
+        "email": signupInput[0].value
+    }
+
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "/api/email/signup",
+        contentType: "application/json",
+        data: JSON.stringify(params),
+        dataType: "json",
+        success : (response) => {
+            location.replace("/index");
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    });
+}

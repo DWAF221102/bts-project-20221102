@@ -6,6 +6,8 @@ import com.btsproject.btsproject20221102.dto.account.PwChangeReqDto;
 import com.btsproject.btsproject20221102.dto.account.SignupReqDto;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import com.btsproject.btsproject20221102.dto.account.CertifiedDto;
+import com.btsproject.btsproject20221102.dto.account.SignupReqDto;
 
 public interface AccountService {
 
@@ -20,4 +22,5 @@ public interface AccountService {
 
     public boolean deleteUser(int id) throws Exception;
 
+    public boolean checkAuthenticationToken(CertifiedDto certifiedDto) throws Exception;
 }
