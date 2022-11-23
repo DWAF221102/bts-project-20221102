@@ -50,19 +50,13 @@ public class PageController {
         return "account/findAccount";
     }
 
-    @GetMapping("/forgot/password-change")
-    public String passwordChange() {
-        return "account/changePassword";
-    }
-
     @GetMapping("/myprofile")
     public String myprofile() {
-
 
         return "account/myProfile";
     }
 
-    @GetMapping("/myprofile/password-change")
+    @GetMapping("/myprofile/password")
     public String settings() {
         return "account/profileChangePassword";
     }

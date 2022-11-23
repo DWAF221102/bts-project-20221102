@@ -108,6 +108,7 @@
         where
             username = #{username}
     </select>
+
     <update id="modifyPassword" parameterType="com.btsproject.btsproject20221102.domain.User">
         UPDATE
             user_mst
@@ -116,9 +117,11 @@
         WHERE
             id = #{id}
     </update>
+
     <update id="modifyProfile">
 
     </update>
+
     <select id="getAuthenticationKey" resultType="com.btsproject.btsproject20221102.domain.Key">
         select
             id,
@@ -132,6 +135,22 @@
         where
             user_id = #{user_id}
         and authentication_status = 0;
+
+    </select>
+
+    <select id="getForgotAuthenticationKey" resultType="com.btsproject.btsproject20221102.domain.Key">
+        select
+            id,
+            user_id,
+            enabled_key,
+            authentication_status,
+            create_date,
+            update_date
+        from
+            key_mst
+        where
+            user_id = #{user_id}
+        and enabled_key = #{enabled_key};
 
     </select>
 

@@ -92,23 +92,23 @@
 <!--            left outer join qna_board_img qim on(qim.qna_board_id = qm.id);-->
 <!--    </select>-->
 
-    <select id="infoQna" parameterType="Integer" resultMap="com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto">
-        select
-            id,
-            menu_id,
-            category_id,
-            category_sub_id,
-            status_id,
-            user_id,
-            title,
-            info,
-            want_info,
-            price,
-            create_date,
-            update_date
-        from
-            qna_board_mst
-    </select>
+<!--    <select id="infoQna" parameterType="Integer" resultMap="com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto">-->
+<!--        select-->
+<!--            id,-->
+<!--            menu_id,-->
+<!--            category_id,-->
+<!--            category_sub_id,-->
+<!--            status_id,-->
+<!--            user_id,-->
+<!--            title,-->
+<!--            info,-->
+<!--            want_info,-->
+<!--            price,-->
+<!--            create_date,-->
+<!--            update_date-->
+<!--        from-->
+<!--            qna_board_mst-->
+<!--    </select>-->
 
 
 </mapper>

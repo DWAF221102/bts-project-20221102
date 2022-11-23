@@ -1,6 +1,7 @@
 package com.btsproject.btsproject20221102.controller;
 
 import com.btsproject.btsproject20221102.dto.account.CertifiedDto;
+import com.btsproject.btsproject20221102.dto.account.PwSearchReqDto;
 import com.btsproject.btsproject20221102.service.account.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,5 +21,15 @@ public class MailController {
 
         return "redirect:/index";
     }
+
+    @GetMapping("/password/modification")
+    public String passwordChangePage(PwSearchReqDto pwSearchReqDto) throws Exception {
+        if(accountService.checkAuthenticationTokenForgot(pwSearchReqDto)) {
+            return "account/passwordSearch";
+        }
+        return "redirect:/index";
+    }
+
+
 
 }

@@ -22,7 +22,7 @@ public class QnaCreateRespDto {
     private int price;
 
 
-//    private List<QnaImgFile> qna_img_files;
+    private List<QnaImgFile> qna_img_files;
 
     private LocalDateTime create_date;
     private LocalDateTime update_date;

@@ -10,4 +10,6 @@ public interface MailService {
 
     public void sendEmail(SendMailDto sendMailDto) throws MessagingException;
     public void sendSignupAuthenticationEmail(SendMailDto sendMailDto) throws Exception;
+
+    public void sendAccountPasswordEmail(SendMailDto sendMailDto) throws Exception;
 }

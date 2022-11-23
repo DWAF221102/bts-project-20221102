@@ -25,4 +25,12 @@ public class EmailApi {
         return ResponseEntity.ok(new CMRespDto<>(1, "메일 전송 성공", true));
     }
 
+    @PostMapping("/forgot")
+    public ResponseEntity<?> sendForgotEmail(@RequestBody SendMailDto sendMailDto) throws Exception {
+
+        mailService.sendAccountPasswordEmail(sendMailDto);
+
+        return ResponseEntity.ok(new CMRespDto<>(1, "메일 전송 성공", true));
+    }
+
 }

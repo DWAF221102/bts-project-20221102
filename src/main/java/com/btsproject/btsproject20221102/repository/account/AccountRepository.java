@@ -9,6 +9,7 @@ public interface AccountRepository {
     public int save(User user);
 
     public User findUserByEmail(String username);
+
     public User modifyProfile(User user);
 
     public int modifyPassword(User user);
@@ -21,6 +22,8 @@ public interface AccountRepository {
     public int enabledUpdate(int id);
 
     public Key getAuthenticationKey(int user_id);
+
+    public Key getForgotAuthenticationKey(Key key);
 
     public int updateAuthenticationStatus(int id);
 }
