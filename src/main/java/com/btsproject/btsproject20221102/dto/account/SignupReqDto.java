@@ -38,6 +38,7 @@ public class SignupReqDto {
                 .phone(phone)
                 .nickname(nickName)
                 .enabled(0)
+                .user_img("base-profile-img.png")
                 .build();
     }
 }
