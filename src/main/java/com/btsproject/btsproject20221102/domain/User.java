@@ -1,5 +1,6 @@
 package com.btsproject.btsproject20221102.domain;
 
+import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,5 +29,10 @@ public class User {
     private LocalDateTime create_date;
     private LocalDateTime update_date;
 
-
+    public void updatePrincipalDetails(PrincipalDetails principalDetails) {
+        User principalUser = principalDetails.getUser();
+        if(nickname != null) principalUser.setNickname(nickname);
+        if(phone != null) principalUser.setPhone(phone);
+        if(skill != null) principalUser.setSkill(skill);
+    }
 }

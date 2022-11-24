@@ -27,6 +27,8 @@ public class PageController {
 
 
     // 회원관련 페이지
+
+    // 로그인 페이지
     @GetMapping("/login")
     public String login(@RequestParam(value = "error", required = false) String error,
                         @RequestParam(value = "exception", required = false) String exception,
@@ -35,28 +37,33 @@ public class PageController {
         model.addAttribute("exception", exception);
         return "account/login";
     }
-
+    // 회원가입 페이지
     @GetMapping("/signup")
     public String signup() {
         return "account/signup";
     }
 
+    // 아이디 찾기 페이지
     @GetMapping("/forgot")
     public String forgot() {
         return "account/findAccount";
     }
 
+
+    // 내 프로필 페이지
     @GetMapping("/myprofile")
     public String myprofile() {
 
         return "account/myProfile";
     }
 
+    // 비밀번호 변경 페이지
     @GetMapping("/myprofile/password")
     public String settings() {
         return "account/profileChangePassword";
     }
 
+    //최근활동 페이지
     @GetMapping("/myactivity")
     public String myactivity() {
         return "account/detailsOfActivity";

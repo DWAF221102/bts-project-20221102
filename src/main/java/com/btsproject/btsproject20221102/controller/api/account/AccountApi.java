@@ -43,15 +43,21 @@ public class AccountApi {
         return ResponseEntity.ok().body(new CMRespDto<>(1, "회원가입 완료", signupReqDto));
     }
 
-    @PutMapping("/myprofile")
-    public ResponseEntity<?> modifyProfile(@RequestBody User user, ModifyReqDto modifyReqDto) throws Exception {
-        accountService.modifyProfile(modifyReqDto);
+<<<<<<< HEAD
+=======
+//    로그인 유효성 검사
+    @ValidAspect
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@Valid @RequestBody LoginReqDto loginReqDto, BindingResult bindingResult)throws Exception{
+        return ResponseEntity.ok(new CMRespDto<>(1, "success", true));
+}
 
-        // 변경된 세션 등록
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return ResponseEntity.ok().body(new CMRespDto<>(1,"success", user));
+>>>>>>> origin/duckhyeon
+    @PutMapping("/myprofile")
+    public ResponseEntity<?> modifyProfile(@RequestBody ModifyReqDto modifyReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
+        accountService.modifyProfile(principalDetails, modifyReqDto);
+
+        return ResponseEntity.ok(new CMRespDto<>(1,"success", modifyReqDto));
     }
 
     @ValidAspect

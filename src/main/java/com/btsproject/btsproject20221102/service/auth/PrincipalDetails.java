@@ -2,6 +2,7 @@ package com.btsproject.btsproject20221102.service.auth;
 
 import com.btsproject.btsproject20221102.domain.User;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,6 +12,7 @@ import java.util.Collection;
 @Getter
 public class PrincipalDetails implements UserDetails {
 
+    @Setter
     private User user;
 
     public PrincipalDetails(User user) {

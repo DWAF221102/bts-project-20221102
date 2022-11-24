@@ -1,7 +1,9 @@
 package com.btsproject.btsproject20221102.dto.account;
 
 import com.btsproject.btsproject20221102.domain.User;
+import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -21,14 +23,14 @@ public class ModifyReqDto {
     private String phone;
 
     private String skill;
+    
 
-    public User toModifyEntity(){
+    public User toModifyEntity(PrincipalDetails principalDetails){
         return User.builder()
-                .id(id)
-                .name(name)
-                .nickname(nickname)
-                .phone(phone)
-                .skill(skill)
+                .id(principalDetails.getUser().getId())
+                .nickname(nickname.equals(principalDetails.getUser().getNickname()) ? null : nickname)
+                .phone(phone.equals(principalDetails.getUser().getPhone()) ? null : phone)
+                .skill(skill.equals(principalDetails.getUser().getSkill()) || skill.isBlank() ? null : skill)
                 .build();
     }
 }
