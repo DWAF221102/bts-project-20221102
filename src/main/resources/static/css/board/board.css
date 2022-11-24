@@ -109,7 +109,7 @@ section {
     justify-content: center;
 }
 
-.subcategory button {
+.subcategory-button {
     height: 36px;
     
     margin-left: 32px;
@@ -182,7 +182,7 @@ section {
     background-color: white;
 }
 
-.show-list button{
+.show-list-button{
     width: 100%;
 
     border: none;
@@ -194,7 +194,7 @@ section {
     background-color: white;
 }
 
-.show-list button:hover {
+.show-list-button:hover {
     color: rgb(0, 144, 249);
 }
 
@@ -460,7 +460,12 @@ section {
     font-size: 500;
 }
 
-.page-num button {
+.page-num {
+    display: flex;
+    align-content: center;
+}
+
+.page-num-button {
     border: none;
     padding: 16px 16px 0px 16px;
     
@@ -470,7 +475,7 @@ section {
     background-color: white;
 }
 
-.page-num button:hover {
+.page-num-button:hover {
     color: rgb(0, 144, 249);
 }
 
@@ -503,7 +508,6 @@ section {
 }
 
 .blue-button {
-    z-index: 99;
     color: rgb(0, 144, 249);
 }
 
