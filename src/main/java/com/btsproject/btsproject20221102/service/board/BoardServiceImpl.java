@@ -96,7 +96,11 @@ public class BoardServiceImpl implements BoardService{
         map.put("page", (page - 1) * 10);
         log.info("page >> {}", map.get("page"));
         map.put("menu_id", menuId);
+        map.put("category_id", categoryId);
+        map.put("subcategory_id", Integer.parseInt(subcategoryId));
         map.put("show_list", showList);
+        log.info("show_list >> {}", map.get("show_list"));
+        map.put("searchValue", searchValue);
 
         List<BoardRespDto> result = new ArrayList<BoardRespDto>();
 

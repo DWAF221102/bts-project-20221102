@@ -79,7 +79,7 @@
             ifnull(rm.recomment_count,0),
             ifnull(lm.like_count,0),
 
-            pc.total_count
+            ifnull(pc.total_count,0)
         from
             board_mst bm
             LEFT OUTER JOIN user_mst um ON(um.id = bm.user_id)
@@ -109,14 +109,37 @@
                 LEFT OUTER JOIN (SELECT
                                     COUNT(*) AS total_count
                                 from
-                                    board_mst bm
+                                    board_mst
                                 where
-                                    bm.menu_id = #{menu_id}
+                                    menu_id = #{menu_id}
 
                                 ) pc ON (1=1)
         WHERE
-            bm.menu_id = #{menu_id}
-        ORDER BY create_date DESC
+                bm.menu_id = #{menu_id}
+            <if test="category_id != 99">
+                and bm.category_id = #{category_id}
+            </if>
+            <if test="subcategory_id != 99">
+                and bm.subcategory_id = #{subcategory_id}
+            </if>
+            <if test='searchValue != null || searchValue !=""'>
+                and (um.nickname like concat('%', #{searchValue}, '%') or bm.title like concat('%', #{searchValue}, '%'))
+            </if>
+
+        <choose>
+            <when test='show_list = "1"'>
+                ORDER BY bm.create_date DESC
+            </when>
+            <when test='show_list = "2"'>
+                ORDER BY lm.like_count DESC
+            </when>
+            <when test='show_list = "3"'>
+                ORDER BY bm.view_count DESC
+            </when>
+        </choose>
+
+
+
         limit
             #{page},10
     </select>
