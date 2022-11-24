@@ -56,25 +56,21 @@ public class AccountApi {
     }
 
 //    로그인 유효성 검사
-//    @ValidAspect
-//    @GetMapping("/login")
-//    public ResponseEntity<?> login(@Valid @RequestBody LoginReqDto loginReqDto, BindingResult bindingResult)throws Exception{
-//        return ResponseEntity.ok(new CMRespDto<>(1, "success", true));
-//}
+    @ValidAspect
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@Valid @RequestBody LoginReqDto loginReqDto, BindingResult bindingResult)throws Exception{
+        return ResponseEntity.ok(new CMRespDto<>(1, "success", true));
+}
 
     @PutMapping("/myprofile")
-    public ResponseEntity<?> modifyProfile(@RequestBody User user, ModifyReqDto modifyReqDto) throws Exception {
-        accountService.modifyProfile(modifyReqDto);
-        
-        // 변경된 세션 등록
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return ResponseEntity.ok().body(new CMRespDto<>(1,"success", user));
+    public ResponseEntity<?> modifyProfile(@RequestBody ModifyReqDto modifyReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
+        accountService.modifyProfile(principalDetails, modifyReqDto);
+
+        return ResponseEntity.ok(new CMRespDto<>(1,"success", modifyReqDto));
     }
 
     @ValidAspect
-    @PutMapping("/forgot/password-change")
+    @PutMapping("/myprofile/password")
     public ResponseEntity<?> changePassword(@Valid @RequestBody PwChangeReqDto pwChangeReqDto, BindingResult bindingResult,
     @AuthenticationPrincipal PrincipalDetails principalDetails) throws  Exception {
         System.out.println("pwChangeReqDto: " + pwChangeReqDto);

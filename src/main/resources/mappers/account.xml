@@ -116,8 +116,22 @@
         WHERE
             id = #{id}
     </update>
-    <update id="modifyProfile">
-
+    <update id="modifyProfile" parameterType="com.btsproject.btsproject20221102.domain.User">
+        UPDATE
+            user_mst
+        <trim prefix="SET" suffixOverrides=",">
+            <if test='nickname != null'>
+                nickname = #{nickname},
+            </if>
+            <if test='phone != null'>
+                phone = #{phone},
+            </if>
+            <if test='skill != null'>
+                skill = #{skill},
+            </if>
+        </trim>
+        WHERE
+            id = #{id}
     </update>
     <select id="getAuthenticationKey" resultType="com.btsproject.btsproject20221102.domain.Key">
         select

@@ -15,7 +15,7 @@ public interface AccountService {
 
     public boolean signup(SignupReqDto signupReqDto) throws Exception;
 
-    public void modifyProfile(ModifyReqDto modifyReqDto) throws Exception;
+    public void modifyProfile(@AuthenticationPrincipal PrincipalDetails principalDetails, ModifyReqDto modifyReqDto) throws Exception;
 
     public void modifyPassword(@AuthenticationPrincipal PrincipalDetails principalDetails, PwChangeReqDto pwChangeReqDto) throws Exception;
 

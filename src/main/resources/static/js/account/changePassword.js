@@ -11,7 +11,7 @@ changeButton.onclick = () => {
     $.ajax({
         async: false,
         type: "put",
-        url: "/api/account/forgot/password-change",
+        url: "/api/account/myprofile/password",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify(passwordInfo),

@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 @Slf4j   // 나중에 지움
 @Service
@@ -46,15 +48,18 @@ public class AccountServiceImpl implements AccountService {
     // 회원 정보 변경
     @Transactional
     @Override
-    public void modifyProfile(ModifyReqDto modifyReqDto) throws Exception {
-        User user = null;
-        user = accountRepository.findUserByEmail(modifyReqDto.toModifyEntity().getUsername());
-        if(user == null){
-            new IllegalStateException("해당 회원이 존재 하지 않습니다.");
+    public void modifyProfile(PrincipalDetails principalDetails, ModifyReqDto modifyReqDto) throws Exception {
+
+        User user = modifyReqDto.toModifyEntity(principalDetails);
+        if (user.getNickname() == null && user.getPhone() == null && user.getSkill() == null) {
+            Map<String, String> errorMap = new HashMap<String, String>();
+            errorMap.put("error", "수정한 정보가 없습니다.");
+            throw new CustomValidationException("수정사항 없음", errorMap);
         }
+
+        accountRepository.modifyProfile(user);
+        user.updatePrincipalDetails(principalDetails);
     }
-
-
 // 비밀번호 변경
     @Override
     public void modifyPassword(PrincipalDetails principalDetails, PwChangeReqDto pwChangeReqDto) throws Exception {
@@ -62,6 +67,7 @@ public class AccountServiceImpl implements AccountService {
         if (bCryptPasswordEncoder.matches(pwChangeReqDto.getCurrentPw(), principalDetails.getUser().getPassword())) {
             if (pwChangeReqDto.getNewPw().equals(pwChangeReqDto.getCheckNewPw())) {
                 String changedPw = bCryptPasswordEncoder.encode(pwChangeReqDto.getNewPw());
+
                 User userEntity = principalDetails.getUser();
                 userEntity.setPassword(bCryptPasswordEncoder.encode(pwChangeReqDto.getNewPw()));
                 accountRepository.modifyPassword(userEntity);

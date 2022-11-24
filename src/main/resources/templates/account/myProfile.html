@@ -18,25 +18,24 @@
                 <h2>내 계정</h2>
             </div>
             <!-- 회원정보 영역 -->
-            <form>
-                <input type="hidden" id="id" value="">
-                <div class="myprofile-area">
-                    <h2>회원 정보</h2>
-                    <div class="myprofile-info">
-                    </div>
-                    <!-- 저장 버튼 영역 -->
-                    <div class="save-button-area">
-                        <button id="save-button" class="save-button" type="button">저장</button>
-                    </div>
+
+            <div class="myprofile-area">
+                <h2>회원 정보</h2>
+                <div class="myprofile-info">
                 </div>
-            </form>
+                <!-- 저장 버튼 영역 -->
+                <div class="save-button-area">
+                    <button class="save-button" type="button">저장</button>
+                </div>
+            </div>
+
             <!-- 비밀 번호 변경 영역 -->
             <div class="password-area">
                 <div class="password-title">
                     <h2>비밀 번호</h2>
                 </div>
                 <div class="password-change-area">
-                    <a href="/myprofile/password-change"><button class="password-change-button">비밀번호 변경</button></a>
+                    <a href="/myprofile/password"><button class="password-change-button">비밀번호 변경</button></a>
                 </div>
             </div>
             <!-- 계정 삭제 영역 -->
@@ -68,7 +67,6 @@
         </div>
     </main>
     <footer th:replace="~{fragment/footer :: footer}"></footer>
-
     <script src="/static/js/account/myprofile.js"></script>
     <script src="/static/js/account/modifyProfile.js"></script>
 </body>

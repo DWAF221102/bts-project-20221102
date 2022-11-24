@@ -9,8 +9,10 @@ public interface AccountRepository {
     public int save(User user);
 
     public User findUserByEmail(String username);
-    public User modifyProfile(User user);
 
+    /* 회원 정보 수정 */
+    public int modifyProfile(User user);
+    /* 비밀번호 변경 */
     public int modifyPassword(User user);
 
     public int deleteUser(int id);
