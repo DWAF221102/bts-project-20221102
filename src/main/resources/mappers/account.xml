@@ -117,11 +117,7 @@
         WHERE
             id = #{id}
     </update>
-<<<<<<< HEAD
 
-    <update id="modifyProfile">
-
-=======
     <update id="modifyProfile" parameterType="com.btsproject.btsproject20221102.domain.User">
         UPDATE
             user_mst
@@ -138,7 +134,6 @@
         </trim>
         WHERE
             id = #{id}
->>>>>>> origin/duckhyeon
     </update>
 
     <select id="getAuthenticationKey" resultType="com.btsproject.btsproject20221102.domain.Key">
