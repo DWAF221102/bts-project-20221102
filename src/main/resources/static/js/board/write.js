@@ -42,6 +42,7 @@ class WriteFormData {
     }
 
     formData = new FormData();
+    tempNames = new Array();
 
     getFormData() {
         return this.formData;
@@ -55,7 +56,7 @@ class WriteFormData {
         const content = document.querySelector("#summernote");
 
 
-        this.formData.append("userId", 1);
+        this.formData.append("userId", 7);
         if(menu == "knowledge") {
             this.formData.append("menu", "2");
         }else if(menu == "community") {
@@ -97,9 +98,10 @@ class WriteFormData {
             dataType: "json",
             success: (response) => {
                 console.log(response);
-                $(editor).summernote('insertImage', "/image/board/" + response.temp_name);
-                this.getFormData().append("originFile", response.origin_name);
-                this.getFormData().append("tempFile", response.temp_name);
+                const responseData = response.data;
+                $(editor).summernote('insertImage', "/image/board/" + responseData.temp_name);
+                this.getFormData().append("originFile", responseData.origin_name);
+                this.getFormData().append("tempFile", responseData.temp_name);
             },
             error: (error) => {
                 console.log(error);
@@ -173,7 +175,26 @@ class WriteApi {
     } 
 
     deleteImg() {
-        WriteFormData.getInstance().getFormData().get("originFile");
+        const tempFile = new FormData(); 
+        tempFile.append("tempName",WriteFormData.getInstance().getFormData().get("tempFile"));
+
+        $.ajax({
+            async:false,
+            type: "delete",
+            url:"/api/img/delete",
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            data: tempFile,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+             
+        });
     }
     
 }
@@ -193,6 +214,7 @@ class writeButtons {
         const writeButton = document.querySelector(".write-button");
 
         cancelButton.onclick = () => {
+            // WriteApi.getInstance().deleteImg();
             if(confirm("작성을 취소 하시겠습니까?")) {
                 location.href = `/${WriteFormData.getInstance().getMenu()}`;
             }
@@ -212,4 +234,5 @@ class writeButtons {
 
 window.onload = () => {
     writeButtons.getInstance().addButtonEvenet();
+    // WriteApi.getInstance().deleteImg();
 }

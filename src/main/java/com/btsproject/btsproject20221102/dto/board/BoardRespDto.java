@@ -8,9 +8,11 @@ import java.time.LocalDateTime;
 @Builder
 @Data
 public class BoardRespDto {
+    private int userId;
     private String nickname;
     private String userImg;
 
+    private int boardId;
     private String title;
     private int viewCount;
     private String createDate;

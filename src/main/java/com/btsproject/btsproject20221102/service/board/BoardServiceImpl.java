@@ -57,6 +57,13 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    public boolean deleteImg(MultipartFile file) {
+        String tempName = file.getOriginalFilename();
+
+        return false;
+    }
+
+    @Override
     public boolean saveBoard(WriteReqDto writeReqDto) throws Exception {
         int result = 0;
 
@@ -94,12 +101,10 @@ public class BoardServiceImpl implements BoardService{
                                         String searchValue) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("page", (page - 1) * 10);
-        log.info("page >> {}", map.get("page"));
         map.put("menu_id", menuId);
         map.put("category_id", categoryId);
         map.put("subcategory_id", Integer.parseInt(subcategoryId));
         map.put("show_list", showList);
-        log.info("show_list >> {}", map.get("show_list"));
         map.put("searchValue", searchValue);
 
         List<BoardRespDto> result = new ArrayList<BoardRespDto>();
@@ -107,6 +112,7 @@ public class BoardServiceImpl implements BoardService{
 
 
         boardRepository.loadBoard(map).forEach(list -> {
+            log.info("list: {}", list);
             result.add(list.toBoardRespDto());
         });
 

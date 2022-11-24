@@ -15,9 +15,12 @@ import java.time.format.DateTimeFormatter;
 @Data
 public class LoadList {
 
+    private int user_id;
     private String nickname;
     private String user_img;
 
+
+    private int id;
     private String title;
     private int view_count;
     private LocalDateTime create_date;
@@ -35,11 +38,13 @@ public class LoadList {
 
     public BoardRespDto toBoardRespDto() {
         return BoardRespDto.builder()
+                .userId(user_id)
                 .nickname(nickname)
                 .userImg(user_img)
+                .boardId(id)
                 .title(title)
                 .viewCount(view_count)
-                .createDate(create_date.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초")))
+                .createDate(create_date.format(DateTimeFormatter.ofPattern("yyyy년MM월dd일HH시mm분ss초")))
                 .categoryName(category_name)
                 .subcategoryName(subcategory_name)
                 .commentCount(comment_count)

@@ -15,4 +15,5 @@ public interface BoardRepository {
     public int saveBoardImg(List<BoardImgFile> files) throws Exception;
 
     public List<LoadList> loadBoard(Map<String, Object> map) throws Exception;
+
 }

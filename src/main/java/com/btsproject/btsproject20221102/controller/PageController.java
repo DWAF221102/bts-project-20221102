@@ -2,6 +2,7 @@ package com.btsproject.btsproject20221102.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -120,8 +121,8 @@ public class PageController {
     }
 
     // article 은 나중에 pathvariable을 통해 들어가도록 만들어야함
-    @GetMapping("/article")
-    public String article() { return "board/article"; }
+    @GetMapping("/article/{id}")
+    public String article(@PathVariable int id) { return "board/article"; }
 
 
     // admin 페이지

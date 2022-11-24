@@ -3,10 +3,7 @@ package com.btsproject.btsproject20221102.controller.api.account;
 import com.btsproject.btsproject20221102.aop.annotation.ValidAspect;
 import com.btsproject.btsproject20221102.domain.User;
 import com.btsproject.btsproject20221102.dto.CMRespDto;
-import com.btsproject.btsproject20221102.dto.account.ModifyReqDto;
-import com.btsproject.btsproject20221102.dto.account.PwChangeReqDto;
-import com.btsproject.btsproject20221102.dto.account.PwForgotReqDto;
-import com.btsproject.btsproject20221102.dto.account.SignupReqDto;
+import com.btsproject.btsproject20221102.dto.account.*;
 import com.btsproject.btsproject20221102.service.account.AccountService;
 import com.btsproject.btsproject20221102.service.account.MailService;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
@@ -43,8 +40,6 @@ public class AccountApi {
         return ResponseEntity.ok().body(new CMRespDto<>(1, "회원가입 완료", signupReqDto));
     }
 
-<<<<<<< HEAD
-=======
 //    로그인 유효성 검사
     @ValidAspect
     @PostMapping("/login")
@@ -52,7 +47,6 @@ public class AccountApi {
         return ResponseEntity.ok(new CMRespDto<>(1, "success", true));
 }
 
->>>>>>> origin/duckhyeon
     @PutMapping("/myprofile")
     public ResponseEntity<?> modifyProfile(@RequestBody ModifyReqDto modifyReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
         accountService.modifyProfile(principalDetails, modifyReqDto);
