@@ -1,6 +1,7 @@
 package com.btsproject.btsproject20221102.service.board;
 
 import com.btsproject.btsproject20221102.domain.Qna;
+import com.btsproject.btsproject20221102.domain.QnaArticle;
 import com.btsproject.btsproject20221102.domain.QnaImgFile;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
@@ -106,8 +107,8 @@ public class QnaCreateServiceImpl implements QnaCreateService{
 
     @Override
     public QnaCreateRespDto getQnaArticle(int id) throws Exception {
-        QnaCreateRespDto  qnaCreateRespDto = qnaRepository.infoQna(id);
-        return qnaCreateRespDto;
+        QnaArticle qnaArticle = qnaRepository.infoQna(id);
+        return qnaArticle.toQnaCreateRespDto();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.btsproject.btsproject20221102.dto.board;
 
+import com.btsproject.btsproject20221102.domain.QnaArticle;
 import com.btsproject.btsproject20221102.domain.QnaImgFile;
 import lombok.Builder;
 import lombok.Data;
@@ -27,14 +28,5 @@ public class QnaCreateRespDto {
     private LocalDateTime create_date;
     private LocalDateTime update_date;
 
-//    public QnaCreateRespDto toArticleRespDto() {
-//        return QnaCreateRespDto.builder()
-//                .id(id)
-//                .menuId(menu_id)
-//                .userId(user_id)
-//                .subcategory(category_sub_id)
-//                .title(title)
-//                .statusId(status_id)
-//                .build();
-//    }
+
 }

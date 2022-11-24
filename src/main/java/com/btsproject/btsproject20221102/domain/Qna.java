@@ -39,4 +39,5 @@ public class Qna {
 //                .statusId(status_id)
 //                .build();
 //    }
+
 }
