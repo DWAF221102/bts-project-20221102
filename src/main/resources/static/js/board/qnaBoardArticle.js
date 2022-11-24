@@ -20,6 +20,7 @@ function getList() {
         }
 
     });
+    
 }
 
 function addCreate(qnaLists) {
@@ -46,24 +47,19 @@ function addCreate(qnaLists) {
     });
 }
 
-function titleCreate(qnaLists) {
-    const listTitle = document.querySelector(".qna-board-top");
+function titleCreate(data) {
 
-    listTitle.innerHTML = "";
-
-    qnaLists.forEach((qna) => {
-        listTitle.innerHTML += `
-    <div>
-        <div class="qna-board-category">
-            프로그램
+    const qnaTitle = document.querySelector(".qna-board-top");
+    qnaTitle.innerHTML = `
+        <div>
+            <div class="qna-board-category">
+                ${data.categorySubId}
+            </div>
+            <p class="qna-content-name">
+                ${data.title}
+            </p>
         </div>
-        <p class="qna-content-name">
-            ${qna.title}
-        </p>
-
-    </div>
-        `;
-    });
+    `;
 
 }
 
