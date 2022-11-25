@@ -14,6 +14,7 @@ function getList() {
         success: (response) => {
             console.log(response);
             titleCreate(response.data);
+            boardInfo(response.data);
         },
         error: (error) => {
             console.log(error);
@@ -53,13 +54,38 @@ function titleCreate(data) {
     qnaTitle.innerHTML = `
         <div>
             <div class="qna-board-category">
-                ${data.categorySubId}
+                ${data.categoryId}
             </div>
             <p class="qna-content-name">
                 ${data.title}
             </p>
         </div>
     `;
+
+}
+
+function boardInfo(data) {
+    const boardInfos = document.querySelector(".board-info");
+    boardInfos.innerHTML =`
+    <div class="qna-board-info-category">
+        <div class="qna-board-info-category-left">
+            프로그램/버전
+        </div>
+        <div class="qna-board-info-category-right">
+            ${data.categorySubId}
+        </div>
+
+    </div>
+
+    <div class="qna-board-price">
+        <div class="qna-board-price-left">
+            질문금액
+        </div>
+        <div class="qna-board-price-right">
+            ${data.price}
+        </div>
+    </div>
+    `
 
 }
 
