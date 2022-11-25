@@ -74,8 +74,13 @@ class WriteFormData {
         const title = document.querySelector("#title");
         const content = document.querySelector("#summernote");
 
-
-        this.formData.append("userId", principalUser.id);
+        if(principalUser == null) {
+            let menu = WriteFormData.getInstance().getMenu();
+            alert("로그인 후 작성 가능합니다.");
+            location.href = `/${menu}`;
+        }else {
+            this.formData.append("userId", principalUser.id);
+        }
         if(menu == "knowledge") {
             this.formData.append("menu", "2");
         }else if(menu == "community") {
@@ -218,12 +223,12 @@ class WriteApi {
     
 }
 
-class writeButtons {
+class WriteButtons {
     static #instance = null;
 
     static getInstance() {
         if(this.#instance == null) {
-            this.#instance = new writeButtons();
+            this.#instance = new WriteButtons();
         }
         return this.#instance;
     }
@@ -253,7 +258,7 @@ class writeButtons {
 
 window.onload = () => {
     UserCheck.getInstance().addService();
-    writeButtons.getInstance().addButtonEvenet();
+    WriteButtons.getInstance().addButtonEvenet();
     
     // WriteApi.getInstance().deleteImg();
 }
