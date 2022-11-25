@@ -57,7 +57,6 @@ window.onload = () => {
                 reader.onload = (e) => {
                     profileImage.attr("src", e.target.result);
                 }
-
                 console.log(formData);
                 alert("사진 등록 성공");
                 location.reload();
