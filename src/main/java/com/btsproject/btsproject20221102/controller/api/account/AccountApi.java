@@ -17,6 +17,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.Valid;
 
 @Slf4j
@@ -28,6 +30,8 @@ public class AccountApi {
     private final AccountService accountService;
     private final AuthenticationManager authenticationManager;
     private final MailService mailService;
+
+
 
     @ValidAspect
     @PostMapping("/signup")
@@ -52,6 +56,16 @@ public class AccountApi {
         accountService.modifyProfile(principalDetails, modifyReqDto);
 
         return ResponseEntity.ok(new CMRespDto<>(1,"success", modifyReqDto));
+    }
+
+    //프로필 이미지 변경
+    @PostMapping("/myprofile")
+    public ResponseEntity<?> modifyProfileImage(@AuthenticationPrincipal PrincipalDetails principalDetails,
+                                                MultipartFile file) throws Exception {  // MultipartFile 변수명은 name값과 같게해야함.
+
+        accountService.modifyProfileImage(principalDetails, file);
+        log.info("Controller");
+        return ResponseEntity.ok(new CMRespDto<>(1, "success", file));
     }
 
     @ValidAspect
