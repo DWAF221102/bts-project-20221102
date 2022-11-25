@@ -117,6 +117,7 @@
         WHERE
             id = #{id}
     </update>
+    
     <update id="modifyProfile" parameterType="com.btsproject.btsproject20221102.domain.User">
         UPDATE
             user_mst
