@@ -36,38 +36,38 @@ const saveButton = document.querySelector(".save-button");
 const profileInfo = document.querySelectorAll(".myprofile-info-input");
 let imageInfo = document.querySelector(".profile-image-input");
 
-imageInfo.onchange = () => {
-    // 서버에 이미지 전송
-    let profileImageForm = document.querySelector(".profile-image-form");
-    console.log(profileImageForm);
+// imageInfo.onchange = () => {
+//     // 서버에 이미지 전송
+//     let profileImageForm = document.querySelector(".profile-image-form");
+//     console.log(profileImageForm);
 
-    // FormData 객체 이용해 form 태그의 필드와 값을 K/V를 담음.
-    let formData = new FormData(profileImageForm);
+//     // FormData 객체 이용해 form 태그의 필드와 값을 K/V를 담음.
+//     let formData = new FormData(profileImageForm);
 
-    $.ajax({
-        async: false,
-        type: "put",
-        url: "/api/account/myprofile",
-        data: formData,
-        contentType: false, //필수 : x-www-form-urlencoded로 파싱되는 것을 방지
-        processData: false, //필수 : contentType을 false로 줬을 때 QueryString 자동 설정
-        dataType: "json",
-        enctype: "multipart/form-data",
-        success: (response) => {
+//     $.ajax({
+//         async: false,
+//         type: "put",
+//         url: "/api/account/myprofile",
+//         data: formData,
+//         contentType: false, //필수 : x-www-form-urlencoded로 파싱되는 것을 방지
+//         processData: false, //필수 : contentType을 false로 줬을 때 QueryString 자동 설정
+//         dataType: "json",
+//         enctype: "multipart/form-data",
+//         success: (response) => {
 
-            let reader = new FileReader();
-            reader.onload = (e) => {
+//             let reader = new FileReader();
+//             reader.onload = (e) => {
 
 
-            }
-            alert("사진 전송");
-        },
-        error: (error) => {
-            console.log(error);
-        }
+//             }
+//             alert("사진 전송");
+//         },
+//         error: (error) => {
+//             console.log(error);
+//         }
 
-    })
-}
+//     })
+// }
 
 
 // 회원 정보 수정

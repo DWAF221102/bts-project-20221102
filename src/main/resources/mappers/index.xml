@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.btsproject.btsproject20221102.repository.IndexRepository">
+    <resultMap id="board" type="com.btsproject.btsproject20221102.domain.Board">
+        <result property="id" column="id"></result>
+        <result property="menu_id" column="menu_id"></result>
+        <result property="category_id" column="category_id"></result>
+        <result property="subcategory_id" column="subcategory_id"></result>
+        <result property="user_id" column="user_id"></result>
+        <result property="title" column="title"></result>
+        <result property="content" column="content"></result>
+        <result property="view_count" column="view_count"></result>
+        <result property="create_date" column="create_date"></result>
+        <result property="update_date" column="update_date"></result>
+    </resultMap>
+
+    <select id="loadIndexBoard"
+            parameterType="integer"
+            resultType="com.btsproject.btsproject20221102.domain.LoadList"
+    >
+        SELECT
+            bm.user_id,
+            um.nickname,
+            um.user_img,
+
+            bm.id,
+            bm.title,
+            bm.create_date,
+
+            IFNULL(cm.comment_count, 0),
+            IFNULL(rm.recomment_count, 0),
+            IFNULL(lm.like_count, 0)
+
+        FROM
+            board_mst bm
+                LEFT OUTER JOIN user_mst um ON(um.id = bm.user_id)
+                LEFT OUTER JOIN category_dtl cd ON (cd.id = bm.category_id)
+                LEFT OUTER JOIN subcategory_dtl sd ON (sd.id = bm.subcategory_id)
+                LEFT OUTER JOIN (SELECT
+                                    board_id,
+                                    COUNT(*) AS comment_count
+                                    from
+                                    comment_mst
+                                    GROUP BY
+                                    board_id) cm ON (cm.board_id = bm.id)
+                LEFT OUTER JOIN (select
+                                    comment_id,
+                                    COUNT(*) AS recomment_count
+                                    from
+                                    recomment_mst
+                                    GROUP BY
+                                    comment_id) rm ON (rm.comment_id = cm.board_id)
+                LEFT OUTER JOIN (select
+                                    board_id,
+                                    COUNT(*) AS like_count
+                                    from
+                                    like_mst
+                                    GROUP BY
+                                    board_id) lm ON (lm.board_id = bm.id)
+        WHERE
+            bm.menu_id = #{menu_id}
+        ORDER BY bm.create_date DESC
+        limit 5
+    </select>
+</mapper>
