@@ -44,7 +44,6 @@ public class AccountApi {
         return ResponseEntity.ok().body(new CMRespDto<>(1, "회원가입 완료", signupReqDto));
     }
 
-
 //    로그인 유효성 검사
     @ValidAspect
     @PostMapping("/login")
@@ -52,8 +51,6 @@ public class AccountApi {
         return ResponseEntity.ok(new CMRespDto<>(1, "success", true));
 }
 
-
-    // 회원 정보 수정
     @PutMapping("/myprofile")
     public ResponseEntity<?> modifyProfile(@RequestBody ModifyReqDto modifyReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
         accountService.modifyProfile(principalDetails, modifyReqDto);

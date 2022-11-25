@@ -24,6 +24,7 @@ public class WriteReqDto {
                 .menu_id(Integer.parseInt(menu))
                 .category_id(Integer.parseInt(category))
                 .subcategory_id(Integer.parseInt(subcategory))
+                .user_id(userId)
                 .title(title)
                 .content(content)
                 .build();

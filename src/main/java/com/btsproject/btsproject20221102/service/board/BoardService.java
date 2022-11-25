@@ -12,6 +12,8 @@ public interface BoardService {
 
     public boolean saveBoard(WriteReqDto writeReqDto) throws Exception;
 
+    public boolean deleteImg(MultipartFile file);
+
     public List<BoardRespDto> loadBoard(int page,
                                         int menuId,
                                         int categoryId,

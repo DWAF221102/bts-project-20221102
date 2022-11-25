@@ -25,16 +25,16 @@
                 </div>
                 <div class="board-main-menu">
                     <div class="write">
-                        <a href="/notice/write"><i class="fa-solid fa-pencil"></i>작성하기</a>
+                        <button type="button" class="write-button"><i class="fa-solid fa-pencil"></i><span>작성하기</span></button>
                     </div>
                     <div class="show">
                         <div class="show-button">
                             <button type="button"><i class="fa-solid fa-bars"></i>최신순</button>
                         </div>
                         <div class="show-list invisible">
-                            <button type="button">최신순</button>
-                            <button type="button">추천순</button>
-                            <button type="button">조회순</button>
+                            <button type="button" value="1" class="show-list-button blue-button">최신순</button>
+                            <button type="button" value="2" class="show-list-button">추천순</button>
+                            <button type="button" value="3" class="show-list-button">조회순</button>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
         </main>
         <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
-    <script src="/static/js/board/baord.js"></script>
+    <script src="/static/js/board/board.js"></script>
 </body>
 
 </html>

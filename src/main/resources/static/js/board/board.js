@@ -74,12 +74,12 @@ class BoardApi {
         let responseData= null;
         $.ajax({
             async: false,
-            url: "/api/board",
+            url: "/api/board/",
             data: data,
             dataType: "json",
             success: (response) => {
                 console.log(response);
-                responseData = response;
+                responseData = response.data;
             },
             error: (error) => {
                 console.log(error);
@@ -106,17 +106,18 @@ class BoardLoad {
 
         responseData.forEach(data => {
             let totalCommentCount = data.commentCount + data.recommentCount;
+            let time = TimeService.getInstance().setTime(data.createDate);
             if(data.categoryName != null){
                 boardList.innerHTML += `
                     <li>
                         <div class="board-list-user">
                             <div class="user-img">
-                                <a href=""> <img src="${data.userImg}"></a>
+                                <a href=""> <img src="/image/user/${data.userImg}"></a>
                             </div>
                             <div class="user-detail">
                                 <a href="">${data.nickname}</a>
                                 <span>&#183;</span> 
-                                <span>1시간 전</span>
+                                <span>${time}</span>
                             </div>
                         </div>
                         <div class="board-list-title">
@@ -145,7 +146,7 @@ class BoardLoad {
                             <div class="user-detail">
                                 <a href="">${data.nickname}</a>
                                 <span>&#183;</span> 
-                                <span>1시간 전</span>
+                                <span>${time}</span>
                             </div>
                         </div>
                         <div class="board-list-title">
@@ -170,6 +171,54 @@ class BoardLoad {
             PageService.getInstance().addService(responseData[0].totalCount);
         }
     }    
+}
+
+class TimeService {
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new TimeService();
+        }
+        return this.#instance;
+    }
+
+    setTime(creatDate) {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() +1;
+        let day = date.getDate();
+        let hour = date.getHours();
+        let minute = date.getMinutes();
+
+        let cYear = Number(creatDate.substring(0, creatDate.indexOf("년")));
+        let cMonth = Number(creatDate.substring(creatDate.indexOf("년") + 1 , creatDate.indexOf("월")));
+        let cDay = Number(creatDate.substring(creatDate.indexOf("월") + 1, creatDate.indexOf("일")));
+        let cHour = Number(creatDate.substring(creatDate.indexOf("일") + 1, creatDate.indexOf("시")));
+        let cMinute = Number(creatDate.substring(creatDate.indexOf("시") + 1, creatDate.indexOf("분")));
+        
+        if(year != cYear) {
+            return (year - cYear) + "년 전";
+        }else {
+            if(month != cMonth) {
+                return (month - cMonth) + "개월 전";
+            }else{
+                if(day != cDay) {
+                    return (day - cDay) + "일 전";
+                }else {
+                    if(hour != cHour) {
+                        return (hour - cHour) + "시간 전";
+                    }else {
+                        if(minute != cMinute){
+                            return (minute - cMinute) + "분 전";
+                        }else {
+                            return "1분 미만 전";
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 class BoardAsideService {
@@ -271,6 +320,30 @@ class BoardAsideService {
             button.classList.remove("blue-button");
         });
         categoryButtons[index].classList.add("blue-button");
+    }
+}
+
+class WriteButtonService {
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new WriteButtonService();
+        }
+        return this.#instance;
+    }
+
+    addButtonEvent() {
+        const writeButton = document.querySelector(".write button");
+        const url = location.href;
+        const menu = url.substring(url.lastIndexOf("/") + 1);
+        writeButton.onclick = () => {
+            if(principalUser != null) {
+                location.href = `/${menu}/write`;
+            }else {
+                alert("로그인 후 작성가능합니다.");
+            }
+        }
     }
 }
 
@@ -433,8 +506,6 @@ class ShowListService {
                 this.showList.classList.add("invisible");
                 let value = null;
                 value = showListButtons[i].value;
-                BoardReqParams.getInstance().setPage(1);
-                BoardReqParams.getInstance().setShowList(value);
                 if(value != null) {
                     if(value == "1") {
                         this.showButton.innerHTML = `<button type="button"><i class="fa-solid fa-bars"></i>최신순</button>`;
@@ -448,7 +519,9 @@ class ShowListService {
                     button.classList.remove("blue-button");
                 });
                 showListButtons[i].classList.add("blue-button");
-                BoardApi.getInstance().loadBoardRequest();
+                BoardReqParams.getInstance().setPage(1);
+                BoardReqParams.getInstance().setShowList(value);
+                BoardLoad.getInstance().loadList();
             }
         }
        
@@ -654,11 +727,7 @@ class BoardService {
         BoardLoad.getInstance().loadList();
         ShowListService.getInstance().addButtonEvent();
         SearchService.getInstance().addEvent();
-        
-    }
-
-    loadService() {
-        
+        WriteButtonService.getInstance().addButtonEvent();
     }
 
 }

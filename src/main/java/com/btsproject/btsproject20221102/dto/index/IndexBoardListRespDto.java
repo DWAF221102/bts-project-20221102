@@ -1,29 +1,20 @@
-package com.btsproject.btsproject20221102.dto.board;
+package com.btsproject.btsproject20221102.dto.index;
 
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Builder
 @Data
-public class BoardRespDto {
+public class IndexBoardListRespDto {
     private int userId;
     private String nickname;
     private String userImg;
 
     private int boardId;
     private String title;
-    private int viewCount;
     private String createDate;
-
-
-    private String categoryName;
-    private String subcategoryName;
 
     private int commentCount;
     private int recommentCount;
     private int likeCount;
-
-    private int totalCount;
 }

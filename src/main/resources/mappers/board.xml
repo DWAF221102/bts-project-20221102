@@ -65,9 +65,11 @@
             resultType="com.btsproject.btsproject20221102.domain.LoadList"
     >
         SELECT
+            bm.user_id,
             um.nickname,
             um.user_img,
 
+            bm.id,
             bm.title,
             bm.view_count,
             bm.create_date,
@@ -112,7 +114,9 @@
                                     board_mst
                                 where
                                     menu_id = #{menu_id}
-
+                                <if test='subcategory_id != "99"'>
+                                    and subcategory_id = #{subcategory_id}
+                                </if>
                                 ) pc ON (1=1)
         WHERE
                 bm.menu_id = #{menu_id}
@@ -126,18 +130,15 @@
                 and (um.nickname like concat('%', #{searchValue}, '%') or bm.title like concat('%', #{searchValue}, '%'))
             </if>
 
-        <choose>
-            <when test='show_list = "1"'>
+            <if test='show_list == "1"'>
                 ORDER BY bm.create_date DESC
-            </when>
-            <when test='show_list = "2"'>
+            </if>
+            <if test='show_list == "2"'>
                 ORDER BY lm.like_count DESC
-            </when>
-            <when test='show_list = "3"'>
+            </if>
+            <if test='show_list == "3"'>
                 ORDER BY bm.view_count DESC
-            </when>
-        </choose>
-
+            </if>
 
 
         limit
