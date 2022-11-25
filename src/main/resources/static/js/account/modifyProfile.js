@@ -24,8 +24,8 @@ window.onload = () => {
         <!-- 프로필 사진 영역 -->
         <div class="myprofile-image-area">
             <form class="profile-image-form">
-                <input class="profile-image-input" type="file" name="file" >
-                <img class="profile-image" src="" alt="profileImage">
+                <input class="profile-image-input" type="file" name="file">
+                <img class="profile-image" src="/image/user/${principalUser.user_img}" alt="profileImage">
             </form>
 
         </div>
@@ -51,13 +51,6 @@ window.onload = () => {
             dataType: "json",
             enctype: "multipart/form-data",
             success: (response) => {
-                let reader = new FileReader();
-                reader.readAsDataURL(file); // 이 코드를 실행시 reader.onload 실행됨.
-                let profileImage = document.querySelector(".profile-image");
-                reader.onload = (e) => {
-                    profileImage.attr("src", e.target.result);
-                }
-                console.log(formData);
                 alert("사진 등록 성공");
                 location.reload();
             },

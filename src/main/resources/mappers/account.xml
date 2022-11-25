@@ -135,6 +135,14 @@
         WHERE
             id = #{id}
     </update>
+    <update id="modifyProfileImage" parameterType="com.btsproject.btsproject20221102.domain.UserProfileImage">
+        UPDATE
+            user_mst
+        SET
+            user_img = #{temp_name}
+        WHERE
+            id = #{user_id}
+    </update>
 
     <select id="getAuthenticationKey" resultType="com.btsproject.btsproject20221102.domain.Key">
         select
