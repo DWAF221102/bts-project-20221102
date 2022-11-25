@@ -1,6 +1,6 @@
 let menuId = null;
 
-for(let i = 1; i < 5; i++) {
+for(let i = 1; i < 4; i++) {
     menuId = Number(i + 1);
     loadBoardListRequest(menuId);
 }
@@ -40,7 +40,7 @@ function loadBoardList(responseData) {
                             <a href="#"><img src="${data.userImg}" style="background-color: navy;"></a>
                             <a href="#" class="board-profile-nick">${data.nickname}</a>
                             <span>·</span>
-                            <span>${data.createData}</span>
+                            <span>${data.createDate}</span>
                         </div>
                         <div class="recommendation-icon">
                             <div>
