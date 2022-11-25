@@ -6,7 +6,7 @@ window.onload = () => {
         <div class="profile-detail-area">
             <!-- 프로필사진 영역 -->
             <div class="profile-image">
-                <img src="/static/images/logo_bts.png" alt="">
+                <img src="/image/user/${principalUser.user_img}" alt="">
             </div>
             <!-- 회원정보 상세 영역 -->
             <div class="profile-detail">
