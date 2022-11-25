@@ -2,18 +2,26 @@ package com.btsproject.btsproject20221102.service.account;
 
 import com.btsproject.btsproject20221102.domain.Key;
 import com.btsproject.btsproject20221102.domain.User;
+import com.btsproject.btsproject20221102.domain.UserProfileImage;
 import com.btsproject.btsproject20221102.dto.account.*;
 import com.btsproject.btsproject20221102.exception.CustomValidationException;
 import com.btsproject.btsproject20221102.repository.account.AccountRepository;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
@@ -23,6 +31,9 @@ import java.util.function.Predicate;
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
+
+    @Value("${file.path}")
+    private String filePath;
 
     @Override
     public boolean checkUsername(String username) throws Exception {
@@ -57,7 +68,52 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.modifyProfile(user);
         user.updatePrincipalDetails(principalDetails);
     }
-// 비밀번호 변경
+
+
+
+
+    // 프로필 이미지 변경
+    @Transactional
+    @Override
+    public void modifyProfileImage(PrincipalDetails principalDetails, MultipartFile file) throws Exception {
+        String originName = file.getOriginalFilename();
+        String extension = originName.substring(originName.lastIndexOf("."));
+        String tempName = UUID.randomUUID().toString() + extension;
+        System.out.println("이미지 파일이름: " + tempName);
+        int userId = principalDetails.getUser().getId();
+
+        Path uploadPath = Paths.get(filePath+ "/user/" + tempName);
+
+        // 세션 변경
+        principalDetails.getUser().setUser_img(tempName);
+
+        // 파일 경로
+        File f = new File(filePath + "/user");
+
+        try{
+            Files.write(uploadPath, file.getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        UserProfileImage userProfileImage = UserProfileImage.builder()
+                .user_id(userId)
+                .temp_name(tempName)
+                .build();
+
+        accountRepository.modifyProfileImage(userProfileImage);
+
+        log.info("Service");
+
+//        return userProfileImage;
+
+//        Map<String, String> map = new HashMap<String,String>();
+//        map.put("id", user_id);
+//        map.put("temp_name", tempName);
+
+    }
+
+    // 비밀번호 변경
     @Override
     public void modifyPassword(PrincipalDetails principalDetails, PwChangeReqDto pwChangeReqDto) throws Exception {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();

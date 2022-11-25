@@ -23,7 +23,7 @@ public class ModifyReqDto {
     private String phone;
 
     private String skill;
-    
+
 
     public User toModifyEntity(PrincipalDetails principalDetails){
         return User.builder()

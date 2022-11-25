@@ -1,6 +1,7 @@
 package com.btsproject.btsproject20221102.controller;
 
 
+import com.btsproject.btsproject20221102.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +54,6 @@ public class PageController {
     // 내 프로필 페이지
     @GetMapping("/myprofile")
     public String myprofile() {
-
         return "account/myProfile";
     }
 
