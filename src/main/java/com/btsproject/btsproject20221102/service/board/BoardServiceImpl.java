@@ -80,7 +80,6 @@ public class BoardServiceImpl implements BoardService{
                         .temp_name(writeReqDto.getTempFile().get(i))
                         .build());
             }
-            log.info("{}", files);
             result = boardRepository.saveBoardImg(files);
         }
 
@@ -112,7 +111,6 @@ public class BoardServiceImpl implements BoardService{
 
 
         boardRepository.loadBoard(map).forEach(list -> {
-            log.info("list: {}", list);
             result.add(list.toBoardRespDto());
         });
 

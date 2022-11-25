@@ -31,7 +31,7 @@ public class WriteApi {
 //        }
 
         ;
-
+        log.info("userId >> {}", writeReqDto.getUserId());
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.saveBoard(writeReqDto)));
     }
 

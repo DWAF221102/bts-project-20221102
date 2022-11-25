@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/static/css/fragment/header.css">
+    <script src="https://kit.fontawesome.com/6bc6b6ea66.js" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/static/css/fragment/footer.css">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/static/js/account/principal.js"></script>
     
     <link rel="stylesheet" href="/static/css/summernote/summernote-lite.css">
     <script src="/static/js/summernote/summernote-lite.js"></script>
@@ -16,14 +21,46 @@
     
     
     <link rel="stylesheet" href="/static/css/reset.css">
-    <link rel="stylesheet" href="/static/css/fragment/header.css">
     <link rel="stylesheet" href="/static/css/board/write.css">
-    
+
     <title>커뮤니티글 작성하기</title>
 </head>
 <body>
     <div class="container">
-        <header th:replace="~{fragment/header :: header}"></header>
+        <header>
+            <nav class="header-container">
+                <div class="header-flex">
+                    <div class="left-nav">
+                        <div class="logo">
+                            <a href="/index"><img src="/static/images/logo.png"></a>
+                        </div>
+                        <div class="nav">
+                            <ul>
+                                <li><a href="/question">Q&A</a></li>
+                                <li><a href="/knowledge">지식</a></li>
+                                <li><a href="/community">커뮤니티</a></li>
+                                <li><a href="/notice">공지사항</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="right-nav">
+                        <div class="search-box">
+                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <input type="text" placeholder="검색">
+                        </div>
+                        <div class="account-area">
+                            <div class="account">
+                                <a href="/login" class="login-button">로그인</a>
+                            </div>
+                            <div class="account">
+                                <a href="/signup" class="signup-button">회원가입</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <script src="/static/js/account/header.js"></script>
+        </header>
         <main>
             <section>
                 <div class="write-text">

@@ -323,6 +323,30 @@ class BoardAsideService {
     }
 }
 
+class WriteButtonService {
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new WriteButtonService();
+        }
+        return this.#instance;
+    }
+
+    addButtonEvent() {
+        const writeButton = document.querySelector(".write button");
+        const url = location.href;
+        const menu = url.substring(url.lastIndexOf("/") + 1);
+        writeButton.onclick = () => {
+            if(principalUser != null) {
+                location.href = `/${menu}/write`;
+            }else {
+                alert("로그인 후 작성가능합니다.");
+            }
+        }
+    }
+}
+
 class SubcategoryService {
     static #instance = null;
 
@@ -703,11 +727,7 @@ class BoardService {
         BoardLoad.getInstance().loadList();
         ShowListService.getInstance().addButtonEvent();
         SearchService.getInstance().addEvent();
-        
-    }
-
-    loadService() {
-        
+        WriteButtonService.getInstance().addButtonEvent();
     }
 
 }
