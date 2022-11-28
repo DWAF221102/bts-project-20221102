@@ -25,4 +25,15 @@ public class IndexApi {
 
         return ResponseEntity.ok(new CMRespDto<>(1, "게시물 불러오기 완료.", indexService.loadIndexBoard(menuId)));
     }
+
+    @GetMapping("index/qna")
+    public ResponseEntity<?> loadIndexQnA() throws Exception {
+
+        return ResponseEntity.ok(new CMRespDto<>(1, "QnA게시물 불러오기 완료", indexService.loadIndexQnAList()));
+    }
+
+    @GetMapping("index/aside/price")
+    public ResponseEntity<?> loadIndexAsidePrice() throws Exception {
+        return ResponseEntity.ok(new CMRespDto<>(1, "가격 랭킹 어사이드 불러오기 완료", indexService.loadAsidePriceList()));
+    }
 }
