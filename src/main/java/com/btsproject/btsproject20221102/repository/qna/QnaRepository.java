@@ -3,6 +3,7 @@ package com.btsproject.btsproject20221102.repository.qna;
 import com.btsproject.btsproject20221102.domain.Qna;
 import com.btsproject.btsproject20221102.domain.QnaArticle;
 import com.btsproject.btsproject20221102.domain.QnaImgFile;
+import com.btsproject.btsproject20221102.domain.QnaLoadList;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -21,4 +22,6 @@ public interface QnaRepository {
     public int deleteQna(int id) throws Exception;
 
     public List<QnaImgFile> getQnaImgList(int id) throws Exception;
+
+    public List<QnaLoadList> qnaLoadBoard(Map<String, Object> map) throws Exception;
 }

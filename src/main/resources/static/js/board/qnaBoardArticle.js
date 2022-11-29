@@ -15,6 +15,7 @@ function getList() {
             console.log(response);
             titleCreate(response.data);
             boardInfo(response.data);
+            boardDetails(response.data);
         },
         error: (error) => {
             console.log(error);
@@ -87,5 +88,28 @@ function boardInfo(data) {
     </div>
     `
 
+}
+
+function boardDetails(data) {
+    const boardDetails = document.querySelector(".qna-error")
+    boardDetails.innerHTML = `
+    <div class="qna-error">
+    <div class="qna-error-title">
+        문제설명
+    </div>
+    <div class="qna-error-description">
+        <p class="error-details">${data.info}</p>
+
+    </div>
+
+    <div class="qna-error-title">
+        희망결과
+    </div>
+    <div class="qna-error-description">
+        <p class="error-details">${data.wantInfo}</p>
+
+    </div>
+</div>
+    `
 }
 
