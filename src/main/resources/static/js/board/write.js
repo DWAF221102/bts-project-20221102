@@ -251,6 +251,8 @@ class WriteButtons {
             
             if(NullCheck.getInstance().nullCheck(formData)){
                 WriteApi.getInstance().writeRequest(formData);
+            }else {
+                location.reload();
             }
         }
     }
@@ -260,5 +262,4 @@ window.onload = () => {
     UserCheck.getInstance().addService();
     WriteButtons.getInstance().addButtonEvenet();
     
-    // WriteApi.getInstance().deleteImg();
 }

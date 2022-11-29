@@ -23,6 +23,7 @@ public class LoadList {
     private int id;
     private String title;
     private int view_count;
+
     private LocalDateTime create_date;
 
 

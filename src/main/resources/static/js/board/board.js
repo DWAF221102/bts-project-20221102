@@ -85,6 +85,7 @@ class BoardApi {
                 console.log(error);
             }
         });
+
         return responseData;
     }
 }
@@ -121,7 +122,7 @@ class BoardLoad {
                             </div>
                         </div>
                         <div class="board-list-title">
-                            <a href="/article">${data.title}</a>
+                            <a href="/article/${data.boardId}">${data.title}</a>
                         </div>
                         <div class="board-list-bottum">
                             <div class="board-list-category">
@@ -167,9 +168,13 @@ class BoardLoad {
             }
             
         });
-        if(responseData[0].totalCount != 0){
+
+        if(responseData.length != 0){
             PageService.getInstance().addService(responseData[0].totalCount);
+        }else {
+            PageService.getInstance().addService(1);
         }
+        
     }    
 }
 
@@ -183,7 +188,7 @@ class TimeService {
         return this.#instance;
     }
 
-    setTime(creatDate) {
+    setTime(createDate) {
         let date = new Date();
         let year = date.getFullYear();
         let month = date.getMonth() +1;
@@ -191,11 +196,12 @@ class TimeService {
         let hour = date.getHours();
         let minute = date.getMinutes();
 
-        let cYear = Number(creatDate.substring(0, creatDate.indexOf("년")));
-        let cMonth = Number(creatDate.substring(creatDate.indexOf("년") + 1 , creatDate.indexOf("월")));
-        let cDay = Number(creatDate.substring(creatDate.indexOf("월") + 1, creatDate.indexOf("일")));
-        let cHour = Number(creatDate.substring(creatDate.indexOf("일") + 1, creatDate.indexOf("시")));
-        let cMinute = Number(creatDate.substring(creatDate.indexOf("시") + 1, creatDate.indexOf("분")));
+
+        let cYear = Number(createDate.substring(0, createDate.indexOf("년")));
+        let cMonth = Number(createDate.substring(createDate.indexOf("년") + 1 , createDate.indexOf("월")));
+        let cDay = Number(createDate.substring(createDate.indexOf("월") + 1, createDate.indexOf("일")));
+        let cHour = Number(createDate.substring(createDate.indexOf("일") + 1, createDate.indexOf("시")));
+        let cMinute = Number(createDate.substring(createDate.indexOf("시") + 1, createDate.indexOf("분")));
         
         if(year != cYear) {
             return (year - cYear) + "년 전";
@@ -265,6 +271,7 @@ class BoardAsideService {
             BoardReqParams.getInstance().setPage(1);
             BoardReqParams.getInstance().setCategoryId(99);
             BoardLoad.getInstance().loadList();
+            SubcategoryService.getInstance().setButton();
         };
 
         programButton.onclick  = () => {
@@ -342,6 +349,7 @@ class WriteButtonService {
                 location.href = `/${menu}/write`;
             }else {
                 alert("로그인 후 작성가능합니다.");
+                location.href = `/login`;
             }
         }
     }
@@ -360,8 +368,9 @@ class SubcategoryService {
     setButton(){
         const categoryId = BoardReqParams.getInstance().getCategoryId();
         const subcategory = document.querySelector(".subcategory");
-
-        if(categoryId == 4) {
+        if(categoryId == 99) {
+            subcategory.innerHTML = "";
+        }else if(categoryId == 4) {
             subcategory.innerHTML = `
                 <ul class="subcategory-ul">
                     <li><button type="button" class="subcategory-button" value="8">JAVA</button></li>
@@ -588,13 +597,11 @@ class PageService {
     setNowPage(nowPage){this.nowPage = nowPage}
 
     addService(totalCount){
-        console.log(this.nowPage);
         this.setLastPage(totalCount);
         this.setSearchPage(totalCount);
         this.setBottomPageMovement(totalCount);
         this.setBottomPageNum(totalCount);
         this.setBottomPageEvent();
-        
     }
 
     setLastPage(totalCount) {
@@ -605,7 +612,6 @@ class PageService {
         this.setNowPage(BoardReqParams.getInstance().getPage());
         const searchPageNum = document.querySelectorAll(".search-page-num span");
         const searchPageButton = document.querySelectorAll(".search-page-button button");
-        
         const lastPage = this.setLastPage(totalCount);
 
         searchPageNum[0].innerText = BoardReqParams.getInstance().getPage();
@@ -707,7 +713,6 @@ class PageService {
             }
         }
     }
-    
 
 }
 

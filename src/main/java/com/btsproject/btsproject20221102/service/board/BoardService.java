@@ -1,6 +1,8 @@
 package com.btsproject.btsproject20221102.service.board;
 
+import com.btsproject.btsproject20221102.domain.Article;
 import com.btsproject.btsproject20221102.domain.BoardImgFile;
+import com.btsproject.btsproject20221102.dto.board.ArticleRespDto;
 import com.btsproject.btsproject20221102.dto.board.BoardRespDto;
 import com.btsproject.btsproject20221102.dto.board.WriteReqDto;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,4 +22,6 @@ public interface BoardService {
                                         String subcategoryId,
                                         String showList,
                                         String searchValue) throws Exception;
+
+    public ArticleRespDto loadArticle(int id) throws Exception;
 }

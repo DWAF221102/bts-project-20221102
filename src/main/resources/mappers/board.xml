@@ -22,6 +22,43 @@
         <result property="update_date" column="update_date"></result>
     </resultMap>
 
+    <resultMap id="recomment" type="com.btsproject.btsproject20221102.domain.Recomment">
+        <result property="recomment_id" column="recomment_id"></result>
+        <result property="recomment_user_id" column="recomment_user_id"></result>
+        <result property="recomment_nickname" column="recomment_nickname"></result>
+        <result property="recomment_user_img" column="recomment_user_img"></result>
+        <result property="recomment_create_date" column="recomment_create_date"></result>
+        <result property="recomment_content" column="recomment_content"></result>
+    </resultMap>
+    <resultMap id="comment" type="com.btsproject.btsproject20221102.domain.Comment">
+        <result property="comment_id" column="comment_id"></result>
+        <result property="comment_user_id" column="comment_user_id"></result>
+        <result property="comment_nickname" column="comment_nickname"></result>
+        <result property="comment_user_img" column="comment_user_img"></result>
+        <result property="comment_create_date" column="comment_create_date"></result>
+        <result property="comment_content" column="comment_content"></result>
+        <collection property="recomment" javaType="list" resultMap="recomment"></collection>
+    </resultMap>
+    <resultMap id="like" type="com.btsproject.btsproject20221102.domain.Like">
+        <result property="like_id" column="like_id"></result>
+        <result property="from_id" column="from_id"></result>
+    </resultMap>
+    <resultMap id="article" type="com.btsproject.btsproject20221102.domain.Article">
+        <result property="menu_name" column="menu_name"></result>
+        <result property="category_name" column="category_name"></result>
+        <result property="user_id" column="user_id"></result>
+        <result property="user_img" column="user_img"></result>
+        <result property="nickname" column="nickname"></result>
+        <result property="create_date" column="create_date"></result>
+        <result property="view_count" column="view_count"></result>
+        <result property="id" column="id"></result>
+        <result property="title" column="title"></result>
+        <result property="content" column="content"></result>
+        <result property="subcategory_name" column="subcategory_name"></result>
+        <collection property="comment" javaType="list" resultMap="comment"></collection>
+        <collection property="like" javaType="list" resultMap="like"></collection>
+    </resultMap>
+
     <insert id="saveBoard"
             parameterType="com.btsproject.btsproject20221102.domain.Board"
             useGeneratedKeys="true"
@@ -108,16 +145,23 @@
                                 like_mst
                             GROUP BY
                                 board_id) lm ON (lm.board_id = bm.id)
-                LEFT OUTER JOIN (SELECT
-                                    COUNT(*) AS total_count
-                                from
-                                    board_mst
-                                where
-                                    menu_id = #{menu_id}
-                                <if test='subcategory_id != "99"'>
-                                    and subcategory_id = #{subcategory_id}
-                                </if>
-                                ) pc ON (1=1)
+            LEFT OUTER JOIN (SELECT
+                                COUNT(*) AS total_count
+                            from
+                                board_mst bm2
+                                left outer join user_mst um2 on (um2.id = bm2.user_id)
+                            where
+                                bm2.menu_id = #{menu_id}
+                            <if test="category_id != 99">
+                                and bm2.category_id = #{category_id}
+                            </if>
+                            <if test="subcategory_id != 99">
+                                and bm2.subcategory_id = #{subcategory_id}
+                            </if>
+                            <if test='searchValue != null || searchValue !=""'>
+                                and (um2.nickname like concat('%', #{searchValue}, '%') or bm2.title like concat('%', #{searchValue}, '%'))
+                            </if>
+                            ) pc ON (1=1)
         WHERE
                 bm.menu_id = #{menu_id}
             <if test="category_id != 99">
@@ -139,9 +183,56 @@
             <if test='show_list == "3"'>
                 ORDER BY bm.view_count DESC
             </if>
-
-
         limit
             #{page},10
     </select>
+
+    <select id="loadArticle"
+            parameterType="Integer"
+            resultMap="article">
+    SELECT
+        md.menu_name,
+        cd.category_name,
+        bm.user_id,
+        um.user_img,
+        um.nickname,
+        bm.create_date,
+        bm.view_count,
+        lm.id AS like_id,
+        lm.from_id,
+        bm.id,
+        bm.title,
+        bm.content,
+        sd.subcategory_name,
+
+        cm.id AS comment_id,
+        um2.id AS comment_user_id,
+        um2.nickname AS comment_nickname,
+        um2.user_img AS comment_user_img,
+        cm.create_date AS comment_create_date,
+        cm.content AS comment_content,
+
+        rm.id AS recomment_id,
+        rm.user_id AS recomment_user_id,
+        um3.nickname AS recomment_nickname,
+        um3.user_img AS recomment_user_img,
+        rm.create_date AS recomment_create_date,
+        rm.content AS recomment_content
+
+    FROM
+        board_mst bm
+        LEFT OUTER JOIN menu_dtl md ON (md.id = bm.menu_id)
+        LEFT OUTER JOIN category_dtl cd ON (cd.id = bm.category_id)
+        LEFT OUTER JOIN user_mst um ON (um.id = bm.user_id)
+        LEFT OUTER JOIN like_mst lm ON (lm.board_id = bm.id)
+        LEFT OUTER JOIN subcategory_dtl sd ON (sd.id = bm.subcategory_id)
+        LEFT OUTER JOIN comment_mst cm ON (cm.board_id = bm.id)
+        LEFT OUTER JOIN user_mst um2 ON (um2.id = cm.user_id)
+        LEFT OUTER JOIN recomment_mst rm ON (rm.comment_id = cm.id)
+        LEFT OUTER JOIN user_mst um3 ON (um3.id = rm.user_id)
+
+    WHERE
+        bm.id = #{id};
+    </select>
+
 </mapper>

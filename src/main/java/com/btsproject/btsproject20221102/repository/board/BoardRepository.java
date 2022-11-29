@@ -1,5 +1,6 @@
 package com.btsproject.btsproject20221102.repository.board;
 
+import com.btsproject.btsproject20221102.domain.Article;
 import com.btsproject.btsproject20221102.domain.Board;
 import com.btsproject.btsproject20221102.domain.BoardImgFile;
 import com.btsproject.btsproject20221102.domain.LoadList;
@@ -15,5 +16,7 @@ public interface BoardRepository {
     public int saveBoardImg(List<BoardImgFile> files) throws Exception;
 
     public List<LoadList> loadBoard(Map<String, Object> map) throws Exception;
+
+    public Article loadArticle(int id)  throws Exception;
 
 }

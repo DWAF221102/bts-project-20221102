@@ -22,7 +22,7 @@ public class PageController {
     }
 
     // 통합 검색페이지
-    @GetMapping("totalsearch")
+    @GetMapping("/totalsearch")
     public String totalSearch() {
         return "totalSearch";
     }
@@ -120,7 +120,7 @@ public class PageController {
         return "board/noticeWrite";
     }
 
-    // article 은 나중에 pathvariable을 통해 들어가도록 만들어야함
+    // article
     @GetMapping("/article/{id}")
     public String article(@PathVariable int id) { return "board/article"; }
 

@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Like {
-    private int like;
-    private int board_id;
+    private int like_id;
     private int from_id;
 }

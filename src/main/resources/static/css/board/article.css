@@ -41,7 +41,7 @@ section {
     background-color: white;
 }
 
-.article-category a:nth-child(1) {
+.article-category a {
     color: #dbdbdb;
 }
 
@@ -51,7 +51,7 @@ section {
     color: #dbdbdb;
 }
 
-.article-category a:nth-child(3) {
+.article-category :nth-child(3) {
     color: rgb(0, 144, 249);
 }
 

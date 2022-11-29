@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Builder
@@ -13,10 +14,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class Comment {
-    private int id;
-    private int board_id;
-    private int user_id;
-    private String content;
-    private LocalDateTime create_date;
-    private LocalDateTime update_date;
+    private int comment_id;
+    private int comment_user_id;
+    private String comment_nickname;
+    private String comment_user_img;
+    private LocalDateTime comment_create_date;
+    private String comment_content;
+    private List<Recomment> recomment;
 }

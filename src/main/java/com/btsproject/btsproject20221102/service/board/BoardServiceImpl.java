@@ -1,8 +1,10 @@
 package com.btsproject.btsproject20221102.service.board;
 
 import com.btsproject.btsproject20221102.aop.annotation.LogAspect;
+import com.btsproject.btsproject20221102.domain.Article;
 import com.btsproject.btsproject20221102.domain.Board;
 import com.btsproject.btsproject20221102.domain.BoardImgFile;
+import com.btsproject.btsproject20221102.dto.board.ArticleRespDto;
 import com.btsproject.btsproject20221102.dto.board.BoardRespDto;
 import com.btsproject.btsproject20221102.dto.board.WriteReqDto;
 import com.btsproject.btsproject20221102.repository.board.BoardRepository;
@@ -113,6 +115,15 @@ public class BoardServiceImpl implements BoardService{
         boardRepository.loadBoard(map).forEach(list -> {
             result.add(list.toBoardRespDto());
         });
+
+        return result;
+    }
+
+    @Override
+    public ArticleRespDto loadArticle(int id) throws Exception {
+        ArticleRespDto result = boardRepository.loadArticle(id).toRespDto();
+
+        log.info("Article >> {}", result);
 
         return result;
     }
