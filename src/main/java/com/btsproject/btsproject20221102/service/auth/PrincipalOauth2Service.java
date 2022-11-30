@@ -1,9 +1,10 @@
 package com.btsproject.btsproject20221102.service.auth;
 
+
+import com.btsproject.btsproject20221102.domain.User;
 import com.btsproject.btsproject20221102.repository.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import com.btsproject.btsproject20221102.domain.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
