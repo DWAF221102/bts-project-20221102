@@ -14,7 +14,7 @@ window.onload = () => {
             </div>
             <div>
                 <label class="myprofile-info-title" for="">전화 번호</label>
-                <input class="myprofile-info-input" id="phone" type="text" value="${principalUser.phone}">
+                <input class="myprofile-info-input" id="phone" type="text" placeholder="전화 번호를 입력해주세요." value="${principalUser.phone}">
             </div>
             <div>
                 <label class="myprofile-info-title" for="">관심있는 기술 태그 입력</label>
@@ -30,8 +30,18 @@ window.onload = () => {
 
         </div>
     `;
+    const saveButton = document.querySelector(".save-button");
+    const profileInfo = document.querySelectorAll(".myprofile-info-input");
+
     // 프로필 이미지 수정
+    let profileImage = document.querySelector(".profile-image");
     let imageInput = document.querySelector(".profile-image-input");
+
+    console.log(profileImage)
+
+    profileImage.onclick = () => {
+        imageInput.click();
+    }
 
     imageInput.onchange = () => {
         let file = imageInput;
@@ -51,62 +61,89 @@ window.onload = () => {
             dataType: "json",
             enctype: "multipart/form-data",
             success: (response) => {
-                alert("사진 등록 성공");
+                alert("변경 성공. 사진이 등록되었습니다.");
                 location.reload();
             },
             error: (error) => {
                 alert("사진 등록 실패");
                 console.log(error);
             }
-
         })
     }
 
-}
-const saveButton = document.querySelector(".save-button");
-const profileInfo = document.querySelectorAll(".myprofile-info-input");
+    // 회원 정보 수정
+    saveButton.onclick = () => {
+        const modifyCheck = confirm("정보를 수정하시겠습니까?");
 
+        let profileData = {
+            id: $("#id").val(),
+            name: $("#name").val(),
+            nickname: $("#nickname").val(),
+            phone: $("#phone").val(),
+            skill: $("#skill").val()
+        };
 
+        console.log(profileData)
 
-
-
-
-// 회원 정보 수정
-saveButton.onclick = () => {
-    const modifyCheck = confirm("정보를 수정하시겠습니까?");
-
-    let profileData = {
-        id: $("#id").val(),
-        name: $("#name").val(),
-        nickname: $("#nickname").val(),
-        phone: $("#phone").val(),
-        skill: $("#skill").val()
-    };
-
-    console.log(profileData)
-
-    //컨펌 확인 클릭시 정보 수정 가능
-    if (modifyCheck) {
-        if (profileData.nickname.trim() === "" || profileData.phone.trim() === "") {
-            alert("공백 또는 입력하지 않은 부분이 있습니다.");
-            return false;
-        } else {
-            $.ajax({
-                async: false,
-                type: "put",
-                url: "/api/account/myprofile",
-                data: JSON.stringify(profileData),
-                contentType: "application/json",
-                dataType: "json",
-                success: (response) => {
-                    alert("회원 수정이 완료되었습니다.");
-                    location.reload();
-                },
-                error: (error) => {
-                    console.log(error);
-                    alert(error.responseJSON.data.error);
-                }
-            })
+        //컨펌 확인 클릭시 정보 수정 가능
+        if (modifyCheck) {
+            if (profileData.nickname.trim() === "" || profileData.phone.trim() === "") {
+                alert("공백 또는 입력하지 않은 부분이 있습니다.");
+                return false;
+            } else {
+                $.ajax({
+                    async: false,
+                    type: "put",
+                    url: "/api/account/myprofile",
+                    data: JSON.stringify(profileData),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: (response) => {
+                        alert("회원 수정이 완료되었습니다.");
+                        location.reload();
+                    },
+                    error: (error) => {
+                        console.log(error);
+                        alert(error.responseJSON.data.error);
+                    }
+                })
+            }
         }
     }
+
 }
+
+
+
+
+
+
+ // imageInput.onchange = () => {
+
+    //     // 서버에 이미지 전송
+    //     let profileImageForm = document.querySelector(".profile-image-form");
+    //     let formData = new FormData(profileImageForm);
+    //     let file = imageInput.files[0];
+    //     console.log(file);
+
+    //     $.ajax({
+    //         async: false,
+    //         type: "put",
+    //         url: "/api/account/myprofile",
+    //         data: formData,
+    //         contentType: false, //필수 : x-www-form-urlencoded로 파싱되는 것을 방지
+    //         processData: false, //필수 : contentType을 false로 줬을 때 QueryString 자동 설정
+    //         dataType: "json",
+    //         enctype: "multipart/form-data",
+    //         success: (response) => {
+
+    //             alert("사진 전송");
+    //         },
+    //         error: (error) => {
+    //             console.log(error);
+    //         }
+
+    //     })
+    //     }
+    // 프로필 이미지 수정
+    // let imageInput = document.querySelector(".profile-image-input");

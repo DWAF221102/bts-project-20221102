@@ -54,9 +54,7 @@ public class PageController {
 
     // 내 프로필 페이지
     @GetMapping("/myprofile")
-    public String myprofile() {
-        return "account/myProfile";
-    }
+    public String myprofile() { return "account/myProfile"; }
 
     // 비밀번호 변경 페이지
     @GetMapping("/myprofile/password")
@@ -68,6 +66,18 @@ public class PageController {
     @GetMapping("/myactivity")
     public String myactivity() {
         return "account/detailsOfActivity";
+    }
+    @GetMapping("/myactivity/article")
+    public String myactivityArticle() {
+        return "account/detailsOfActivityArticle";
+    }
+    @GetMapping("/myactivity/qna")
+    public String myactivityQna() {
+        return "account/detailsOfActivityQna";
+    }
+    @GetMapping("/myactivity/scrap")
+    public String myactivityScrap() {
+        return "account/detailsOfActivityScrap";
     }
 
 

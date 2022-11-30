@@ -1,6 +1,7 @@
 package com.btsproject.btsproject20221102.config;
 
 import com.btsproject.btsproject20221102.handler.auth.AuthFailureHandler;
+import com.btsproject.btsproject20221102.service.auth.PrincipalOauth2Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,9 +11,18 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
+import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @RequiredArgsConstructor
 @EnableWebSecurity  //기존의 WebSecurityConfigurerAdapter 클래스를 해당 SecurityConfig로 대체함.
@@ -21,6 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // Spring Security에 정의되어 있는 Interface로 이 핸들러를 구현해주고 SecurityConfig에서 설정을 해주면 자동으로 핸들러로 등록이 된다.
     private final AuthenticationFailureHandler authenticationFailureHandler;
+
+    private final PrincipalOauth2Service principalOauth2Service;
 
     // 비밀번호 암호화
     @Bean
@@ -35,6 +47,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    }
 
     //AuthenticationManager Bean 등록
+
+    // URL 더블슬래쉬 허용
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.httpFirewall(defaultHttpFirewall());
+    }
+    @Bean
+    public HttpFirewall defaultHttpFirewall(){
+        return new DefaultHttpFirewall();
+    }
     @Bean
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
@@ -60,9 +82,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .usernameParameter("username")
-                .loginPage("/account/login")                 // GET 요청
+                .loginPage("/login")                 // GET 요청
                 .loginProcessingUrl("/account/login")        // 로그인 로직(PrincipalDetailsService) POST 요청
                 .failureHandler(new AuthFailureHandler())   //실패핸들러
+                // oauth 로그인
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
+//                .successHandler()
+                .userInfoEndpoint()
+                .userService(principalOauth2Service)
+                .and()
                 .defaultSuccessUrl("/index")                // 로그인 성공 후 리다이렉트 주소
 
                 // 로그아웃 관련

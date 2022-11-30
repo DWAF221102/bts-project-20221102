@@ -44,7 +44,6 @@ public class AccountServiceImpl implements AccountService {
             errorMap.put("username", "이미 가입된 이메일입니다.");
             throw new CustomValidationException("CheckUsername Error", errorMap);
         }
-
         return true;
     }
 
@@ -64,13 +63,9 @@ public class AccountServiceImpl implements AccountService {
             errorMap.put("error", "수정한 정보가 없습니다.");
             throw new CustomValidationException("수정사항 없음", errorMap);
         }
-
         accountRepository.modifyProfile(user);
         user.updatePrincipalDetails(principalDetails);
     }
-
-
-
 
     // 프로필 이미지 변경
     @Transactional
@@ -102,14 +97,6 @@ public class AccountServiceImpl implements AccountService {
                 .build();
 
         accountRepository.modifyProfileImage(userProfileImage);
-
-        log.info("Service");
-
-//        return userProfileImage;
-
-//        Map<String, String> map = new HashMap<String,String>();
-//        map.put("id", user_id);
-//        map.put("temp_name", tempName);
 
     }
 

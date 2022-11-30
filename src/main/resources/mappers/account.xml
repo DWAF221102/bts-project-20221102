@@ -143,6 +143,20 @@
         WHERE
             id = #{user_id}
     </update>
+    <update id="updateUserOauth2" parameterType="com.btsproject.btsproject20221102.domain.User">
+        update
+            user_mst
+        set
+            username = #{username},
+            oauth_username = #{oauth_username},
+            provider = #{provider},
+            phone = #{phone},
+            nickname = #{nickname},
+            user_img = #{user_img},
+            update_date = now()
+        where
+            id = #{id}
+    </update>
 
     <select id="getAuthenticationKey" resultType="com.btsproject.btsproject20221102.domain.Key">
         select

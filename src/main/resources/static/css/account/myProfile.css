@@ -79,18 +79,30 @@ main {
     padding-left: 150px;
 }
 
-.profile-image-input {
-
-
-    cursor: pointer;
+.profile-image-form {
+    width: 250px;
+    height: 250px;
 }
 
-.profile-image {
+.profile-image-input {
+    position: absolute;
+    z-index: -1;
+    display: none;
     border: 1px solid rgb(209 213 219);
     border-radius: 50%;
     width: 250px;
     height: 250px;
+    cursor: pointer;
+}
 
+.profile-image {
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgb(209 213 219);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
 /* 저장 버튼 영역 */
