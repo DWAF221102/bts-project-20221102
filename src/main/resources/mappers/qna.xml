@@ -171,7 +171,78 @@
 <!--        limit-->
 <!--            #{page},10-->
 <!--    </select>-->
+    <select id="qnaLoadBoard"
+            parameterType="hashmap"
+            resultType="com.btsproject.btsproject20221102.domain.QnaLoadList"
+    >
+    select
+        qbm.user_id,
+        ifnull(um.nickname, 0),
+        ifnull(um.user_img, 0),
+        qbm.id,
+        qbm.title,
+        qbm.price,
+        qbm.status_id,
+        ifnull(qbm.view_count, 0),
+        qbm.create_date,
+        cd.category_name,
+        sd.subcategory_name,
+        ifnull(cm.comment_count,0),
+        ifnull(rm.recomment_count,0),
+        ifnull(lm.like_count,0)
+<!--        /* 	total_count */-->
+    from
+        qna_board_mst qbm
+        LEFT OUTER JOIN user_mst um ON(um.id = qbm.user_id)
+        LEFT OUTER JOIN category_dtl cd ON(cd.id = qbm.category_id)
+        LEFT OUTER JOIN subcategory_dtl sd ON(sd.id = qbm.category_sub_id)
+        LEFT OUTER JOIN (select
+                            board_id,
+                            COUNT(*) AS comment_count
+                        from
+                            comment_mst
+                        GROUP BY
+                            board_id) cm ON (cm.board_id = qbm.id)
+    LEFT OUTER JOIN (select
+                            comment_id,
+                            COUNT(*) AS recomment_count
+                        from
+                            recomment_mst
+                        GROUP BY
+                            comment_id) rm ON (rm.comment_id = cm.board_id)
+    LEFT OUTER JOIN (select
+                        board_id,
+                        COUNT(*) AS like_count
+                    from
+                        like_mst
+                    GROUP BY
+                        board_id) lm ON (lm.board_id = qbm.id)
+<!--    WHERE-->
+<!--        <if test="category_id != 99">-->
+<!--            and qbm.category_id = #{category_id}-->
+<!--        </if>-->
+<!--        <if test="subcategory_id != 99">-->
+<!--            and qbm.category_sub_id = #{subcategory_id}-->
+<!--        </if>-->
+<!--        <if test='searchValue != null || searchValue !=""'>-->
+<!--            and (um.nickname like concat('%', #{searchValue}, '%') or qbm.title like concat('%', #{searchValue}, '%'))-->
+<!--        </if>-->
+
+<!--        <if test='show_list == "1"'>-->
+<!--            ORDER BY qbm.create_date DESC-->
+<!--        </if>-->
+<!--        <if test='show_list == "2"'>-->
+<!--            ORDER BY lm.like_count DESC-->
+<!--        </if>-->
+<!--        <if test='show_list == "3"'>-->
+<!--            ORDER BY qbm.view_count DESC-->
+<!--        </if>-->
 
 
+    limit
+    #{page},10
+
+
+    </select>
 
 </mapper>

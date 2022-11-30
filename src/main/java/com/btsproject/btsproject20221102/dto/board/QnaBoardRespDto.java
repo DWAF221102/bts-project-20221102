@@ -13,6 +13,7 @@ public class QnaBoardRespDto {
     private int boardId;
     private String title;
     private int price;
+    private int statusId;
     private int viewCount;
     private String createDate;
 

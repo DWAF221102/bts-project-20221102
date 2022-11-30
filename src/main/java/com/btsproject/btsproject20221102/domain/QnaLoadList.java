@@ -22,7 +22,10 @@ public class QnaLoadList {
 
     private int id;
     private String title;
+    private int price;
     private int view_count;
+
+    private int status_id;
     private LocalDateTime create_date;
 
 
@@ -32,7 +35,7 @@ public class QnaLoadList {
     private int comment_count;
     private int recomment_count;
     private int like_count;
-    private int total_count;
+//    private int total_count;
 
     public QnaBoardRespDto toQnaBoardRespDto() {
         return QnaBoardRespDto.builder()
@@ -41,6 +44,8 @@ public class QnaLoadList {
                 .userImg(user_img)
                 .boardId(id)
                 .title(title)
+                .price(price)
+                .statusId(status_id)
                 .viewCount(view_count)
                 .createDate(create_date.format(DateTimeFormatter.ofPattern("yyyy년MM월dd일HH시mm분ss초")))
                 .categoryName(category_name)
@@ -48,7 +53,7 @@ public class QnaLoadList {
                 .commentCount(comment_count)
                 .recommentCount(recomment_count)
                 .likeCount(like_count)
-                .totalCount(total_count)
+//                .totalCount(total_count)
                 .build();
     }
 }

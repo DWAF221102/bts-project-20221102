@@ -121,7 +121,13 @@ class BoardLoad {
                             </div>
                         </div>
                         <div class="board-list-title">
-                            <a href="/article">${data.title}</a>
+                            <div>
+                                <a href="/question/article">${data.title}</a>
+                            </div>
+                            <div class="board-list-state-box">
+                                <p>${data.price}</p>
+                                <div class="board-list-state">${data.statusId}</div>
+                            </div>
                         </div>
                         <div class="board-list-bottum">
                             <div class="board-list-category">
@@ -358,7 +364,7 @@ class SubcategoryService {
     }
 
     setButton(){
-        const categoryId = BoardReqParams.getInstance().getCategoryId();
+        const categoryId = QnaBoardReqParams.getInstance().getCategoryId();
         const subcategory = document.querySelector(".subcategory");
 
         if(categoryId == 4) {
@@ -428,18 +434,18 @@ class SubcategoryService {
 
         subcategoryAllButton.onclick = () => {
             this.setBlueButton(99);
-            BoardReqParams.getInstance().setPage(1);
-            BoardReqParams.getInstance().setSubcategoryId("99");
-            BoardLoad.getInstance().loadList();
+            QnaBoardReqParams.getInstance().setPage(1);
+            QnaBoardReqParams.getInstance().setSubcategoryId("99");
+            QnaBoardLoad.getInstance().loadList();
         }
 
         for(let i = 0; i < subcategoryUlButtons.length; i++) {
             let button = subcategoryUlButtons[i];
             button.onclick = () => {
                 this.setBlueButton(i);
-                BoardReqParams.getInstance().setPage(1);
-                BoardReqParams.getInstance().setSubcategoryId(button.value);
-                BoardLoad.getInstance().loadList();
+                QnaBoardReqParams.getInstance().setPage(1);
+                QnaBoardReqParams.getInstance().setSubcategoryId(button.value);
+                QnaBoardLoad.getInstance().loadList();
             }
         }
     }
@@ -519,9 +525,9 @@ class ShowListService {
                     button.classList.remove("blue-button");
                 });
                 showListButtons[i].classList.add("blue-button");
-                BoardReqParams.getInstance().setPage(1);
-                BoardReqParams.getInstance().setShowList(value);
-                BoardLoad.getInstance().loadList();
+                QnaBoardReqParams.getInstance().setPage(1);
+                QnaBoardReqParams.getInstance().setShowList(value);
+                QnaBoardLoad.getInstance().loadList();
             }
         }
        
@@ -547,8 +553,8 @@ class SearchService {
         const searchReloadButton = document.querySelector(".search-reload button");
 
         searchReloadButton.onclick = () => {
-            BoardReqParams.getInstance().setPage(1);
-            BoardLoad.getInstance().loadList();
+            QnaBoardReqParams.getInstance().setPage(1);
+            QnaBoardLoad.getInstance().loadList();
         }
     }
 
@@ -557,9 +563,9 @@ class SearchService {
         const searchInput = document.querySelector(".search-input input")
          
         searchButton.onclick = () => {
-            BoardReqParams.getInstance().setPage(1);
-            BoardReqParams.getInstance().setSearchValue(searchInput.value);
-            BoardLoad.getInstance().loadList();
+            QnaBoardReqParams.getInstance().setPage(1);
+            QnaBoardReqParams.getInstance().setSearchValue(searchInput.value);
+            QnaBoardLoad.getInstance().loadList();
         }
 
         searchInput.onkeyup = () => {
@@ -602,13 +608,13 @@ class PageService {
     }
     
     setSearchPage(totalCount) {
-        this.setNowPage(BoardReqParams.getInstance().getPage());
+        this.setNowPage(QnaBoardReqParams.getInstance().getPage());
         const searchPageNum = document.querySelectorAll(".search-page-num span");
         const searchPageButton = document.querySelectorAll(".search-page-button button");
         
         const lastPage = this.setLastPage(totalCount);
 
-        searchPageNum[0].innerText = BoardReqParams.getInstance().getPage();
+        searchPageNum[0].innerText = QnaBoardReqParams.getInstance().getPage();
         searchPageNum[2].innerText = lastPage
 
         
@@ -616,8 +622,8 @@ class PageService {
             if(this.getNowPage() != 1) {
                 this.setNowPage(this.getNowPage() - 1);
                 searchPageNum[0].innerText = this.getNowPage();
-                BoardReqParams.getInstance().setPage(this.getNowPage());
-                BoardLoad.getInstance().loadList();
+                QnaBoardReqParams.getInstance().setPage(this.getNowPage());
+                QnaBoardLoad.getInstance().loadList();
                 this.setSearchPage(totalCount);
             }else{ 
                 alert("첫 페이지입니다.")
@@ -629,8 +635,8 @@ class PageService {
             if(this.getNowPage() != lastPage) {
                 this.setNowPage(this.getNowPage() + 1);
                 searchPageNum[0].innerText = this.getNowPage();
-                BoardReqParams.getInstance().setPage(this.getNowPage());
-                BoardLoad.getInstance().loadList();
+                QnaBoardReqParams.getInstance().setPage(this.getNowPage());
+                QnaBoardLoad.getInstance().loadList();
                 this.setSearchPage(totalCount);
             }else {
                 alert("마지막 페이지입니다.");
@@ -640,7 +646,7 @@ class PageService {
     }
 
     setBottomPageNum(totalCount) {
-        this.setNowPage(BoardReqParams.getInstance().getPage());
+        this.setNowPage(QnaBoardReqParams.getInstance().getPage());
         const firstIndex = this.getNowPage() % 5 == 0 ? this.getNowPage() - 4 : this.getNowPage() - (this.getNowPage() % 5) +1;
         const lastIndex = firstIndex + 4 <= this.setLastPage(totalCount) ? firstIndex + 4 : this.setLastPage(totalCount);
         
@@ -674,15 +680,15 @@ class PageService {
                 });
                 pageNumButtons[i].classList.add("page-num-blue-button");
                 
-                BoardReqParams.getInstance().setPage(pageNum);
-                BoardLoad.getInstance().loadList();
+                QnaBoardReqParams.getInstance().setPage(pageNum);
+                QnaBoardLoad.getInstance().loadList();
                 this.setBottomPageEvent();
             }
         }
     }
 
     setBottomPageMovement(totalCount) {
-        this.setNowPage(BoardReqParams.getInstance().getPage());
+        this.setNowPage(QnaBoardReqParams.getInstance().getPage());
         const preButton = document.querySelector(".previous-button button");
         const nextButton = document.querySelector(".next-button button");
 
@@ -690,8 +696,8 @@ class PageService {
         preButton.onclick = () => {
             if(this.getNowPage() != 1){
             this.setNowPage(this.getNowPage() - 1);
-            BoardReqParams.getInstance().setPage(this.getNowPage());
-            BoardLoad.getInstance().loadList();
+            QnaBoardReqParams.getInstance().setPage(this.getNowPage());
+            QnaBoardLoad.getInstance().loadList();
             }else {
                 alert("첫 페이지입니다.");
             }
@@ -700,8 +706,8 @@ class PageService {
         nextButton.onclick = () => {
             if(this.getNowPage() != this.setLastPage(totalCount)) {
                 this.setNowPage(this.getNowPage() + 1);
-                BoardReqParams.getInstance().setPage(this.getNowPage());
-                BoardLoad.getInstance().loadList();
+                QnaBoardReqParams.getInstance().setPage(this.getNowPage());
+                QnaBoardLoad.getInstance().loadList();
             }else {
                 alert("마지막 페이지입니다.")
             }
