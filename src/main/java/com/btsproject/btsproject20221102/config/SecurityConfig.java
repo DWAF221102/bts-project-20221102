@@ -81,7 +81,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 로그인 관련
                 .and()
                 .formLogin()
-                .usernameParameter("username")
                 .loginPage("/login")                 // GET 요청
                 .loginProcessingUrl("/account/login")        // 로그인 로직(PrincipalDetailsService) POST 요청
                 .failureHandler(new AuthFailureHandler())   //실패핸들러
@@ -89,7 +88,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .oauth2Login()
                 .loginPage("/login")
-//                .successHandler()
                 .userInfoEndpoint()
                 .userService(principalOauth2Service)
                 .and()
