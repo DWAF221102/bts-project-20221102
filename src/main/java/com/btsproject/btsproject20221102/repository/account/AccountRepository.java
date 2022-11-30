@@ -13,6 +13,8 @@ public interface AccountRepository {
 
     public User findUserByEmail(String username);
 
+    public int updateUserOauth2(User user);
+
 
     /* 회원 정보 수정 */
     public int modifyProfile(User user);

@@ -5,19 +5,44 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 @Getter
-public class PrincipalDetails implements UserDetails {
+public class PrincipalDetails implements UserDetails, OAuth2User {
 
     @Setter
     private User user;
 
+    private Map<String, Object> attributes;
+
     public PrincipalDetails(User user) {
         this.user = user;
     }
+
+
+    // SNS 로그인
+    public PrincipalDetails (User user, Map<String, Object> attributes) {
+        this.user = user;
+        this.attributes = attributes;
+    }
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    @Override
+    public String getName() {
+        return (String) attributes.get("name");
+    }
+    ///////////////////////////////////////////////////
+
+
 
     //계정의 권한 목록(ADMIN,MANAGER,MEMBER)을 리턴하는것.
     @Override
@@ -56,4 +81,6 @@ public class PrincipalDetails implements UserDetails {
     public boolean isEnabled() {
         return user.getEnabled() == 1;                        // true = 계정 사용가능함.
     }
+
+
 }
