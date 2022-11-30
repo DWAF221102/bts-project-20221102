@@ -4,6 +4,7 @@ import com.btsproject.btsproject20221102.dto.index.AsidePriceListRespDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Builder
 @AllArgsConstructor
-@RequestMapping
+@NoArgsConstructor
 @Data
 public class AsidePrice {
 

@@ -10,3 +10,4 @@ public class BtsProject20221102Application {
 		SpringApplication.run(BtsProject20221102Application.class, args);
 	}
 }
+

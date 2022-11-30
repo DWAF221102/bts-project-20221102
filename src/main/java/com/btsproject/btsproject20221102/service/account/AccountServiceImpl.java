@@ -136,15 +136,6 @@ public class AccountServiceImpl implements AccountService {
             throw new CustomValidationException("password isNonCmp", errorMap);
         }
     }
-//
-//    @Override
-//    public boolean searchPassword(PwSearchReqDto pwSearchReqDto) {
-//        User user = User.builder()
-//                .id(pwSearchReqDto.getId())
-//                .password(new BCryptPasswordEncoder().encode(pwSearchReqDto.getNewPassword()))
-//                .build();
-//        return accountRepository.searchPassword(user) != 0;
-//    }
 
     @Override
     public boolean deleteUser(int id) throws Exception {

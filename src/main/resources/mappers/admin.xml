@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.btsproject.btsproject20221102.repository.admin.AdminRepository">
+
+
+    <select id="loadAdminUser" resultType="com.btsproject.btsproject20221102.domain.AdminUserList">
+        SELECT
+            um.id,
+            um.username,
+            um.name,
+            um.nickname,
+            um.phone,
+            rm.role_name
+        FROM
+            user_mst um
+            LEFT OUTER JOIN role_mst rm ON(rm.id = um.role_id)
+        WHERE
+            <if test='searchValue != null || searchValue !=""'>
+                (um.username like concat('%', #{searchValue}, '%')
+                or um.name like concat('%', #{searchValue}, '%')
+                or um.nickname like concat('%', #{searchValue}, '%')
+                or um.phone like concat('%', #{searchValue}, '%')
+                or rm.role_name like concat('%', #{searchValue}, '%'))
+            </if>
+        ORDER BY um.id DESC
+    </select>
+
+    <select id="loadAdminBoard" resultType="com.btsproject.btsproject20221102.domain.AdminBoardList">
+        SELECT
+            bm.user_id,
+            um.nickname,
+
+            bm.id,
+            bm.title,
+            cd.category_name,
+            sd.subcategory_name
+
+        from
+            board_mst bm
+            LEFT OUTER JOIN user_mst um ON(um.id = bm.user_id)
+            LEFT OUTER JOIN category_dtl cd ON (cd.id = bm.category_id)
+            LEFT OUTER JOIN subcategory_dtl sd ON (sd.id = bm.subcategory_id)
+        WHERE
+            <if test='searchValue != null || searchValue !=""'>
+                (um.nickname like concat('%', #{searchValue}, '%')
+                or cd.category_name like concat('%', #{searchValue}, '%')
+                or sd.subcategory_name like concat('%', #{searchValue}, '%')
+                or bm.title like concat('%', #{searchValue}, '%'))
+            </if>
+        ORDER BY bm.id DESC
+    </select>
+    <select id="loadAdminQnA" parameterType="java.util.HashMap" resultType="com.btsproject.btsproject20221102.domain.AdminQnAList">
+        SELECT
+            qbm.user_id,
+            um.nickname,
+
+            qbm.id,
+            qbm.title,
+            sm.status,
+            cd.category_name,
+            sd.subcategory_name
+        FROM
+            qna_board_mst qbm
+            LEFT OUTER JOIN user_mst um ON(um.id = qbm.user_id)
+            LEFT OUTER JOIN status_mst sm ON (sm.id = qbm.status_id)
+            LEFT OUTER JOIN category_dtl cd ON (cd.id = qbm.category_id)
+            LEFT OUTER JOIN subcategory_dtl sd ON (sd.id = qbm.category_sub_id)
+        WHERE
+            1 = 1
+            <choose>
+                <when test='statusValue == "대기중"'>
+                    AND sm.status = "대기중"
+                </when>
+                <when test='statusValue == "진행중"'>
+                    AND sm.status = "진행중"
+                </when>
+                <when test='statusValue == "완료"'>
+                    AND sm.status = "답변완료"
+                </when>
+                <when test='searchValue != "null" || searchValue !=""'>
+                    AND (um.nickname like concat('%', #{searchValue}, '%')
+                    or cd.category_name like concat('%', #{searchValue}, '%')
+                    or sd.subcategory_name like concat('%', #{searchValue}, '%')
+                    or qbm.title like concat('%', #{searchValue}, '%')
+                    or sm.status like concat('%', #{searchValue}, '%'))
+                </when>
+            </choose>
+        ORDER BY qbm.id DESC
+    </select>
+
+    <delete id="deleteAdminUser">
+        delete
+        from
+            user_mst
+        where
+            id = #{id}
+    </delete>
+
+    <delete id="deleteAdminBoard">
+        delete
+        from
+            board_mst
+        where
+            id = #{id}
+    </delete>
+
+    <delete id="deleteAdminQnA">
+        delete
+        from
+            qna_board_mst
+        where
+            id = #{id}
+    </delete>
+
+</mapper>
