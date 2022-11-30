@@ -18,7 +18,7 @@
 
     <select id="loadIndexBoard"
             parameterType="integer"
-            resultType="com.btsproject.btsproject20221102.domain.LoadList"
+            resultType="com.btsproject.btsproject20221102.domain.IndexLoadList"
     >
         SELECT
             bm.user_id,
@@ -63,5 +63,45 @@
             bm.menu_id = #{menu_id}
         ORDER BY bm.create_date DESC
         limit 5
+    </select>
+    <select id="loadIndexQnA" resultType="com.btsproject.btsproject20221102.domain.IndexLoadQnAList">
+        SELECT
+            qbm.user_id,
+            um.nickname,
+            um.user_img,
+
+            qbm.id,
+            qbm.title,
+            qbm.price,
+            qbm.create_date,
+
+            IFNULL(lm.like_count, 0)
+        FROM
+            qna_board_mst qbm
+                LEFT OUTER JOIN user_mst um ON(um.id = qbm.user_id)
+                LEFT OUTER JOIN (select
+                                    board_id,
+                                    COUNT(*) AS like_count
+                                from
+                                    like_mst
+                                GROUP BY
+                                    board_id) lm ON (lm.board_id = qbm.id)
+        ORDER BY qbm.create_date DESC
+        limit 5
+    </select>
+
+    <select id="loadPriceAside" resultType="com.btsproject.btsproject20221102.domain.AsidePrice">
+        SELECT
+            qbm.user_id,
+            um.nickname,
+            um.user_img,
+
+            qbm.id,
+            qbm.price
+        FROM
+            qna_board_mst qbm
+                LEFT OUTER JOIN user_mst um ON(um.id = qbm.user_id)
+        ORDER BY qbm.price DESC
+        limit 10
     </select>
 </mapper>

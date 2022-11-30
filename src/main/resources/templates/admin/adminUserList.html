@@ -15,21 +15,14 @@
                         <div class="section-title">
                             <h2>회원 목록</h2>
                         </div>
-                        <div class="userlist-search">
-                            <select>
-                                <option value="ALL">전체</option>
-                                <option value="ID">아이디</option>
-                                <option value="NAME">이름</option>
-                                <option value="NICKNAME">닉네임</option>
-                                <option value="roles">권한</option>
-                            </select>
-                            <div class="userlist-search-button">
-                                <input type="text">
-                                <div>
-                                    <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                </div>
+                        
+                        <div class="userlist-search-button">
+                            <input type="text" class="search-input" placeholder="검색어를 입력하세요.">
+                            <div>
+                                <button type="button" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </div>
+                        
                         <div class="list-table user-table">
                             <table class="user-list">
                                 <thead class="list-head">
@@ -43,14 +36,6 @@
                                     </tr>
                                 </thead>
                                 <tbody class="list-body">
-                                    <tr>
-                                        <td>aaaa@naver.com</td>
-                                        <td>홍길동</td>
-                                        <td>동해번쩍서해번쩍</td>
-                                        <td>010-0000-0000</td>
-                                        <td>관리자</td>
-                                        <td><button type="button">삭제</button></td>
-                                    </tr>
                                     
                                 </tbody>
                             </table>
@@ -60,5 +45,6 @@
             </div>
         </main>
     </div>
+    <script src="/static/js/admin/adminUserList.js"></script>
 </body>
 </html>

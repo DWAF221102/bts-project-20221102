@@ -9,5 +9,5 @@ public class BtsProject20221102Application {
 	public static void main(String[] args) {
 		SpringApplication.run(BtsProject20221102Application.class, args);
 	}
-
 }
+

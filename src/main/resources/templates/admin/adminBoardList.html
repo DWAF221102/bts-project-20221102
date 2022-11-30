@@ -15,21 +15,14 @@
                         <div class="section-title">
                             <h2>게시글 목록</h2>
                         </div>
-                        <div class="userlist-search">
-                            <select>
-                                <option value="ALL">전체</option>
-                                <option value="writer">작성자</option>
-                                <option value="category">대분류</option>
-                                <option value="subCategory">소분류</option>
-                                <option value="title">제목</option>
-                            </select>
-                            <div class="userlist-search-button">
-                                <input type="text">
-                                <div>
-                                    <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                </div>
+
+                        <div class="userlist-search-button">
+                            <input type="text" class="search-input" placeholder="검색어를 입력하세요.">
+                            <div>
+                                <button type="button" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </div>
+                        
                         <div class="list-table board-table">
                             <table class="user-list">
                                 <thead class="list-head">
@@ -43,84 +36,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="list-body">
-                                    <tr>
-                                        <td>닉네임5764</td>
-                                        <td>프로그래밍</td>
-                                        <td>자바</td>
-                                        <td>연호가 옆에서 이상한 소리를 계속해요.</td>
-                                        <td><button type="button">상세보기</button></td>
-                                        <td><button type="button">삭제</button></td>
-                                    </tr>
-                                    <tr class="detail-invisible">
-                                        <td colspan="6">
-                                            <textarea class="detail-box" disabled></textarea>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>닉네임5764</td>
-                                        <td>프로그래밍</td>
-                                        <td>자바</td>
-                                        <td>연호가 옆에서 이상한 소리를 계속해요.</td>
-                                        <td><button type="button">상세보기</button></td>
-                                        <td><button type="button">삭제</button></td>
-                                    </tr>
-                                    <tr class="detail-invisible">
-                                        <td colspan="6">
-                                            <textarea class="detail-box" disabled></textarea>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>닉네임5764</td>
-                                        <td>프로그래밍</td>
-                                        <td>자바</td>
-                                        <td>연호가 옆에서 이상한 소리를 계속해요.</td>
-                                        <td><button type="button">상세보기</button></td>
-                                        <td><button type="button">삭제</button></td>
-                                    </tr>
-                                    <tr class="detail-invisible">
-                                        <td colspan="6">
-                                            <textarea class="detail-box" disabled></textarea>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>닉네임5764</td>
-                                        <td>프로그래밍</td>
-                                        <td>자바</td>
-                                        <td>연호가 옆에서 이상한 소리를 계속해요.</td>
-                                        <td><button type="button">상세보기</button></td>
-                                        <td><button type="button">삭제</button></td>
-                                    </tr>
-                                    <tr class="detail-invisible">
-                                        <td colspan="6">
-                                            <textarea class="detail-box" disabled></textarea>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>닉네임5764</td>
-                                        <td>프로그래밍</td>
-                                        <td>자바</td>
-                                        <td>연호가 옆에서 이상한 소리를 계속해요.</td>
-                                        <td><button type="button">상세보기</button></td>
-                                        <td><button type="button">삭제</button></td>
-                                    </tr>
-                                    <tr class="detail-invisible">
-                                        <td colspan="6">
-                                            <textarea class="detail-box" disabled></textarea>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>닉네임5764</td>
-                                        <td>프로그래밍</td>
-                                        <td>자바</td>
-                                        <td>연호가 옆에서 이상한 소리를 계속해요.</td>
-                                        <td><button type="button">상세보기</button></td>
-                                        <td><button type="button">삭제</button></td>
-                                    </tr>
-                                    <tr class="detail-invisible">
-                                        <td colspan="6">
-                                            <textarea class="detail-box" disabled></textarea>
-                                        </td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -129,5 +45,6 @@
             </div>
         </main>
     </div>
+    <script src="/static/js/admin/adminBoardList.js"></script>
 </body>
 </html>
