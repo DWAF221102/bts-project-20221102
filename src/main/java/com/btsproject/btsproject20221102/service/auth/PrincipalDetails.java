@@ -31,18 +31,6 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
         this.attributes = attributes;
     }
 
-    @Override
-    public Map<String, Object> getAttributes() {
-        return attributes;
-    }
-
-    @Override
-    public String getName() {
-        return (String) attributes.get("name");
-    }
-    ///////////////////////////////////////////////////
-
-
 
     //계정의 권한 목록(ADMIN,MANAGER,MEMBER)을 리턴하는것.
     @Override
@@ -82,5 +70,14 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
         return user.getEnabled() == 1;                        // true = 계정 사용가능함.
     }
 
+    @Override
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
 
+    @Override
+    public String getName() {
+
+        return attributes == null ? "" : (String) attributes.get("name");
+    }
 }
