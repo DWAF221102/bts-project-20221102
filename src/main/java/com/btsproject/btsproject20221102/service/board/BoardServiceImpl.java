@@ -134,14 +134,14 @@ public class BoardServiceImpl implements BoardService{
         map.put("id", id);
         map.put("from_id", userId);
 
-        boolean result = boardRepository.likeAdd(map) != 0 ? true : false;
+        boolean result = boardRepository.likeAdd(map) > 0 ? true : false;
         log.info("result = {}", result);
         return result;
     }
 
     @Override
     public boolean likeRemove(int id ) throws Exception {
-        boolean result = boardRepository.likeRemove(id) != 0 ? true : false;
+        boolean result = boardRepository.likeRemove(id) > 0 ? true : false;
         log.info("result = {}", result);
         return result;
     }
