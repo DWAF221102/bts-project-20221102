@@ -42,7 +42,6 @@ spring:
             clientSecret: FFuEVrMC53mrbRPHoLGwMSjOa0ki0tTj
             scope:
               - profile_nickname
-              - profile_image
               - account_email
             clientName: Kakao
             clientAuthenticationMethod: POST

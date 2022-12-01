@@ -65,7 +65,7 @@ public class AccountApi {
 
         accountService.modifyProfileImage(principalDetails, file);
         log.info("Controller");
-        return ResponseEntity.ok(new CMRespDto<>(1, "success", file));
+        return ResponseEntity.ok(new CMRespDto<>(1, "success", true));
     }
 
     @ValidAspect

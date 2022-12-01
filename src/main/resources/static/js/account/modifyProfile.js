@@ -14,7 +14,7 @@ window.onload = () => {
             </div>
             <div>
                 <label class="myprofile-info-title" for="">전화 번호</label>
-                <input class="myprofile-info-input" id="phone" type="text" placeholder="전화 번호를 입력해주세요." value="${principalUser.phone}">
+                <input class="myprofile-info-input" id="phone" type="text" placeholder="전화 번호를 입력해주세요." value="${principalUser.phone == null ? "" : principalUser.phone}">
             </div>
             <div>
                 <label class="myprofile-info-title" for="">관심있는 기술 태그 입력</label>

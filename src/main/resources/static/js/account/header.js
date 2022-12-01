@@ -11,7 +11,7 @@ function loginHeader() {
             <a class="icon" href="#"><i class="fa-solid fa-bell"></i></a>
             <div class="profile-img-area">
                 <button class="profile-img-button" type="button">
-                    <img class="profile-img" src="/static/images/logo.png">
+                    <img class="profile-img" src="/image/user/${principalUser.user_img}">
                 </button>
                 <div class="mybox-area">
                 <div class="mybox mybox-invisible" >

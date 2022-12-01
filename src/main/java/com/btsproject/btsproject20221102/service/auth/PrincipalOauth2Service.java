@@ -44,7 +44,6 @@ public class PrincipalOauth2Service extends DefaultOAuth2UserService {
         String username = null;
         String phone = null;
         String nickname = null;
-        String profileImg = null;
 
         if(provider.equalsIgnoreCase("naver")){
             response = (Map<String, Object>) attributes.get("response");
@@ -53,14 +52,12 @@ public class PrincipalOauth2Service extends DefaultOAuth2UserService {
             phone = (String) response.get("mobile");
             name = (String) response.get("name");
             nickname = (String) response.get("nickname");
-            profileImg = (String) response.get("profile_image");
         }
         else if(provider.equalsIgnoreCase("kakao")){
             response = (Map<String, Object>) attributes.get("kakao_account");
             id = String.valueOf(attributes.get("id"));
             username = String.valueOf(response.get("email"));
             nickname = (String) ((Map<String, Object>) response.get("profile")).get("nickname");
-            profileImg = (String) ((Map<String, Object>) response.get("profile")).get("profile_image_url");
         }
 
         oauth2_id = provider + "_" + id;
@@ -77,7 +74,7 @@ public class PrincipalOauth2Service extends DefaultOAuth2UserService {
                         .provider(provider)
                         .phone(phone)
                         .nickname(nickname)
-                        .user_img(profileImg)
+                        .user_img("base-profile-img.png")
                         .build();
             }
             else if(provider.equalsIgnoreCase("kakao")){
@@ -89,7 +86,7 @@ public class PrincipalOauth2Service extends DefaultOAuth2UserService {
                         .nickname(nickname)
                         .role_id(1)
                         .provider(provider)
-                        .user_img(profileImg)
+                        .user_img("base-profile-img.png")
                         .build();
             }
             accountRepository.save(user);
