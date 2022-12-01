@@ -1,0 +1,43 @@
+
+loadRankUserAsideRequest();
+
+function loadRankUserAsideRequest() {
+    let responseData= null;
+
+    $.ajax({
+        async: false,
+        url: "/api/index/aside/rankuser",
+        dataType: "json",
+        success: (response) => {
+            console.log(response)
+            responseData = response.data;
+            loadRankUserAside(responseData);
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    });
+}
+
+function loadRankUserAside(responseData) {
+    const rankUl = document.querySelector(".aside-rank-ul");
+    
+    rankUl.innerHTML = "";
+    
+    responseData.forEach(data => {
+        let scoreAvg = parseFloat(data.scoreAvg).toFixed(1);
+
+        rankUl.innerHTML += `
+            <li>
+                <div class="mini-profile">
+                    <img src="/image/user/${data.userImg}">
+                    <a href="#">${data.nickname}</a>
+                </div>
+                <div class="score">
+                    <div><i class="fa-solid fa-star"></i></div>
+                    <span>${scoreAvg}</span>
+                </div>
+            </li>
+        `;
+    });
+}

@@ -104,4 +104,18 @@
         ORDER BY qbm.price DESC
         limit 10
     </select>
+    <select id="loadRankUser" resultType="com.btsproject.btsproject20221102.domain.AsideRankUser">
+        SELECT
+            um.id,
+            um.nickname,
+            um.user_img,
+            IFNULL(avg(scm.score), 0) AS score_avg
+        FROM
+            user_mst um
+            LEFT OUTER JOIN score_mst scm ON (scm.answerer_id = um.id)
+        GROUP BY
+            um.id
+        ORDER BY score_avg DESC
+        limit 10
+    </select>
 </mapper>

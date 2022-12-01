@@ -9,7 +9,6 @@ function loadPriceAsideRequest() {
         url: "/api/index/aside/price",
         dataType: "json",
         success: (response) => {
-            console.log(response)
             responseData = response.data;
             loadPriceAside(responseData);
         },

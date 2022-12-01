@@ -2,6 +2,7 @@ package com.btsproject.btsproject20221102.service.index;
 
 import com.btsproject.btsproject20221102.aop.annotation.LogAspect;
 import com.btsproject.btsproject20221102.dto.index.AsidePriceListRespDto;
+import com.btsproject.btsproject20221102.dto.index.AsideRankUserListRespDto;
 import com.btsproject.btsproject20221102.dto.index.IndexBoardListRespDto;
 import com.btsproject.btsproject20221102.dto.index.IndexQnAListRespDto;
 import com.btsproject.btsproject20221102.repository.IndexRepository;
@@ -50,6 +51,15 @@ public class IndexServiceImpl implements IndexService{
         List<AsidePriceListRespDto> list = new ArrayList<AsidePriceListRespDto>();
         indexRepository.loadPriceAside().forEach(price -> {
             list.add(price.toAsidePriceRespDto());
+        });
+        return list;
+    }
+
+    @Override
+    public List<AsideRankUserListRespDto> loadAsideRankUserList() throws Exception {
+        List<AsideRankUserListRespDto> list = new ArrayList<AsideRankUserListRespDto>();
+        indexRepository.loadRankUser().forEach(rank -> {
+            list.add(rank.toAsideRankUserRespDto());
         });
         return list;
     }

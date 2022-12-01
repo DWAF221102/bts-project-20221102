@@ -1,6 +1,7 @@
 package com.btsproject.btsproject20221102.repository;
 
 import com.btsproject.btsproject20221102.domain.AsidePrice;
+import com.btsproject.btsproject20221102.domain.AsideRankUser;
 import com.btsproject.btsproject20221102.domain.IndexLoadList;
 import com.btsproject.btsproject20221102.domain.IndexLoadQnAList;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,4 +16,6 @@ public interface IndexRepository {
     public List<IndexLoadQnAList> loadIndexQnA() throws  Exception;
 
     public List<AsidePrice> loadPriceAside() throws Exception;
+
+    public List<AsideRankUser> loadRankUser() throws Exception;
 }
