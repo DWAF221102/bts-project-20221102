@@ -24,4 +24,8 @@ public interface BoardService {
                                         String searchValue) throws Exception;
 
     public ArticleRespDto loadArticle(int id) throws Exception;
+
+    public boolean likeAdd(int id ,int userId) throws Exception;
+
+    public boolean likeRemove(int id) throws Exception;
 }

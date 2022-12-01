@@ -19,4 +19,8 @@ public interface BoardRepository {
 
     public Article loadArticle(int id)  throws Exception;
 
+    public int likeAdd(Map<String, Integer> map) throws Exception;
+
+    public int likeRemove(int id) throws Exception;
+
 }

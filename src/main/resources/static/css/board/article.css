@@ -118,13 +118,13 @@ section {
     height: 24px;
 }
 
-.user-star button {
+.user-star-button {
     margin-right: 4px;
     border: none;
     background-color: white;
 }
 
-.user-star button:hover {
+.user-star-button:hover {
     color: rgb(0, 144, 249);
 }
 
@@ -322,4 +322,8 @@ section {
     border: none;
     color: white;
     background-color: rgb(0, 144, 249);
+}
+
+.blue-button {
+    color: rgb(0, 144, 249);
 }
