@@ -504,6 +504,11 @@ section {
     font-size: 500;
 }
 
+.page-num {
+    display: flex;
+    align-content: center;
+}
+
 .page-num button {
     border: none;
     padding: 16px 16px 0px 16px;
