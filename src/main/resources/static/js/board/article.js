@@ -34,12 +34,12 @@ class ArticleApi {
         let id = responseData.id;
         let data = {
             "id" : id,
-            "userId": principalUser 
+            "userId": principalUser.id 
         }
 
         $.ajax({
             async: false,
-            type: "post",
+            type: "get",
             url: "/api/like/add",
             data: data,
             dataType: "json",
@@ -52,9 +52,7 @@ class ArticleApi {
         })
     }
 
-    likeRemoveReq(responseData) {
-        let id = responseData.like.like_id
-
+    likeRemoveReq(id) {
         $.ajax({
             async: false,
             type: "delete",
@@ -67,6 +65,17 @@ class ArticleApi {
                 console.log(error);
             }
         })
+    }
+}
+
+class CommentApi {
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new CommentApi();
+        }
+        return this.#instance;
     }
 }
 
@@ -85,6 +94,7 @@ class ArticleService {
         this.setCategory(responseData);
         this.setUser(responseData);
         this.setLike(responseData);
+        this.setTitleContent(responseData);
 
     }
 
@@ -136,56 +146,95 @@ class ArticleService {
 
     setLike(responseData) {
         const userStar = document.querySelector(".user-star");
-        const userStarButton = document.querySelector(".user-star-button");
         
         let likes = responseData.like;
         let likeCount = likes.length;
-        
+
         userStar.innerHTML = `
             <button class="user-star-button"><i class="fa-regular fa-thumbs-up"></i></button>
             <span>${likeCount}</span>
         `;
 
-        console.log("likeCount: " + likeCount);
-        console.log("likes: " + likes);
-        console.log(likes[0].from_id);
+        const userStarButton = document.querySelector(".user-star-button");
+        let userId = 0;
+
+        if(principalUser != null) {
+            userId = principalUser.id;
+        }
         
-        if(likes.length =! 0) {
+        if(likeCount =! 0) {
             likes.forEach(like => {
-                console.log(like);
-                if(like.from_id == principalUser) {
+                if(like.from_id == userId) {
                     userStarButton.classList.add("blue-button");
                     userStarButton.onclick = () => {
                         userStarButton.classList.remove("blue-button");
-                        ArticleApi.getInstance().likeRemoveReq(responseData);
+                        ArticleApi.getInstance().likeRemoveReq(like.like_id);
+                        location.reload();
                     }
-                }else {
+                }
+                else {
                     userStarButton.onclick = () => {
-                        if(principalUser != null) {
+                        if(userId != 0) {
                             userStarButton.classList.add("blue-button");
                             ArticleApi.getInstance().likeAddReq(responseData);
-                        }else {
-                            alert("로그인 후 가능합니다.");   
+                            location.reload();
                         }
                     }
                 }
             });
         }else {
             userStarButton.onclick = () => {
-                if(principalUser != null) {
+                if(userId != 0) {
                     userStarButton.classList.add("blue-button");
                     ArticleApi.getInstance().likeAddReq(responseData);
-                }else {
-                    alert("로그인 후 가능합니다.");   
+                    location.reload();
                 }
             }
         }
+    }
 
+    setTitleContent(responseData) {
+        const articleTitle = document.querySelector(".article-title");
+        const articleContent = document.querySelector(".article-content");
 
-        this.setLike(responseData);
+        articleTitle.innerHTML = `
+            <h1>${responseData.title}</h1>
+        `;
+        articleContent.innerHTML = `<p>${responseData.content}</p>`;
+        
+    }
+
+    setCategory(responseData) {
+        const articleInfo = document.querySelector(".article-info");
+        articleInfo.innerHTML = `
+            <span>${responseData.categoryName}</span>
+            <span>${responseData.subcategoryName}</span>
+        `;
     }
 }
 
+
+class CommentService {
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new CommentService();
+        }
+        return this.#instance;
+    }
+
+    writeComment(id) {
+        
+    }
+
+    setComment(responseData) {
+        if(responseData.comment.length != 0) {
+
+        }
+    }
+    
+}
 
 class TimeService {
     static #instance = null;
