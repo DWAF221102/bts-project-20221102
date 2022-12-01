@@ -204,10 +204,26 @@ class TimeService {
         let cMinute = Number(createDate.substring(createDate.indexOf("시") + 1, createDate.indexOf("분")));
         
         if(year != cYear) {
-            return (year - cYear) + "년 전";
+            if(year - cYear == 1){
+                if((12 - cMonth + month) < 12){
+                    return (12 - cMonth + month) + "개월 전";
+                }else {
+                    return "1년 전";
+                }
+            }else {
+                return (year - cYear) + "년 전";
+            }
         }else {
             if(month != cMonth) {
-                return (month - cMonth) + "개월 전";
+                if(month - cMonth == 1){
+                    if((31 - cDay + day) < 31){
+                        return (31 - cDay + day) + "일 전";
+                    }else {
+                        return (month - cMonth) + "개월 전";
+                    }
+                }else {
+                    return (month - cMonth) + "개월 전";
+                }
             }else{
                 if(day != cDay) {
                     return (day - cDay) + "일 전";

@@ -29,6 +29,45 @@ class ArticleApi {
         
         return responseData;
     }
+
+    likeAddReq(responseData) {
+        let id = responseData.id;
+        let data = {
+            "id" : id,
+            "userId": principalUser 
+        }
+
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "/api/like/add",
+            data: data,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
+
+    likeRemoveReq(responseData) {
+        let id = responseData.like.like_id
+
+        $.ajax({
+            async: false,
+            type: "delete",
+            url: "/api/like/remove/" + id,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
 }
 
 class ArticleService {
@@ -45,6 +84,7 @@ class ArticleService {
         let responseData = ArticleApi.getInstance().loadArticleReq();
         this.setCategory(responseData);
         this.setUser(responseData);
+        this.setLike(responseData);
 
     }
 
@@ -93,6 +133,57 @@ class ArticleService {
             </div>
         `;
     }
+
+    setLike(responseData) {
+        const userStar = document.querySelector(".user-star");
+        const userStarButton = document.querySelector(".user-star-button");
+        
+        let likes = responseData.like;
+        let likeCount = likes.length;
+        
+        userStar.innerHTML = `
+            <button class="user-star-button"><i class="fa-regular fa-thumbs-up"></i></button>
+            <span>${likeCount}</span>
+        `;
+
+        console.log("likeCount: " + likeCount);
+        console.log("likes: " + likes);
+        console.log(likes[0].from_id);
+        
+        if(likes.length =! 0) {
+            likes.forEach(like => {
+                console.log(like);
+                if(like.from_id == principalUser) {
+                    userStarButton.classList.add("blue-button");
+                    userStarButton.onclick = () => {
+                        userStarButton.classList.remove("blue-button");
+                        ArticleApi.getInstance().likeRemoveReq(responseData);
+                    }
+                }else {
+                    userStarButton.onclick = () => {
+                        if(principalUser != null) {
+                            userStarButton.classList.add("blue-button");
+                            ArticleApi.getInstance().likeAddReq(responseData);
+                        }else {
+                            alert("로그인 후 가능합니다.");   
+                        }
+                    }
+                }
+            });
+        }else {
+            userStarButton.onclick = () => {
+                if(principalUser != null) {
+                    userStarButton.classList.add("blue-button");
+                    ArticleApi.getInstance().likeAddReq(responseData);
+                }else {
+                    alert("로그인 후 가능합니다.");   
+                }
+            }
+        }
+
+
+        this.setLike(responseData);
+    }
 }
 
 
@@ -126,10 +217,26 @@ class TimeService {
 
 
         if(year != cYear) {
-            return (year - cYear) + "년 전";
+            if(year - cYear == 1){
+                if((12 - cMonth + month) < 12){
+                    return (12 - cMonth + month) + "개월 전";
+                }else {
+                    return "1년 전";
+                }
+            }else {
+                return (year - cYear) + "년 전";
+            }
         }else {
             if(month != cMonth) {
-                return (month - cMonth) + "개월 전";
+                if(month - cMonth == 1){
+                    if((31 - cDay + day) < 31){
+                        return (31 - cDay + day) + "일 전";
+                    }else {
+                        return (month - cMonth) + "개월 전";
+                    }
+                }else {
+                    return (month - cMonth) + "개월 전";
+                }
             }else{
                 if(day != cDay) {
                     return (day - cDay) + "일 전";

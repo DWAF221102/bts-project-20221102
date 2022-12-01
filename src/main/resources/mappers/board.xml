@@ -188,7 +188,7 @@
     </select>
 
     <select id="loadArticle"
-            parameterType="Integer"
+            parameterType="hashmap"
             resultMap="article">
     SELECT
         md.menu_name,
@@ -234,5 +234,22 @@
     WHERE
         bm.id = #{id};
     </select>
+
+    <insert id="likeAdd" parameterType="hashmap">
+        INSERT INTO
+            like_mst
+        VALUES
+            (0,
+            #{id},
+            #{from_id})
+    </insert>
+
+    <delete id="likeRemove" parameterType="Integer">
+        DELETE
+        FROM
+            like_mst
+        WHERE
+            id = #{id}
+    </delete>
 
 </mapper>
