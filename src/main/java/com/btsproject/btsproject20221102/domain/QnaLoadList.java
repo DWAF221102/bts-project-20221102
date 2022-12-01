@@ -35,7 +35,9 @@ public class QnaLoadList {
     private int comment_count;
     private int recomment_count;
     private int like_count;
-//    private int total_count;
+
+    private int total_count;
+
 
     public QnaBoardRespDto toQnaBoardRespDto() {
         return QnaBoardRespDto.builder()
@@ -53,7 +55,7 @@ public class QnaLoadList {
                 .commentCount(comment_count)
                 .recommentCount(recomment_count)
                 .likeCount(like_count)
-//                .totalCount(total_count)
+                .totalCount(total_count)
                 .build();
     }
 }
