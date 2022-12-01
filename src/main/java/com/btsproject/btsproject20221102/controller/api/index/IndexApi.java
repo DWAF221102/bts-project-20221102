@@ -34,4 +34,9 @@ public class IndexApi {
     public ResponseEntity<?> loadIndexAsidePrice() throws Exception {
         return ResponseEntity.ok(new CMRespDto<>(1, "가격 랭킹 어사이드 불러오기 완료", indexService.loadAsidePriceList()));
     }
+
+    @GetMapping("/aside/rankuser")
+    public ResponseEntity<?> loadIndexAsideRankUser() throws Exception {
+        return ResponseEntity.ok(new CMRespDto<>(1, "답변자 랭킹 어사이드 불러오기 완료", indexService.loadAsideRankUserList()));
+    }
 }

@@ -58,7 +58,6 @@ searchInput.onkeyup = () => {
 
 searchBtn.onclick = () => {
     let searchValue = searchInput.value;
-    let statusValue = "";
     loadQnAListRequest(searchValue, statusValue);  
 
     allBtn.classList.add('qna-status-color');

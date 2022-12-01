@@ -59,7 +59,6 @@ public class QnaApi {
      private final QnaBoardService qnaBoardService;
      @GetMapping("/board")
     public ResponseEntity<?> loadQnaBoard(@RequestParam int page,
-//                                         @RequestParam int menuId,
                                          @RequestParam @Nullable int categoryId,
                                          @RequestParam @Nullable String subcategoryId,
                                          @RequestParam @Nullable String showList,

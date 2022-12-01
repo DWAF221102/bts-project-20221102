@@ -189,8 +189,8 @@
         sd.subcategory_name,
         ifnull(cm.comment_count,0),
         ifnull(rm.recomment_count,0),
-        ifnull(lm.like_count,0)
-<!--        /* 	total_count */-->
+        ifnull(lm.like_count,0),
+        pc.total_count
     from
         qna_board_mst qbm
         LEFT OUTER JOIN user_mst um ON(um.id = qbm.user_id)
@@ -217,6 +217,23 @@
                         like_mst
                     GROUP BY
                         board_id) lm ON (lm.board_id = qbm.id)
+        LEFT OUTER JOIN (SELECT
+                            COUNT(*) AS total_count
+                        from
+                            qna_board_mst qbm2
+                            left outer join user_mst um2 on (um2.id = qbm2.user_id)
+<!--                        where-->
+<!--                            bm2.menu_id = #{menu_id}-->
+<!--                        <if test="category_id != 99">-->
+<!--                            and bm2.category_id = #{category_id}-->
+<!--                        </if>-->
+<!--                        <if test="subcategory_id != 99">-->
+<!--                            and bm2.subcategory_id = #{subcategory_id}-->
+<!--                        </if>-->
+<!--                        <if test='searchValue != null || searchValue !=""'>-->
+<!--                            and (um2.nickname like concat('%', #{searchValue}, '%') or bm2.title like concat('%', #{searchValue}, '%'))-->
+<!--                        </if>-->
+                        ) pc ON (1=1)
 <!--    WHERE-->
 <!--        <if test="category_id != 99">-->
 <!--            and qbm.category_id = #{category_id}-->
