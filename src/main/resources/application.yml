@@ -68,4 +68,4 @@ mybatis:
     - /mappers/*.xml
 
 file:
-  path: /Users/choiyeonho/bts-project-20221102
+  path: C:/project/bts-project-20221102/upload/
