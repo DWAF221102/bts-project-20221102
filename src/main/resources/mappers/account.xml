@@ -109,6 +109,61 @@
             username = #{username}
     </select>
 
+    <select id="findUserByNickname" parameterType="String" resultMap="user">
+        select
+        um.id,
+        um.role_id,
+        um.username,
+        um.oauth_username,
+        um.password,
+        um.name,
+        um.phone,
+        um.nickname,
+        um.skill,
+        um.provider,
+        um.user_img,
+        um.enabled,
+
+        rm.role,
+        rm.role_name,
+
+        um.create_date,
+        um.update_date
+        from
+        user_mst um
+        left outer join role_mst rm on (rm.id = um.role_id)
+        WHERE
+            nickname = #{nickname}
+
+    </select>
+
+    <select id="findUserByPhone" parameterType="String" resultMap="user">
+        select
+        um.id,
+        um.role_id,
+        um.username,
+        um.oauth_username,
+        um.password,
+        um.name,
+        um.phone,
+        um.nickname,
+        um.skill,
+        um.provider,
+        um.user_img,
+        um.enabled,
+
+        rm.role,
+        rm.role_name,
+
+        um.create_date,
+        um.update_date
+        from
+        user_mst um
+        left outer join role_mst rm on (rm.id = um.role_id)
+        WHERE
+            phone = #{phone}
+    </select>
+
     <update id="modifyPassword" parameterType="com.btsproject.btsproject20221102.domain.User">
         UPDATE
             user_mst
@@ -189,6 +244,30 @@
         and enabled_key = #{enabled_key};
 
     </select>
+
+
+
+    <select id="loadRecentBoardList"
+            resultType="com.btsproject.btsproject20221102.domain.LoadRecentboardList">
+        SELECT
+            bm.user_id,
+            um.nickname,
+            um.user_img,
+
+            bm.id,
+            bm.subcategory_id,
+            bm.title,
+            bm.create_date
+
+        FROM
+            board_mst bm
+            LEFT OUTER JOIN user_mst um ON(um.id = bm.user_id)
+            LEFT OUTER JOIN subcategory_dtl sd ON(sd.id = bm.subcategory_id)
+        WHERE
+            bm.user_id = #{user_id}
+        ORDER BY bm.create_date DESC
+    </select>
+
 
     <delete id="deleteUser" parameterType="com.btsproject.btsproject20221102.domain.User">
         delete

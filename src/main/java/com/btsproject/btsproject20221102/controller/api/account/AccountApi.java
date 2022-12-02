@@ -51,9 +51,16 @@ public class AccountApi {
         return ResponseEntity.ok(new CMRespDto<>(1, "success", true));
 }
 
+    // 회원 정보 수정
+
+
     @PutMapping("/myprofile")
-    public ResponseEntity<?> modifyProfile(@RequestBody ModifyReqDto modifyReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
+    public ResponseEntity<?> modifyProfile( @RequestBody ModifyReqDto modifyReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
+
+//        accountService.checkNickname(modifyReqDto.getNickname(), principalDetails);
+//        accountService.checkPhone(modifyReqDto.getPhone(), principalDetails);
         accountService.modifyProfile(principalDetails, modifyReqDto);
+
 
         return ResponseEntity.ok(new CMRespDto<>(1,"success", modifyReqDto));
     }
@@ -68,6 +75,8 @@ public class AccountApi {
         return ResponseEntity.ok(new CMRespDto<>(1, "success", true));
     }
 
+
+    // 비밀 번호 변경
     @ValidAspect
     @PutMapping("/myprofile/password")
     public ResponseEntity<?> changePassword(@Valid @RequestBody PwChangeReqDto pwChangeReqDto, BindingResult bindingResult,
@@ -78,6 +87,12 @@ public class AccountApi {
 
         return ResponseEntity.ok(new CMRespDto<>(1, "success", pwChangeReqDto));
     }
+
+//    @GetMapping("/myactivity/{id}")
+//    public ResponseEntity<?> loadBoardList(@PathVariable int id, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
+//
+//        return ResponseEntity.ok(new CMRespDto<>(1, "success",accountService.loadRecentBoardList()));
+//    }
 
 
     @DeleteMapping("/delete/{id}")

@@ -12,10 +12,12 @@ window.onload = () => {
                 <label class="myprofile-info-title" for="">닉네임</label>
                 <input class="myprofile-info-input" id="nickname" type="text" value="${principalUser.nickname}">
             </div>
+            <div class="error-msg"></div>
             <div>
                 <label class="myprofile-info-title" for="">전화 번호</label>
-                <input class="myprofile-info-input" id="phone" type="text" placeholder="전화 번호를 입력해주세요." value="${principalUser.phone == null ? "" : principalUser.phone}">
+                <input class="myprofile-info-input" id="phone" type="text" placeholder="전화 번호를 입력해주세요.ex) xxx-xxxx-xxxx" value="${principalUser.phone == null ? "" : principalUser.phone}">
             </div>
+            <div class="error-msg"></div>
             <div>
                 <label class="myprofile-info-title" for="">관심있는 기술 태그 입력</label>
                 <input class="myprofile-info-input" id="skill" type="text" placeholder="기술 태그를 입력해주세요." value="${principalUser.skill == null ? "" : principalUser.skill}">
@@ -104,11 +106,18 @@ window.onload = () => {
                     },
                     error: (error) => {
                         console.log(error);
-                        alert(error.responseJSON.data.error);
+                        validationError(error.responseJSON.data);
                     }
                 })
             }
         }
+    }
+    function validationError(error) {
+        let errorMap = new Map(Object.entries(error));
+
+        const errorMsg = document.querySelectorAll(".error-msg");
+        errorMsg[0].textContent = errorMap.get("nickName");
+        errorMsg[1].textContent = errorMap.get("phone");
     }
 
 }
@@ -116,34 +125,3 @@ window.onload = () => {
 
 
 
-
-
- // imageInput.onchange = () => {
-
-    //     // 서버에 이미지 전송
-    //     let profileImageForm = document.querySelector(".profile-image-form");
-    //     let formData = new FormData(profileImageForm);
-    //     let file = imageInput.files[0];
-    //     console.log(file);
-
-    //     $.ajax({
-    //         async: false,
-    //         type: "put",
-    //         url: "/api/account/myprofile",
-    //         data: formData,
-    //         contentType: false, //필수 : x-www-form-urlencoded로 파싱되는 것을 방지
-    //         processData: false, //필수 : contentType을 false로 줬을 때 QueryString 자동 설정
-    //         dataType: "json",
-    //         enctype: "multipart/form-data",
-    //         success: (response) => {
-
-    //             alert("사진 전송");
-    //         },
-    //         error: (error) => {
-    //             console.log(error);
-    //         }
-
-    //     })
-    //     }
-    // 프로필 이미지 수정
-    // let imageInput = document.querySelector(".profile-image-input");

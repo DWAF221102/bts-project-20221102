@@ -2,6 +2,7 @@ package com.btsproject.btsproject20221102.controller;
 
 
 import com.btsproject.btsproject20221102.domain.User;
+import com.btsproject.btsproject20221102.repository.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 @Controller
 public class PageController {
+
 
 
     // 메인페이지
@@ -54,7 +56,9 @@ public class PageController {
 
     // 내 프로필 페이지
     @GetMapping("/myprofile")
-    public String myprofile() { return "account/myProfile"; }
+    public String myprofile() {
+
+        return "account/myProfile"; }
 
     // 비밀번호 변경 페이지
     @GetMapping("/myprofile/password")
