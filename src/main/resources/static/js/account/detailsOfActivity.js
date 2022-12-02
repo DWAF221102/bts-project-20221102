@@ -50,6 +50,70 @@ window.onload = () => {
 
 
 }
+const boardList = document.querySelector(".board-list");
+
+loadBoardRequest(boardList, boardId, qnaId);
+
+function loadBoardRequest(boardList, boardId, qnaId) {
+    let responseData = null;
+
+    $.ajax({
+        async: false,
+        url: "/api/index/board",
+        data: {
+            "boardId": boardId,
+            "qnaId": qnaId
+        },
+        dataType: "json",
+        success: (response) => {
+            responseData = response.data
+            loadRecentActivity(boardList, responseData);
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    });
+}
+
+function loadRecentActivity(boardList, responseData) {
+    boardList.innerHTML = "";
+
+    responseData.forEach(data => {
+
+
+        let time = setTime(data.createDate);
+        boardList.innerHTML = `
+        <div class="board-list-user">
+                            <div class="user-img">
+                                <a href=""> <img src="/image/user/${data.userImg}"></a>
+                            </div>
+                            <div class="user-detail">
+                                <a href="">${data.nickname}</a>
+                                <span>&#183;</span>
+                                <span>${time}</span>
+                            </div>
+                        </div>
+                        <div class="board-list-title">
+                            <a href="/article/${data.boardId}">${data.title}</a>
+                        </div>
+                        <div class="board-list-bottum">
+                            <div class="board-list-category">
+                                <a href="">${data.categoryName}</a>
+                                <a href="">${data.subcategoryName}</a>
+                            </div>
+                            <div class="board-list-prefer">
+                                <div class="views"><i class="fa-sharp fa-solid fa-bullseye"></i><span>${data.viewCount}</span></div>
+                                <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>${totalCommentCount}</div>
+                                <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>${data.likeCount}</span></div>
+                            </div>
+                        </div>
+    
+    `
+    })
+
+}
+
+
 
 // class BoardReqParams {
 //     static #instance = null;
@@ -61,15 +125,15 @@ window.onload = () => {
 //         return this.#instance;
 //     }
 
-//     page = 1;
+//     // page = 1;
 //     menuId = this.setMenuId();
 //     categoryId = 99;
 //     subcategoryId = "99";
-//     showList = "1";
-//     searchValue = "";
+//     // showList = "1";
+//     // searchValue = "";
 
-//     setPage(page) { this.page = page; }
-//     getPage() { return this.page; }
+//     // setPage(page) { this.page = page; }
+//     // getPage() { return this.page; }
 
 //     setMenuId() {
 //         const url = location.href;
@@ -91,20 +155,20 @@ window.onload = () => {
 //     setSubcategoryId(subcategoryId) { this.subcategoryId = subcategoryId; }
 //     getSubcategoryId() { return this.subcategoryId; }
 
-//     setShowList(showList) { this.showList = showList; }
-//     getShowList() { return this.showList; }
+//     // setShowList(showList) { this.showList = showList; }
+//     // getShowList() { return this.showList; }
 
-//     setSearchValue(searchValue) { this.searchValue = searchValue; }
-//     getSearchValue() { return this.searchValue; }
+//     // setSearchValue(searchValue) { this.searchValue = searchValue; }
+//     // getSearchValue() { return this.searchValue; }
 
 //     getObject() {
 //         return {
-//             page: this.page,
+//             // page: this.page,
 //             menuId: this.menuId,
 //             categoryId: this.categoryId,
-//             subcategoryId: this.subcategoryId,
-//             showList: this.showList,
-//             searchValue: this.searchValue
+//             subcategoryId: this.subcategoryId
+//             // showList: this.showList,
+//             // searchValue: this.searchValue
 //         }
 //     }
 // }
@@ -136,7 +200,6 @@ window.onload = () => {
 //                 console.log(error);
 //             }
 //         });
-
 //         return responseData;
 //     }
 // }
@@ -222,11 +285,11 @@ window.onload = () => {
 
 //         });
 
-//         if (responseData.length != 0) {
-//             PageService.getInstance().addService(responseData[0].totalCount);
-//         } else {
-//             PageService.getInstance().addService(1);
-//         }
+//         // if (responseData.length != 0) {
+//         //     PageService.getInstance().addService(responseData[0].totalCount);
+//         // } else {
+//         //     PageService.getInstance().addService(1);
+//         // }
 
 //     }
 // }

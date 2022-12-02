@@ -29,7 +29,7 @@ public class ModifyReqDto {
         return User.builder()
                 .id(principalDetails.getUser().getId())
                 .nickname(nickname.equals(principalDetails.getUser().getNickname()) ? null : nickname)
-                .phone(phone.equals(principalDetails.getUser().getPhone()) || phone.isBlank() ? null : phone)
+                .phone(phone.equals(principalDetails.getUser().getPhone())  ? null : phone)
                 .skill(skill.equals(principalDetails.getUser().getSkill()) || skill.isBlank() ? null : skill)
                 .build();
     }

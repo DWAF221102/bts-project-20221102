@@ -10,6 +10,7 @@ import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,11 +20,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
+import java.util.*;
 
 @Slf4j   // 나중에 지움
 @Service
@@ -43,6 +40,38 @@ public class AccountServiceImpl implements AccountService {
             Map<String, String> errorMap = new HashMap<String, String>();
             errorMap.put("username", "이미 가입된 이메일입니다.");
             throw new CustomValidationException("CheckUsername Error", errorMap);
+        }
+        return true;
+    }
+    // 닉네임 변경 중복 검사
+    @Override
+    public boolean checkNickname(String nickname, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
+       User user = accountRepository.findUserByNickname(nickname);
+
+        if(user.getNickname() == principalDetails.getUser().getNickname()){
+            if (user != null) {
+               Map<String, String> errorMap = new HashMap<String, String>();
+
+                errorMap.put("nickname", "※ 중복된 닉네임입니다.");
+                throw new CustomValidationException("CheckNickname Error", errorMap);
+            }
+            return true;
+        }
+        return true;
+    }
+
+    //  전화 번호 변경 중복 검사
+    @Override
+    public boolean checkPhone(String phone, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
+        User user = accountRepository.findUserByPhone(phone);
+
+        if(user.getPhone() == principalDetails.getUser().getPhone()) {
+            if (user != null) {
+                Map<String, String> errorMap = new HashMap<String, String>();
+                errorMap.put("phone", "※ 중복된 전화 번호입니다.");
+                throw new CustomValidationException("CheckPhone Error", errorMap);
+            }
+            return true;
         }
         return true;
     }
@@ -179,5 +208,15 @@ public class AccountServiceImpl implements AccountService {
         }
         User user = User.builder().id(pwForgotReqDto.getId()).password(new BCryptPasswordEncoder().encode(pwForgotReqDto.getNewPw())).build();
         accountRepository.modifyPassword(user);
+    }
+
+    @Override
+    public List<RecentBoardListRespDto> loadRecentBoardList(PrincipalDetails principalDetails) throws Exception {
+        List<RecentBoardListRespDto> boardList = new ArrayList<RecentBoardListRespDto>();
+
+        accountRepository.loadRecentBoardList(principalDetails.getUser().getId()).forEach(board -> {
+        boardList.add(board.toRecentBoardListRespDto());
+        });
+        return boardList;
     }
 }

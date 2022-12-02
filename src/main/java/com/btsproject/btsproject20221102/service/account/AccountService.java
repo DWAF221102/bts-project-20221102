@@ -1,15 +1,20 @@
 package com.btsproject.btsproject20221102.service.account;
 
-import com.btsproject.btsproject20221102.domain.User;
 import com.btsproject.btsproject20221102.dto.account.*;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import com.btsproject.btsproject20221102.dto.account.SignupReqDto;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 public interface AccountService {
 
     public boolean checkUsername(String username) throws Exception;
+
+    public boolean checkNickname(String nickname, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception;
+
+    public boolean checkPhone(String phone, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception;
 
     public boolean signup(SignupReqDto signupReqDto) throws Exception;
 
@@ -26,4 +31,6 @@ public interface AccountService {
     public boolean checkAuthenticationTokenForgot(PwSearchReqDto pwSearchReqDto) throws Exception;
 
     public void modifyForgotPassword(PwForgotReqDto pwForgotReqDto) throws Exception;
+
+    public List<RecentBoardListRespDto> loadRecentBoardList(@AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception;
 }

@@ -71,6 +71,13 @@ main {
     border-width: thin;
 }
 
+.error-msg {
+    padding: 3px 5px;
+
+    font-size: 10px;
+    color: red;
+}
+
 /* 프로필 사진 영역 */
 .myprofile-image-area {
     /* border-left: 1px solid rgb(209 213 219); */
