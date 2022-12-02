@@ -6,6 +6,7 @@ function loadPriceAsideRequest() {
 
     $.ajax({
         async: false,
+        type: "get",
         url: "/api/index/aside/price",
         dataType: "json",
         success: (response) => {

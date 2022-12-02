@@ -189,6 +189,15 @@
         and enabled_key = #{enabled_key};
 
     </select>
+    <select id="getImgFile" resultType="com.btsproject.btsproject20221102.domain.User">
+        select
+            id,
+            user_img
+        from
+            user_mst
+        where
+            id = #{id}
+    </select>
 
     <delete id="deleteUser" parameterType="com.btsproject.btsproject20221102.domain.User">
         delete

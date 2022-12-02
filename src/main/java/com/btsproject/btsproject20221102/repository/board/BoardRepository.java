@@ -23,4 +23,8 @@ public interface BoardRepository {
 
     public int likeRemove(int id) throws Exception;
 
+    public List<BoardImgFile> getBoardImgList(int boardId) throws Exception;
+
+    public int deleteArticle(int id) throws Exception;
+
 }

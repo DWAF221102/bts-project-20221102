@@ -85,6 +85,10 @@ section {
 
 }
 
+.total_count_view {
+    margin-bottom : 10px;
+}
+
 .board-main-header-img img {
     width: 183px;
     height: 86px;

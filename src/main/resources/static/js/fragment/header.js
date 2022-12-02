@@ -35,5 +35,25 @@ $('.profile-img-button').click(function () {
 })
 
 
+// total search
+const searchBtn = document.querySelector(".search-button");
+const searchInput = document.querySelector(".search-input");
+
+searchInput.onkeyup = () => {
+    if(window.event.keyCode === 13) {
+        searchBtn.click();
+    }
+}
+
+searchBtn.onclick = () => {
+    if(searchInput.value == "") {
+        alert("검색어를 입력해주세요.");
+    } else {
+        location.href = "/totalsearch/" + searchInput.value;
+    }
+}
+
+
+
 
 

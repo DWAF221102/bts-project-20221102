@@ -28,4 +28,6 @@ public interface BoardService {
     public boolean likeAdd(int id ,int userId) throws Exception;
 
     public boolean likeRemove(int id) throws Exception;
+
+    public boolean deleteArticle(int id) throws Exception;
 }

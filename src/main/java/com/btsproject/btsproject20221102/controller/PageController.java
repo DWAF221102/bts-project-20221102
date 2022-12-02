@@ -22,8 +22,8 @@ public class PageController {
     }
 
     // 통합 검색페이지
-    @GetMapping("/totalsearch")
-    public String totalSearch() {
+    @GetMapping("/totalsearch/{keyword}")
+    public String totalSearch(@PathVariable String keyword) {
         return "totalSearch";
     }
 

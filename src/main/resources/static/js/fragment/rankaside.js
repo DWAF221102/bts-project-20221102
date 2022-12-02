@@ -6,10 +6,10 @@ function loadRankUserAsideRequest() {
 
     $.ajax({
         async: false,
+        type: "get",
         url: "/api/index/aside/rankuser",
         dataType: "json",
         success: (response) => {
-            console.log(response)
             responseData = response.data;
             loadRankUserAside(responseData);
         },
