@@ -59,6 +59,7 @@
         <collection property="like" javaType="list" resultMap="like"></collection>
     </resultMap>
 
+<!--    write   -->
     <insert id="saveBoard"
             parameterType="com.btsproject.btsproject20221102.domain.Board"
             useGeneratedKeys="true"
@@ -97,6 +98,8 @@
 
     </insert>
 
+
+<!--    board   -->
     <select id="loadBoard"
             parameterType="hashmap"
             resultType="com.btsproject.btsproject20221102.domain.LoadList"
@@ -187,6 +190,19 @@
             #{page},10
     </select>
 
+
+<!--    article    -->
+    <update id="viewCount" parameterType="Integer">
+        UPDATE
+            board_mst
+        SET
+            view_count = view_count + 1,
+            update_date = NOW()
+        WHERE
+            id = #{id};
+    </update>
+
+
     <select id="loadArticle"
             parameterType="hashmap"
             resultMap="article">
@@ -252,4 +268,29 @@
             id = #{id}
     </delete>
 
+    <insert id="commentWrite" parameterType="hashmap">
+        INSERT INTO
+            comment_mst
+        VALUES(
+            0,
+            #{id},
+            #{user_id},
+            #{text_value},
+            NOW(),
+            NOW()
+        )
+    </insert>
+    <insert id="recommentWrite" parameterType="hashmap">
+        INSERT INTO
+            recomment_mst
+        VALUES(
+            0,
+            #{comment_id},
+            #{user_id},
+            #{text_value},
+            NOW(),
+            NOW()
+        )
+
+    </insert>
 </mapper>

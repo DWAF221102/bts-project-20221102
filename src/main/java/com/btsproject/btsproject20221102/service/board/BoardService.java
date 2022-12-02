@@ -10,12 +10,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface BoardService {
+//    ------write------
     public BoardImgFile uploadImgService(MultipartFile file);
-
     public boolean saveBoard(WriteReqDto writeReqDto) throws Exception;
-
     public boolean deleteImg(MultipartFile file);
 
+//    -----board-----
     public List<BoardRespDto> loadBoard(int page,
                                         int menuId,
                                         int categoryId,
@@ -23,9 +23,11 @@ public interface BoardService {
                                         String showList,
                                         String searchValue) throws Exception;
 
+//    ------article------
+    public boolean viewCount(int id) throws Exception;
     public ArticleRespDto loadArticle(int id) throws Exception;
-
     public boolean likeAdd(int id ,int userId) throws Exception;
-
     public boolean likeRemove(int id) throws Exception;
+    public boolean commentWrite(int id ,int userId, String textValue) throws Exception;
+    public boolean recommentWrite(int commentId ,int userId, String textValue) throws Exception;
 }

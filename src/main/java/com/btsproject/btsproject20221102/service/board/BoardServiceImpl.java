@@ -120,10 +120,14 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    public boolean viewCount(int id) throws Exception {
+
+        return boardRepository.viewCount(id) > 0 ? true : false;
+    }
+
+    @Override
     public ArticleRespDto loadArticle(int id) throws Exception {
         ArticleRespDto result = boardRepository.loadArticle(id).toRespDto();
-
-        log.info("Article >> {}", result);
 
         return result;
     }
@@ -134,15 +138,33 @@ public class BoardServiceImpl implements BoardService{
         map.put("id", id);
         map.put("from_id", userId);
 
-        boolean result = boardRepository.likeAdd(map) != 0 ? true : false;
-        log.info("result = {}", result);
-        return result;
+        return boardRepository.likeAdd(map) > 0 ? true : false;
     }
 
     @Override
     public boolean likeRemove(int id ) throws Exception {
-        boolean result = boardRepository.likeRemove(id) != 0 ? true : false;
-        log.info("result = {}", result);
-        return result;
+        return boardRepository.likeRemove(id) > 0 ? true : false;
+    }
+
+    @Override
+    public boolean commentWrite(int id, int userId, String textValue) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("id", id);
+        map.put("user_id", userId);
+        map.put("text_value", textValue);
+
+
+
+        return boardRepository.commentWrite(map) > 0 ? true : false;
+    }
+
+    @Override
+    public boolean recommentWrite(int commentId, int userId, String textValue) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("comment_id", commentId);
+        map.put("user_id", userId);
+        map.put("text_value", textValue);
+
+        return boardRepository.recommentWrite(map) > 0 ? true : false;
     }
 }

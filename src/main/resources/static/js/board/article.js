@@ -8,15 +8,35 @@ class ArticleApi {
         return this.#instance;
     }
 
+    url = location.href;
+    id = this.url.substring(this.url.lastIndexOf("/") + 1);
+
+    viewCountReq() {
+        $.ajax({
+            async: false,
+            type: "put",
+            url:"/api/viewcount",
+            data: {
+                "id" : this.id
+            },
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
+
     loadArticleReq() {
-        const url = location.href;
-        const id = url.substring(url.lastIndexOf("/") + 1);
+        
         let responseData= null;
         
         $.ajax({
             async: false,
             type: "get",
-            url: "/api/article/" + id,
+            url: "/api/article/" + this.id,
             dataType: "json",
             success: (response) => {
                 console.log(response);
@@ -30,16 +50,14 @@ class ArticleApi {
         return responseData;
     }
 
-    likeAddReq(responseData) {
-        let id = responseData.id;
+    likeAddReq() {
         let data = {
-            "id" : id,
-            "userId": principalUser 
+            "id" : this.id,
+            "userId": principalUser.id 
         }
-
         $.ajax({
             async: false,
-            type: "post",
+            type: "get",
             url: "/api/like/add",
             data: data,
             dataType: "json",
@@ -52,13 +70,67 @@ class ArticleApi {
         })
     }
 
-    likeRemoveReq(responseData) {
-        let id = responseData.like.like_id
-
+    likeRemoveReq(id) {
         $.ajax({
             async: false,
             type: "delete",
             url: "/api/like/remove/" + id,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
+}
+
+class CommentApi {
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new CommentApi();
+        }
+        return this.#instance;
+    }
+
+    commentWriteReq(id, userId, textValue) {
+        let data = {
+            "id" : id,
+            "userId" : userId,
+            "textValue" : textValue
+        }
+
+        $.ajax({
+            async: false,
+            type: "get",
+            url: "/api/comment/write",
+            data: data,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+
+    }
+
+    recommentWriteReq(commentId, userId, textValue) {
+        let data = {
+            "commentId" : commentId,
+            "userId" : userId,
+            "textValue" : textValue
+        }
+
+        $.ajax({
+            async: false,
+            type: "get",
+            url: "/api/recomment/write",
+            data: data,
             dataType: "json",
             success: (response) => {
                 console.log(response);
@@ -78,14 +150,6 @@ class ArticleService {
             this.#instance = new ArticleService();
         }
         return this.#instance;
-    }
-
-    constructor() {
-        let responseData = ArticleApi.getInstance().loadArticleReq();
-        this.setCategory(responseData);
-        this.setUser(responseData);
-        this.setLike(responseData);
-
     }
 
     setCategory(responseData) {
@@ -136,56 +200,337 @@ class ArticleService {
 
     setLike(responseData) {
         const userStar = document.querySelector(".user-star");
-        const userStarButton = document.querySelector(".user-star-button");
         
         let likes = responseData.like;
         let likeCount = likes.length;
-        
+
         userStar.innerHTML = `
             <button class="user-star-button"><i class="fa-regular fa-thumbs-up"></i></button>
             <span>${likeCount}</span>
         `;
 
-        console.log("likeCount: " + likeCount);
-        console.log("likes: " + likes);
-        console.log(likes[0].from_id);
+        const userStarButton = document.querySelector(".user-star-button");
+        let userId = 0;
+
+        if(principalUser != null) {
+            userId = principalUser.id;
+        }
         
-        if(likes.length =! 0) {
+        if(likeCount =! 0) {
             likes.forEach(like => {
-                console.log(like);
-                if(like.from_id == principalUser) {
+                if(like.from_id == userId) {
                     userStarButton.classList.add("blue-button");
                     userStarButton.onclick = () => {
                         userStarButton.classList.remove("blue-button");
-                        ArticleApi.getInstance().likeRemoveReq(responseData);
+                        ArticleApi.getInstance().likeRemoveReq(like.like_id);
+                        location.reload();
                     }
-                }else {
+                }
+                else {
                     userStarButton.onclick = () => {
-                        if(principalUser != null) {
+                        if(userId != 0) {
                             userStarButton.classList.add("blue-button");
-                            ArticleApi.getInstance().likeAddReq(responseData);
-                        }else {
-                            alert("로그인 후 가능합니다.");   
+                            ArticleApi.getInstance().likeAddReq();
+                            location.reload();
                         }
                     }
                 }
             });
         }else {
             userStarButton.onclick = () => {
-                if(principalUser != null) {
+                if(userId != 0) {
                     userStarButton.classList.add("blue-button");
-                    ArticleApi.getInstance().likeAddReq(responseData);
-                }else {
-                    alert("로그인 후 가능합니다.");   
+                    ArticleApi.getInstance().likeAddReq();
+                    location.reload();
                 }
             }
         }
+    }
 
+    setTitleContent(responseData) {
+        const articleTitle = document.querySelector(".article-title");
+        const articleContent = document.querySelector(".article-content");
 
-        this.setLike(responseData);
+        articleTitle.innerHTML = `
+            <h1>${responseData.title}</h1>
+        `;
+        articleContent.innerHTML = `<p>${responseData.content}</p>`;
+        
+    }
+
+    setBottumCategory(responseData) {
+        const articleInfo = document.querySelector(".article-info");
+        articleInfo.innerHTML = `
+            <span>${responseData.categoryName}</span>
+            <span>${responseData.subcategoryName}</span>
+        `;
     }
 }
 
+
+class CommentService {
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new CommentService();
+        }
+        return this.#instance;
+    }
+
+    setCommentNum(responseData) {
+        const commentNum = document.querySelector(".comment-num");
+        commentNum.innerHTML = `
+            <h2>${responseData.comment.length}개의 댓글</h2>
+        `;
+    }
+
+    writeComment(responseData) {
+        const commentWrite = document.querySelector(".comment-write");
+        
+        let id = responseData.id;
+        let userId = 0;
+        let userImg = null;
+
+        if(principalUser != null) {
+            userId = principalUser.id;
+            userImg = principalUser.user_img;
+        }else {
+            commentWrite.classList.remove("grey-border");
+        }
+
+        if(userId != 0) {
+            commentWrite.innerHTML = `
+                <div class="user-img">
+                    <img src="/image/user/${userImg}">
+                </div>
+                <div class="comment-write-container">
+                    <div class="comment-textarea-container">
+                        <textarea class="comment-textarea grey-border" placeholder="댓글을 입력해주세요."></textarea>
+                    </div>
+                    <div class="write-button">
+                        <button>취소</button>
+                        <button>댓글 쓰기</button>
+                    </div>
+                </div>
+            `;
+
+            const writeButtons = document.querySelectorAll(".write-button button");
+           
+
+            writeButtons[0].onclick = () => {
+                if(confirm("취소하시겠습니까?")) {
+                    location.reload();
+                }
+            }
+            writeButtons[1].onclick = () => {
+                const textarea = document.querySelector(".comment-textarea");
+                let textValue = textarea.value;
+                console.log("textValue: " + textarea.value);
+                console.log(textValue);
+                if(confirm("댓글을 작성하시겠습니까???")) {
+                    if(textValue == "" || textValue == " " || textValue == null || textValue.replaceAll(" ", "") == "") {
+                        alert("내용을 입력해주세요.");
+                    }else {
+                        CommentApi.getInstance().commentWriteReq(id, userId, textarea.value);
+                        location.reload();
+                    }
+
+                }
+            }
+        }
+    }
+
+
+    setComment(responseData) {
+        let comment = responseData.comment;
+        if(comment.length != 0) {
+            const commentUl = document.querySelector(".comment-ul");
+            for(let i = comment.length; i >  0; i--) {
+                let index = i - 1;
+                commentUl.innerHTML += `
+                    <li>
+                        <div class="user-info">
+                            <div class="user-info-container">
+                                <div class="user-img">
+                                    <a href="">
+                                        <img src="/image/user/${comment[index].comment_user_img}">
+                                    </a>
+                                </div>
+                                <div class="user-detail">
+                                    <a class="user-nickname">${comment[index].comment_nickname}</a>
+                                    <div class="user-brief">
+                                        <span>${TimeService.getInstance().setTime(comment[index].comment_create_date)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            <p>${comment[index].comment_content}</p>
+                        </div>
+                        <div class="recomment-container">
+                            <div class="recomment-button">
+                                <button class="show-recomment">
+                                    <span>댓글 모두 숨기기</span>
+                                </button>
+                                <button class="write-reccoment-button"><span>댓글 쓰기</span></button>
+                            </div>
+                            <div class="recomment">
+                                <div class="delete-recomment">
+                                    
+                                </div>
+                                <ul class="recomment-ul">
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </li> 
+                `;
+
+                const recommentUl = document.querySelector(".recomment-ul");
+                
+                let recomment = comment[index].recomment;
+                if(recomment.length != 0) {
+                    recomment.forEach(data => {
+                        recommentUl.innerHTML += `
+                            <li>
+                                <div class="user-info">
+                                    <div class="user-info-container">
+                                        <div class="user-img">
+                                            <a href="">
+                                            <img src="/image/user/${data.recomment_user_img}">
+                                            </a>
+                                        </div>
+                                        <div class="user-detail">
+                                            <a class="user-nickname">${data.recomment_nickname}</a>
+                                            <div class="user-brief">
+                                                <span>${TimeService.getInstance().setTime(data.recomment_create_date)}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="recomment-content">
+                                    <p>${data.recomment_content}</p>
+                                </div>
+                            </li>
+                        `;
+                    });
+                }
+            }
+        }
+    }
+
+    showRecommentWrite() {
+        const writeRecommentButton = document.querySelectorAll(".write-reccoment-button");
+        const deleteRecomment = document.querySelectorAll(".delete-recomment");
+
+        let userId = 0;
+        let userImg = null;
+
+        if(principalUser != null) {
+            userId = principalUser.id;
+            userImg = principalUser.user_img;
+        }
+
+        for(let i = 0; i < writeRecommentButton.length; i++) {
+            writeRecommentButton[i].onclick = () => {
+                if(userId != 0) {
+                    deleteRecomment[i].innerHTML = `
+                        <div class="recomment-write ">
+                            <div class="user-img">
+                                <img src="/image/user/${userImg}">
+                            </div>
+                            <div class="recomment-write-container">
+                                <div class="recomment-textarea-container">
+                                    <textarea class="recomment-textarea" placeholder="댓글을 입력해주세요."></textarea>
+                                </div>
+                                <div class="recomment-write-button">
+                                    <button class="button-recomment">댓글 쓰기</button>
+                                </div>
+                            </div>    
+                        </div>
+                    `;  
+                
+                    this.deleteRecommentWrite();
+                }else {
+                    alert("로그인후 작성가능합니다.");
+                }
+                
+            }
+        }
+        
+    }
+    
+
+    deleteRecommentWrite() {
+        const writeRecommentButton = document.querySelectorAll(".write-reccoment-button");
+        const deleteRecomment = document.querySelectorAll(".delete-recomment");
+
+        for(let i = 0; i < writeRecommentButton.length; i++) {
+            writeRecommentButton[i].onclick = () => {
+                deleteRecomment[i].innerHTML = "";
+                
+                this.showRecommentWrite();
+            }
+        }
+    }
+
+    recommentButtonEvent(responseData) {
+        let userId = 0;
+        if(principalUser != null) {
+            userId = principalUser.id;
+        }
+        console.log("제발");
+        const recommentButton = document.querySelectorAll(".button-recomment");
+        const recomentTextarea = document.querySelectorAll(".recomment-textarea");
+
+        for(let i = 0; i < recommentButton.length; i++) {
+            recommentButton[i].onclick = () => {
+                let textValue = recomentTextarea[i].value;
+                let commentId = responseData.comment[i].comment_id;
+                console.log("제발");
+                if(textValue == "" || textValue == " " || textValue == null || textValue.replaceAll(" ", "") == "") {
+                    if(confirm("댓글을 작성하시겠습니까?")){
+                        CommentApi.getInstance().recommentWriteReq(commentId, userId, textValue);
+                    }
+                }else {
+                    alert("댓글을 입력해주세요.");
+                }
+            }
+        }
+        
+        
+    }
+    
+}
+
+class TotalService {
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new TotalService();
+        }
+        return this.#instance;
+    }
+
+    addService() {
+        ArticleApi.getInstance().viewCountReq();
+        let responseData = ArticleApi.getInstance().loadArticleReq();
+        if(responseData != null) {
+            ArticleService.getInstance().setCategory(responseData);
+            ArticleService.getInstance().setUser(responseData);
+            ArticleService.getInstance().setLike(responseData);
+            ArticleService.getInstance().setTitleContent(responseData);
+            ArticleService.getInstance().setBottumCategory(responseData);
+            CommentService.getInstance().writeComment(responseData);
+            CommentService.getInstance().setComment(responseData);
+            CommentService.getInstance().showRecommentWrite();
+            CommentService.getInstance().recommentButtonEvent(responseData);
+        }
+        
+    }
+}
 
 class TimeService {
     static #instance = null;
@@ -257,5 +602,5 @@ class TimeService {
 }
 
 window.onload = () => {
-    new ArticleService();
+    TotalService.getInstance().addService();
 }
