@@ -167,4 +167,22 @@ public class BoardServiceImpl implements BoardService{
 
         return boardRepository.recommentWrite(map) > 0 ? true : false;
     }
+
+    @Override
+    public boolean deleteArticle(int id) throws Exception {
+        List<BoardImgFile> boardImgFiles = boardRepository.getBoardImgList(id);
+
+        if(boardRepository.deleteArticle(id) > 0) {
+            boardImgFiles.forEach(productImgFile -> {
+                Path uploadPath = Paths.get(filePath + "/board/" + productImgFile.getTemp_name());
+
+                File file = new File(uploadPath.toUri());
+                if(file.exists()) {
+                    file.delete();
+                }
+            });
+            return true;
+        };
+        return false;
+    }
 }

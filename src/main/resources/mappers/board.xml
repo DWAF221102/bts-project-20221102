@@ -251,6 +251,7 @@
         bm.id = #{id};
     </select>
 
+
     <insert id="likeAdd" parameterType="hashmap">
         INSERT INTO
             like_mst
@@ -293,4 +294,25 @@
         )
 
     </insert>
+
+    <select id="getBoardImgList" parameterType="Integer" resultMap="files">
+        select
+            id,
+            board_id,
+            origin_name,
+            temp_name
+        from
+            board_img
+        where
+            board_id = #{boardId}
+    </select>
+
+    <delete id="deleteArticle" parameterType="Integer">
+        delete
+        from
+            board_mst
+        where
+            id = #{id}
+    </delete>
+
 </mapper>

@@ -14,6 +14,7 @@ function loadBoardListRequest(fiveBoardList, menuId) {
 
     $.ajax({
         async: false,
+        type: "get",
         url: "/api/index/board",
         data: {
             "menuId" : menuId
@@ -73,6 +74,7 @@ function loadQnAListRequest() {
 
     $.ajax({
         async: false,
+        type: "get",
         url: "/api/index/qna",
         dataType: "json",
         success: (response) => {

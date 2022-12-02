@@ -30,6 +30,8 @@ public interface AccountRepository {
     /* 비밀번호 변경 */
     public int modifyPassword(User user);
 
+    public User getImgFile(int id) throws Exception;
+
     public int deleteUser(int id);
 
     /* 이메일 인증 부분 */

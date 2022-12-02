@@ -1,0 +1,11 @@
+package com.btsproject.btsproject20221102.service.totalSearch;
+
+import com.btsproject.btsproject20221102.dto.board.BoardRespDto;
+
+import java.util.List;
+
+public interface TotalSearchService {
+
+    public List<BoardRespDto> loadSearchBoard(int menuId,
+                                              String searchValue) throws Exception;
+}

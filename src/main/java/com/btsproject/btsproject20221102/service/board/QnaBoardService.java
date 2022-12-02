@@ -21,4 +21,6 @@ public interface QnaBoardService {
                                               String subcategoryId,
                                               String showList,
                                               String searchValue) throws Exception;
+
+//    public boolean deleteQnAArticle(int id) throws Exception;
 }

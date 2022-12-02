@@ -155,7 +155,18 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public boolean deleteUser(int id) throws Exception {
-        return accountRepository.deleteUser(id) != 0;
+        User img = accountRepository.getImgFile(id);
+
+        if(accountRepository.deleteUser(id) > 0) {
+            Path uploadPath = Paths.get(filePath + "/user/" + img.getUser_img());
+
+            File file = new File(uploadPath.toUri());
+            if(file.exists()) {
+                file.delete();
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override

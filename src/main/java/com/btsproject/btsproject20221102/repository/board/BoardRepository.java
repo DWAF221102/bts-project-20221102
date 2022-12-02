@@ -25,4 +25,9 @@ public interface BoardRepository {
     public int likeRemove(int id) throws Exception;
     public int commentWrite(Map<String, Object> map) throws Exception;
     public int recommentWrite(Map<String, Object> map) throws Exception;
+
+    public List<BoardImgFile> getBoardImgList(int boardId) throws Exception;
+
+    public int deleteArticle(int id) throws Exception;
+
 }
