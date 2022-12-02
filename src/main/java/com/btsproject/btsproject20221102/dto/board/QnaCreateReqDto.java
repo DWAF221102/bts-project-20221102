@@ -17,6 +17,8 @@ public class QnaCreateReqDto {
 
     private List<MultipartFile> files;
 
+    private int userId;
+
     public Qna toQnaEntity() {
         return Qna.builder()
                 .category_id(category)
@@ -25,6 +27,7 @@ public class QnaCreateReqDto {
                 .info(info)
                 .want_info(wantInfo)
                 .price(price)
+                .user_id(userId)
                 .build();
     }
 }

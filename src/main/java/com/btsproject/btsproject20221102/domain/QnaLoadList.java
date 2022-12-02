@@ -5,6 +5,7 @@ import com.btsproject.btsproject20221102.dto.board.QnaBoardRespDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
@@ -23,9 +24,10 @@ public class QnaLoadList {
     private int id;
     private String title;
     private int price;
+    private String status;
     private int view_count;
 
-    private int status_id;
+
     private LocalDateTime create_date;
 
 
@@ -47,7 +49,7 @@ public class QnaLoadList {
                 .boardId(id)
                 .title(title)
                 .price(price)
-                .statusId(status_id)
+                .status(status)
                 .viewCount(view_count)
                 .createDate(create_date.format(DateTimeFormatter.ofPattern("yyyy년MM월dd일HH시mm분ss초")))
                 .categoryName(category_name)
@@ -57,5 +59,7 @@ public class QnaLoadList {
                 .likeCount(like_count)
                 .totalCount(total_count)
                 .build();
+
     }
+
 }

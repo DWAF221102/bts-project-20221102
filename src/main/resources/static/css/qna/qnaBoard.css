@@ -5,6 +5,10 @@
     margin: 0px auto;
 }
 
+.category-aside {
+    width: 180px;
+}
+
 main {
     display: flex;
     justify-content: center;
@@ -550,6 +554,10 @@ section {
 .next-button i {
     width: 16px;
     height: 16px;
+}
+
+.blue-button {
+    color: rgb(0, 144, 249);
 }
 
 .right-aside aside:nth-child(1){

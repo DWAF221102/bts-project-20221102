@@ -74,7 +74,9 @@ public class QnaBoardServiceImpl implements QnaBoardService{
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("page", (page - 1) * 10);
 //        map.put("menu_id", menuId);
+
         map.put("category_id", categoryId);
+        log.info("cateogy .. {}",map.get("category_id"));
         map.put("subcategory_id", Integer.parseInt(subcategoryId));
         map.put("show_list", showList);
         map.put("searchValue", searchValue);
@@ -84,7 +86,7 @@ public class QnaBoardServiceImpl implements QnaBoardService{
 
 
         qnaRepository.qnaLoadBoard(map).forEach(list -> {
-            log.info("list >> {}", list);
+//            log.info("list >> {}", list);
             result.add(list.toQnaBoardRespDto());
         });
 

@@ -120,6 +120,8 @@ submitButton.onclick = () => {
         formData.append("files",file);
     });
 
+    formData.append("userId", principalUser.id)
+
     request(formData);
 
 }

@@ -24,7 +24,7 @@
         <collection property="qna_img_files" javaType="list" resultMap="qna_img_files"></collection>
     </resultMap>
 
-    <insert id="saveQna" parameterType="com.btsproject.btsproject20221102.domain.User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="saveQna" parameterType="com.btsproject.btsproject20221102.domain.Qna" useGeneratedKeys="true" keyProperty="id">
 <!--       쿼리 어떻게 짜야되는지 질문-->
         insert into
             qna_board_mst
@@ -36,12 +36,12 @@
         #{category_sub_id},
 <!--        #{status_id},-->
         1,
-<!--        #{user_id},-->
-        0,
+        #{user_id},
         #{title},
         #{info},
         #{want_info},
         #{price},
+        1,
         now(),
         now()
         );
@@ -111,66 +111,7 @@
         where
             id = #{id}
     </select>
-<!--    <select id="qnaLoadBoard"-->
-<!--            parameterType="hashmap"-->
-<!--            resultType="com.btsproject.btsproject20221102.domain.QnaLoadList"-->
-<!--    >-->
-<!--        SELECT-->
-<!--            qbm.user_id,-->
-<!--            um.nickname,-->
-<!--            um.user_img,-->
 
-<!--            qbm.id,-->
-<!--            qbm.title,-->
-<!--&lt;!&ndash;            bm.view_count,&ndash;&gt;-->
-<!--            qbm.create_date,-->
-
-<!--            cd.category_name,-->
-<!--            sd.subcategory_name,-->
-
-
-<!--            ifnull(pc.total_count,0)-->
-<!--        from-->
-<!--            qna_board_mst qbm-->
-<!--            LEFT OUTER JOIN user_mst um ON(um.id = qbm.user_id)-->
-<!--            LEFT OUTER JOIN category_dtl cd ON (cd.id = qbm.category_id)-->
-<!--            LEFT OUTER JOIN subcategory_dtl sd ON (sd.id = qbm.category_sub_id)-->
-<!--            LEFT OUTER JOIN (SELECT-->
-<!--                                COUNT(*) AS total_count-->
-<!--                            from-->
-<!--                                board_mst-->
-<!--                            where-->
-<!--                                menu_id = #{menu_id}-->
-<!--                            <if test='subcategory_id != "99"'>-->
-<!--                                and category_sub_id = #{category_sub_id}-->
-<!--                            </if>-->
-<!--                            ) pc ON (1=1)-->
-<!--        WHERE-->
-<!--                qbm.menu_id = #{menu_id}-->
-<!--            <if test="category_id != 99">-->
-<!--                and qbm.category_id = #{category_id}-->
-<!--            </if>-->
-<!--            <if test="subcategory_id != 99">-->
-<!--                and qbm.category_sub_id = #{category_sub_id}-->
-<!--            </if>-->
-<!--            <if test='searchValue != null || searchValue !=""'>-->
-<!--                and (um.nickname like concat('%', #{searchValue}, '%') or qbm.title like concat('%', #{searchValue}, '%'))-->
-<!--            </if>-->
-
-<!--            <if test='show_list == "1"'>-->
-<!--                ORDER BY qbm.create_date DESC-->
-<!--            </if>-->
-<!--            <if test='show_list == "2"'>-->
-<!--                ORDER BY lm.like_count DESC-->
-<!--            </if>-->
-<!--            <if test='show_list == "3"'>-->
-<!--                ORDER BY qbm.view_count DESC-->
-<!--            </if>-->
-
-
-<!--        limit-->
-<!--            #{page},10-->
-<!--    </select>-->
     <select id="qnaLoadBoard"
             parameterType="hashmap"
             resultType="com.btsproject.btsproject20221102.domain.QnaLoadList"
@@ -182,7 +123,9 @@
         qbm.id,
         qbm.title,
         qbm.price,
-        qbm.status_id,
+        sm.status,
+<!--        매칭 후 상태에 따라 값을 바꾸도록 해야함. -->
+<!--        3,-->
         ifnull(qbm.view_count, 0),
         qbm.create_date,
         cd.category_name,
@@ -196,6 +139,7 @@
         LEFT OUTER JOIN user_mst um ON(um.id = qbm.user_id)
         LEFT OUTER JOIN category_dtl cd ON(cd.id = qbm.category_id)
         LEFT OUTER JOIN subcategory_dtl sd ON(sd.id = qbm.category_sub_id)
+        LEFT OUTER JOIN status_mst sm ON(sm.id = qbm.status_id)
         LEFT OUTER JOIN (select
                             board_id,
                             COUNT(*) AS comment_count
@@ -234,26 +178,27 @@
 <!--                            and (um2.nickname like concat('%', #{searchValue}, '%') or bm2.title like concat('%', #{searchValue}, '%'))-->
 <!--                        </if>-->
                         ) pc ON (1=1)
-<!--    WHERE-->
-<!--        <if test="category_id != 99">-->
-<!--            and qbm.category_id = #{category_id}-->
-<!--        </if>-->
-<!--        <if test="subcategory_id != 99">-->
-<!--            and qbm.category_sub_id = #{subcategory_id}-->
-<!--        </if>-->
+    WHERE
+        1 = 1
+        <if test="category_id != 99">
+            and qbm.category_id = #{category_id}
+        </if>
+        <if test="subcategory_id != 99">
+            and qbm.category_sub_id = #{subcategory_id}
+        </if>
 <!--        <if test='searchValue != null || searchValue !=""'>-->
 <!--            and (um.nickname like concat('%', #{searchValue}, '%') or qbm.title like concat('%', #{searchValue}, '%'))-->
 <!--        </if>-->
 
-<!--        <if test='show_list == "1"'>-->
-<!--            ORDER BY qbm.create_date DESC-->
-<!--        </if>-->
-<!--        <if test='show_list == "2"'>-->
-<!--            ORDER BY lm.like_count DESC-->
-<!--        </if>-->
-<!--        <if test='show_list == "3"'>-->
-<!--            ORDER BY qbm.view_count DESC-->
-<!--        </if>-->
+        <if test='show_list == "1"'>
+            ORDER BY qbm.create_date DESC
+        </if>
+        <if test='show_list == "2"'>
+            ORDER BY lm.like_count DESC
+        </if>
+        <if test='show_list == "3"'>
+            ORDER BY qbm.view_count DESC
+        </if>
 
 
     limit

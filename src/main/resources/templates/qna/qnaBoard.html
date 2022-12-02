@@ -13,8 +13,8 @@
     <div class="container">
         <header th:replace="~{fragment/header :: header}"></header>
         <main>
-            <div>
-                <aside th:replace="~{fragment/priceaside :: priceaside}"></aside>
+            <div class="category-aside">
+                
             </div>
             <section>
                 <div class="board-main-head">
@@ -54,7 +54,7 @@
                     </div>
                     <div class="search-input">
                         <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <input type="text" placeholder="지식 내에서 검색">
+                        <input type="text" placeholder="Q&A 내에서 검색">
                     </div>
                     <div class="search-page">
                         <div class="search-page-num">
@@ -126,6 +126,7 @@
             </section>
             <div class="right-aside">
                 <aside th:replace="~{fragment/rankaside :: rankaside}"></aside>
+                <aside th:replace="~{fragment/priceaside :: priceaside}"></aside>
             </div>
 
         </main>

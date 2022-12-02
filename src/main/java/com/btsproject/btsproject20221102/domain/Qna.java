@@ -20,7 +20,7 @@ public class Qna {
     private int category_id;
     private int category_sub_id;
     private int status_id;
-    private String user_id;
+    private int user_id;
     private String title;
     private String info;
     private String want_info;

@@ -126,7 +126,7 @@ class BoardLoad {
                             </div>
                             <div class="board-list-state-box">
                                 <p>${data.price}point</p>
-                                <div class="board-list-state">${data.statusId}</div>
+                                <div class="board-list-state">${data.status}</div>
                             </div>
                         </div>
                         <div class="board-list-bottum">
@@ -230,107 +230,108 @@ class TimeService {
     }
 }
 
-// class BoardAsideService {
-//     static #instance = null;
+class BoardAsideService {
+    static #instance = null;
 
-//     static getInstance() {
-//         if(this.#instance == null) {
-//             this.#instance = new BoardAsideService();
-//         }
-//         return this.#instance;
-//     }
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new BoardAsideService();
+        }
+        return this.#instance;
+    }
 
-//     menuId = BoardReqParams.getInstance().getMenuId();
+    // menuId = BoardReqParams.getInstance().getMenuId();
 
-//     addAside() {
-//         const categoryAside = document.querySelector(".category-aside");
+    addAside() {
+        const categoryAside = document.querySelector(".category-aside");
         
-//         if(this.menuId == 2 || this.menuId == 3) {
-//             categoryAside.innerHTML = `
-//                 <div class="category">
-//                     <div class="category-title">
-//                         <span>카테고리</span>
-//                     </div>
-//                     <ul class="category-menu">
-//                         <li><button class="category-all blue-button">전체</button></li>
-//                         <li><button class="category-program">프로그래밍</button></li>
-//                         <li><button class="category-build">건축</button></li>
-//                         <li><button class="category-view">영상</button></li>
-//                     </ul>
-//                 </div>
-//             `;
-//             this.addButtonEvent();
-//         }
-//     }
+        // if(this.menuId == 1 || this.menuId == 2 || this.menuId == 3) {
+            categoryAside.innerHTML = `
+                <div class="category">
+                    <div class="category-title">
+                        <span>카테고리</span>
+                    </div>
+                    <ul class="category-menu">
+                        <li><button class="category-all blue-button">전체</button></li>
+                        <li><button class="category-program">프로그래밍</button></li>
+                        <li><button class="category-build">건축</button></li>
+                        <li><button class="category-view">영상</button></li>
+                    </ul>
+                </div>
+            `;
+            this.addButtonEvent();
+        // }
+    }
 
-//     addButtonEvent() {
-//         const allButton = document.querySelector(".category-all");
-//         const programButton = document.querySelector(".category-program");
-//         const buildButton = document.querySelector(".category-build");
-//         const viewButton = document.querySelector(".category-view");
+    addButtonEvent() {
+        const allButton = document.querySelector(".category-all");
+        const programButton = document.querySelector(".category-program");
+        const buildButton = document.querySelector(".category-build");
+        const viewButton = document.querySelector(".category-view");
 
-//         allButton.onclick  = () => {
-//             this.setBlueButton(0);
-//             BoardReqParams.getInstance().setPage(1);
-//             BoardReqParams.getInstance().setCategoryId(99);
-//             BoardLoad.getInstance().loadList();
-//         };
+        allButton.onclick  = () => {
+            this.setBlueButton(0);
+            QnaBoardReqParams.getInstance().setPage(1);
+            QnaBoardReqParams.getInstance().setCategoryId(99);
+            BoardLoad.getInstance().loadList();
+            SubcategoryService.getInstance().setButton();
+        };
 
-//         programButton.onclick  = () => {
-//             this.setBlueButton(1);
-//             if(this.menuId == 2) {
-//                 BoardReqParams.getInstance().setCategoryId(4);
-//                 BoardReqParams.getInstance().setPage(1);
-//                 BoardLoad.getInstance().loadList();
-//                 SubcategoryService.getInstance().setButton();
-//             }else if(this.menuId == 3) {
-//                 BoardReqParams.getInstance().setCategoryId(7);
-//                 BoardReqParams.getInstance().setPage(1);
-//                 BoardLoad.getInstance().loadList();
-//                 SubcategoryService.getInstance().setButton();
-//             }
-//         }
+        programButton.onclick  = () => {
+            this.setBlueButton(1);
+            // if(this.menuId == 2) {
+                QnaBoardReqParams.getInstance().setCategoryId(1);
+                QnaBoardReqParams.getInstance().setPage(1);
+                BoardLoad.getInstance().loadList();
+                SubcategoryService.getInstance().setButton();
+            // }else if(this.menuId == 3) {
+            //     BoardReqParams.getInstance().setCategoryId(7);
+            //     BoardReqParams.getInstance().setPage(1);
+            //     BoardLoad.getInstance().loadList();
+            //     SubcategoryService.getInstance().setButton();
+            // }
+        }
 
-//         buildButton.onclick = () => {
-//             this.setBlueButton(2);
-//             if(this.menuId == 2) {
-//                 BoardReqParams.getInstance().setCategoryId(5);
-//                 BoardReqParams.getInstance().setPage(1);
-//                 BoardLoad.getInstance().loadList();
-//                 SubcategoryService.getInstance().setButton();
-//             }else if(this.menuId == 3) {
-//                 BoardReqParams.getInstance().setCategoryId(8);
-//                 BoardReqParams.getInstance().setPage(1);
-//                 BoardLoad.getInstance().loadList();
-//                 SubcategoryService.getInstance().setButton();
-//             }
-//         }
+        buildButton.onclick = () => {
+            this.setBlueButton(2);
+            // if(this.menuId == 2) {
+                QnaBoardReqParams.getInstance().setCategoryId(2);
+                QnaBoardReqParams.getInstance().setPage(1);
+                BoardLoad.getInstance().loadList();
+                SubcategoryService.getInstance().setButton();
+            // }else if(this.menuId == 3) {
+            //     BoardReqParams.getInstance().setCategoryId(8);
+            //     BoardReqParams.getInstance().setPage(1);
+            //     BoardLoad.getInstance().loadList();
+            //     SubcategoryService.getInstance().setButton();
+            // }
+        }
 
-//         viewButton.onclick = () => {
-//             this.setBlueButton(3);
-//             if(this.menuId == 2) {
-//                 BoardReqParams.getInstance().setCategoryId(6);
-//                 BoardReqParams.getInstance().setPage(1);
-//                 BoardLoad.getInstance().loadList();
-//                 SubcategoryService.getInstance().setButton();
-//             }else if(this.menuId == 3) {
-//                 BoardReqParams.getInstance().setCategoryId(9);
-//                 BoardReqParams.getInstance().setPage(1);
-//                 BoardLoad.getInstance().loadList();
-//                 SubcategoryService.getInstance().setButton();
-//             }
-//         }
-//     }
+        viewButton.onclick = () => {
+            this.setBlueButton(3);
+            // if(this.menuId == 2) {
+                QnaBoardReqParams.getInstance().setCategoryId(3);
+                QnaBoardReqParams.getInstance().setPage(1);
+                BoardLoad.getInstance().loadList();
+                SubcategoryService.getInstance().setButton();
+            // }else if(this.menuId == 3) {
+            //     BoardReqParams.getInstance().setCategoryId(9);
+            //     BoardReqParams.getInstance().setPage(1);
+            //     BoardLoad.getInstance().loadList();
+            //     SubcategoryService.getInstance().setButton();
+            // }
+        }
+    }
 
-//     setBlueButton(index) {
-//         const categoryButtons = document.querySelectorAll(".category-menu button");
+    setBlueButton(index) {
+        const categoryButtons = document.querySelectorAll(".category-menu button");
        
-//         categoryButtons.forEach(button => {
-//             button.classList.remove("blue-button");
-//         });
-//         categoryButtons[index].classList.add("blue-button");
-//     }
-// }
+        categoryButtons.forEach(button => {
+            button.classList.remove("blue-button");
+        });
+        categoryButtons[index].classList.add("blue-button");
+    }
+}
 
 class WriteButtonService {
     static #instance = null;
@@ -369,18 +370,19 @@ class SubcategoryService {
     setButton(){
         const categoryId = QnaBoardReqParams.getInstance().getCategoryId();
         const subcategory = document.querySelector(".subcategory");
-
-        if(categoryId == 4) {
+        if(categoryId == 99) {
+            subcategory.innerHTML = "";
+        }else if(categoryId == 1) {
             subcategory.innerHTML = `
                 <ul class="subcategory-ul">
-                    <li><button type="button" class="subcategory-button" value="8">JAVA</button></li>
-                    <li><button type="button" class="subcategory-button" value="9">PYTHON</button></li>
-                    <li><button type="button" class="subcategory-button" value="10">C</button></li>
+                    <li><button type="button" class="subcategory-button" value="8">대기중</button></li>
+                    <li><button type="button" class="subcategory-button" value="9">진행중</button></li>
+                    <li><button type="button" class="subcategory-button" value="10">답변완료</button></li>
                 </ul>
                 <button type="button" class="subcategory-all blue-button">전체</button>  
             `;
             this.addButtonEvent();
-        }else if(categoryId == 5) {
+        }else if(categoryId == 2) {
             subcategory.innerHTML = `
                 <ul class="subcategory-ul">
                     <li><button type="button" class="subcategory-button" value="11">AUTOCAD</button></li>
@@ -389,7 +391,7 @@ class SubcategoryService {
                 <button type="button" class="subcategory-all blue-button">전체</button>  
             `;
             this.addButtonEvent();
-        }else if(categoryId == 6) {
+        }else if(categoryId == 3) {
             subcategory.innerHTML = `
                 <ul class="subcategory-ul">
                     <li><button type="button" class="subcategory-button" value="13">Primiere</button></li>
@@ -398,37 +400,38 @@ class SubcategoryService {
                 <button type="button" class="subcategory-all blue-button">전체</button>  
             `;
             this.addButtonEvent();
-        }else if(categoryId == 7) {
-            subcategory.innerHTML = `
-                <ul class="subcategory-ul">
-                    <li><button type="button" class="subcategory-button" value="15">일상</button></li>
-                    <li><button type="button" class="subcategory-button" value="16">팁</button></li>
-                    <li><button type="button" class="subcategory-button" value="17">모임&스터디</button></li>
-                </ul>
-                <button type="button" class="subcategory-all blue-button">전체</button>  
-            `;
-            this.addButtonEvent();
-        }else if(categoryId == 8) {
-            subcategory.innerHTML = `
-                <ul class="subcategory-ul">
-                    <li><button type="button" class="subcategory-button" value="18">일상</button></li>
-                    <li><button type="button" class="subcategory-button" value="19">팁</button></li>
-                    <li><button type="button" class="subcategory-button" value="20">모임&스터디</button></li>
-                </ul>
-                <button type="button" class="subcategory-all blue-button">전체</button>  
-            `;
-            this.addButtonEvent();
-        }else if(categoryId == 9) {
-            subcategory.innerHTML = `
-                <ul class="subcategory-ul">
-                    <li><button type="button" class="subcategory-button" value="21">일상</button></li>
-                    <li><button type="button" class="subcategory-button" value="22">팁</button></li>
-                    <li><button type="button" class="subcategory-button" value="23">모임&스터디</button></li>
-                </ul>
-                <button type="button" class="subcategory-all blue-button">전체</button>  
-            `;
-            this.addButtonEvent();
         }
+        // else if(categoryId == 7) {
+        //     subcategory.innerHTML = `
+        //         <ul class="subcategory-ul">
+        //             <li><button type="button" class="subcategory-button" value="15">일상</button></li>
+        //             <li><button type="button" class="subcategory-button" value="16">팁</button></li>
+        //             <li><button type="button" class="subcategory-button" value="17">모임&스터디</button></li>
+        //         </ul>
+        //         <button type="button" class="subcategory-all blue-button">전체</button>  
+        //     `;
+        //     this.addButtonEvent();
+        // }else if(categoryId == 8) {
+        //     subcategory.innerHTML = `
+        //         <ul class="subcategory-ul">
+        //             <li><button type="button" class="subcategory-button" value="18">일상</button></li>
+        //             <li><button type="button" class="subcategory-button" value="19">팁</button></li>
+        //             <li><button type="button" class="subcategory-button" value="20">모임&스터디</button></li>
+        //         </ul>
+        //         <button type="button" class="subcategory-all blue-button">전체</button>  
+        //     `;
+        //     this.addButtonEvent();
+        // }else if(categoryId == 9) {
+        //     subcategory.innerHTML = `
+        //         <ul class="subcategory-ul">
+        //             <li><button type="button" class="subcategory-button" value="21">일상</button></li>
+        //             <li><button type="button" class="subcategory-button" value="22">팁</button></li>
+        //             <li><button type="button" class="subcategory-button" value="23">모임&스터디</button></li>
+        //         </ul>
+        //         <button type="button" class="subcategory-all blue-button">전체</button>  
+        //     `;
+        //     this.addButtonEvent();
+        // }
     }
 
     addButtonEvent() {
@@ -738,7 +741,7 @@ class BoardService {
     }
 
     constructor() {
-        // BoardAsideService.getInstance().addAside();
+        BoardAsideService.getInstance().addAside();
         BoardLoad.getInstance().loadList();
         // ShowListService.getInstance().addButtonEvent();
         // SearchService.getInstance().addEvent();

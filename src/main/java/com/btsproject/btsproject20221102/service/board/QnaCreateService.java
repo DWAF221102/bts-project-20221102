@@ -9,7 +9,6 @@ import java.util.List;
 public interface QnaCreateService {
     public boolean qnaCreate(QnaCreateReqDto qnaCreateReqDto) throws Exception;
 
-//    public List<QnaCreateRespDto> getQnaList(int pageNumber, String category, String searchText, int id) throws Exception;
 
     public QnaCreateRespDto getQnaArticle(int id) throws Exception;
 
