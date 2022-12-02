@@ -195,17 +195,15 @@ section {
 
 .comment-write {
     display: flex;
-
     width: 100%;
-    border: 1px solid #dbdbdb;
-    border-radius: 5px;
-
+    
     margin-top: 40px;
     padding: 24px;
 }
 
-.form-write-container{
-    width: 100%;
+.grey-border {
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
 }
 
 .comment-textarea-container{
@@ -214,7 +212,7 @@ section {
 
 .comment-textarea{
     resize: none;
-    width:100%; 
+    width: 720px; 
     height: 200px;
 }
 
@@ -225,12 +223,21 @@ section {
 }
 
 .write-button button {
-    border: none;
     border-radius: 5px;
     padding: 8px 32px;
 
-    color: white;
     font-weight: 600;
+}
+
+.write-button button:nth-child(1) {
+    margin-right: 8px;
+    border: 1px solid #dbdbdb;
+    background-color: white;
+}
+
+.write-button button:nth-child(2) {
+    border: none;
+    color: white;
     background-color: rgb(0, 144, 249);
 }
 
@@ -262,6 +269,7 @@ section {
 .recomment-button {
     display: flex;
     align-items: center;
+    margin-bottom: 8px;
 }
 
 .recomment-button button {
@@ -273,12 +281,6 @@ section {
     text-decoration: underline;
 }
 
-.rerecomment-write {
-    border: none;
-
-    color: #7f7f7f;
-    background-color: white;
-}
 .show-recomment {
     display: flex;
     align-items: center;
@@ -288,18 +290,32 @@ section {
     color: rgb(0, 144, 249);
 }
 
-.fa-chevrons-down {
-    width: 24px;
-    height: 24px;
+.recomment-write {
+    display: flex;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    padding: 24px;
 
-    margin-right: 4px;
-    color: rgb(0, 144, 249);
+    color: #7f7f7f;
+    background-color: white;
+}
+
+.recomment-write-container{
+    display: flex;
+    flex-direction: column;
 }
 
 .recomment-write-button {
     display: flex;
     justify-content: flex-end;
     margin-top: 12px;
+}
+
+.recomment-textarea {
+    resize: none;
+    width: 700px;
+    height: 200px;
+
 }
 
 .recomment-write-button button {
@@ -310,15 +326,14 @@ section {
 }
 
 .recomment-write-button button:nth-child(1) {
-    margin-right: 8px;
-    border: 1px solid #dbdbdb;
-    background-color: white;
-}
-
-.recomment-write-button button:nth-child(2) {
     border: none;
     color: white;
     background-color: rgb(0, 144, 249);
+}
+
+.recomment-content {
+    margin: 8px 0px;
+    padding: 6px 0px;
 }
 
 .blue-button {

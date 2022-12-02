@@ -164,6 +164,7 @@ class NullCheck {
             return false;
         }
     }
+
 }
 
 class WriteApi {
