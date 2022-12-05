@@ -19,7 +19,6 @@ public class ArticleApi {
 
     @PutMapping("/viewcount")
     public ResponseEntity<?> viewCount(@RequestParam int id) throws Exception {
-        log.info("{}", id);
 
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.viewCount(id)));
     }

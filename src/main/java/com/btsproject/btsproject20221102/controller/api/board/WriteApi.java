@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 
 @Slf4j
 @RequestMapping("/api")
@@ -30,20 +32,19 @@ public class WriteApi {
 //            boardService.saveBoard(writeReqDto);
 //        }
 
-        ;
-        log.info("userId >> {}", writeReqDto.getUserId());
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.saveBoard(writeReqDto)));
     }
 
     @PostMapping("/uploadimg")
-    public ResponseEntity<?> uploadImg(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> uploadImg(@RequestParam MultipartFile file) {
 
 
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.uploadImgService(file)));
     }
 
     @DeleteMapping("/img/delete")
-    public ResponseEntity<?> deleteImg(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> deleteImg(@RequestParam List<String> file) {
+        log.info("file: " + file);
 
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", null));
     }

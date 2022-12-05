@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/board/write.css">
 
-    <title>커뮤니티글 작성하기</title>
+    <title>커뮤니티글 수정하기</title>
 </head>
 <body>
     <div class="container">
@@ -97,14 +97,15 @@
                     </div>
                 </form >
                 <div class="write-buttons">
-                    <button type="button" class="write-button">등록</button>
+                    <button type="button" class="update-button">수정</button>
                     <button type="button" class="cancel-button">취소</button>
+                    <button type="button" class="delete-button">삭제</button>
                 </div>
             </section>
         </main>
         <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
     <script src="/static/js/board/communityWrite.js"></script>
-    <script src="/static/js/board/write.js"></script>
+    <script src="/static/js/board/update.js"></script>
 </body>
 </html>

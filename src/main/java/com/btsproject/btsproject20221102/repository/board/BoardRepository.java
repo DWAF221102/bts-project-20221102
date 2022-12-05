@@ -1,9 +1,6 @@
 package com.btsproject.btsproject20221102.repository.board;
 
-import com.btsproject.btsproject20221102.domain.Article;
-import com.btsproject.btsproject20221102.domain.Board;
-import com.btsproject.btsproject20221102.domain.BoardImgFile;
-import com.btsproject.btsproject20221102.domain.LoadList;
+import com.btsproject.btsproject20221102.domain.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -25,9 +22,9 @@ public interface BoardRepository {
     public int likeRemove(int id) throws Exception;
     public int commentWrite(Map<String, Object> map) throws Exception;
     public int recommentWrite(Map<String, Object> map) throws Exception;
-
     public List<BoardImgFile> getBoardImgList(int boardId) throws Exception;
-
     public int deleteArticle(int id) throws Exception;
 
+//    -----update------
+    public UpdateArticle loadUpdateArticle(int id) throws Exception;
 }

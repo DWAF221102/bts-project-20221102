@@ -142,7 +142,7 @@ class BoardLoad {
                     <li>
                         <div class="board-list-user">
                             <div class="user-img">
-                                <a href=""> <img src="${data.userImg}"></a>
+                                <a href=""> <img src="/image/user/${data.userImg}"></a>
                             </div>
                             <div class="user-detail">
                                 <a href="">${data.nickname}</a>
@@ -265,10 +265,10 @@ class BoardAsideService {
                         <span>카테고리</span>
                     </div>
                     <ul class="category-menu">
-                        <li><button class="category-all blue-button">전체</button></li>
-                        <li><button class="category-program">프로그래밍</button></li>
-                        <li><button class="category-build">건축</button></li>
-                        <li><button class="category-view">영상</button></li>
+                        <li><button type="button" class="category-all blue-button">전체</button></li>
+                        <li><button type="button" class="category-program">프로그래밍</button></li>
+                        <li><button type="button" class="category-build">건축</button></li>
+                        <li><button type="button" class="category-view">영상</button></li>
                     </ul>
                 </div>
             `;

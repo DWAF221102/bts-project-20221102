@@ -138,6 +138,14 @@ public class PageController {
     @GetMapping("/article/{id}")
     public String article(@PathVariable int id) { return "board/article"; }
 
+    // update
+    @GetMapping("/knowledge/update/{id}")
+    public String knowledgeUpdate(@PathVariable int id) { return "board/knowledgeupdate"; }
+    @GetMapping("/community/update/{id}")
+    public String communityUpdate(@PathVariable int id) { return "board/communityUpdate"; }
+    @GetMapping("/notice/update/{id}")
+    public String noticeUpdate(@PathVariable int id) { return "board/noticeUpdate"; }
+
 
     // admin 페이지
     @GetMapping("/admin")
