@@ -186,9 +186,12 @@
         <if test="subcategory_id != 99">
             and qbm.category_sub_id = #{subcategory_id}
         </if>
-<!--        <if test='searchValue != null || searchValue !=""'>-->
-<!--            and (um.nickname like concat('%', #{searchValue}, '%') or qbm.title like concat('%', #{searchValue}, '%'))-->
-<!--        </if>-->
+        <if test='searchValue != null || searchValue !=""'>
+            and (um.nickname like concat('%', #{searchValue}, '%') or qbm.title like concat('%', #{searchValue}, '%'))
+        </if>
+        <if test="status_id != 99">
+            and qbm.status_id = #{status_id}
+        </if>
 
         <if test='show_list == "1"'>
             ORDER BY qbm.create_date DESC

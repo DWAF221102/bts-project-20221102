@@ -12,6 +12,7 @@ class QnaBoardReqParams {
     // menuId = this.setMenuId();
     categoryId = 99;
     subcategoryId = "99";
+    statusId = "99";
     showList = "1";
     searchValue = "";
 
@@ -38,6 +39,9 @@ class QnaBoardReqParams {
     setSubcategoryId(subcategoryId){this.subcategoryId = subcategoryId;}
     getSubcategoryId(){return this.subcategoryId;}
 
+    setStatusId(statusId){this.statusId = statusId;}
+    getStatusId(){return this.statusId;}
+
     setShowList(showList){this.showList = showList;}
     getShowList(){return this.showList;}
 
@@ -50,6 +54,7 @@ class QnaBoardReqParams {
             // menuId: this.menuId,
             categoryId: this.categoryId,
             subcategoryId: this.subcategoryId,
+            statusId: this.statusId,
             showList: this.showList,
             searchValue: this.searchValue
         }
@@ -346,12 +351,13 @@ class WriteButtonService {
     addButtonEvent() {
         const writeButton = document.querySelector(".write button");
         const url = location.href;
-        const menu = url.substring(url.lastIndexOf("/") + 1);
+        // const menu = url.substring(url.lastIndexOf("/") + 1);
         writeButton.onclick = () => {
             if(principalUser != null) {
-                location.href = `/${menu}/write`;
+                location.href = `/question/write`;
             }else {
                 alert("로그인 후 작성가능합니다.");
+                location.href = `/login`;
             }
         }
     }
@@ -371,22 +377,31 @@ class SubcategoryService {
         const categoryId = QnaBoardReqParams.getInstance().getCategoryId();
         const subcategory = document.querySelector(".subcategory");
         if(categoryId == 99) {
-            subcategory.innerHTML = "";
+            subcategory.innerHTML = `
+                <ul class="subcategory-ul">
+                    <li><button type="button" class="subcategory-button" value="1">대기중</button></li>
+                    <li><button type="button" class="subcategory-button" value="2">진행중</button></li>
+                    <li><button type="button" class="subcategory-button" value="3">답변완료</button></li>
+                </ul>
+                <button type="button" class="subcategory-all blue-button "  value="99">전체</button>  
+            `;
+            this.addButtonEvent();
         }else if(categoryId == 1) {
             subcategory.innerHTML = `
                 <ul class="subcategory-ul">
-                    <li><button type="button" class="subcategory-button" value="8">대기중</button></li>
-                    <li><button type="button" class="subcategory-button" value="9">진행중</button></li>
-                    <li><button type="button" class="subcategory-button" value="10">답변완료</button></li>
+                    <li><button type="button" class="subcategory-button" value="1">대기중</button></li>
+                    <li><button type="button" class="subcategory-button" value="2">진행중</button></li>
+                    <li><button type="button" class="subcategory-button" value="3">답변완료</button></li>
                 </ul>
-                <button type="button" class="subcategory-all blue-button">전체</button>  
+                <button type="button" class="subcategory-all blue-button" value="99">전체</button>  
             `;
             this.addButtonEvent();
         }else if(categoryId == 2) {
             subcategory.innerHTML = `
                 <ul class="subcategory-ul">
-                    <li><button type="button" class="subcategory-button" value="11">AUTOCAD</button></li>
-                    <li><button type="button" class="subcategory-button" value="12">3D</button></li>
+                    <li><button type="button" class="subcategory-button" value="1">대기중</button></li>
+                    <li><button type="button" class="subcategory-button" value="2">진행중</button></li>
+                    <li><button type="button" class="subcategory-button" value="3">답변완료</button></li>
                 </ul>
                 <button type="button" class="subcategory-all blue-button">전체</button>  
             `;
@@ -394,44 +409,15 @@ class SubcategoryService {
         }else if(categoryId == 3) {
             subcategory.innerHTML = `
                 <ul class="subcategory-ul">
-                    <li><button type="button" class="subcategory-button" value="13">Primiere</button></li>
-                    <li><button type="button" class="subcategory-button" value="14">adobe</button></li>
+                    <li><button type="button" class="subcategory-button" value="1">대기중</button></li>
+                    <li><button type="button" class="subcategory-button" value="2">진행중</button></li>
+                    <li><button type="button" class="subcategory-button" value="3">답변완료</button></li>
                 </ul>
                 <button type="button" class="subcategory-all blue-button">전체</button>  
             `;
             this.addButtonEvent();
         }
-        // else if(categoryId == 7) {
-        //     subcategory.innerHTML = `
-        //         <ul class="subcategory-ul">
-        //             <li><button type="button" class="subcategory-button" value="15">일상</button></li>
-        //             <li><button type="button" class="subcategory-button" value="16">팁</button></li>
-        //             <li><button type="button" class="subcategory-button" value="17">모임&스터디</button></li>
-        //         </ul>
-        //         <button type="button" class="subcategory-all blue-button">전체</button>  
-        //     `;
-        //     this.addButtonEvent();
-        // }else if(categoryId == 8) {
-        //     subcategory.innerHTML = `
-        //         <ul class="subcategory-ul">
-        //             <li><button type="button" class="subcategory-button" value="18">일상</button></li>
-        //             <li><button type="button" class="subcategory-button" value="19">팁</button></li>
-        //             <li><button type="button" class="subcategory-button" value="20">모임&스터디</button></li>
-        //         </ul>
-        //         <button type="button" class="subcategory-all blue-button">전체</button>  
-        //     `;
-        //     this.addButtonEvent();
-        // }else if(categoryId == 9) {
-        //     subcategory.innerHTML = `
-        //         <ul class="subcategory-ul">
-        //             <li><button type="button" class="subcategory-button" value="21">일상</button></li>
-        //             <li><button type="button" class="subcategory-button" value="22">팁</button></li>
-        //             <li><button type="button" class="subcategory-button" value="23">모임&스터디</button></li>
-        //         </ul>
-        //         <button type="button" class="subcategory-all blue-button">전체</button>  
-        //     `;
-        //     this.addButtonEvent();
-        // }
+
     }
 
     addButtonEvent() {
@@ -442,6 +428,7 @@ class SubcategoryService {
             this.setBlueButton(99);
             QnaBoardReqParams.getInstance().setPage(1);
             QnaBoardReqParams.getInstance().setSubcategoryId("99");
+            QnaBoardReqParams.getInstance().setStatusId("99");
             BoardLoad.getInstance().loadList();
         }
 
@@ -450,7 +437,8 @@ class SubcategoryService {
             button.onclick = () => {
                 this.setBlueButton(i);
                 QnaBoardReqParams.getInstance().setPage(1);
-                QnaBoardReqParams.getInstance().setSubcategoryId(button.value);
+                // QnaBoardReqParams.getInstance().setSubcategoryId(button.value);
+                QnaBoardReqParams.getInstance().setStatusId(button.value);
                 BoardLoad.getInstance().loadList();
             }
         }
@@ -743,14 +731,15 @@ class BoardService {
     constructor() {
         BoardAsideService.getInstance().addAside();
         BoardLoad.getInstance().loadList();
-        // ShowListService.getInstance().addButtonEvent();
-        // SearchService.getInstance().addEvent();
-        // WriteButtonService.getInstance().addButtonEvent();
+        SubcategoryService.getInstance().setButton();
+        ShowListService.getInstance().addButtonEvent();
+        SearchService.getInstance().addEvent();
+        WriteButtonService.getInstance().addButtonEvent();
     }
 
 }
 
 window.onload = () => {
-    new BoardService();
+    BoardService.getInstance();
      
 } 

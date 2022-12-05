@@ -70,14 +70,22 @@ public class QnaBoardServiceImpl implements QnaBoardService{
     }
 
     @Override
-    public List<QnaBoardRespDto> loadQnaBoard(int page, int categoryId, String subcategoryId, String showList, String searchValue) throws Exception {
+    public List<QnaBoardRespDto> loadQnaBoard(int page,
+                                              int categoryId,
+                                              String subcategoryId,
+                                              String statusId,
+                                              String showList,
+                                              String searchValue) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("page", (page - 1) * 10);
 //        map.put("menu_id", menuId);
 
         map.put("category_id", categoryId);
-        log.info("cateogy .. {}",map.get("category_id"));
+        log.info("category .. {}",map.get("category_id"));
         map.put("subcategory_id", Integer.parseInt(subcategoryId));
+        log.info("subCateogy .. {}",map.get("subcategory_id"));
+        map.put("status_id", Integer.parseInt(statusId));
+        log.info("statusId .. {}",map.get("status_id"));
         map.put("show_list", showList);
         map.put("searchValue", searchValue);
 
