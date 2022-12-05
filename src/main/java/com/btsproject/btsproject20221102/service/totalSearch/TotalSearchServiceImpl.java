@@ -1,6 +1,8 @@
 package com.btsproject.btsproject20221102.service.totalSearch;
 
 import com.btsproject.btsproject20221102.dto.board.BoardRespDto;
+import com.btsproject.btsproject20221102.dto.board.QnaBoardRespDto;
+import com.btsproject.btsproject20221102.dto.index.IndexBoardListRespDto;
 import com.btsproject.btsproject20221102.repository.TotalSearchRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,5 +35,17 @@ public class TotalSearchServiceImpl implements TotalSearchService{
         });
 
         return result;
+    }
+
+    @Override
+    public List<QnaBoardRespDto> loadSearchQna(String searchValue) throws Exception {
+        List<QnaBoardRespDto> list = new ArrayList<QnaBoardRespDto>();
+
+        totalSearchRepository.loadSearchQna(searchValue).forEach(qna -> {
+//            log.info("qna :: {}", qna);
+            list.add(qna.toQnaBoardRespDto());
+        });
+
+        return list;
     }
 }
