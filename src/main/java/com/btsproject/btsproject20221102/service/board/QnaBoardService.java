@@ -19,6 +19,7 @@ public interface QnaBoardService {
 
                                               int categoryId,
                                               String subcategoryId,
+                                              String statusId,
                                               String showList,
                                               String searchValue) throws Exception;
 

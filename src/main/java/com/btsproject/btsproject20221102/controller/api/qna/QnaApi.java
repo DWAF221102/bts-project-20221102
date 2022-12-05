@@ -61,10 +61,11 @@ public class QnaApi {
     public ResponseEntity<?> loadQnaBoard(@RequestParam int page,
                                          @RequestParam @Nullable int categoryId,
                                          @RequestParam @Nullable String subcategoryId,
+                                         @RequestParam @Nullable String statusId,
                                          @RequestParam @Nullable String showList,
                                          @RequestParam @Nullable String searchValue) throws Exception {
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully",
-                qnaBoardService.loadQnaBoard(page, categoryId, subcategoryId, showList, searchValue)));
+                qnaBoardService.loadQnaBoard(page, categoryId, subcategoryId, statusId, showList, searchValue)));
 
      }
 }

@@ -21,6 +21,20 @@ function setSubcategory() {
             <option value="3">python</option>
             <option value="2">c</option>
         `;
+    }else if(categoryValue == "2") {
+        subcategory.innerHTML = "";
+        subcategory.innerHTML = `
+            <option value="none" selected>subcategory를 선택해주세요</option>
+            <option value="4">Autocad</option>
+            <option value="5">3D</option>
+        `;
+    }else if(categoryValue == "3") {
+        subcategory.innerHTML = "";
+        subcategory.innerHTML = `
+            <option value="none" selected>subcategory를 선택해주세요</option>
+            <option value="6">Preimere</option>
+            <option value="7">Adobe</option>
+        `;
     }
     // else if(categoryValue == "2") {
     //     subcategory.innerHTML = "";
@@ -71,7 +85,7 @@ function getImagePreview() {
     reader.onload = (e) => {
         productImages.innerHTML +=`
             <div class="img-box">
-                <i class="fa-solid fa-xmark"><i>
+                <i class="fa-solid fa-xmark"></i>
                 <img class="product-img" src="${e.target.result}">
             </div>
         `;
@@ -83,7 +97,7 @@ function getImagePreview() {
         reader.onload = (e) => {
             productImages.innerHTML +=`
                 <div class="img-box">
-                    <i class="fa-solid fa-xmark"><i>
+                    <i class="fa-solid fa-xmark"></i>
                     <img class="product-img" src="${e.target.result}">
                 </div>
             `;
