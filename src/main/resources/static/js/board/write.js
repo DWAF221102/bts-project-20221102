@@ -74,13 +74,9 @@ class WriteFormData {
         const title = document.querySelector("#title");
         const content = document.querySelector("#summernote");
 
-        if(principalUser == null) {
-            let menu = WriteFormData.getInstance().getMenu();
-            alert("로그인 후 작성 가능합니다.");
-            location.href = `/${menu}`;
-        }else {
-            this.formData.append("userId", principalUser.id);
-        }
+        
+        this.formData.append("userId", principalUser.id);
+        
         if(menu == "knowledge") {
             this.formData.append("menu", "2");
         }else if(menu == "community") {
@@ -97,15 +93,10 @@ class WriteFormData {
     }
 
     getMenu() {
-        const uri = location.href;
-        const menu = uri.substring(uri.indexOf("/", uri.indexOf("/") + 2) + 1, uri.lastIndexOf("/"));
+        const url = location.href;
+        const menu = url.substring(url.indexOf("/", url.indexOf("/") + 2) + 1, url.lastIndexOf("/"));
 
         return menu;
-    }
-
-    setContent() { 
-        $('#summernote').summernote('pasteHTML', data);
-        $('#summernote').summernote('code'); 
     }
 
     uploadImg(file, editor) {
@@ -149,11 +140,11 @@ class NullCheck {
     nullCheck(formData) {       
         if(formData.get("category") != "none" && formData.get("subcategory") != "none") {
             if(formData.get("title") != null && formData.get("title") != "" && formData.get("title").replaceAll(" ", "") != "") {
-                if(formData.get("content") != null && formData.get("content") != "" && formData.get("content") != "<p><br></p>" && formData.get("content") != "<p>&nbsp;</p>" && formData.get("content") != "<p><br></p><p><br></p>") {
-                    return true;
-                }else {
+                if($('#summernote').summernote('isEmpty')) {
                     alert("내용을 입력해주세요");
                     return false;
+                }else {
+                    return true;
                 }
             }else {
                 alert("제목을 입력해주세요");
@@ -198,29 +189,6 @@ class WriteApi {
             }
         })
     } 
-
-    deleteImg() {
-        const tempFile = new FormData(); 
-        tempFile.append("tempName",WriteFormData.getInstance().getFormData().get("tempFile"));
-
-        $.ajax({
-            async:false,
-            type: "delete",
-            url:"/api/img/delete",
-            enctype: "multipart/form-data",
-            contentType: false,
-            processData: false,
-            data: tempFile,
-            dataType: "json",
-            success: (response) => {
-                console.log(response);
-            },
-            error: (error) => {
-                console.log(error);
-            }
-             
-        });
-    }
     
 }
 
@@ -239,8 +207,8 @@ class WriteButtons {
         const writeButton = document.querySelector(".write-button");
 
         cancelButton.onclick = () => {
-            // WriteApi.getInstance().deleteImg();
             if(confirm("작성을 취소 하시겠습니까?")) {
+
                 location.href = `/${WriteFormData.getInstance().getMenu()}`;
             }
             

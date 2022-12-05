@@ -170,8 +170,6 @@ class ArticleService {
         }else if(responseData.menuName == "공지사항"){
             articleCategory.innerHTML = `
                 <a href="/notice">${responseData.menuName}</a>
-                <span>/</span>
-                <span>${responseData.categoryName}</span>
             `;
         }
     }
@@ -205,7 +203,7 @@ class ArticleService {
         let likeCount = likes.length;
 
         userStar.innerHTML = `
-            <button class="user-star-button"><i class="fa-regular fa-thumbs-up"></i></button>
+            <button type="button" class="user-star-button"><i class="fa-regular fa-thumbs-up"></i></button>
             <span>${likeCount}</span>
         `;
 
@@ -215,8 +213,7 @@ class ArticleService {
         if(principalUser != null) {
             userId = principalUser.id;
         }
-        
-        if(likeCount =! 0) {
+        if(likeCount != 0) {
             likes.forEach(like => {
                 if(like.from_id == userId) {
                     userStarButton.classList.add("blue-button");
@@ -236,7 +233,8 @@ class ArticleService {
                     }
                 }
             });
-        }else {
+        }else{
+            console.log("0");
             userStarButton.onclick = () => {
                 if(userId != 0) {
                     userStarButton.classList.add("blue-button");
@@ -259,11 +257,50 @@ class ArticleService {
     }
 
     setBottumCategory(responseData) {
-        const articleInfo = document.querySelector(".article-info");
-        articleInfo.innerHTML = `
-            <span>${responseData.categoryName}</span>
-            <span>${responseData.subcategoryName}</span>
-        `;
+        if(responseData.menuName != "공지사항"){
+            const articleInfo = document.querySelector(".article-info");
+            articleInfo.innerHTML = `
+                <div class="article-categories">
+                    <span>${responseData.categoryName}</span>
+                    <span>${responseData.subcategoryName}</span>
+                </div>
+            `;
+        }
+    }
+
+    setUpdateButton(responseData) {
+        let userId = 0;
+        if(principalUser != null) {
+            userId = principalUser.id;
+        }
+        if(userId != 0) {
+            if(userId == responseData.userId){
+                const articleInfo = document.querySelector(".article-info"); 
+
+                articleInfo.innerHTML += `
+                    <div>
+                        <button type="button" class="update-button">
+                            <i class="fa-regular fa-pen-to-square"></i>수정하기
+                        </button>
+                    </div>
+                `;
+
+                const updateButton = document.querySelector(".update-button");
+
+                updateButton.onclick = () => {
+                    if(confirm("게시물을 수정하시겠습니까?")) {
+                        if(responseData.menuName == "지식"){
+                            location.href = "/knowledge/update/" + responseData.id;
+                        }else if(responseData.menuName == "커뮤니티"){
+                            location.href = "/community/update/" + responseData.id;
+                        }else if(responseData.menuName == "지식"){
+                            location.href = "/notice/update/" + responseData.id;
+                        }
+                    }
+                }
+            }
+
+        }
     }
 }
 
@@ -309,8 +346,8 @@ class CommentService {
                         <textarea class="comment-textarea grey-border" placeholder="댓글을 입력해주세요."></textarea>
                     </div>
                     <div class="write-button">
-                        <button>취소</button>
-                        <button>댓글 쓰기</button>
+                        <button type="button">취소</button>
+                        <button type="button">댓글 쓰기</button>
                     </div>
                 </div>
             `;
@@ -326,8 +363,6 @@ class CommentService {
             writeButtons[1].onclick = () => {
                 const textarea = document.querySelector(".comment-textarea");
                 let textValue = textarea.value;
-                console.log("textValue: " + textarea.value);
-                console.log(textValue);
                 if(confirm("댓글을 작성하시겠습니까???")) {
                     if(textValue == "" || textValue == " " || textValue == null || textValue.replaceAll(" ", "") == "") {
                         alert("내용을 입력해주세요.");
@@ -370,16 +405,13 @@ class CommentService {
                         </div>
                         <div class="recomment-container">
                             <div class="recomment-button">
-                                <button class="show-recomment">
-                                    <span>댓글 모두 숨기기</span>
-                                </button>
-                                <button class="write-reccoment-button"><span>댓글 쓰기</span></button>
+                                <button type="button" class="write-reccoment-button"><span>댓글 쓰기</span></button>
                             </div>
                             <div class="recomment">
                                 <div class="delete-recomment">
                                     
                                 </div>
-                                <ul class="recomment-ul">
+                                <ul class="recomment-ul none">
                                    
                                 </ul>
                             </div>
@@ -387,13 +419,17 @@ class CommentService {
                     </li> 
                 `;
 
+                
+
                 const recommentUl = document.querySelector(".recomment-ul");
                 
                 let recomment = comment[index].recomment;
                 if(recomment.length != 0) {
+                    this.recommentButton(index, recomment);
+
                     recomment.forEach(data => {
                         recommentUl.innerHTML += `
-                            <li>
+                            <li class="">
                                 <div class="user-info">
                                     <div class="user-info-container">
                                         <div class="user-img">
@@ -416,11 +452,51 @@ class CommentService {
                         `;
                     });
                 }
+               
             }
+        }
+
+    }
+
+    recommentButton(index, recomment) {
+        const recommentButton = document.querySelectorAll(".recomment-button");
+        let recommentCount = recomment.length;
+        recommentButton[index].innerHTML = `
+            <button type="button" class="show-recomment">
+                <span class="show-recomment-span">댓글 ${recommentCount}개 보기</span>
+            </button>
+            <button type="button" class="write-reccoment-button"><span>댓글 쓰기</span></button>
+        `;
+        let showRecommentButton = document.querySelectorAll(".show-recomment");
+        let recommentUl = document.querySelectorAll(".recomment-ul");
+        let showRecommentSpan = document.querySelectorAll(".show-recomment-span");
+
+        this.showRecomment(showRecommentButton[index], showRecommentSpan[index], recommentCount, recommentUl[index]);
+
+        
+    }
+
+    showRecomment(button, div, recommentCount, recommentUl) {
+        button.onclick = () => {
+            div.innerText = "댓글 모두 숨기기";
+            
+            recommentUl.classList.remove("none");
+
+            this.removeRecomment(button, div, recommentCount, recommentUl);
+        }
+    }
+        
+    removeRecomment(button, div, recommentCount, recommentUl) {
+        button.onclick = () => {
+            div.innerText = `댓글 ${recommentCount}개 보기`;
+            
+            recommentUl.classList.add("none");     
+            
+            this.showRecomment(button, div, recommentCount, recommentUl);
         }
     }
 
-    showRecommentWrite() {
+    showRecommentWrite(responseData) {
         const writeRecommentButton = document.querySelectorAll(".write-reccoment-button");
         const deleteRecomment = document.querySelectorAll(".delete-recomment");
 
@@ -445,13 +521,13 @@ class CommentService {
                                     <textarea class="recomment-textarea" placeholder="댓글을 입력해주세요."></textarea>
                                 </div>
                                 <div class="recomment-write-button">
-                                    <button class="button-recomment">댓글 쓰기</button>
+                                    <button type="button" class="button-recomment">댓글 쓰기</button>
                                 </div>
                             </div>    
                         </div>
                     `;  
-                
-                    this.deleteRecommentWrite();
+                    this.recommentButtonEvent(responseData);
+                    this.deleteRecommentWrite(responseData);
                 }else {
                     alert("로그인후 작성가능합니다.");
                 }
@@ -462,7 +538,7 @@ class CommentService {
     }
     
 
-    deleteRecommentWrite() {
+    deleteRecommentWrite(responseData) {
         const writeRecommentButton = document.querySelectorAll(".write-reccoment-button");
         const deleteRecomment = document.querySelectorAll(".delete-recomment");
 
@@ -470,7 +546,7 @@ class CommentService {
             writeRecommentButton[i].onclick = () => {
                 deleteRecomment[i].innerHTML = "";
                 
-                this.showRecommentWrite();
+                this.showRecommentWrite(responseData);
             }
         }
     }
@@ -480,26 +556,24 @@ class CommentService {
         if(principalUser != null) {
             userId = principalUser.id;
         }
-        console.log("제발");
         const recommentButton = document.querySelectorAll(".button-recomment");
-        const recomentTextarea = document.querySelectorAll(".recomment-textarea");
+        
 
         for(let i = 0; i < recommentButton.length; i++) {
             recommentButton[i].onclick = () => {
+                let recomentTextarea = document.querySelectorAll(".recomment-textarea");
                 let textValue = recomentTextarea[i].value;
                 let commentId = responseData.comment[i].comment_id;
-                console.log("제발");
-                if(textValue == "" || textValue == " " || textValue == null || textValue.replaceAll(" ", "") == "") {
+                if(textValue != "" && textValue != " " && textValue != null && textValue.replaceAll(" ", "") != "") {
                     if(confirm("댓글을 작성하시겠습니까?")){
                         CommentApi.getInstance().recommentWriteReq(commentId, userId, textValue);
+                        location.reload();
                     }
                 }else {
                     alert("댓글을 입력해주세요.");
                 }
             }
         }
-        
-        
     }
     
 }
@@ -523,9 +597,10 @@ class TotalService {
             ArticleService.getInstance().setLike(responseData);
             ArticleService.getInstance().setTitleContent(responseData);
             ArticleService.getInstance().setBottumCategory(responseData);
+            ArticleService.getInstance().setUpdateButton(responseData);
             CommentService.getInstance().writeComment(responseData);
             CommentService.getInstance().setComment(responseData);
-            CommentService.getInstance().showRecommentWrite();
+            CommentService.getInstance().showRecommentWrite(responseData);
             CommentService.getInstance().recommentButtonEvent(responseData);
         }
         

@@ -40,7 +40,7 @@ const searchBtn = document.querySelector(".search-button");
 const searchInput = document.querySelector(".search-input");
 
 searchInput.onkeyup = () => {
-    if(window.event.keyCode === 13) {
+    if(window.event.keyCode == 13) {
         searchBtn.click();
     }
 }

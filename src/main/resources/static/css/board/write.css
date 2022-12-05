@@ -207,3 +207,11 @@ form {
 
     background-color: white;
 }
+
+.delete-button {
+    margin-left: 12px;
+    border: none;
+
+    color: white;
+    background-color: rgb(255, 94, 94);
+}

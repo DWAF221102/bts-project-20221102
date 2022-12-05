@@ -4,6 +4,7 @@ import com.btsproject.btsproject20221102.domain.Article;
 import com.btsproject.btsproject20221102.domain.BoardImgFile;
 import com.btsproject.btsproject20221102.dto.board.ArticleRespDto;
 import com.btsproject.btsproject20221102.dto.board.BoardRespDto;
+import com.btsproject.btsproject20221102.dto.board.UpdateArticleRespDto;
 import com.btsproject.btsproject20221102.dto.board.WriteReqDto;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,4 +33,5 @@ public interface BoardService {
     public boolean recommentWrite(int commentId ,int userId, String textValue) throws Exception;
 
     public boolean deleteArticle(int id) throws Exception;
+    public UpdateArticleRespDto loadUpdateArticle(int id) throws Exception;
 }

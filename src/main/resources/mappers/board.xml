@@ -315,4 +315,20 @@
             id = #{id}
     </delete>
 
+
+<!--    update  -->
+    <select id="loadUpdateArticle"
+            parameterType="Integer"
+            resultType="com.btsproject.btsproject20221102.domain.UpdateArticle">
+        select
+            id,
+            category_id,
+            subcategory_id,
+            title,
+            content
+        from
+            board_mst
+        where
+            id = #{id}
+    </select>
 </mapper>

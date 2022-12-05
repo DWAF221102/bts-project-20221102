@@ -6,6 +6,7 @@ import com.btsproject.btsproject20221102.domain.Board;
 import com.btsproject.btsproject20221102.domain.BoardImgFile;
 import com.btsproject.btsproject20221102.dto.board.ArticleRespDto;
 import com.btsproject.btsproject20221102.dto.board.BoardRespDto;
+import com.btsproject.btsproject20221102.dto.board.UpdateArticleRespDto;
 import com.btsproject.btsproject20221102.dto.board.WriteReqDto;
 import com.btsproject.btsproject20221102.repository.board.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -184,5 +185,12 @@ public class BoardServiceImpl implements BoardService{
             return true;
         };
         return false;
+    }
+
+    @Override
+    public UpdateArticleRespDto loadUpdateArticle(int id) throws Exception {
+
+
+        return boardRepository.loadUpdateArticle(id).toDto();
     }
 }
