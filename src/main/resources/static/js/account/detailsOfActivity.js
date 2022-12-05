@@ -59,7 +59,8 @@ function loadBoardRequest(boardList, boardId, qnaId) {
 
     $.ajax({
         async: false,
-        url: "/api/index/board",
+        type: "get",
+        url: "/api/account/myactivity",
         data: {
             "boardId": boardId,
             "qnaId": qnaId
@@ -79,8 +80,6 @@ function loadRecentActivity(boardList, responseData) {
     boardList.innerHTML = "";
 
     responseData.forEach(data => {
-
-
         let time = setTime(data.createDate);
         boardList.innerHTML = `
         <div class="board-list-user">
