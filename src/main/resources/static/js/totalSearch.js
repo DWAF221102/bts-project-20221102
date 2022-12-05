@@ -2,6 +2,10 @@ const startIndex = location.href.lastIndexOf("search/") + 7;
 const substringIndex = location.href.substring(startIndex, );
 let searchValue = decodeURI(substringIndex);
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+loadQnAListRequest(searchValue);
+moreClick(searchValue);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 for(let i = 1; i < 4; i++) {
     let menuId =Number(i + 1);
@@ -25,7 +29,6 @@ function loadBoardListRequest(menuId, searchValue, totalCountView, boardList) {
         },
         dataType: "json",
         success: (response) => {
-            console.log(response);
             responseData = response.data;
             loadSearchBoardList(totalCountView, boardList, responseData)
         },
@@ -65,7 +68,7 @@ function loadSearchBoardList(totalCountView, boardList, responseData) {
                         </div>
                     </div>
                     <div class="board-list-title">
-                        <a href="/article">${data.title}</a>
+                        <a href="/article/${data.boardId}">${data.title}</a>
                     </div>
                     <div class="board-list-bottum">
                         <div class="board-list-category">
@@ -94,7 +97,7 @@ function loadSearchBoardList(totalCountView, boardList, responseData) {
                         </div>
                     </div>
                     <div class="board-list-title">
-                        <a href="/article">${data.title}</a>
+                        <a href="/article/${data.boardId}">${data.title}</a>
                     </div>
                     <div class="board-list-bottum">
                         <div class="board-list-category">
@@ -112,6 +115,82 @@ function loadSearchBoardList(totalCountView, boardList, responseData) {
     });
 }
 
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function loadQnAListRequest(searchValue) { 
+    let responseData= null;
+
+    $.ajax({
+        async: false,
+        type: "get",
+        url: "/api/totalsearch/qna",
+        data: {
+            "searchValue" : searchValue
+        },
+        dataType: "json",
+        success: (response) => {
+            responseData = response.data;
+            loadSearchQnAList(responseData);
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    });
+}
+
+function loadSearchQnAList(responseData) {
+    const totalCountQnaView = document.querySelector(".total_count_qnaview");
+    const qnaBoardList = document.querySelector(".qna-board-list");
+
+    totalCountQnaView.innerHTML = "";
+    qnaBoardList.innerHTML = "";
+
+    responseData.forEach(data => {
+        let totalCommentCount = data.commentCount + data.recommentCount;
+        let time = setTime(data.createDate);
+
+        totalCountQnaView.innerHTML = `
+            총 검색 수 : ${data.totalCount}개
+        `
+        qnaBoardList.innerHTML += `
+            <li>
+                <div class="board-list-user">
+                    <div class="user-img">
+                        <a href=""> <img src="/image/user/${data.userImg}"></a>
+                    </div>
+                    <div class="user-detail">
+                        <a href="">${data.nickname}</a>
+                        <span>&#183;</span> 
+                        <span>${time}</span>
+                    </div>
+                </div>
+                <div class="board-list-title">
+                    <div>
+                        <a href="/question/article/${data.boardId}">${data.title}</a>
+                    </div>
+                    <div class="board-list-state-box">
+                        <p>${data.price}point</p>
+                        <div class="board-list-state">${data.status}</div>
+                    </div>
+                </div>
+                <div class="board-list-bottum">
+                    <div class="board-list-category">
+                        <a href="">${data.categoryName}</a>
+                        <a href="">${data.subcategoryName}</a>
+                    </div>
+                    <div class="board-list-prefer">
+                        <div class="views"><i class="fa-sharp fa-solid fa-bullseye"></i><span>${data.viewCount}</span></div>
+                        <div class="comments"><i class="fa-regular fa-comment-dots"></i><span>${totalCommentCount}</span></div>
+                        <div class="likes"><i class="fa-regular fa-thumbs-up"></i><span>${data.likeCount}</span></div>
+                    </div>
+                </div>
+            </li>
+        `
+    });
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -165,5 +244,26 @@ function setTime(creatDate) {
                 }
             }
         }
+    }
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function moreClick(searchValue) {
+    const moreButton = document.querySelectorAll('.more-details');
+
+    moreButton[0].onclick = () => {
+        location.href = "/question?searchValue=" + searchValue;
+    }
+    moreButton[1].onclick = () => {
+        location.href = "/knowledge?searchValue=" + searchValue;
+    }
+    moreButton[2].onclick = () => {
+        location.href = "/community?searchValue=" + searchValue;
+    }
+    moreButton[3].onclick = () => {
+        location.href = "/notice?searchValue=" + searchValue;
     }
 }
