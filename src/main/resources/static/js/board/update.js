@@ -19,14 +19,14 @@ $('#summernote').summernote({
         ]
       },
 
-    // callbacks: {
-    //     onImageUpload: function(files) {
-    //         for (var i = files.length - 1; i >= 0; i--) {
-    //             WriteFormData.getInstance().uploadImg(files[i], this);
-    //         }
-    //     }
+    callbacks: {
+        onImageUpload: function(files) {
+            for (var i = files.length - 1; i >= 0; i--) {
+                UpdateFormData.getInstance().uploadImg(files[i], this);
+            }
+        }
 
-    // }
+    }
 });
 
 $('.note-statusbar').hide(); 
@@ -66,7 +66,7 @@ class UpdateApi {
     updateRequest(formData) {
         $.ajax({
             async: false,
-            type: "put",
+            type: "post",
             url: "/api/update",
             enctype: "multipart/form-data",
             contentType: false,
@@ -75,8 +75,8 @@ class UpdateApi {
             dataType: "json",
             success: (response) => {
                 console.log(response);
-                alert("게시글 작성 완료");
-                location.href = `/${WriteFormData.getInstance().getMenu()}`;
+                alert("게시글 수정 완료");
+                // location.href = `/${WriteFormData.getInstance().getMenu()}`;
                 
             },
             error: (error) => {
@@ -104,11 +104,13 @@ class OldData {
             this.setSubcategory(responseData);
             this.setTitle(responseData);
             this.setContent(responseData);
-            return true;
+            return responseData;
         }else {
             return false;
         }   
     }
+
+    
 
     setCategory(responseData) {
         const category = document.querySelector("#category");
@@ -292,16 +294,16 @@ class SubcategorySetting {
     }
 }
 
-class WriteFormData {
+class UpdateFormData {
     static #instance = null;
 
     static getInstance() {
         if(this.#instance == null) {
-            this.#instance = new WriteFormData();
+            this.#instance = new UpdateFormData();
         }
         return this.#instance;
     }
-
+    
     formData = new FormData();
     tempNames = new Array();
 
@@ -310,25 +312,47 @@ class WriteFormData {
     }
 
     setFormData() {
+        let responseData = OldData.getInstance().oldDataService()
         let url = location.href;
         let id = url.substring(url.lastIndexOf("/") + 1);
         const category = document.querySelector("#category");
         const subcategory = document.querySelector("#subcategory");
         const title = document.querySelector("#title");
         const content = document.querySelector("#summernote");
-
+        
         this.formData.append("id", id);
         this.formData.append("category", category.value);
         this.formData.append("subcategory", subcategory.value);
         this.formData.append("title", title.value);
         this.formData.append("content", content.value);
+        this.setImg(content.value);
+        this.setOldImg(responseData);
 
         return this.formData;
     }
 
+    setOldImg(responseData) {
+        this.formData.append("oldImg", this.setImg(responseData.content));
+    }
+
+    setImg(content) {
+        let array = new Array();
+        array = content.split(/[\ /]/);
+        array.forEach(str => {
+            if(str.includes("jpg")) {
+                this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
+            }else if(str.includes("png")) {
+                this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
+            }if(str.includes("jpeg")) {
+                this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
+            }
+        });
+    } 
+
     uploadImg(file, editor) {
         let data = new FormData();
         data.append("file", file);
+        this.formData.append("imgFiles", file);
         $.ajax({
             async: false,
             type: "post",
@@ -339,11 +363,9 @@ class WriteFormData {
             data: data,
             dataType: "json",
             success: (response) => {
-                console.log(response);
-                const responseData = response.data;
-                $(editor).summernote('insertImage', "/image/board/" + responseData.temp_name);
-                this.getFormData().append("originFile", responseData.origin_name);
-                this.getFormData().append("tempFile", responseData.temp_name);
+                let fileName = response.data;
+                $(editor).summernote('insertImage', "/image/summernote/" + fileName);
+                this.formData.append("summernote", fileName);
             },
             error: (error) => {
                 console.log(error);
@@ -395,9 +417,9 @@ class UpdateService {
         return this.#instance;
     }
 
-    updateService() {
+    updateService(formData) {
         if(OldData.getInstance().oldDataService()) {
-            ButtonService.getInstance().setUpdateButton();
+            WriteApi.getInstance().writeRequest(formData);
         }
     }
 }
@@ -412,25 +434,51 @@ class ButtonService {
         return this.#instance;
     }
 
+    addButtonService() {
+        if(OldData.getInstance().oldDataService()){
+            this.setUpdateButton();
+            this.setCencelButton();
+            this.setDeleteButton();
+        }
+    }
+    
+    getId() {
+        let url = location.href;
+        let id = url.substring(url.lastIndexOf("/") + 1);
+        return id;
+    }
+
     setUpdateButton() {
         const updateButton = document.querySelector(".update-button");
+        
 
         updateButton.onclick = () => {
-            WriteFormData.getInstance().setFormData();
-            let formData = WriteFormData.getInstance().getFormData();
-            
+            UpdateFormData.getInstance().setFormData();
+            let formData = UpdateFormData.getInstance().getFormData();
             if(NullCheck.getInstance().nullCheck(formData)){
                 UpdateApi.getInstance().updateRequest(formData);
-            }else {
-                location.reload();
             }
         }
     }
 
+    setCencelButton() {
+        const cancelButton = document.querySelector(".cancel-button");
+
+        let id = this.getId();
+
+        cancelButton.onclick = () => {
+            location.href = "/article/" + id;
+        }
+    }
+
+    setDeleteButton() {
+        let id = this.getId();
+
+    }
 }
 
 window.onload = () => {
-    UpdateService.getInstance().updateService();
+    ButtonService.getInstance().addButtonService();
     
 }
 

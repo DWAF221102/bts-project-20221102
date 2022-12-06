@@ -88,11 +88,11 @@ public class AccountApi {
         return ResponseEntity.ok(new CMRespDto<>(1, "success", pwChangeReqDto));
     }
 
-    @GetMapping("/myactivity/{id}")
-    public ResponseEntity<?> loadBoardList(@PathVariable(name = "id") int id) throws Exception {
-
-        return ResponseEntity.ok(new CMRespDto<>(1, "success",accountService.loadRecentBoardList(id)));
-    }
+//    @GetMapping("/myactivity/{id}")
+//    public ResponseEntity<?> loadBoardList(@PathVariable(name = "id") int id) throws Exception {
+//
+//        return ResponseEntity.ok(new CMRespDto<>(1, "success",accountService.loadRecentBoardList(id)));
+//    }
 
 
     @DeleteMapping("/delete/{id}")

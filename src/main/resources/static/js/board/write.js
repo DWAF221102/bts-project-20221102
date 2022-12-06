@@ -59,7 +59,7 @@ class WriteFormData {
         }
         return this.#instance;
     }
-
+    
     formData = new FormData();
     tempNames = new Array();
 
@@ -73,7 +73,7 @@ class WriteFormData {
         const subcategory = document.querySelector("#subcategory");
         const title = document.querySelector("#title");
         const content = document.querySelector("#summernote");
-
+        
         
         this.formData.append("userId", principalUser.id);
         
@@ -88,6 +88,7 @@ class WriteFormData {
         this.formData.append("subcategory", subcategory.value);
         this.formData.append("title", title.value);
         this.formData.append("content", content.value);
+        this.setImg(content);
 
         return this.formData;
     }
@@ -99,9 +100,24 @@ class WriteFormData {
         return menu;
     }
 
+    setImg(content) {
+        let array = new Array();
+        array = content.value.split(/[\ /]/);
+        array.forEach(str => {
+            if(str.includes("jpg")) {
+                this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
+            }else if(str.includes("png")) {
+                this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
+            }if(str.includes("jpeg")) {
+                this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
+            }
+        });
+    } 
+
     uploadImg(file, editor) {
         let data = new FormData();
         data.append("file", file);
+        this.formData.append("imgFiles", file);
         $.ajax({
             async: false,
             type: "post",
@@ -112,11 +128,10 @@ class WriteFormData {
             data: data,
             dataType: "json",
             success: (response) => {
-                console.log(response);
-                const responseData = response.data;
-                $(editor).summernote('insertImage', "/image/board/" + responseData.temp_name);
-                this.getFormData().append("originFile", responseData.origin_name);
-                this.getFormData().append("tempFile", responseData.temp_name);
+                let fileName = response.data;
+                $(editor).summernote('insertImage', "/image/summernote/" + fileName);
+                this.formData.append("summernote", fileName);
+                console.log(this.formData.get("summernote"));
             },
             error: (error) => {
                 console.log(error);
@@ -181,7 +196,7 @@ class WriteApi {
             success: (response) => {
                 console.log(response);
                 alert("게시글 작성 완료");
-                location.href = `/${WriteFormData.getInstance().getMenu()}`;
+                // location.href = `/${WriteFormData.getInstance().getMenu()}`;
                 
             },
             error: (error) => {
@@ -190,6 +205,24 @@ class WriteApi {
         })
     } 
     
+    imgDeleteReq(formData) {
+        $.ajax({
+            async: false,
+            type: "delete",
+            url: "/api/img/delete",
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            data: formData,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
 }
 
 class WriteButtons {
@@ -205,10 +238,13 @@ class WriteButtons {
     addButtonEvenet() {
         const cancelButton = document.querySelector(".cancel-button");
         const writeButton = document.querySelector(".write-button");
-
+        
+        
         cancelButton.onclick = () => {
             if(confirm("작성을 취소 하시겠습니까?")) {
-
+                WriteFormData.getInstance().setFormData();
+                let formData = WriteFormData.getInstance().getFormData();
+                WriteApi.getInstance().imgDeleteReq(formData);
                 location.href = `/${WriteFormData.getInstance().getMenu()}`;
             }
             
@@ -217,7 +253,6 @@ class WriteButtons {
         writeButton.onclick = () => {
             WriteFormData.getInstance().setFormData();
             let formData = WriteFormData.getInstance().getFormData();
-            
             if(NullCheck.getInstance().nullCheck(formData)){
                 WriteApi.getInstance().writeRequest(formData);
             }else {
@@ -228,7 +263,7 @@ class WriteButtons {
 }
 
 window.onload = () => {
-    UserCheck.getInstance().addService();
+    // UserCheck.getInstance().addService();
     WriteButtons.getInstance().addButtonEvenet();
     
 }

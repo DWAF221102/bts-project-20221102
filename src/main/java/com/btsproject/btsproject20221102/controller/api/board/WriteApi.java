@@ -1,13 +1,11 @@
 package com.btsproject.btsproject20221102.controller.api.board;
 
 
-import com.btsproject.btsproject20221102.domain.BoardImgFile;
 import com.btsproject.btsproject20221102.dto.CMRespDto;
 import com.btsproject.btsproject20221102.dto.board.WriteReqDto;
 import com.btsproject.btsproject20221102.service.board.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,7 +29,8 @@ public class WriteApi {
 //            writeReqDto.setTitle(title + "-" + (i + 1));
 //            boardService.saveBoard(writeReqDto);
 //        }
-
+        log.info("dto >> {}", writeReqDto);
+//        boardService.saveBoard(writeReqDto)
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.saveBoard(writeReqDto)));
     }
 
@@ -39,13 +38,13 @@ public class WriteApi {
     public ResponseEntity<?> uploadImg(@RequestParam MultipartFile file) {
 
 
-        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.uploadImgService(file)));
+        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.uploadSummernoteService(file)));
     }
 
     @DeleteMapping("/img/delete")
-    public ResponseEntity<?> deleteImg(@RequestParam List<String> file) {
-        log.info("file: " + file);
+    public ResponseEntity<?> deleteImg(WriteReqDto writeReqDto) {
 
-        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", null));
+
+        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.deleteSummernoteImg(writeReqDto.getSummernote())));
     }
 }
