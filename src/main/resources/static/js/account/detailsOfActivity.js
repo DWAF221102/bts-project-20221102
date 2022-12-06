@@ -49,10 +49,17 @@ window.onload = () => {
     <!-- 메뉴 영역 -->
     <div class="menu-list-area">
         <div class="menu-list">
+<<<<<<< HEAD
             <a class="recent" href="/myactivity/${userId}"><span>최근 활동</span></a>
             <a class="article" href="/myactivity/article/${userId}"><span>게시물</span></a>
             <a class="qna" href="/myactivity/qna/${userId}"><span>Q&A</span></a>
             <a class="like" href="/myactivity/scrap/${userId}"><span>스크랩</span></a>
+=======
+            <a class="recent" href="/myactivity/${id}"><span>최근 활동</span></a>
+            <a class="article" href="/myactivity/article/${id}"><span>게시물</span></a>
+            <a class="qna" href="/myactivity/qna/${id}"><span>Q&A</span></a>
+            <a class="like" href="/myactivity/scrap/${id}"><span>스크랩</span></a>
+>>>>>>> geonho
         </div>
     </div>
     `
