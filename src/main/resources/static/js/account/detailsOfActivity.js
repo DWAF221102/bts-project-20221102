@@ -1,5 +1,6 @@
 window.onload = () => {
     const profileArea = document.querySelector(".profile-area");
+    let id = principalUser.id;
     let skill = principalUser.skill == null ? "기술 태그를 입력해주세요." : principalUser.skill;
     profileArea.innerHTML = `
      <!-- 회원 정보 영역 -->
@@ -40,10 +41,10 @@ window.onload = () => {
     <!-- 메뉴 영역 -->
     <div class="menu-list-area">
         <div class="menu-list">
-            <a class="recent" href="/myactivity"><span>최근 활동</span></a>
-            <a class="article" href="/myactivity/article"><span>게시물</span></a>
-            <a class="qna" href="/myactivity/qna"><span>Q&A</span></a>
-            <a class="like" href="/myactivity/scrap"><span>스크랩</span></a>
+            <a class="recent" href="/myactivity/${id}"><span>최근 활동</span></a>
+            <a class="article" href="/myactivity/article/${id}"><span>게시물</span></a>
+            <a class="qna" href="/myactivity/qna/${id}"><span>Q&A</span></a>
+            <a class="like" href="/myactivity/scrap/${id}"><span>스크랩</span></a>
         </div>
     </div>
     `

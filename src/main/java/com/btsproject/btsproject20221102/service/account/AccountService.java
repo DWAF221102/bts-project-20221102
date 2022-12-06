@@ -1,5 +1,6 @@
 package com.btsproject.btsproject20221102.service.account;
 
+import com.btsproject.btsproject20221102.domain.MyLikeQna;
 import com.btsproject.btsproject20221102.dto.account.*;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -33,4 +34,12 @@ public interface AccountService {
     public void modifyForgotPassword(PwForgotReqDto pwForgotReqDto) throws Exception;
 
     public List<RecentBoardListRespDto> loadRecentBoardList(@AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception;
+
+    public List<MyprofileBoardRespDto> loadMyprofileBoardList(int userId) throws Exception;
+
+    public List<MyprofileQnaRespDto> loadMyprofileQnaList(int userId) throws Exception;
+
+    public List<MyLikeBoardRespDto> loadMyLikeBoardList(int userId) throws Exception;
+
+    public List<MyLikeQnaRespDto> loadMyLikeQnaList(int userId) throws Exception;
 }

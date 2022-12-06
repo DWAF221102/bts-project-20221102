@@ -67,20 +67,20 @@ public class PageController {
     }
 
     //최근활동 페이지
-    @GetMapping("/myactivity")
-    public String myactivity() {
+    @GetMapping("/myactivity/{id}")
+    public String myactivity(@PathVariable int id) {
         return "account/detailsOfActivity";
     }
-    @GetMapping("/myactivity/article")
-    public String myactivityArticle() {
+    @GetMapping("/myactivity/article/{id}")
+    public String myactivityArticle(@PathVariable int id) {
         return "account/detailsOfActivityArticle";
     }
-    @GetMapping("/myactivity/qna")
-    public String myactivityQna() {
+    @GetMapping("/myactivity/qna/{id}")
+    public String myactivityQna(@PathVariable int id) {
         return "account/detailsOfActivityQna";
     }
-    @GetMapping("/myactivity/scrap")
-    public String myactivityScrap() {
+    @GetMapping("/myactivity/scrap/{id}")
+    public String myactivityScrap(@PathVariable int id) {
         return "account/detailsOfActivityScrap";
     }
 

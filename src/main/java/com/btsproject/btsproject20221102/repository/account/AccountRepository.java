@@ -1,9 +1,6 @@
 package com.btsproject.btsproject20221102.repository.account;
 
-import com.btsproject.btsproject20221102.domain.Key;
-import com.btsproject.btsproject20221102.domain.LoadRecentboardList;
-import com.btsproject.btsproject20221102.domain.User;
-import com.btsproject.btsproject20221102.domain.UserProfileImage;
+import com.btsproject.btsproject20221102.domain.*;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,6 +21,14 @@ public interface AccountRepository {
 
     /* 회원 정보 수정 */
     public int modifyProfile(User user);
+
+    public List<MyprofileBoard> loadMyprofileBoard(int userId) throws Exception;
+    public List<MyprofileQna> loadMyprofileQna(int userId) throws Exception;
+
+    public List<MyLikeBoard> loadMyLikeBoard(int userId) throws Exception;
+
+    public List<MyLikeQna> loadMyLikeQna(int userId) throws Exception;
+
 
     /* 프로필 이미지 변경 */
     public int modifyProfileImage(UserProfileImage userProfileImage);

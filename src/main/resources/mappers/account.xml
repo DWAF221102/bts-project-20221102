@@ -277,6 +277,72 @@
         ORDER BY bm.create_date DESC
     </select>
 
+    <select id="loadMyprofileBoard" resultType="com.btsproject.btsproject20221102.domain.MyprofileBoard">
+        SELECT
+            bm.user_id,
+            bm.id,
+            bm.title,
+            sd.subcategory_name,
+            bm.create_date
+        FROM
+            board_mst bm
+            LEFT OUTER JOIN user_mst um ON(um.id = bm.user_id)
+            LEFT OUTER JOIN subcategory_dtl sd ON(sd.id = bm.subcategory_id)
+        WHERE
+            bm.user_id = #{userId}
+        ORDER BY bm.create_date DESC
+    </select>
+    <select id="loadMyprofileQna" resultType="com.btsproject.btsproject20221102.domain.MyprofileQna">
+        SELECT
+            qbm.user_id,
+            qbm.id,
+            qbm.title,
+            sm.status,
+            sd.subcategory_name,
+            qbm.create_date
+        FROM
+            qna_board_mst qbm
+            LEFT OUTER JOIN user_mst um ON(um.id = qbm.user_id)
+            LEFT OUTER JOIN subcategory_dtl sd ON(sd.id = qbm.category_sub_id)
+            LEFT OUTER JOIN status_mst sm ON(sm.id = qbm.status_id)
+        WHERE
+            qbm.user_id = #{userId}
+        ORDER BY qbm.create_date DESC
+    </select>
+    <select id="loadMyLikeBoard" resultType="com.btsproject.btsproject20221102.domain.MyLikeBoard">
+        SELECT
+            lm.from_id,
+            lm.board_id,
+            bm.title,
+            sd.subcategory_name,
+            lm.create_date
+        FROM
+            like_mst lm
+            LEFT OUTER JOIN board_mst bm ON(bm.id = lm.board_id)
+            LEFT OUTER JOIN subcategory_dtl sd ON(sd.id = bm.subcategory_id)
+        WHERE
+            from_id = #{userId}
+        ORDER BY lm.create_date DESC
+    </select>
+
+    <select id="loadMyLikeQna" resultType="com.btsproject.btsproject20221102.domain.MyLikeQna">
+        SELECT
+            qlm.from_id,
+            qlm.qna_board_id,
+            qbm.title,
+            sd.subcategory_name,
+            sm.status,
+            qlm.create_date
+        FROM
+            qna_like_mst qlm
+            LEFT OUTER JOIN qna_board_mst qbm ON(qbm.id = qlm.qna_board_id)
+            LEFT OUTER JOIN subcategory_dtl sd ON(sd.id = qbm.category_sub_id)
+            LEFT OUTER JOIN status_mst sm ON(sm.id = qbm.status_id)
+        WHERE
+            from_id = #{userId}
+        ORDER BY qlm.create_date DESC
+    </select>
+
 
     <delete id="deleteUser" parameterType="com.btsproject.btsproject20221102.domain.User">
         delete

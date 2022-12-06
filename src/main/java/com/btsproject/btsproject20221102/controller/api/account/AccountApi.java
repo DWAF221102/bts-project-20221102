@@ -88,11 +88,11 @@ public class AccountApi {
         return ResponseEntity.ok(new CMRespDto<>(1, "success", pwChangeReqDto));
     }
 
-    @GetMapping("/myactivity/{id}")
-    public ResponseEntity<?> loadBoardList(@PathVariable(name = "id") int id) throws Exception {
-
-        return ResponseEntity.ok(new CMRespDto<>(1, "success",accountService.loadRecentBoardList(id)));
-    }
+//    @GetMapping("/myactivity/{id}")
+//    public ResponseEntity<?> loadBoardList(@PathVariable(name = "id") int id) throws Exception {
+//
+//        return ResponseEntity.ok(new CMRespDto<>(1, "success",accountService.loadRecentBoardList(id)));
+//    }
 
 
     @DeleteMapping("/delete/{id}")
@@ -106,6 +106,28 @@ public class AccountApi {
     public ResponseEntity<?> forgotPassword(@Valid @RequestBody PwForgotReqDto pwForgotReqDto, BindingResult bindingResult) throws  Exception {
         accountService.modifyForgotPassword(pwForgotReqDto);
         return ResponseEntity.ok(new CMRespDto<>(1, "success", true));
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @GetMapping("/myactivity/article/{userid}")
+    public ResponseEntity<?> loadMyactivityBoard(@PathVariable int userid) throws Exception {
+        return ResponseEntity.ok(new CMRespDto<>(1, "나의활동 게시물 불러오기 완료", accountService.loadMyprofileBoardList(userid)));
+    }
+
+    @GetMapping("/myactivity/qna/{userid}")
+    public ResponseEntity<?> loadMyactivityQna(@PathVariable int userid) throws Exception {
+        return ResponseEntity.ok(new CMRespDto<>(1, "나의활동 QnA 불러오기 완료", accountService.loadMyprofileQnaList(userid)));
+    }
+
+    @GetMapping("/myactivity/scrap/board/{userid}")
+    public ResponseEntity<?> loadMyLikeBoard(@PathVariable int userid) throws Exception {
+        return ResponseEntity.ok(new CMRespDto<>(1, "나의활동 QnA 불러오기 완료", accountService.loadMyLikeBoardList(userid)));
+    }
+
+    @GetMapping("/myactivity/scrap/qna/{userid}")
+    public ResponseEntity<?> loadMyLikeQna(@PathVariable int userid) throws Exception {
+        return ResponseEntity.ok(new CMRespDto<>(1, "나의활동 QnA 불러오기 완료", accountService.loadMyLikeQnaList(userid)));
     }
 
 

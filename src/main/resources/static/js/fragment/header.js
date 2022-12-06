@@ -1,4 +1,5 @@
 const userHeaderList = document.querySelector(".account-area");
+let id = principalUser.id
 
 loginHeader();
 
@@ -16,7 +17,7 @@ function loginHeader() {
                 <div class="mybox-area">
                 <div class="mybox mybox-invisible" >
                     <a href="/myprofile">내 프로필</a>
-                    <a href="/myactivity">활동내역</a>
+                    <a href="/myactivity/${id}">활동내역</a>
                     <a href="/logout">로그아웃</a>
                 </div>
                </div>

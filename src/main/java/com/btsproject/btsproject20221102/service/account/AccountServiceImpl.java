@@ -4,6 +4,7 @@ import com.btsproject.btsproject20221102.domain.Key;
 import com.btsproject.btsproject20221102.domain.User;
 import com.btsproject.btsproject20221102.domain.UserProfileImage;
 import com.btsproject.btsproject20221102.dto.account.*;
+import com.btsproject.btsproject20221102.dto.index.AsidePriceListRespDto;
 import com.btsproject.btsproject20221102.exception.CustomValidationException;
 import com.btsproject.btsproject20221102.repository.account.AccountRepository;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
@@ -229,5 +230,43 @@ public class AccountServiceImpl implements AccountService {
         boardList.add(board.toRecentBoardListRespDto());
         });
         return boardList;
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @Override
+    public List<MyprofileBoardRespDto> loadMyprofileBoardList(int userId) throws Exception {
+        List<MyprofileBoardRespDto> list = new ArrayList<MyprofileBoardRespDto>();
+        accountRepository.loadMyprofileBoard(userId).forEach(myboard -> {
+            list.add(myboard.toMyprofileBoardRespDto());
+        });
+        return list;
+    }
+
+    @Override
+    public List<MyprofileQnaRespDto> loadMyprofileQnaList(int userId) throws Exception {
+        List<MyprofileQnaRespDto> list = new ArrayList<MyprofileQnaRespDto>();
+        accountRepository.loadMyprofileQna(userId).forEach(myqna -> {
+            list.add(myqna.toMyprofileQnaRespDto());
+        });
+        return list;
+    }
+
+    @Override
+    public List<MyLikeBoardRespDto> loadMyLikeBoardList(int userId) throws Exception {
+        List<MyLikeBoardRespDto> list = new ArrayList<MyLikeBoardRespDto>();
+        accountRepository.loadMyLikeBoard(userId).forEach(likeboard -> {
+            list.add(likeboard.toMyLikeBoardRespDto());
+        });
+        return list;
+    }
+
+    @Override
+    public List<MyLikeQnaRespDto> loadMyLikeQnaList(int userId) throws Exception {
+        List<MyLikeQnaRespDto> list = new ArrayList<MyLikeQnaRespDto>();
+        accountRepository.loadMyLikeQna(userId).forEach(likeqna -> {
+            list.add(likeqna.toMypLikeQnaRespDto());
+        });
+        return list;
     }
 }
