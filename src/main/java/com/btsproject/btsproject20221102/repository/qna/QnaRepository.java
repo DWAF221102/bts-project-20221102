@@ -23,5 +23,7 @@ public interface QnaRepository {
 
     public List<QnaImgFile> getQnaImgList(int id) throws Exception;
 
+
     public List<QnaLoadList> qnaLoadBoard(Map<String, Object> map) throws Exception;
+
 }

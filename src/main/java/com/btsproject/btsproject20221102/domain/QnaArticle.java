@@ -2,26 +2,36 @@ package com.btsproject.btsproject20221102.domain;
 
 import com.btsproject.btsproject20221102.aop.annotation.LogAspect;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Builder
 @Data
-@LogAspect
-@Slf4j
+@NoArgsConstructor
+@AllArgsConstructor
 public class QnaArticle {
     private int id;
     private int menu_id;
-    private int category_id;
-    private int category_sub_id;
-    private int status_id;
-    private int user_id;
+
+    private String category_name;
+
+    private String subcategory_name;
+
+    private String status;
+
+    private String nickname;
     private String title;
     private String info;
     private String want_info;
     private int price;
+
+    private List<QnaImgFile> qna_img_files;
 
 
 
@@ -33,14 +43,15 @@ public class QnaArticle {
         return QnaCreateRespDto.builder()
                 .id(id)
                 .menuId(menu_id)
-                .categoryId(category_id)
-                .categorySubId(category_sub_id)
-                .statusId(status_id)
-                .userId(user_id)
+                .categoryName(category_name)
+                .subcategoryName(subcategory_name)
+                .status(status)
+                .nickname(nickname)
                 .title(title)
                 .info(info)
                 .wantInfo(want_info)
                 .price(price)
+                .qnaImgFiles(qna_img_files)
                 .create_date(create_date)
                 .update_date(update_date)
                 .build();

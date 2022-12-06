@@ -13,6 +13,7 @@ function getList() {
         dataType: "json",
         success: (response) => {
             console.log(response);
+            img(response.data);
             titleCreate(response.data);
             boardInfo(response.data);
             boardDetails(response.data);
@@ -25,6 +26,20 @@ function getList() {
     
 }
 
+function img(data) {
+    const qnaImg = document.querySelector(".qna-board-img")
+    let qnaImgFiles = data.qnaImgFiles;
+    
+    for(let i = 0; i < qnaImgFiles.length; i++){
+        qnaImg.innerHTML += `
+        <div class="qna-board-img">
+            <img class="img-content" src="/image/qna/${data.qnaImgFiles[i].temp_name}">
+        </div>
+        `;
+    };
+
+}
+
 function addCreate(qnaLists) {
     const listBody = document.querySelector(".list-body");
 
@@ -33,10 +48,10 @@ function addCreate(qnaLists) {
     qnaLists.forEach((qna) => {
         listBody.innerHTML += `
     <tr>
-        <td class="user-id">${qna.user_id}</td>
-        <td>${qna.subcategory}</td>
+        <td class="user-id">${qna.nickname}</td>
+        <td>${qna.subcategoryName}</td>
         <td>${qna.title}</td>
-        <td>${qna.statusId}</td>
+        <td>${qna.status}</td>
         <td><button type="button" class="detail-button">상세보기</button></td>
         <td><button type="button" class="delete-button">삭제</button></td>
     </tr>
@@ -49,13 +64,15 @@ function addCreate(qnaLists) {
     });
 }
 
+
+
 function titleCreate(data) {
 
     const qnaTitle = document.querySelector(".qna-board-top");
     qnaTitle.innerHTML = `
         <div>
             <div class="qna-board-category">
-                ${data.categoryId}
+                ${data.categoryName}
             </div>
             <p class="qna-content-name">
                 ${data.title}
@@ -73,7 +90,7 @@ function boardInfo(data) {
             프로그램/버전
         </div>
         <div class="qna-board-info-category-right">
-            ${data.categorySubId}
+            ${data.subcategoryName}
         </div>
 
     </div>
@@ -83,7 +100,7 @@ function boardInfo(data) {
             질문금액
         </div>
         <div class="qna-board-price-right">
-            ${data.price}
+            ${data.price} p
         </div>
     </div>
     `

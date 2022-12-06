@@ -8,6 +8,7 @@ import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
 import com.btsproject.btsproject20221102.exception.CustomInternalServerErrorException;
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,11 +20,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class QnaCreateServiceImpl implements QnaCreateService{
 
-    @Value("${file.path")
+    @Value("${file.path}")
     private String filePath;
     
     private final QnaRepository qnaRepository;
@@ -53,13 +56,15 @@ public class QnaCreateServiceImpl implements QnaCreateService{
 
     private List<QnaImgFile> getQnaImgFiles(List<MultipartFile> files, int boardId) throws Exception {
         List<QnaImgFile> qnaImgFiles = new ArrayList<QnaImgFile>();
+        log.info("boardId", boardId);
+
 
         files.forEach(file -> {
             String originName = file.getOriginalFilename();
             String extension = originName.substring(originName.lastIndexOf("."));
             String temp_name = UUID.randomUUID().toString() + extension;
 
-            Path uploadPath = Paths.get(filePath + "/qna" + temp_name);
+            Path uploadPath = Paths.get(filePath + "/qna/" + temp_name);
             // 폴더 경로 맞는지 확인
 
             File f = new File(filePath + "/qna");
@@ -108,7 +113,9 @@ public class QnaCreateServiceImpl implements QnaCreateService{
     @Override
     public QnaCreateRespDto getQnaArticle(int id) throws Exception {
         QnaArticle qnaArticle = qnaRepository.infoQna(id);
+        System.out.println(qnaArticle);
         return qnaArticle.toQnaCreateRespDto();
+
     }
 
     @Override
