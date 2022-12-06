@@ -259,22 +259,41 @@
     <select id="loadRecentBoardList"
             resultType="com.btsproject.btsproject20221102.domain.LoadRecentboardList">
         SELECT
-            bm.user_id,
+            um.id,
             um.nickname,
             um.user_img,
 
             bm.id,
-            bm.subcategory_id,
+            sd.subcategory_name,
             bm.title,
-            bm.create_date
+            bm.create_date,
+            qm.id,
+            qm.title,
+            qm.create_date
 
         FROM
-            board_mst bm
-            LEFT OUTER JOIN user_mst um ON(um.id = bm.user_id)
+            user_mst um
+            LEFT OUTER JOIN board_mst bm ON(um.id = bm.user_id)
             LEFT OUTER JOIN subcategory_dtl sd ON(sd.id = bm.subcategory_id)
+            LEFT OUTER JOIN qna_board_mst qm ON(qm.user_id = um.id)
         WHERE
             bm.user_id = #{user_id}
+            AND qm.user_id = #{user_id};
         ORDER BY bm.create_date DESC
+    </select>
+    <select id="userInfo" resultType="com.btsproject.btsproject20221102.domain.UserInfo">
+        SELECT
+            um.id,
+            um.nickname,
+            um.user_img,
+            IFNULL(avg(scm.score), 0) AS score_avg
+        FROM
+            user_mst um
+            LEFT OUTER JOIN score_mst scm ON (scm.answerer_id = um.id)
+        WHERE
+            um.id = #{userId}
+        GROUP BY
+            um.id
     </select>
 
 

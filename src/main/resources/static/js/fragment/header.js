@@ -1,4 +1,5 @@
 const userHeaderList = document.querySelector(".account-area");
+let id = principalUser.id;
 
 loginHeader();
 
@@ -16,7 +17,7 @@ function loginHeader() {
                 <div class="mybox-area">
                 <div class="mybox mybox-invisible" >
                     <a href="/myprofile">내 프로필</a>
-                    <a href="/myactivity">활동내역</a>
+                    <a href="/myactivity/${id}">활동내역</a>
                     <a href="/logout">로그아웃</a>
                 </div>
                </div>
@@ -40,13 +41,13 @@ const searchBtn = document.querySelector(".search-button");
 const searchInput = document.querySelector(".search-input");
 
 searchInput.onkeyup = () => {
-    if(window.event.keyCode == 13) {
+    if (window.event.keyCode == 13) {
         searchBtn.click();
     }
 }
 
 searchBtn.onclick = () => {
-    if(searchInput.value == "") {
+    if (searchInput.value == "") {
         alert("검색어를 입력해주세요.");
     } else {
         location.href = "/totalsearch/" + searchInput.value;

@@ -1,5 +1,7 @@
 package com.btsproject.btsproject20221102.service.account;
 
+import com.btsproject.btsproject20221102.domain.User;
+import com.btsproject.btsproject20221102.domain.UserInfo;
 import com.btsproject.btsproject20221102.dto.account.*;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,6 +19,8 @@ public interface AccountService {
     public boolean checkPhone(String phone, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception;
 
     public boolean signup(SignupReqDto signupReqDto) throws Exception;
+
+    public UserInfo getUserInfo(int userId) throws Exception;
 
     public void modifyProfile(@AuthenticationPrincipal PrincipalDetails principalDetails, ModifyReqDto modifyReqDto) throws Exception;
 

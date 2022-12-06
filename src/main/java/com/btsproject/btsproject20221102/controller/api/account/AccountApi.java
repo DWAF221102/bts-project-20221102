@@ -44,6 +44,12 @@ public class AccountApi {
         return ResponseEntity.ok().body(new CMRespDto<>(1, "회원가입 완료", signupReqDto));
     }
 
+    // 유저 정보
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<?> getUser(@PathVariable int userId)throws Exception{
+        return ResponseEntity.ok().body(new CMRespDto<>(1,"getUserSuccess", accountService.getUserInfo(userId)));
+    }
+
 //    로그인 유효성 검사
     @ValidAspect
     @PostMapping("/login")
@@ -52,16 +58,12 @@ public class AccountApi {
 }
 
     // 회원 정보 수정
-
-
     @PutMapping("/myprofile")
     public ResponseEntity<?> modifyProfile( @RequestBody ModifyReqDto modifyReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
 
 //        accountService.checkNickname(modifyReqDto.getNickname(), principalDetails);
 //        accountService.checkPhone(modifyReqDto.getPhone(), principalDetails);
         accountService.modifyProfile(principalDetails, modifyReqDto);
-
-
         return ResponseEntity.ok(new CMRespDto<>(1,"success", modifyReqDto));
     }
 
@@ -88,11 +90,11 @@ public class AccountApi {
         return ResponseEntity.ok(new CMRespDto<>(1, "success", pwChangeReqDto));
     }
 
-    @GetMapping("/myactivity/{id}")
-    public ResponseEntity<?> loadBoardList(@PathVariable(name = "id") int id) throws Exception {
-
-        return ResponseEntity.ok(new CMRespDto<>(1, "success",accountService.loadRecentBoardList(id)));
-    }
+//    @GetMapping("/myactivity/{id}")
+//    public ResponseEntity<?> loadBoardList(UserInfoRespDto userInfoRespDto) throws Exception {
+//
+//        return ResponseEntity.ok(new CMRespDto<>(1, "success",accountService.loadRecentBoardList()));
+//    }
 
 
     @DeleteMapping("/delete/{id}")

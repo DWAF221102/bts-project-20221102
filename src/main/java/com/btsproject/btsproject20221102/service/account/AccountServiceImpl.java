@@ -2,6 +2,7 @@ package com.btsproject.btsproject20221102.service.account;
 
 import com.btsproject.btsproject20221102.domain.Key;
 import com.btsproject.btsproject20221102.domain.User;
+import com.btsproject.btsproject20221102.domain.UserInfo;
 import com.btsproject.btsproject20221102.domain.UserProfileImage;
 import com.btsproject.btsproject20221102.dto.account.*;
 import com.btsproject.btsproject20221102.exception.CustomValidationException;
@@ -31,6 +32,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Value("${file.path}")
     private String filePath;
+
+//    private UserInfo userInfo;
 
     @Override
     public boolean checkUsername(String username) throws Exception {
@@ -79,6 +82,13 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public boolean signup(SignupReqDto signupReqDto) throws Exception {
         return accountRepository.save(signupReqDto.toUserEntity()) != 0;
+    }
+
+    // 유저 정보 불러오기
+    @Override
+    public UserInfo getUserInfo(int userId) throws Exception {
+        log.info("getUserInfo~~" + accountRepository.userInfo(userId));
+        return accountRepository.userInfo(userId);
     }
 
     // 회원 정보 변경

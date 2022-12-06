@@ -1,12 +1,7 @@
 package com.btsproject.btsproject20221102.repository.account;
 
-import com.btsproject.btsproject20221102.domain.Key;
-import com.btsproject.btsproject20221102.domain.LoadRecentboardList;
-import com.btsproject.btsproject20221102.domain.User;
-import com.btsproject.btsproject20221102.domain.UserProfileImage;
-import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
+import com.btsproject.btsproject20221102.domain.*;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import java.util.List;
 
@@ -21,6 +16,8 @@ public interface AccountRepository {
 
     public int updateUserOauth2(User user);
 
+    //회원 정보
+    public UserInfo userInfo(int userId);
 
     /* 회원 정보 수정 */
     public int modifyProfile(User user);
