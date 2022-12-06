@@ -23,6 +23,24 @@
         <result property="update_date" column="update_date"></result>
         <collection property="qna_img_files" javaType="list" resultMap="qna_img_files"></collection>
     </resultMap>
+    <resultMap id="qnaArticle" type="com.btsproject.btsproject20221102.domain.QnaArticle">
+        <result property="id" column="id"></result>
+        <result property="menu_id" column="menu_id"></result>
+        <result property="category_name" column="category_name"></result>
+        <result property="subcategory_name" column="subcategory_name"></result>
+        <result property="status" column="status"></result>
+        <result property="nickname" column="nickname"></result>
+        <result property="title" column="title"></result>
+        <result property="info" column="info"></result>
+        <result property="want_info" column="want_info"></result>
+        <result property="price" column="price"></result>
+        <result property="create_date" column="create_date"></result>
+        <result property="update_date" column="update_date"></result>
+        <collection property="qna_img_files" javaType="list" resultMap="qna_img_files"></collection>
+    </resultMap>
+
+
+
 
     <insert id="saveQna" parameterType="com.btsproject.btsproject20221102.domain.Qna" useGeneratedKeys="true" keyProperty="id">
 <!--       쿼리 어떻게 짜야되는지 질문-->
@@ -65,51 +83,32 @@
 
     </insert>
     
-<!--    <select id="infoQna" parameterType="Integer" resultMap="com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto">-->
-<!--        select-->
-<!--            qm.id,-->
-<!--            qm.menu_id,-->
-<!--            qm.category_id,-->
-<!--            qm.category_sub_id,-->
-<!--            qm.status_id,-->
-<!--            qm.user_id,-->
-<!--            qm.title,-->
-<!--            qm.info,-->
-<!--            qm.want_info,-->
-<!--            qm.price,-->
-<!--            qm.create_date,-->
-<!--            qm.update_date,-->
-<!--            qim.id AS img_id,-->
-<!--            qim.qna_board_id,-->
-<!--            qim.origin_name,-->
-<!--            qim.temp_name-->
-<!--        from-->
-<!--            (select-->
-<!--            *-->
-<!--            from-->
-<!--                qna_board_mst-->
-<!--            limit #{index},10) qm-->
-<!--            left outer join qna_board_img qim on(qim.qna_board_id = qm.id);-->
-<!--    </select>-->
 
-    <select id="infoQna" parameterType="Integer" resultType="com.btsproject.btsproject20221102.domain.QnaArticle">
+
+    <select id="infoQna" parameterType="Integer" resultMap="qnaArticle">
         select
-            id,
-            menu_id,
-            category_id,
-            category_sub_id,
-            status_id,
-            user_id,
-            title,
-            info,
-            want_info,
-            price,
-            create_date,
-            update_date
+            qbm.id,
+            qbm.menu_id,
+            cd.category_name,
+            sd.subcategory_name,
+            sm.status,
+            um.nickname,
+            qbm.title,
+            qbm.info,
+            qbm.want_info,
+            qbm.price,
+            qbi.temp_name,
+            qbm.create_date,
+            qbm.update_date
         from
-            qna_board_mst
+            qna_board_mst qbm
+            LEFT OUTER JOIN user_mst um ON(um.id = qbm.user_id)
+            LEFT OUTER JOIN category_dtl cd ON(cd.id = qbm.category_id)
+            LEFT OUTER JOIN subcategory_dtl sd ON(sd.id = qbm.category_sub_id)
+            LEFT OUTER JOIN status_mst sm ON(sm.id = qbm.status_id)
+            LEFT OUTER JOIN qna_board_img qbi ON(qbi.qna_board_id = qbm.id)
         where
-            id = #{id}
+            qbm.id = #{id}
     </select>
 
     <select id="qnaLoadBoard"
@@ -207,6 +206,21 @@
     limit
     #{page},10
 
+
+    </select>
+
+
+
+    <select id = "getQnaImgList" parameterType="Integer" resultMap="qna_img_files">
+        select
+            id,
+            qna_board_id,
+            origin_name,
+            temp_name
+        from
+            qna_board_img
+        where
+            qna_board_id = #{boardId}
 
     </select>
 

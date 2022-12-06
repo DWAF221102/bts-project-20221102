@@ -13,17 +13,18 @@ import java.util.List;
 public class QnaCreateRespDto {
     private int id;
     private int menuId;
-    private int categoryId;
-    private int categorySubId;
-    private int statusId;
-    private int userId;
+    private String categoryName;
+    private String subcategoryName;
+    private String status;
+    private String nickname;
     private String title;
     private String info;
     private String wantInfo;
     private int price;
+    private String originName;
 
 
-    private List<QnaImgFile> qna_img_files;
+    private List<QnaImgFile> qnaImgFiles;
 
     private LocalDateTime create_date;
     private LocalDateTime update_date;
