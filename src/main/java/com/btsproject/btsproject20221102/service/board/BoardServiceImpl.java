@@ -1,7 +1,5 @@
 package com.btsproject.btsproject20221102.service.board;
 
-import com.btsproject.btsproject20221102.aop.annotation.LogAspect;
-import com.btsproject.btsproject20221102.domain.Article;
 import com.btsproject.btsproject20221102.domain.Board;
 import com.btsproject.btsproject20221102.domain.BoardImgFile;
 import com.btsproject.btsproject20221102.dto.board.ArticleRespDto;
@@ -15,8 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -33,64 +30,113 @@ public class BoardServiceImpl implements BoardService{
     private final BoardRepository boardRepository;
 
     @Override
-    public BoardImgFile uploadImgService(MultipartFile file) {
+    public String uploadSummernoteService(MultipartFile file) {
 
         String originalFileName = file.getOriginalFilename();    //오리지날 파일명
-        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));    //파일 확장자
-        String tempFileName = UUID.randomUUID() + extension;    //저장될 파일 명
 
-        BoardImgFile imgFiles = new BoardImgFile();
+        Path uploadPath = Paths.get(filePath + "/summernote/" + originalFileName);
 
-        Path uploadPath = Paths.get(filePath + "/board/" + tempFileName);
-
-        File f = new File(filePath + "/board");
+        File f = new File(filePath + "/summernote");
 
         if (!f.exists()) {
             f.mkdirs();
         }
         try {
             Files.write(uploadPath, file.getBytes());
-            imgFiles.setOrigin_name(originalFileName);
-            imgFiles.setTemp_name(tempFileName);
         } catch (IOException e) {
 
             throw new RuntimeException(e);
         }
-        return imgFiles;
+        return originalFileName;
     }
 
     @Override
-    public boolean deleteImg(MultipartFile file) {
-        String tempName = file.getOriginalFilename();
+    public Map<String, List<String>> uploadImgService(List<String> img ,List<MultipartFile> imgfiles) {
+        Map<String, List<String>> fileNames = new HashMap<String, List<String>>();
+        List<String> originNames = new ArrayList<String>();
+        List<String> tempNames = new ArrayList<String>();
+
+        img.forEach(data -> {
+            imgfiles.forEach(file -> {
+                String originalFileName = file.getOriginalFilename();
+                if(originalFileName.equals(data)) {
+                    originNames.add(originalFileName);
+
+                    String uuid = UUID.randomUUID().toString();
+                    String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+                    String tempFileName = uuid + extension;
+                    tempNames.add(tempFileName);
+
+                    Path uploadPath = Paths.get(filePath + "/board/" + tempFileName);
+
+                    File f = new File(filePath + "/board");
+
+                    if (!f.exists()) {
+                        f.mkdirs();
+                    }
+                    try {
+                        Files.write(uploadPath, file.getBytes());
+
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
+            });
+        });
+
+        fileNames.put("originNames", originNames);
+        fileNames.put("tempNames", tempNames);
+        return fileNames;
+    }
+
+    @Override
+    public boolean deleteSummernoteImg(List<String> summernote) {
+        if(summernote.size() != 0) {
+            summernote.forEach(img -> {
+                Path uploadPath = Paths.get(filePath + "/summnernot/" + img);
+                log.info("img: " + img);
+                File file = new File(uploadPath.toUri());
+                if(file.exists()) {
+                    file.delete();
+                }
+            });
+            return true;
+        }
 
         return false;
     }
 
     @Override
     public boolean saveBoard(WriteReqDto writeReqDto) throws Exception {
+
         int result = 0;
+        if(writeReqDto != null) {
+            Board board = writeReqDto.toBoardEntity();
+            result = boardRepository.saveBoard(board);
 
-        Board board = writeReqDto.toBoardEntity();
-        result = boardRepository.saveBoard(board);
+            List<BoardImgFile> files = new ArrayList<BoardImgFile>();
 
-        List<BoardImgFile> files = new ArrayList<BoardImgFile>();
+            if(writeReqDto.getSummernote().size() != 0) {
+                if(writeReqDto.getImg().size() != 0) {
+                    Map<String, List<String>> map = uploadImgService(writeReqDto.getImg(), writeReqDto.getImgFiles());
+                    if(map.size() != 0) {
+                        for(int i = 0; i < map.get("originName").size(); i++) {
+                            files.add(BoardImgFile.builder()
+                                    .board_id(board.getId())
+                                    .origin_name(map.get("originName").get(i))
+                                    .temp_name(map.get("tempName").get(i))
+                                    .build());
+                        }
+                        result = boardRepository.saveBoardImg(files);
+                    }
+                }
+                deleteSummernoteImg(writeReqDto.getSummernote());
 
-        if(writeReqDto.getOriginFile() != null) {
-            for(int i = 0; i < writeReqDto.getOriginFile().size(); i++) {
-                files.add(BoardImgFile.builder()
-                        .board_id(board.getId())
-                        .origin_name(writeReqDto.getOriginFile().get(i))
-                        .temp_name(writeReqDto.getTempFile().get(i))
-                        .build());
             }
-            result = boardRepository.saveBoardImg(files);
+            return true;
         }
-
-        if(result == 0) {
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
 

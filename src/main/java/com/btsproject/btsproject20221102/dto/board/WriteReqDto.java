@@ -2,6 +2,7 @@ package com.btsproject.btsproject20221102.dto.board;
 
 import com.btsproject.btsproject20221102.domain.Board;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,8 +16,9 @@ public class WriteReqDto {
 
     private String title;
     private String content;
-    private List<String> originFile;
-    private List<String> tempFile;
+    private List<String> img;
+    private List<String> summernote;
+    private List<MultipartFile> imgFiles;
 
 
     public Board toBoardEntity() {
