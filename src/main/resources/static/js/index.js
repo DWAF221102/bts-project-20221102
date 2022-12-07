@@ -42,8 +42,8 @@ function loadBoardList(fiveBoardlist, responseData) {
             <li>
                 <div class="board-list-top">
                     <div class="board-profile">
-                        <a href=""><img src="/image/user/${data.userImg}"></a>
-                        <a href="" class="board-profile-nick">${data.nickname}</a>
+                        <a href="/myactivity/${data.userId}"><img src="/image/user/${data.userImg}"></a>
+                        <a href="/myactivity/${data.userId}" class="board-profile-nick">${data.nickname}</a>
                         <span>·</span>
                         <span>${time}</span>
                     </div>
@@ -99,8 +99,8 @@ function loadQnAList(responseData) {
         <li>
             <div class="board-list-top">
                 <div class="board-profile">
-                    <a href="#"><img src="/image/user/${data.userImg}"></a>
-                    <a href="#" class="board-profile-nick">${data.nickname}</a>
+                    <a href="/myactivity/${data.userId}"><img src="/image/user/${data.userImg}"></a>
+                    <a href="/myactivity/${data.userId}" class="board-profile-nick">${data.nickname}</a>
                     <span>·</span>
                     <span>${time}</span>
                 </div>
