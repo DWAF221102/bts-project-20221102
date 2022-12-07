@@ -112,15 +112,20 @@ window.onload = () => {
             }
         }
     }
-    function validationError(error) {
-        let errorMap = new Map(Object.entries(error));
 
-        const errorMsg = document.querySelectorAll(".error-msg");
-        errorMsg[0].textContent = errorMap.get("nickName");
-        errorMsg[1].textContent = errorMap.get("phone");
-    }
 
 }
+
+function validationError(error) {
+    let errorMap = new Map(Object.entries(error));
+
+    const errorMsg = document.querySelectorAll(".error-msg");
+    errorMsg[0].textContent = errorMap.get("nickName");
+    errorMsg[1].textContent = errorMap.get("phone");
+}
+
+
+
 
 
 

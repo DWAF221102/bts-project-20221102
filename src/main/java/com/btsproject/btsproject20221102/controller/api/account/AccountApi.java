@@ -57,6 +57,9 @@ public class AccountApi {
         return ResponseEntity.ok(new CMRespDto<>(1, "success", true));
 }
 
+    // 리다이렉트
+
+
     // 회원 정보 수정
     @PutMapping("/myprofile")
     public ResponseEntity<?> modifyProfile( @RequestBody ModifyReqDto modifyReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {

@@ -45,6 +45,21 @@ main {
     padding: 15px;
 }
 
+.profile-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0;
+}
+
+.profile-detail p {
+    font-size: 17px;
+}
+
+.fa-star {
+    color: rgb(251, 251, 6);
+}
+
 /* 프로필사진 영역 */
 .profile-image {
     display: flex;
@@ -142,7 +157,7 @@ main {
 .skill-area {
     border-top: 1px solid rgb(209 213 219);
     height: 30%;
-    padding: 9px;
+    padding: 9px 12px;
 }
 
 /* 메뉴 영역 */

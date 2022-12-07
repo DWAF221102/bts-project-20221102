@@ -71,12 +71,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 
                 // 접근 권한 관련
-//                .antMatchers("/admin/**","/api/admin/**")//지정한 주소를 가지고 권한을 줄건지 정함.
-                //.hasRole("ADMIN")  하나만의 권할을 줄때
+                .antMatchers("/admin/**","/api/admin/**")//지정한 주소를 가지고 권한을 줄건지 정함.
+                .hasRole("ADMIN")  // 하나만의 권할을 줄때
 //                .access("hasRole('ADMIN') or hasRole('MANAGER')")
-                .antMatchers("/**")
-                .permitAll()  //모든 접근 허용
-                //나중에 Role별 antMatchers 수정
+//                .antMatchers("/myprofile")
+//                .permitAll()
 
                 // 로그인 관련
                 .and()

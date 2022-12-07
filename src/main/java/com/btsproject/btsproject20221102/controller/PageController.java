@@ -3,8 +3,10 @@ package com.btsproject.btsproject20221102.controller;
 
 import com.btsproject.btsproject20221102.domain.User;
 import com.btsproject.btsproject20221102.repository.account.AccountRepository;
+import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,8 +58,10 @@ public class PageController {
 
     // 내 프로필 페이지
     @GetMapping("/myprofile")
-    public String myprofile() {
-
+    public String myprofile(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+        if(principalDetails == null){
+            return "account/login";
+        }
         return "account/myProfile"; }
 
     // 비밀번호 변경 페이지

@@ -286,6 +286,7 @@
             um.id,
             um.nickname,
             um.user_img,
+            um.skill,
             IFNULL(avg(scm.score), 0) AS score_avg
         FROM
             user_mst um
