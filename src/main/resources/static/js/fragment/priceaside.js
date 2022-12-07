@@ -26,12 +26,11 @@ function loadPriceAside(responseData) {
     priceUl.innerHTML = "";
     
     responseData.forEach(data => {
-
         priceUl.innerHTML += `
             <li>
                 <div class="mini-profile">
-                    <img src="/image/user/${data.userImg}">
-                    <a href="#">${data.nickname}</a>
+                    <a href="/myactivity/${data.userId}"><img src="/image/user/${data.userImg}"></a>
+                    <a href="/myactivity/${data.userId}">${data.nickname}</a>
                 </div>
                 <div class="score">
                     <span>${data.price} P</span>

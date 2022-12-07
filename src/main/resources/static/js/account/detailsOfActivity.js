@@ -49,7 +49,7 @@ window.onload = () => {
             <a class="recent" href="/myactivity/${userId}"><span>최근 활동</span></a>
             <a class="article" href="/myactivity/article/${userId}"><span>게시물</span></a>
             <a class="qna" href="/myactivity/qna/${userId}"><span>Q&A</span></a>
-            <a class="like" href="/myactivity/scrap/${userId}"><span>스크랩</span></a>
+            <a class="like" href="/myactivity/scrap/${userId}"><span>좋아요</span></a>
         </div>
     </div>
     `
