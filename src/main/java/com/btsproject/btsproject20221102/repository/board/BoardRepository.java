@@ -23,8 +23,10 @@ public interface BoardRepository {
     public int commentWrite(Map<String, Object> map) throws Exception;
     public int recommentWrite(Map<String, Object> map) throws Exception;
     public List<BoardImgFile> getBoardImgList(int boardId) throws Exception;
-    public int deleteArticle(int id) throws Exception;
+
 
 //    -----update------
     public UpdateArticle loadUpdateArticle(int id) throws Exception;
+    public int updateArticle(UpdateArticle updateArticle) throws Exception;
+    public int deleteArticle(int id) throws Exception;
 }

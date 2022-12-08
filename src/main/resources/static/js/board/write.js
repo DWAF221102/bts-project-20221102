@@ -61,11 +61,6 @@ class WriteFormData {
     }
     
     formData = new FormData();
-    tempNames = new Array();
-
-    getFormData() {
-        return this.formData;
-    }
 
     setFormData() {
         let menu = this.getMenu();
@@ -87,7 +82,8 @@ class WriteFormData {
         this.formData.append("category", category.value);
         this.formData.append("subcategory", subcategory.value);
         this.formData.append("title", title.value);
-        this.formData.append("content", content.value);
+        let reContent = content.value.replace(/summernote/g, "board");
+        this.formData.append("content", reContent);
         this.setImg(content);
 
         return this.formData;
@@ -108,7 +104,9 @@ class WriteFormData {
                 this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
             }else if(str.includes("png")) {
                 this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
-            }if(str.includes("jpeg")) {
+            }else if(str.includes("jpeg")) {
+                this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
+            }else if(str.includes("webp")) {
                 this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
             }
         });
@@ -130,8 +128,8 @@ class WriteFormData {
             success: (response) => {
                 let fileName = response.data;
                 $(editor).summernote('insertImage', "/image/summernote/" + fileName);
-                this.formData.append("summernote", fileName);
-                console.log(this.formData.get("summernote"));
+                this.formData.append("tempName", fileName);
+                this.formData.append("files", file);
             },
             error: (error) => {
                 console.log(error);
@@ -196,7 +194,7 @@ class WriteApi {
             success: (response) => {
                 console.log(response);
                 alert("게시글 작성 완료");
-                // location.href = `/${WriteFormData.getInstance().getMenu()}`;
+                location.href = `/${WriteFormData.getInstance().getMenu()}`;
                 
             },
             error: (error) => {
@@ -242,8 +240,7 @@ class WriteButtons {
         
         cancelButton.onclick = () => {
             if(confirm("작성을 취소 하시겠습니까?")) {
-                WriteFormData.getInstance().setFormData();
-                let formData = WriteFormData.getInstance().getFormData();
+                let formData = WriteFormData.getInstance().setFormData();
                 WriteApi.getInstance().imgDeleteReq(formData);
                 location.href = `/${WriteFormData.getInstance().getMenu()}`;
             }
@@ -251,8 +248,7 @@ class WriteButtons {
         };
 
         writeButton.onclick = () => {
-            WriteFormData.getInstance().setFormData();
-            let formData = WriteFormData.getInstance().getFormData();
+            let formData = WriteFormData.getInstance().setFormData();
             if(NullCheck.getInstance().nullCheck(formData)){
                 WriteApi.getInstance().writeRequest(formData);
             }else {

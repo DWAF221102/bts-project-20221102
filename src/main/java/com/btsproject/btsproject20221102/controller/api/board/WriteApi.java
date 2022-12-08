@@ -38,13 +38,16 @@ public class WriteApi {
     public ResponseEntity<?> uploadImg(@RequestParam MultipartFile file) {
 
 
-        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.uploadSummernoteService(file)));
+        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.uploadSummernoteImg(file)));
     }
 
     @DeleteMapping("/img/delete")
     public ResponseEntity<?> deleteImg(WriteReqDto writeReqDto) {
 
+        writeReqDto.getTempName().forEach(img -> {
+            boardService.deleteSummernoteImg(img);
+        });
 
-        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.deleteSummernoteImg(writeReqDto.getSummernote())));
+        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", true));
     }
 }

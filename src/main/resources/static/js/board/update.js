@@ -63,10 +63,10 @@ class UpdateApi {
         return responseData;
     }
 
-    updateRequest(formData) {
+    updateReq(formData) {
         $.ajax({
             async: false,
-            type: "post",
+            type: "put",
             url: "/api/update",
             enctype: "multipart/form-data",
             contentType: false,
@@ -83,7 +83,46 @@ class UpdateApi {
                 console.log(error);
             }
         })
-    } 
+    }
+
+    cancelReq(formData) {
+        $.ajax({
+            async: false,
+            type: "delete",
+            url: "/api/update/cancel",
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            data: formData,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
+
+    deleteReq(formData) {
+
+        $.ajax({
+            async: false,
+            type: "delete",
+            url: "/api/article/delete",
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            data: formData,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
 }
 
 
@@ -97,14 +136,14 @@ class OldData {
         return this.#instance;
     }
 
-    oldDataService() {
-        let responseData = UpdateApi.getInstance().loadArticleReq();
+    oldDataService(responseData) {
+         
         if(responseData != null) {
             this.setCategory(responseData);
             this.setSubcategory(responseData);
             this.setTitle(responseData);
             this.setContent(responseData);
-            return responseData;
+            return true;
         }else {
             return false;
         }   
@@ -311,42 +350,48 @@ class UpdateFormData {
         return this.formData;
     }
 
-    setFormData() {
-        let responseData = OldData.getInstance().oldDataService()
+    setFormData(responseData) {
+        
         let url = location.href;
         let id = url.substring(url.lastIndexOf("/") + 1);
         const category = document.querySelector("#category");
         const subcategory = document.querySelector("#subcategory");
         const title = document.querySelector("#title");
         const content = document.querySelector("#summernote");
-        
+        let reContent = content.value.replace(/summernote/g, "board");
+        let oldImgs = this.setImg(responseData.content);
+        let imgs = this.setImg(content.value);
+
         this.formData.append("id", id);
         this.formData.append("category", category.value);
         this.formData.append("subcategory", subcategory.value);
         this.formData.append("title", title.value);
-        this.formData.append("content", content.value);
-        this.setImg(content.value);
-        this.setOldImg(responseData);
+        this.formData.append("content", reContent);
+        oldImgs.forEach(oldimg => {
+            this.formData.append("oldImg", oldimg);
+        });
+        imgs.forEach(img => {
+            this.formData.append("img", img);
+        });
 
         return this.formData;
     }
 
-    setOldImg(responseData) {
-        this.formData.append("oldImg", this.setImg(responseData.content));
-    }
 
     setImg(content) {
         let array = new Array();
+        let returnData = new Array();
         array = content.split(/[\ /]/);
         array.forEach(str => {
             if(str.includes("jpg")) {
-                this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
+                returnData.push(str.substring(0, str.lastIndexOf('"')));
             }else if(str.includes("png")) {
-                this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
+                returnData.push(str.substring(0, str.lastIndexOf('"')));
             }if(str.includes("jpeg")) {
-                this.formData.append("img", str.substring(0, str.lastIndexOf('"')));
+                returnData.push(str.substring(0, str.lastIndexOf('"')));
             }
         });
+        return returnData;
     } 
 
     uploadImg(file, editor) {
@@ -365,7 +410,8 @@ class UpdateFormData {
             success: (response) => {
                 let fileName = response.data;
                 $(editor).summernote('insertImage', "/image/summernote/" + fileName);
-                this.formData.append("summernote", fileName);
+                this.formData.append("tempName", fileName);
+                this.formData.append("files", file);
             },
             error: (error) => {
                 console.log(error);
@@ -417,9 +463,10 @@ class UpdateService {
         return this.#instance;
     }
 
-    updateService(formData) {
-        if(OldData.getInstance().oldDataService()) {
-            WriteApi.getInstance().writeRequest(formData);
+    updateService() {
+        let responseData = UpdateApi.getInstance().loadArticleReq();
+        if(OldData.getInstance().oldDataService(responseData)) {
+            ButtonService.getInstance().addButtonService(responseData);
         }
     }
 }
@@ -434,12 +481,11 @@ class ButtonService {
         return this.#instance;
     }
 
-    addButtonService() {
-        if(OldData.getInstance().oldDataService()){
-            this.setUpdateButton();
-            this.setCencelButton();
-            this.setDeleteButton();
-        }
+    addButtonService(responseData) {
+        this.setUpdateButton(responseData);
+        this.setCencelButton(responseData);
+        this.setDeleteButton(responseData);
+        
     }
     
     getId() {
@@ -448,37 +494,50 @@ class ButtonService {
         return id;
     }
 
-    setUpdateButton() {
+    setUpdateButton(responseData) {
+        let id = this.getId();
         const updateButton = document.querySelector(".update-button");
-        
-
         updateButton.onclick = () => {
-            UpdateFormData.getInstance().setFormData();
-            let formData = UpdateFormData.getInstance().getFormData();
+            let formData = UpdateFormData.getInstance().setFormData(responseData);
             if(NullCheck.getInstance().nullCheck(formData)){
-                UpdateApi.getInstance().updateRequest(formData);
+                UpdateApi.getInstance().updateReq(formData);
+                location.href = "/article/" + id;
             }
-        }
+        };
     }
 
-    setCencelButton() {
+    setCencelButton(responseData) {
         const cancelButton = document.querySelector(".cancel-button");
 
         let id = this.getId();
 
         cancelButton.onclick = () => {
-            location.href = "/article/" + id;
-        }
+            let fromDate = UpdateFormData.getInstance().setFormData(responseData);
+            
+            if(confirm("취소하시겠습니까???")){
+                UpdateApi.getInstance().cancelReq(fromDate);
+                
+                location.href = "/article/" + id;
+            }
+        };
     }
 
-    setDeleteButton() {
+    setDeleteButton(responseData) {
         let id = this.getId();
+        const deleteButton = document.querySelector(".delete-button");
 
+        deleteButton.onclick = () => {
+            let formData = UpdateFormData.getInstance().setFormData(responseData);
+            if(confirm("게시물을 삭제하시겠습니까?")) {
+                UpdateApi.getInstance().deleteReq(formData);
+                location.href = "/";
+            }
+        };
     }
 }
 
 window.onload = () => {
-    ButtonService.getInstance().addButtonService();
+    UpdateService.getInstance().updateService();
     
 }
 
