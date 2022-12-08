@@ -44,14 +44,14 @@ function loadBoardList(responseData) {
     listBody.innerHTML = "";
 
     responseData.forEach(data => {
-
+        
         listBody.innerHTML += `
             <tr>
                 <td>${data.nickname}</td>
                 <td>${data.categoryName}</td>
                 <td>${data.subcategoryName}</td>
                 <td>${data.title}</td>
-                <td><a href=""><button type="button">상세보기</button></a></td>
+                <td><a href="/article/${data.id}"><button type="button">상세보기</button></a></td>
                 <td><button type="button" class="board-delete-button">삭제</button></td>
             </tr>
         `
