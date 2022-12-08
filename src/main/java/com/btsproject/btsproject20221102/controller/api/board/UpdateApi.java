@@ -34,14 +34,11 @@ public class UpdateApi {
     @DeleteMapping("/update/cancel")
     public ResponseEntity<?> updateCancelReq(UpdateCancelReqDto updateCancelReqDto) throws Exception {
 
-        log.info("dto >> {}", updateCancelReqDto);
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.updateCancel(updateCancelReqDto)));
     }
 
     @DeleteMapping("/article/delete")
     public ResponseEntity<?> boardDeleteReq(ArticleDeleteReqDto articleDeleteReqDto) throws Exception {
-
-        log.info("dto >> {}", articleDeleteReqDto);
 
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.deleteArticle(articleDeleteReqDto)));
     }

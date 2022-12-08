@@ -37,7 +37,6 @@ function loadBoardList(fiveBoardlist, responseData) {
     responseData.forEach(data => {
         let totalCommentCount = data.commentCount + data.recommentCount;
         let time = setTime(data.createDate);
-
         fiveBoardlist.innerHTML += `
             <li>
                 <div class="board-list-top">
@@ -59,7 +58,7 @@ function loadBoardList(fiveBoardlist, responseData) {
                     </div>
                 </div>
                 <div class="board-list-bottom">
-                    <a href="#">${data.title}</a>
+                    <a href="/article/${data.boardId}">${data.title}</a>
                 </div>
             </li>
         `;
@@ -94,7 +93,6 @@ function loadQnAList(responseData) {
     
     responseData.forEach(data => {
         let time = setTime(data.createDate);
-
         qnaUl.innerHTML += `
         <li>
             <div class="board-list-top">
@@ -112,7 +110,7 @@ function loadQnAList(responseData) {
                 </div>
             </div>
             <div class="qna-list-bottom">
-                <a href="#">${data.title}</a>
+                <a href="/question/article/${data.boardId}">${data.title}</a>
                 <span>${data.price} P</span>
             </div>
         </li>

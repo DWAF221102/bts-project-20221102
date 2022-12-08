@@ -113,10 +113,10 @@ class BoardLoad {
                     <li>
                         <div class="board-list-user">
                             <div class="user-img">
-                                <a href=""> <img src="/image/user/${data.userImg}"></a>
+                                <a href="/myactivity/${data.userId}"> <img src="/image/user/${data.userImg}"></a>
                             </div>
                             <div class="user-detail">
-                                <a href="">${data.nickname}</a>
+                                <a href="/myactivity/${data.userId}">${data.nickname}</a>
                                 <span>&#183;</span> 
                                 <span>${time}</span>
                             </div>
@@ -142,10 +142,10 @@ class BoardLoad {
                     <li>
                         <div class="board-list-user">
                             <div class="user-img">
-                                <a href=""> <img src="/image/user/${data.userImg}"></a>
+                                <a href="/myactivity/${data.userId}"> <img src="/image/user/${data.userImg}"></a>
                             </div>
                             <div class="user-detail">
-                                <a href="">${data.nickname}</a>
+                                <a href="/myactivity/${data.userId}">${data.nickname}</a>
                                 <span>&#183;</span> 
                                 <span>${time}</span>
                             </div>

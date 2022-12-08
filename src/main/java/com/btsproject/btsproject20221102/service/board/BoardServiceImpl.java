@@ -85,8 +85,6 @@ public class BoardServiceImpl implements BoardService {
         File file = new File(uploadPath.toUri());
         if (file.exists()) {
             file.delete();
-            log.info("삭제");
-
         }
 
         return true;
@@ -102,22 +100,24 @@ public class BoardServiceImpl implements BoardService {
 
             List<BoardImgFile> files = new ArrayList<BoardImgFile>();
 
-
-            writeReqDto.getImg().forEach(img -> {
-                for(int i = 0; i < writeReqDto.getTempName().size(); i++) {
-                    if(writeReqDto.getTempName().get(i).equals(img)) {
-                        Map<String, String> map = new HashMap<String, String>();
-                        map = uploadBoardImg(writeReqDto.getFiles().get(i), writeReqDto.getTempName().get(i));
-                        files.add(BoardImgFile.builder()
-                                .board_id(board.getId())
-                                .origin_name(map.get("originName"))
-                                .temp_name(map.get("tempName"))
-                                .build());
+            if(writeReqDto.getImg() != null) {
+                writeReqDto.getImg().forEach(img -> {
+                    for(int i = 0; i < writeReqDto.getTempName().size(); i++) {
+                        if(writeReqDto.getTempName().get(i).equals(img)) {
+                            Map<String, String> map = new HashMap<String, String>();
+                            map = uploadBoardImg(writeReqDto.getFiles().get(i), writeReqDto.getTempName().get(i));
+                            files.add(BoardImgFile.builder()
+                                    .board_id(board.getId())
+                                    .origin_name(map.get("originName"))
+                                    .temp_name(map.get("tempName"))
+                                    .build());
+                        }
+                        deleteSummernoteImg(writeReqDto.getTempName().get(i));
                     }
-                    deleteSummernoteImg(writeReqDto.getTempName().get(i));
-                }
 
-            });
+                });
+            }
+
 
             boardRepository.saveBoardImg(files);
         }
@@ -269,8 +269,6 @@ public class BoardServiceImpl implements BoardService {
                     deleteSummernoteImg(tempName);
                 });
             }
-
-
 
             return true;
         }
