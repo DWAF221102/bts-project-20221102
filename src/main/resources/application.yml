@@ -9,6 +9,10 @@ spring:
     url: jdbc:mariadb://web-study.cf6og1l7mjlg.ap-northeast-2.rds.amazonaws.com:3306/bts-project?allowMultiQueries=true
     username: admin
     password: 1q2w3e4r!
+  servlet:
+    multipart:
+      max-file-size: 128MB
+      max-request-size: 128MB
   mail:
     host: smtp.gmail.com
     port: 587
