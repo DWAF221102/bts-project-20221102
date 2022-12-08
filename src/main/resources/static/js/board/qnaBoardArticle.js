@@ -14,9 +14,11 @@ function getList() {
         success: (response) => {
             console.log(response);
             img(response.data);
+            writer(response.data);
             titleCreate(response.data);
             boardInfo(response.data);
             boardDetails(response.data);
+            writer(response.data);
         },
         error: (error) => {
             console.log(error);
@@ -29,14 +31,44 @@ function getList() {
 function img(data) {
     const qnaImg = document.querySelector(".qna-board-img")
     let qnaImgFiles = data.qnaImgFiles;
+    articleImgList = new Array();
+
+    let k = 0;
+    qnaImg.innerHTML = `
+    <div class="img-box">
+        <i class="fa-shrap fa-solid fa-angle-left"></i>
+        <i class="fa-shrap fa-solid fa-angle-right"></i>
+        <img class="img-content" src="/image/qna/${data.qnaImgFiles[k].temp_name}">
+    </div>
+    `;
     
     for(let i = 0; i < qnaImgFiles.length; i++){
-        qnaImg.innerHTML += `
-        <div class="qna-board-img">
-            <img class="img-content" src="/image/qna/${data.qnaImgFiles[i].temp_name}">
-        </div>
-        `;
+        articleImgList.push(data.qnaImgFiles[i].temp_name);
+        console.log(articleImgList);
+
     };
+
+    const rightButton = document.querySelector(".fa-angle-right");
+    rightButton.onclick = () => {
+        if(k < qnaImgFiles.length-1){
+            const imgContent = document.querySelector(".img-content");
+            k++;
+            imgContent.src = `/image/qna/${articleImgList[k]}`;
+            console.log([k])
+        }
+
+    }
+
+    const leftButton = document.querySelector(".fa-angle-left");
+    leftButton.onclick = () => {
+        if(k < qnaImgFiles.length && k>=1){
+            const imgContent = document.querySelector(".img-content");
+            k--;
+            imgContent.src = `/image/qna/${articleImgList[k]}`;
+            console.log([k])
+        }
+
+    }
 
 }
 
@@ -63,8 +95,26 @@ function addCreate(qnaLists) {
         `;
     });
 }
+        // <img src="/image/user/${data.userImg}" alt="">
 
+function writer(data) {
+    const qnaWriter = document.querySelector(".qna-board-profile-flex");
+    qnaWriter.innerHTML = `
+    <a href="" class="qna-profile-img">
 
+    </a>
+    <div class="qna-board-profile-details">
+        <a href="" class="qna-profile-name">${data.nickname}</a>
+        <div class="qna-profile-text">
+            <span>좋아요</span>
+            <span> </span>
+            <span>시간</span>
+            <span> </span>
+            <span>뷰</span>
+        </div>
+    </div>
+    `;
+}
 
 function titleCreate(data) {
 

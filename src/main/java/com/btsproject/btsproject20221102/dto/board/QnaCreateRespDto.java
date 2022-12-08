@@ -21,10 +21,14 @@ public class QnaCreateRespDto {
     private String info;
     private String wantInfo;
     private int price;
-    private String originName;
+    private String userImg;
+    private int likeCount;
+    private int viewCount;
+//    private String originName;
 
 
     private List<QnaImgFile> qnaImgFiles;
+
 
     private LocalDateTime create_date;
     private LocalDateTime update_date;
