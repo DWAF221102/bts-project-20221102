@@ -2,9 +2,11 @@ package com.btsproject.btsproject20221102.domain;
 
 import com.btsproject.btsproject20221102.dto.board.UpdateArticleRespDto;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

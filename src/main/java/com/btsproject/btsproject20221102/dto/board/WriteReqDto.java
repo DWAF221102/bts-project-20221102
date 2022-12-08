@@ -17,8 +17,8 @@ public class WriteReqDto {
     private String title;
     private String content;
     private List<String> img;
-    private List<String> summernote;
-    private List<MultipartFile> imgFiles;
+    private List<String> tempName;
+    private  List<MultipartFile> files;
 
 
     public Board toBoardEntity() {

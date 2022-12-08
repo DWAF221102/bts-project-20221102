@@ -2,10 +2,8 @@ package com.btsproject.btsproject20221102.service.board;
 
 import com.btsproject.btsproject20221102.domain.Board;
 import com.btsproject.btsproject20221102.domain.BoardImgFile;
-import com.btsproject.btsproject20221102.dto.board.ArticleRespDto;
-import com.btsproject.btsproject20221102.dto.board.BoardRespDto;
-import com.btsproject.btsproject20221102.dto.board.UpdateArticleRespDto;
-import com.btsproject.btsproject20221102.dto.board.WriteReqDto;
+import com.btsproject.btsproject20221102.domain.UpdateArticle;
+import com.btsproject.btsproject20221102.dto.board.*;
 import com.btsproject.btsproject20221102.repository.board.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +20,7 @@ import java.util.*;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class BoardServiceImpl implements BoardService{
+public class BoardServiceImpl implements BoardService {
 
     @Value("${file.path}")
     private String filePath;
@@ -30,11 +28,16 @@ public class BoardServiceImpl implements BoardService{
     private final BoardRepository boardRepository;
 
     @Override
-    public String uploadSummernoteService(MultipartFile file) {
+    public String uploadSummernoteImg(MultipartFile file) {
+        Map<String, String> map = new HashMap<String, String>();
 
         String originalFileName = file.getOriginalFilename();    //오리지날 파일명
 
-        Path uploadPath = Paths.get(filePath + "/summernote/" + originalFileName);
+        String uuid = UUID.randomUUID().toString();
+        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+        String tempFileName = uuid + extension;
+
+        Path uploadPath = Paths.get(filePath + "/summernote/" + tempFileName);
 
         File f = new File(filePath + "/summernote");
 
@@ -47,98 +50,79 @@ public class BoardServiceImpl implements BoardService{
 
             throw new RuntimeException(e);
         }
-        return originalFileName;
+
+
+        return tempFileName;
     }
 
     @Override
-    public Map<String, List<String>> uploadImgService(List<String> img ,List<MultipartFile> imgfiles) {
-        Map<String, List<String>> fileNames = new HashMap<String, List<String>>();
-        List<String> originNames = new ArrayList<String>();
-        List<String> tempNames = new ArrayList<String>();
+    public Map<String, String> uploadBoardImg(MultipartFile file, String tempName) {
+        Map<String, String> map = new HashMap<String, String>();
+        String originName = file.getOriginalFilename();
 
-        img.forEach(data -> {
-            imgfiles.forEach(file -> {
-                String originalFileName = file.getOriginalFilename();
-                if(originalFileName.equals(data)) {
-                    originNames.add(originalFileName);
+        Path uploadPath = Paths.get(filePath + "/board/" + tempName);
 
-                    String uuid = UUID.randomUUID().toString();
-                    String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
-                    String tempFileName = uuid + extension;
-                    tempNames.add(tempFileName);
+        File f = new File(filePath + "/board");
 
-                    Path uploadPath = Paths.get(filePath + "/board/" + tempFileName);
+        if (!f.exists()) {
+            f.mkdirs();
+        }
+        try {
+            Files.write(uploadPath, file.getBytes());
+        } catch (IOException e) {
 
-                    File f = new File(filePath + "/board");
+            throw new RuntimeException(e);
+        }
+        map.put("originName", originName);
+        map.put("tempName", tempName);
 
-                    if (!f.exists()) {
-                        f.mkdirs();
-                    }
-                    try {
-                        Files.write(uploadPath, file.getBytes());
-
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                }
-            });
-        });
-
-        fileNames.put("originNames", originNames);
-        fileNames.put("tempNames", tempNames);
-        return fileNames;
+        return map;
     }
 
     @Override
-    public boolean deleteSummernoteImg(List<String> summernote) {
-        if(summernote.size() != 0) {
-            summernote.forEach(img -> {
-                Path uploadPath = Paths.get(filePath + "/summnernot/" + img);
-                log.info("img: " + img);
-                File file = new File(uploadPath.toUri());
-                if(file.exists()) {
-                    file.delete();
-                }
-            });
-            return true;
+    public boolean deleteSummernoteImg(String tempName) {
+        Path uploadPath = Paths.get(filePath + "/summernote/" + tempName);
+        File file = new File(uploadPath.toUri());
+        if (file.exists()) {
+            file.delete();
+            log.info("삭제");
+
         }
 
-        return false;
+        return true;
     }
 
     @Override
     public boolean saveBoard(WriteReqDto writeReqDto) throws Exception {
 
         int result = 0;
-        if(writeReqDto != null) {
+        if (writeReqDto != null) {
             Board board = writeReqDto.toBoardEntity();
             result = boardRepository.saveBoard(board);
 
             List<BoardImgFile> files = new ArrayList<BoardImgFile>();
 
-            if(writeReqDto.getSummernote().size() != 0) {
-                if(writeReqDto.getImg().size() != 0) {
-                    Map<String, List<String>> map = uploadImgService(writeReqDto.getImg(), writeReqDto.getImgFiles());
-                    if(map.size() != 0) {
-                        for(int i = 0; i < map.get("originName").size(); i++) {
-                            files.add(BoardImgFile.builder()
-                                    .board_id(board.getId())
-                                    .origin_name(map.get("originName").get(i))
-                                    .temp_name(map.get("tempName").get(i))
-                                    .build());
-                        }
-                        result = boardRepository.saveBoardImg(files);
+
+            writeReqDto.getImg().forEach(img -> {
+                for(int i = 0; i < writeReqDto.getTempName().size(); i++) {
+                    if(writeReqDto.getTempName().get(i).equals(img)) {
+                        Map<String, String> map = new HashMap<String, String>();
+                        map = uploadBoardImg(writeReqDto.getFiles().get(i), writeReqDto.getTempName().get(i));
+                        files.add(BoardImgFile.builder()
+                                .board_id(board.getId())
+                                .origin_name(map.get("originName"))
+                                .temp_name(map.get("tempName"))
+                                .build());
                     }
+                    deleteSummernoteImg(writeReqDto.getTempName().get(i));
                 }
-                deleteSummernoteImg(writeReqDto.getSummernote());
 
-            }
-            return true;
+            });
+
+            boardRepository.saveBoardImg(files);
         }
-        return false;
+        return true;
     }
-
 
     @Override
     public List<BoardRespDto> loadBoard(int page,
@@ -216,27 +200,80 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public boolean deleteArticle(int id) throws Exception {
-        List<BoardImgFile> boardImgFiles = boardRepository.getBoardImgList(id);
-
-        if(boardRepository.deleteArticle(id) > 0) {
-            boardImgFiles.forEach(productImgFile -> {
-                Path uploadPath = Paths.get(filePath + "/board/" + productImgFile.getTemp_name());
-
-                File file = new File(uploadPath.toUri());
-                if(file.exists()) {
-                    file.delete();
-                }
-            });
-            return true;
-        };
-        return false;
-    }
-
-    @Override
     public UpdateArticleRespDto loadUpdateArticle(int id) throws Exception {
 
 
         return boardRepository.loadUpdateArticle(id).toDto();
+    }
+
+    @Override
+    public boolean updateArticle(UpdateReqDto updateReqDto) throws Exception {
+        int result = 0;
+
+        result = boardRepository.updateArticle(UpdateArticle.builder()
+                        .id(updateReqDto.getId())
+                        .category_id(Integer.parseInt(updateReqDto.getCategory()))
+                        .subcategory_id(Integer.parseInt(updateReqDto.getSubcategory()))
+                        .title(updateReqDto.getTitle())
+                        .content(updateReqDto.getContent())
+                        .build());
+        List<BoardImgFile> files = new ArrayList<BoardImgFile>();
+
+        if(result > 0) {
+            updateReqDto.getImg().forEach(img -> {
+                for(int i = 0; i < updateReqDto.getTempName().size(); i++) {
+                    if (updateReqDto.getTempName().get(i).equals(img)) {
+                        Map<String, String> map = new HashMap<String, String>();
+                        map = uploadBoardImg(updateReqDto.getFiles().get(i), updateReqDto.getTempName().get(i));
+                        files.add(BoardImgFile.builder()
+                                .board_id(updateReqDto.getId())
+                                .origin_name(map.get("originName"))
+                                .temp_name(map.get("tempName"))
+                                .build());
+                    }
+                    deleteSummernoteImg(updateReqDto.getTempName().get(i));
+                }
+            });
+            return true;
+        }
+            return false;
+
+    }
+    @Override
+    public boolean updateCancel(UpdateCancelReqDto updateCancelDto) throws Exception {
+        updateCancelDto.getTempName().forEach(img -> {
+            deleteSummernoteImg(img);
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean deleteArticle(ArticleDeleteReqDto articleDeleteReqDto) throws Exception {
+        int id = articleDeleteReqDto.getId();
+
+        if(boardRepository.deleteArticle(id) > 0) {
+            if(articleDeleteReqDto.getOldImg() != null) {
+                articleDeleteReqDto.getOldImg().forEach(img -> {
+                    Path uploadPath = Paths.get(filePath + "/board/" + img);
+
+                    File file = new File(uploadPath.toUri());
+                    if(file.exists()) {
+                        file.delete();
+                    }
+                });
+            }
+
+            if(articleDeleteReqDto.getTempName() != null) {
+                articleDeleteReqDto.getTempName().forEach(tempName -> {
+                    deleteSummernoteImg(tempName);
+                });
+            }
+
+
+
+            return true;
+        }
+        return false;
     }
 }

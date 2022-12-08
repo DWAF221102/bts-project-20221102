@@ -258,7 +258,8 @@
         VALUES
             (0,
             #{id},
-            #{from_id})
+            #{from_id},
+            now())
     </insert>
 
     <delete id="likeRemove" parameterType="Integer">
@@ -307,13 +308,7 @@
             board_id = #{boardId}
     </select>
 
-    <delete id="deleteArticle" parameterType="Integer">
-        delete
-        from
-            board_mst
-        where
-            id = #{id}
-    </delete>
+
 
 
 <!--    update  -->
@@ -331,4 +326,24 @@
         where
             id = #{id}
     </select>
+
+    <update id="updateArticle" parameterType="com.btsproject.btsproject20221102.domain.UpdateArticle">
+        update
+            board_mst
+        set
+            category_id = #{category_id},
+            subcategory_id = #{subcategory_id},
+            title = #{title},
+            content = #{content}
+        where
+            id = #{id}
+    </update>
+
+    <delete id="deleteArticle" parameterType="Integer">
+        delete
+        from
+            board_mst
+        where
+            id = #{id}
+    </delete>
 </mapper>

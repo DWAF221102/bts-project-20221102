@@ -60,9 +60,5 @@ public class ArticleApi {
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully",boardService.recommentWrite(commentId, userId, textValue)));
     }
 
-    @DeleteMapping("/article/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable int id) throws Exception {
-        return ResponseEntity.ok(new CMRespDto<>(1, "게시물 삭제 완료", boardService.deleteArticle(id)));
-    }
 
 }

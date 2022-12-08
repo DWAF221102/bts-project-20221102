@@ -17,7 +17,7 @@ public class UpdateReqDto {
     private String content;
 
     private List<String> img;
-    private List<String> summernote;
-    private List<MultipartFile> imgFiles;
+    private List<String> tempName;
+    private List<MultipartFile> Files;
     private List<String> oldImg;
 }

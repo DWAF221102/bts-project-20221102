@@ -234,7 +234,6 @@ class ArticleService {
                 }
             });
         }else{
-            console.log("0");
             userStarButton.onclick = () => {
                 if(userId != 0) {
                     userStarButton.classList.add("blue-button");
