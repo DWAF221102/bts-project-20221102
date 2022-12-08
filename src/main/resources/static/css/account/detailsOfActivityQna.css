@@ -195,7 +195,7 @@ main {
 }
 
 .boader-area ul {
-    height: 100%;
+    height: auto;
 }
 
 .boader-area ul li {

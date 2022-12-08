@@ -232,18 +232,18 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.modifyPassword(user);
     }
 
-    @Override
-    public List<RecentBoardListRespDto> loadRecentBoardList(PrincipalDetails principalDetails) throws Exception {
-        List<RecentBoardListRespDto> boardList = new ArrayList<RecentBoardListRespDto>();
 
-        accountRepository.loadRecentBoardList(principalDetails.getUser().getId()).forEach(board -> {
-        boardList.add(board.toRecentBoardListRespDto());
-        });
-        return boardList;
-    }
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @Override
+    public List<RecentBoardListRespDto> loadRecentBoardList(int userId) throws Exception {
+        List<RecentBoardListRespDto> boardList = new ArrayList<RecentBoardListRespDto>();
+        accountRepository.loadRecentBoardList(userId).forEach(board -> {
+            boardList.add(board.toRecentBoardListRespDto());
+        });
+        return boardList;
+    }
     @Override
     public List<MyprofileBoardRespDto> loadMyprofileBoardList(int userId) throws Exception {
         List<MyprofileBoardRespDto> list = new ArrayList<MyprofileBoardRespDto>();

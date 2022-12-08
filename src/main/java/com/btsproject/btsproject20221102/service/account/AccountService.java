@@ -37,7 +37,7 @@ public interface AccountService {
 
     public void modifyForgotPassword(PwForgotReqDto pwForgotReqDto) throws Exception;
 
-    public List<RecentBoardListRespDto> loadRecentBoardList(@AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception;
+    public List<RecentBoardListRespDto> loadRecentBoardList(int userId) throws Exception;
 
     public List<MyprofileBoardRespDto> loadMyprofileBoardList(int userId) throws Exception;
 

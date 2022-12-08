@@ -362,8 +362,6 @@
             from_id = #{userId}
         ORDER BY qlm.create_date DESC
     </select>
-
-
     <delete id="deleteUser" parameterType="com.btsproject.btsproject20221102.domain.User">
         delete
         from

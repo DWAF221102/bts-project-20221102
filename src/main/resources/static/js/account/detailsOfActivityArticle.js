@@ -3,7 +3,7 @@ loadMyBoardRequest(userId);
 //////////////////////////////////////////////////////////////////
 
 function loadMyBoardRequest(userId) {
-    let responseData= null;
+    let responseData = null;
 
     $.ajax({
         async: false,
@@ -22,12 +22,12 @@ function loadMyBoardRequest(userId) {
 
 function loadMyBoard(responseData) {
     const boarderList = document.querySelector(".boader-list");
-    
+
     boarderList.innerHTML = "";
-    
+
     responseData.forEach(data => {
-        
-        if(data.subcategoryName == null) {
+
+        if (data.subcategoryName == null) {
             boarderList.innerHTML += `
                 <li>
                     <div class="post">

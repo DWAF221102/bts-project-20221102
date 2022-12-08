@@ -2,6 +2,7 @@
 
 footer {
     width: 100%;
+    height: 114px;
 
     margin-top: 28px;
     padding: 28px 0px;
@@ -12,7 +13,8 @@ footer {
 .footer-container {
     margin: 0px auto;
     width: 1280px;
-    height: 114px;
+    height: 100%;
+    /* height: 114px; */
 }
 
 .footer-flex {
@@ -83,7 +85,8 @@ footer {
     color: #6B7280;
 }
 
-.info-bottom-mid, .info-bottom-last {
+.info-bottom-mid,
+.info-bottom-last {
     margin-top: 4px;
 }
 

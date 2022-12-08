@@ -93,11 +93,7 @@ public class AccountApi {
         return ResponseEntity.ok(new CMRespDto<>(1, "success", pwChangeReqDto));
     }
 
-//    @GetMapping("/myactivity/{id}")
-//    public ResponseEntity<?> loadBoardList(@PathVariable(name = "id") int id) throws Exception {
-//
-//        return ResponseEntity.ok(new CMRespDto<>(1, "success",accountService.loadRecentBoardList(id)));
-//    }
+
 
 
     @DeleteMapping("/delete/{id}")
@@ -115,6 +111,11 @@ public class AccountApi {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    @GetMapping("/myactivity/{userid}")
+    public ResponseEntity<?> loadRecentActivity(@PathVariable int userid) throws Exception {
+
+        return ResponseEntity.ok(new CMRespDto<>(1, "최근활동 게시물 불러오기 완료",accountService.loadRecentBoardList(userid)));
+    }
     @GetMapping("/myactivity/article/{userid}")
     public ResponseEntity<?> loadMyactivityBoard(@PathVariable int userid) throws Exception {
         return ResponseEntity.ok(new CMRespDto<>(1, "나의활동 게시물 불러오기 완료", accountService.loadMyprofileBoardList(userid)));

@@ -187,7 +187,7 @@ main {
 
 .menu-title {
     width: 100%;
-    
+
     text-align: center;
     font-size: 16px;
     color: black;
@@ -204,7 +204,7 @@ main {
 }
 
 .boader-area ul {
-    height: 100%;
+    height: auto;
 }
 
 .boader-area ul li {
@@ -221,7 +221,7 @@ main {
 .post-header {
     display: flex;
     justify-content: space-between;
-    
+
     margin-bottom: 5px;
 }
 

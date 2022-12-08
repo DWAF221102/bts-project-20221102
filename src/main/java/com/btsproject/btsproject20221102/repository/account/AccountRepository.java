@@ -22,6 +22,8 @@ public interface AccountRepository {
 
     /* 회원 정보 수정 */
     public int modifyProfile(User user);
+    // 최근활동 게시물
+    public List<LoadRecentboardList> loadRecentBoardList(int userId) throws Exception;
 
     public List<MyprofileBoard> loadMyprofileBoard(int userId) throws Exception;
     public List<MyprofileQna> loadMyprofileQna(int userId) throws Exception;
@@ -51,6 +53,5 @@ public interface AccountRepository {
 
     public int updateAuthenticationStatus(int id);
 
-    // 최근활동 게시물
-    public List<LoadRecentboardList> loadRecentBoardList(int id);
+
 }

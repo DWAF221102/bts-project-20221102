@@ -190,7 +190,7 @@ main {
 .boader-area {
     margin-top: 2.5rem;
     width: 100%;
-    height: 100%;
+    height: auto;
     /* padding: 20px 10px; */
 }
 
