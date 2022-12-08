@@ -22,6 +22,7 @@
 
     /* background-color: rgb(135, 135, 209); */
 }
+/* ---------------- 이미지 ------------------------ */
 
 .qna-board-img {
     width: 400px;
@@ -37,6 +38,53 @@
     /* 이미지 비율이 무너지지만 크게 상관없어서 그냥 400*400
     꽉 차게 보이도록 우선 넣음 */
 }
+.img-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.fa-angle-left {
+    position: absolute;
+    left: 0px;
+    top: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+
+    color: white;
+    background-color: rgb(112, 110, 110);
+    cursor: pointer;
+}
+
+.fa-angle-right {
+    position: absolute;
+    right: 0px;
+    top: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+
+    color: white;
+    background-color: rgb(112, 110, 110);
+    cursor: pointer;
+}
+
+
+
 
 .qna-board-profile {
     width: 400px;

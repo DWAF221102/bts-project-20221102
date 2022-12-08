@@ -30,8 +30,14 @@ public class QnaArticle {
     private String info;
     private String want_info;
     private int price;
+    private String user_img;
+    private int like_count;
+    private int view_count;
 
     private List<QnaImgFile> qna_img_files;
+
+
+
 
 
 
@@ -51,6 +57,9 @@ public class QnaArticle {
                 .info(info)
                 .wantInfo(want_info)
                 .price(price)
+                .userImg(user_img)
+                .likeCount(like_count)
+                .viewCount(view_count)
                 .qnaImgFiles(qna_img_files)
                 .create_date(create_date)
                 .update_date(update_date)
