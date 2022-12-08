@@ -181,13 +181,13 @@ class ArticleService {
         const time = TimeService.getInstance().setTime(createDate);
 
         userImg.innerHTML = `
-            <a href="">
+            <a href="/myactivity/${responseData.userId}">
                 <img src="/image/user/${responseData.userImg}">
             </a>
         `;
 
         userDetail.innerHTML = `
-            <a class="user-nickname">${responseData.nickname}</a>
+            <a href="/myactivity/${responseData.userId}" class="user-nickname">${responseData.nickname}</a>
             <div class="user-brief">
                 <span>${time}</span>
                 <span>&#183;</span>
@@ -387,12 +387,12 @@ class CommentService {
                         <div class="user-info">
                             <div class="user-info-container">
                                 <div class="user-img">
-                                    <a href="">
+                                    <a href="/myactivity/${comment[index].comment_user_id}">
                                         <img src="/image/user/${comment[index].comment_user_img}">
                                     </a>
                                 </div>
                                 <div class="user-detail">
-                                    <a class="user-nickname">${comment[index].comment_nickname}</a>
+                                    <a href="/myactivity/${comment[index].comment_user_id}" class="user-nickname">${comment[index].comment_nickname}</a>
                                     <div class="user-brief">
                                         <span>${TimeService.getInstance().setTime(comment[index].comment_create_date)}</span>
                                     </div>
@@ -432,12 +432,12 @@ class CommentService {
                                 <div class="user-info">
                                     <div class="user-info-container">
                                         <div class="user-img">
-                                            <a href="">
+                                            <a href="/myactivity/${data.recomment_user_id}">
                                             <img src="/image/user/${data.recomment_user_img}">
                                             </a>
                                         </div>
                                         <div class="user-detail">
-                                            <a class="user-nickname">${data.recomment_nickname}</a>
+                                            <a href="/myactivity/${data.recomment_user_id}" class="user-nickname">${data.recomment_nickname}</a>
                                             <div class="user-brief">
                                                 <span>${TimeService.getInstance().setTime(data.recomment_create_date)}</span>
                                             </div>

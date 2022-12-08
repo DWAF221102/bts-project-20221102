@@ -29,7 +29,6 @@ public class WriteApi {
 //            writeReqDto.setTitle(title + "-" + (i + 1));
 //            boardService.saveBoard(writeReqDto);
 //        }
-        log.info("dto >> {}", writeReqDto);
 //        boardService.saveBoard(writeReqDto)
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.saveBoard(writeReqDto)));
     }

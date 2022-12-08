@@ -76,7 +76,6 @@ class UpdateApi {
             success: (response) => {
                 console.log(response);
                 alert("게시글 수정 완료");
-                // location.href = `/${WriteFormData.getInstance().getMenu()}`;
                 
             },
             error: (error) => {
@@ -494,6 +493,13 @@ class ButtonService {
         return id;
     }
 
+    getMenu() {
+        let url = location.href;
+        let menu = url.substring(url.indexOf("/", url.indexOf("/") + 2) + 1, url.lastIndexOf("/", url.lastIndexOf("/") - 1));
+   
+        return menu;
+    }
+
     setUpdateButton(responseData) {
         let id = this.getId();
         const updateButton = document.querySelector(".update-button");
@@ -523,14 +529,15 @@ class ButtonService {
     }
 
     setDeleteButton(responseData) {
-        let id = this.getId();
         const deleteButton = document.querySelector(".delete-button");
-
+        let menu = this.getMenu()
+        
         deleteButton.onclick = () => {
             let formData = UpdateFormData.getInstance().setFormData(responseData);
+            
             if(confirm("게시물을 삭제하시겠습니까?")) {
                 UpdateApi.getInstance().deleteReq(formData);
-                location.href = "/";
+                location.href = "/" + menu;
             }
         };
     }
@@ -538,6 +545,5 @@ class ButtonService {
 
 window.onload = () => {
     UpdateService.getInstance().updateService();
-    
 }
 
