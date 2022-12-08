@@ -562,6 +562,7 @@ class CommentService {
             recommentButton[i].onclick = () => {
                 let recomentTextarea = document.querySelectorAll(".recomment-textarea");
                 let textValue = recomentTextarea[i].value;
+                let index = recommentButton.length - i;
                 let commentId = responseData.comment[i].comment_id;
                 if(textValue != "" && textValue != " " && textValue != null && textValue.replaceAll(" ", "") != "") {
                     if(confirm("댓글을 작성하시겠습니까?")){

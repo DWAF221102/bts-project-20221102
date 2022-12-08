@@ -151,7 +151,7 @@ class BoardLoad {
                             </div>
                         </div>
                         <div class="board-list-title">
-                            <a href="/article">${data.title}</a>
+                            <a href="/article/${data.boardId}">${data.title}</a>
                         </div>
                         <div class="board-list-bottum">
                             <div class="board-list-category">
