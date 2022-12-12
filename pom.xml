@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.btsproject</groupId>
 	<artifactId>bts-project-20221102</artifactId>
-	<version>1.0.0</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>bts-project-20221102</name>
 	<description>Bid Type Solution(Bid Type Matching System)</description>
 	<properties>
