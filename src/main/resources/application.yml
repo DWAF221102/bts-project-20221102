@@ -71,4 +71,5 @@ mybatis:
     - /mappers/*.xml
 
 file:
-  path: C:/project/bts-project-20221102/upload/
+  path: /home/ubuntu/springboot/project/upload/       # aws 우분투 파일경로
+#  path: C:/project/bts-project-20221102/upload/      # 프로젝트 내 pc 경로
