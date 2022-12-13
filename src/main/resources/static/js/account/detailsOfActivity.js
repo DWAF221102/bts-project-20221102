@@ -86,6 +86,7 @@ window.onload = () => {
     }
 }
 
+// 프로필 영역
 function userInfoRequest(userId) {
     let responseData = null;
 
@@ -106,6 +107,8 @@ function userInfoRequest(userId) {
     return responseData;
 }
 
+
+// 최근 활동 게시물
 function loadRecentActivityRequest() {
     let response = null;
 
