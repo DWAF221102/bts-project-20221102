@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.btsproject</groupId>
 	<artifactId>bts-project-20221102</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>bts-project-20221102</name>
 	<description>Bid Type Solution(Bid Type Matching System)</description>
 	<properties>
@@ -93,6 +93,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+
 				<configuration>
 					<excludes>
 						<exclude>
