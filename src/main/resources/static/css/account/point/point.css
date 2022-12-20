@@ -1,0 +1,241 @@
+.container {
+    display: flex;
+    width: 100%;
+
+}
+
+/* 왼쪽 영역 */
+.left-side {
+    display: flex;
+    flex-direction: column;
+
+    border-right: 1px solid #bebebe;
+    width: 15%;
+    /* 높이 나중에 수정 */
+    height: 850px;
+    padding-left: 25px;
+
+
+    /* background-color: antiquewhite; */
+}
+
+.left-side-container {
+    width: 90%;
+    padding-top: 50px;
+}
+
+.point-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+
+    /* background-color: blueviolet; */
+}
+
+.logo-image {
+    width: 80%;
+    height: auto;
+}
+
+.point-header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 26px;
+}
+
+.point-content {
+    width: 100%;
+    height: 20%;
+}
+
+.point-content ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 200px;
+    padding-top: 50px;
+    /* background-color: aquamarine; */
+}
+
+.email {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-top: 1px dotted #bebebe;
+    height: 45%;
+}
+
+.notice-payment {
+    color: gray;
+}
+
+.notice-payment-email {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.point {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-top: 1px solid #bebebe;
+    border-bottom: 1px solid #bebebe;
+    height: 55%;
+}
+
+.amount-currency {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.point-amount {
+    padding-right: 5px;
+    font-size: 28px;
+}
+
+
+/* 오른쪽 영역 */
+
+.right-side {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    height: 850px;
+    background-color: #fafafa;
+}
+
+.right-side-container {
+    width: 90%;
+    height: 750px;
+    padding-top: 20px;
+    /* background-color: blanchedalmond; */
+}
+
+.payment-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 8%;
+}
+
+.payment-header-box {
+    border: 1px solid orange;
+    border-radius: 5px;
+    width: 100%;
+    padding: 5px 3px;
+    background-color: orange;
+}
+
+.payment-header-content {
+    font-size: 16px;
+}
+
+.payment-amount,
+.payment-method {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 30%;
+}
+
+.left-payment-amount,
+.left-payment-method {
+    border-top: 1px solid #bebebe;
+    width: 15%;
+    height: 100%;
+    padding-top: 10px;
+    padding-left: 5px;
+
+    font-size: 16px;
+    color: #4c4c4c;
+}
+
+.right-payment-amount {
+    width: 84%;
+    height: 100%;
+}
+
+.payment-amount-list {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+
+.payment-point-price {
+    border: 1px solid #bebebe;
+    width: 16%;
+    height: 190px;
+    background-color: #f3f3f3;
+}
+
+.payment-point-box {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 35%;
+    padding-left: 17px;
+    color: #434343;
+    background-color: #fff;
+}
+
+.payment-point {
+    font-size: 20px;
+}
+
+.payment-currency {
+    padding-top: 3px;
+    padding-left: 7px;
+    font-size: 13px;
+}
+
+.payment-price {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 65%;
+    padding-top: 15px;
+
+    font-size: 25px;
+    color: #716e6e;
+}
+
+/* 결제 수단 */
+.right-payment-method {}
+
+
+
+
+
+
+
+
+/* .payment-method {
+    width: 100%;
+    height: 30%;
+    background-color: lightpink;
+} */
+
+.payment-agree {
+    width: 100%;
+    height: 30%;
+    background-color: slateblue;
+}
+
+.payment-button {
+    width: 100%;
+    height: 10%;
+    background-color: bisque;
+}
