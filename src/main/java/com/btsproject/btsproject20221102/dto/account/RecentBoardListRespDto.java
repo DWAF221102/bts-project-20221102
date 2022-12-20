@@ -16,7 +16,7 @@ public class RecentBoardListRespDto {
     private String userImg;
 
     private int boardId;
-    private int subcategoryId;
+    private String menuName;
     private String title;
     private String createDate;
 
