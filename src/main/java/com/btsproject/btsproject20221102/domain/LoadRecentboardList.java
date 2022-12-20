@@ -17,10 +17,10 @@ import java.time.format.DateTimeFormatter;
 public class LoadRecentboardList {
     private int user_id;
     private String nickname;
-
+    private String user_img;
 
     private int id;
-    private String menu_name;
+    private int subcategory_id;
     private String title;
     private LocalDateTime create_date;
 
@@ -28,10 +28,11 @@ public class LoadRecentboardList {
     return RecentBoardListRespDto.builder()
             .userId(user_id)
             .nickname(nickname)
+            .userImg(user_img)
             .boardId(id)
-            .menuName(menu_name)
+            .subcategoryId(subcategory_id)
             .title(title)
-            .createDate(create_date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+            .createDate(create_date.format(DateTimeFormatter.ofPattern("yyyy년MM월dd일HH시mm분ss초")))
             .build();
 
     }
