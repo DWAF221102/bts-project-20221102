@@ -1,121 +1,125 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragment/head :: head}"></head>
+<head th:replace="~{fragment2/head :: head}"></head>
 <head>
     <link rel="stylesheet" href="/static/css/totalSearch.css">
     <title>totalSearch</title>
 </head>
 <body>
+    <div th:replace="~{fragment2/header :: header}"></div>
+    
     <div class="container">
-        <header th:replace="~{fragment/header :: header}"></header>
-        <main>
-            <aside th:replace="~{fragment/rankaside :: rankaside}"></aside>
-            <div class="section-flex">
-
-                <section>
-                    <div class="board-main-header">
+        <!-- <aside th:replace="~{fragment/rankaside :: rankaside}"></aside> -->
+        <div class="section-flex">
+            <section>
+                <div class="board-main-header">
+                    <div class="board-main-title">
                         <span class="board-main-header-title">Q&A</span>
                         <span class="board-main-header-content">좋은 질문과 답변으로 동료의 시간을 아껴주세요.</span>
-                        <div class="board-main-header-img">
-                            <img src="/static/images/questions.svg">
-                        </div>
                     </div>
+                </div>
+                <div class="total_count_view_flex">
                     <div class="total_count_view total_count_qnaview">
-
-                    </div>
     
-                    <div class="board-main-list">
-                        <ul class="board-list qna-board-list">
-                            
-                        </ul>
-                        <div class="more">
-                            <div class="more-detail">
-                                <button class="more-details">더보기</button>
-                            </div>
+                    </div>
+                </div>
+
+                <div class="board-main-list">
+                    <ul class="board-list qna-board-list">
+                        
+                    </ul>
+                    <div class="more">
+                        <div class="more-detail">
+                            <button class="more-details">더보기</button>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section>
-                    <div class="board-main-header board-title-header">
+            <section>
+                <div class="board-main-header board-title-header">
+                    <div class="board-main-title">
                         <span class="board-main-header-title">지식</span>
                         <span class="board-main-header-content">지식을 공유하고 새로운 아이디어를 얻어보세요</span>
-                        <div class="board-main-header-img">
-                            <img src="/static/images/questions.svg">
-                        </div>
                     </div>
-
+                </div>
+                <div class="total_count_view_flex">
                     <div class="total_count_view">
                         
                     </div>
-    
-                    <div class="board-main-list">
-                        <ul class="board-list">
-                            
-                        </ul>
-                        <div class="more">
-                            <div class="more-detail">
-                                <button class="more-details">더보기</button>
-                            </div>
+                </div>
+
+                <div class="board-main-list">
+                    <ul class="board-list">
+                        
+                    </ul>
+                    <div class="more">
+                        <div class="more-detail">
+                            <button class="more-details">더보기</button>
                         </div>
                     </div>
-                </section>
-    
-                <section>
-                    <div class="board-main-header">
+                </div>
+            </section>
+
+            <section>
+                <div class="board-main-header">
+                    <div class="board-main-title">
                         <span class="board-main-header-title">커뮤니티</span>
                         <span class="board-main-header-content">다양한 사람을 만나고 생각의 폭을 넓혀보세요.</span>
-                        <div class="board-main-header-img">
-                            <img src="/static/images/questions.svg">
-                        </div>
                     </div>
+                </div>
 
+                <div class="total_count_view_flex">
                     <div class="total_count_view">
                         
                     </div>
-    
-                    <div class="board-main-list">
-                        <ul class="board-list">
-                            
-                        </ul>
+                </div>
 
-                        <div class="more">
-                            <div class="more-detail">
-                                <button class="more-details">더보기</button>
-                            </div>
+                <div class="board-main-list">
+                    <ul class="board-list">
+                        
+                    </ul>
+
+                    <div class="more">
+                        <div class="more-detail">
+                            <button class="more-details">더보기</button>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section>
-                    <div class="board-main-header">
+            <section>
+                <div class="board-main-header">
+                    <div class="board-main-title">
                         <span class="board-main-header-title">공지사항</span>
                         <span class="board-main-header-content">새소식, 이벤트, 행사정보를 공유하는 공간입니다.</span>
-                        <div class="board-main-header-img">
-                            <img src="/static/images/questions.svg">
-                        </div>
                     </div>
+                </div>
 
+                <div class="total_count_view_flex">
                     <div class="total_count_view">
         
                     </div>
-    
-                    <div class="board-main-list">
-                        <ul class="board-list">
-                            
-                        </ul>
-                        <div class="more">
-                            <div class="more-detail">
-                                <button class="more-details">더보기</button>
-                            </div>
+                </div>
+
+                <div class="board-main-list">
+                    <ul class="board-list">
+                        
+                    </ul>
+                    <div class="more">
+                        <div class="more-detail">
+                            <button class="more-details">더보기</button>
                         </div>
                     </div>
-                </section>
-            </div>        
-            <aside th:replace="~{fragment/priceaside :: priceaside}"></aside>
-        </main>
-        <footer th:replace="~{fragment/footer :: footer}"></footer>
+                </div>
+            </section>
+        </div>        
+        <!-- <aside th:replace="~{fragment/priceaside :: priceaside}"></aside> -->
+        <div class="aside-box">
+            <div th:replace="~{fragment2/aside :: aside}"></div>
+        </div>
     </div>
+    <footer th:replace="~{fragment2/footer :: footer}"></footer>
     <script src="/static/js/totalSearch.js"></script>
 </body>
 </html>

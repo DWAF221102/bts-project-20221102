@@ -1,48 +1,16 @@
 .container {
     display: flex;
-    flex-direction: column;
-    margin: 0px auto;
-}
-
-main {
-    display: flex;
     justify-content: center;
     width: 100%;
 
-    margin-top: 18px;
+    margin-top: 50px;
     padding: 0;
 }
 
-
-
-.board {
+.section-flex {
     display: flex;
-    justify-content: center;
-}
-
-aside {
-    width: 180px;
-
-}
-
-.category {
-    width: 100%;
-    margin-bottom: 50px;
-    padding: 0px;
-}
-
-.category div {
-    margin-bottom: 10px;
-    border-bottom: 2px solid black;
-    padding-bottom: 10px;
-}
-
-.category li {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #7f7f7f;
-    padding-bottom: 10px;
-
-    list-style: none;
+    flex-direction: column;
+    margin-right: 100px;
 }
 
 section {
@@ -61,13 +29,25 @@ section {
     align-items: flex-start;
     position: relative;
     width: 100%;
-    height: 80px;
 
-    margin: 15px 0px 10px 0px;
-    border-radius: 12px;
-    padding: 16px 32px;
+    margin: 15px 0px 0px 0px;
+    padding: 5px 0px;
 
-    background: center/cover no-repeat url('/static/images/title-pattern.jpg');
+    border-bottom: 1px solid #FC5F07;
+}
+
+.board-main-title {
+    display: flex;
+
+}
+
+.board-main-title span:first-child {
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+.board-main-title span:last-child {
+    color: rgba(125, 125, 125, 0.8);
 }
 
 .board-title-header {
@@ -78,15 +58,14 @@ section {
     font-weight: 600;
 }
 
-.board-main-header-img {
-    position: absolute;
-    right: 56px;
-    top: -6px;
-
+.total_count_view_flex {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .total_count_view {
-    margin-bottom : 10px;
+    margin : 10px 0px;
 }
 
 .board-main-header-img img {
@@ -519,36 +498,11 @@ section {
     font-size: 500;
 }
 
-.page-num button {
-    border: none;
-    padding: 16px 16px 0px 16px;
-    
-    font-size: 14px;
-    font-weight: 500;
-    color: #bdbdbd;
-    background-color: white;
+.aside-box {
+    margin-top: 15px;
+    width: 200px;
 }
 
-.page-num button:nth-child(1) {
-    border-top: 1px solid rgb(0, 144, 249);
-    color: rgb(0, 144, 249);
-}
-
-.next-button button {
-    border: none;
-    padding-top: 16px;
-
-    background-color: white;
-}
-
-.next-button span {
-    margin-right: 12px;
-
-    font-size: 14px;
-    font-size: 500;
-}
-
-.next-button i {
-    width: 16px;
-    height: 16px;
+.main_rank {
+    all: unset;
 }
