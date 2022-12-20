@@ -25,6 +25,11 @@ public class PageController {
         return "index";
     }
 
+    @GetMapping("/newindex")
+    public String newIndex() {
+        return "newIndex";
+    }
+
     // 통합 검색페이지
     @GetMapping("/totalsearch/{keyword}")
     public String totalSearch(@PathVariable String keyword) {
