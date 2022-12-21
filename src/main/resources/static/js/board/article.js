@@ -403,16 +403,14 @@ class CommentService {
                             <p>${comment[index].comment_content}</p>
                         </div>
                         <div class="recomment-container">
-                            <div class="recomment-button">
+                            <div class="recomment-button recomment-button${index}">
                                 <button type="button" class="write-reccoment-button"><span>댓글 쓰기</span></button>
                             </div>
-                            <div class="recomment">
-                                <div class="delete-recomment">
-                                    
-                                </div>
-                                <ul class="recomment-ul none">
+                            <div class="recomment recomment${index}">
+                                
+                                
                                    
-                                </ul>
+                                
                             </div>
                         </div>
                     </li> 
@@ -420,12 +418,19 @@ class CommentService {
 
                 
 
-                const recommentUl = document.querySelector(".recomment-ul");
+                
                 
                 let recomment = comment[index].recomment;
+                // console.log(recomment);
                 if(recomment.length != 0) {
-                    this.recommentButton(index, recomment);
-
+                    const recommentDiv = document.querySelector(".recomment" + index);
+                    recommentDiv.innerHTML += `
+                        <div class="delete-recomment">            
+                        </div>
+                        <ul class="recomment-ul recomment-ul${index} none">
+                        </ul>
+                    `;
+                    const recommentUl = document.querySelector(".recomment-ul" + index);
                     recomment.forEach(data => {
                         recommentUl.innerHTML += `
                             <li class="">
@@ -450,48 +455,52 @@ class CommentService {
                             </li>
                         `;
                     });
-                }
-               
+                    this.recommentButton(index, recomment);
+                }   
+            }
+            const showRecommentButton = document.querySelectorAll(".show-recomment");
+            const showRecommentUl = document.querySelectorAll(".recomment-ul");
+            const showRecommentSpan = document.querySelectorAll(".show-recomment-span")
+            for(let i = 0; i < showRecommentButton.length; i++) {
+                this.showRecomment(showRecommentButton, showRecommentUl, showRecommentSpan);
             }
         }
 
     }
 
     recommentButton(index, recomment) {
-        const recommentButton = document.querySelectorAll(".recomment-button");
+        const recommentButton = document.querySelector(".recomment-button" + index);
         let recommentCount = recomment.length;
-        recommentButton[index].innerHTML = `
+        
+        recommentButton.innerHTML = `
             <button type="button" class="show-recomment">
                 <span class="show-recomment-span">댓글 ${recommentCount}개 보기</span>
             </button>
             <button type="button" class="write-reccoment-button"><span>댓글 쓰기</span></button>
         `;
-        let showRecommentButton = document.querySelectorAll(".show-recomment");
-        let recommentUl = document.querySelectorAll(".recomment-ul");
-        let showRecommentSpan = document.querySelectorAll(".show-recomment-span");
-
-        this.showRecomment(showRecommentButton[index], showRecommentSpan[index], recommentCount, recommentUl[index]);
-
         
+
     }
 
-    showRecomment(button, div, recommentCount, recommentUl) {
-        button.onclick = () => {
-            div.innerText = "댓글 모두 숨기기";
-            
-            recommentUl.classList.remove("none");
+    showRecomment(button, ul, span) {
 
-            this.removeRecomment(button, div, recommentCount, recommentUl);
+        button.onclick = () => {
+            span.innerText = "댓글 모두 숨기기";
+            
+            ul.classList.remove("none");
+
+            this.removeRecomment(button, ul, span);
         }
     }
         
-    removeRecomment(button, div, recommentCount, recommentUl) {
+    removeRecomment(button, ul, span) {
+
         button.onclick = () => {
-            div.innerText = `댓글 ${recommentCount}개 보기`;
+            span.innerText = `댓글 ${recommentCount}개 보기`;
             
-            recommentUl.classList.add("none");     
+            ul.classList.add("none");     
             
-            this.showRecomment(button, div, recommentCount, recommentUl);
+            this.showRecomment(button, ul, span);
         }
     }
 
@@ -557,17 +566,19 @@ class CommentService {
         }
         const recommentButton = document.querySelectorAll(".button-recomment");
         
-
+        // console.log(recommentButton);
         for(let i = 0; i < recommentButton.length; i++) {
             recommentButton[i].onclick = () => {
                 let recomentTextarea = document.querySelectorAll(".recomment-textarea");
                 let textValue = recomentTextarea[i].value;
-                let index = recommentButton.length - i;
-                let commentId = responseData.comment[i].comment_id;
+                let index = responseData.comment.length - i - 1;
+                console.log("i: " + i);
+                console.log("index: " + index);
+                let commentId = responseData.comment[index].comment_id;
                 if(textValue != "" && textValue != " " && textValue != null && textValue.replaceAll(" ", "") != "") {
                     if(confirm("댓글을 작성하시겠습니까?")){
                         CommentApi.getInstance().recommentWriteReq(commentId, userId, textValue);
-                        location.reload();
+                        // location.reload();
                     }
                 }else {
                     alert("댓글을 입력해주세요.");
