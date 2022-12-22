@@ -120,6 +120,7 @@ window.onload = () => {
     }
 }
 
+// 프로필 영역
 function userInfoRequest(userId) {
     let responseData = null;
 

@@ -19,6 +19,7 @@ function getList() {
             boardInfo(response.data);
             boardDetails(response.data);
             writer(response.data);
+            requestButton(response.data);
         },
         error: (error) => {
             console.log(error);
@@ -100,9 +101,11 @@ function addCreate(qnaLists) {
 function writer(data) {
     const qnaWriter = document.querySelector(".qna-board-profile-flex");
     qnaWriter.innerHTML = `
-    <a href="" class="qna-profile-img">
-
+    <div class= "qna-profile-img">
+    <a href="">
+        <img src="/image/user/${data.userImg}" alt="">
     </a>
+    </div>
     <div class="qna-board-profile-details">
         <a href="" class="qna-profile-name">${data.nickname}</a>
         <div class="qna-profile-text">
@@ -157,6 +160,20 @@ function boardInfo(data) {
 
 }
 
+function requestButton(data) {
+    const requestButton = document.querySelector(".request-button")
+    let time = TimeService.getInstance().setTime(data.createDate);
+
+    requestButton.innerHTML = `
+    <div>
+        <span class="request-title">답변권한요청</span>
+    </div>
+    <div>
+        <span class="request-time">${time}</span>
+    </div>
+    `
+}
+
 function boardDetails(data) {
     const boardDetails = document.querySelector(".qna-error")
     boardDetails.innerHTML = `
@@ -178,5 +195,54 @@ function boardDetails(data) {
     </div>
 </div>
     `
+}
+
+class TimeService {
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new TimeService();
+        }
+        return this.#instance;
+    }
+
+    setTime(creatDate) {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() +1;
+        let day = date.getDate();
+        let hour = date.getHours();
+        let minute = date.getMinutes();
+        console.log(date);
+
+        let cYear = Number(creatDate.substring(0, creatDate.indexOf("년")));
+        let cMonth = Number(creatDate.substring(creatDate.indexOf("년") + 1 , creatDate.indexOf("월")));
+        let cDay = Number(creatDate.substring(creatDate.indexOf("월") + 1, creatDate.indexOf("일")));
+        let cHour = Number(creatDate.substring(creatDate.indexOf("일") + 1, creatDate.indexOf("시")));
+        let cMinute = Number(creatDate.substring(creatDate.indexOf("시") + 1, creatDate.indexOf("분")));
+        
+        if(year != cYear) {
+            return (year - cYear) + "년 경과";
+        }else {
+            if(month != cMonth) {
+                return (month - cMonth) + "개월 경과";
+            }else{
+                if(day != cDay) {
+                    return (day - cDay) + "일 경과";
+                }else {
+                    if(hour != cHour) {
+                        return (hour - cHour) + "시간 경과";
+                    }else {
+                        if(minute != cMinute){
+                            return (minute - cMinute) + "분 경과";
+                        }else {
+                            return "1분 미만 경과";
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 

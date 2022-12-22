@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Builder
@@ -61,8 +62,8 @@ public class QnaArticle {
                 .likeCount(like_count)
                 .viewCount(view_count)
                 .qnaImgFiles(qna_img_files)
-                .create_date(create_date)
-                .update_date(update_date)
+                .createDate(create_date.format(DateTimeFormatter.ofPattern("yyyy년MM월dd일HH시mm분ss초")))
+                .updateDate(update_date)
                 .build();
     }
 

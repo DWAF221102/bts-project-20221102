@@ -30,8 +30,8 @@ public class QnaCreateRespDto {
     private List<QnaImgFile> qnaImgFiles;
 
 
-    private LocalDateTime create_date;
-    private LocalDateTime update_date;
+    private String createDate;
+    private LocalDateTime updateDate;
 
 
 }
