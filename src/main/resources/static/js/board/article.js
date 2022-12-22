@@ -409,10 +409,9 @@ class CommentService {
                                 <button type="button" class="write-reccoment-button"><span>댓글 쓰기</span></button>
                             </div>
                             <div class="recomment recomment${index}">
+                                <div class="delete-recomment">            
                                 
-                                
-                                   
-                                
+                                </div>
                             </div>
                         </div>
                     </li> 
@@ -424,9 +423,8 @@ class CommentService {
                     recommentCount.push(recomment.length);
                     const recommentDiv = document.querySelector(".recomment" + index);
                     recommentDiv.innerHTML += `
-                        <div class="delete-recomment">            
-                        </div>
                         <ul class="recomment-ul recomment-ul${index} none">
+
                         </ul>
                     `;
                     const recommentUl = document.querySelector(".recomment-ul" + index);
@@ -463,6 +461,7 @@ class CommentService {
             for(let i = 0; i < showRecommentButton.length; i++) {
                 this.showRecomment(showRecommentButton[i], showRecommentUl[i], showRecommentSpan[i], recommentCount[i]);
             }
+            // this.showRecommentWrite(responseData);
         }
 
     }
@@ -475,7 +474,7 @@ class CommentService {
             <button type="button" class="show-recomment">
                 <span class="show-recomment-span">댓글 ${recommentCount}개 보기</span>
             </button>
-            <button type="button" class="write-reccoment-button"><span>댓글 쓰기</span></button>
+            <button type="button" class="write-recomment-button"><span>댓글 쓰기</span></button>
         `;
         
 
@@ -503,7 +502,7 @@ class CommentService {
     }
 
     showRecommentWrite(responseData) {
-        const writeRecommentButton = document.querySelectorAll(".write-reccoment-button");
+        const writeRecommentButton = document.querySelectorAll(".write-recomment-button");
         const deleteRecomment = document.querySelectorAll(".delete-recomment");
 
         let userId = 0;
@@ -518,21 +517,21 @@ class CommentService {
             writeRecommentButton[i].onclick = () => {
                 if(userId != 0) {
                     deleteRecomment[i].innerHTML = `
-                        <div class="recomment-write ">
+                        <div class="recomment-write">
                             <div class="user-img">
                                 <img src="/image/user/${userImg}">
                             </div>
                             <div class="recomment-write-container">
                                 <div class="recomment-textarea-container">
-                                    <textarea class="recomment-textarea" placeholder="댓글을 입력해주세요."></textarea>
+                                    <textarea class="recomment-textarea recomment-textarea${i}" placeholder="댓글을 입력해주세요."></textarea>
                                 </div>
                                 <div class="recomment-write-button">
-                                    <button type="button" class="button-recomment">댓글 쓰기</button>
+                                    <button type="button" class="button-recomment button-recomment${i}">댓글 쓰기</button>
                                 </div>
                             </div>    
                         </div>
                     `;  
-                    this.recommentButtonEvent(responseData);
+                    this.recommentButtonEvent(responseData, i);
                     this.deleteRecommentWrite(responseData);
                 }else {
                     alert("로그인후 작성가능합니다.");
@@ -545,7 +544,7 @@ class CommentService {
     
 
     deleteRecommentWrite(responseData) {
-        const writeRecommentButton = document.querySelectorAll(".write-reccoment-button");
+        const writeRecommentButton = document.querySelectorAll(".write-recomment-button");
         const deleteRecomment = document.querySelectorAll(".delete-recomment");
 
         for(let i = 0; i < writeRecommentButton.length; i++) {
@@ -557,31 +556,34 @@ class CommentService {
         }
     }
 
-    recommentButtonEvent(responseData) {
+    recommentButtonEvent(responseData, i) {
         let userId = 0;
         if(principalUser != null) {
             userId = principalUser.id;
         }
-        const recommentButton = document.querySelectorAll(".button-recomment");
         
-        for(let i = 0; i < recommentButton.length; i++) {
-            recommentButton[i].onclick = () => {
-                let recomentTextarea = document.querySelectorAll(".recomment-textarea");
-                let textValue = recomentTextarea[i].value;
-                let index = responseData.comment.length - i - 1;
-                console.log("i: " + i);
-                console.log("index: " + index);
-                let commentId = responseData.comment[index].comment_id;
-                if(textValue != "" && textValue != " " && textValue != null && textValue.replaceAll(" ", "") != "") {
-                    if(confirm("댓글을 작성하시겠습니까?")){
-                        CommentApi.getInstance().recommentWriteReq(commentId, userId, textValue);
-                        // location.reload();
-                    }
-                }else {
-                    alert("댓글을 입력해주세요.");
+        const writeButton = document.querySelectorAll(".write-recomment-button");
+
+        let recommentButton = document.querySelector(".button-recomment" + i);
+        console.log(recommentButton);
+        recommentButton.onclick = () => {
+            let recomentTextarea = document.querySelector(".recomment-textarea" + i);
+            let textValue = recomentTextarea.value;
+            let index = responseData.comment.length - i - 1;
+            console.log("i: " + i);
+            console.log("length: " + responseData.comment.length);
+            console.log("index: " + index);
+            let commentId = responseData.comment[index].comment_id;
+            if(textValue != "" && textValue != " " && textValue != null && textValue.replaceAll(" ", "") != "") {
+                if(confirm("댓글을 작성하시겠습니까?")){
+                    CommentApi.getInstance().recommentWriteReq(commentId, userId, textValue);
+                    // location.reload();
                 }
+            }else {
+                alert("댓글을 입력해주세요.");
             }
         }
+        
     }
     
 }
