@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <script src="https://kit.fontawesome.com/6bc6b6ea66.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header th:fragment="header">
+        <nav class="header-container">
+            <div class="header-flex">
+                <div class="left-nav">
+                    <div class="logo">
+                        <a href="/index"><img src="/static/images/logo.png"></a>
+                    </div>
+                    <div class="nav">
+                        <ul>
+                            <li><a href="/question">Q&A</a></li>
+                            <li><a href="/knowledge">지식</a></li>
+                            <li><a href="/community">커뮤니티</a></li>
+                            <li><a href="/notice">공지사항</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right-nav">
+                    <div class="search-box">
+                        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <input type="text" class="search-input" placeholder="검색">
+                    </div>
+                    <div class="account-area">
+                        <div class="account">
+                            <a href="/login" class="login-button">로그인</a>
+                        </div>
+                        <div class="account">
+                            <a href="/signup" class="signup-button">회원가입</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <script src="/static/js/oldFragment/header.js"></script>
+    </header>
+</body>
+
+</html>

@@ -25,9 +25,9 @@ public class PageController {
         return "index";
     }
 
-    @GetMapping("/newindex")
-    public String newIndex() {
-        return "newIndex";
+    @GetMapping("/oldindex")
+    public String oldIndex() {
+        return "oldIndex";
     }
 
     // 통합 검색페이지
