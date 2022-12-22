@@ -65,7 +65,7 @@ window.onload = () => {
             </div>
             <div class="point-button-area">
                 <div class="point-button">
-                    <a href="">충전하기</a>
+                    <a href="/point" target="_blank">충전하기</a>
                 </div>
                 <div class="point-button">
                     <a href="">이용내역</a>
