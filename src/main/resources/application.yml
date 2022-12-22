@@ -69,5 +69,5 @@ mybatis:
     - /mappers/*.xml
 
 file:
-  path: /home/ubuntu/springboot/project/upload/   # 탄력적 ip 우분투 파일 경로
- # path: C:/project/bts-project-20221102/upload/  # localhost 파일 경로
+ # path: /home/ubuntu/springboot/project/upload/   # 탄력적 ip 우분투 파일 경로
+  path: /Users/choiyeonho/bts-project-20221102/upload/  # localhost 파일 경로

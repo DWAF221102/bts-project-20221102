@@ -100,10 +100,24 @@
 }
 
 .qna-profile-img {
+    display: flex;
+    justify-content: center;
+    /* align-items: flex-end; */
     width: 44px;
     height: 44px;
     background-color: rgb(105, 105, 105);
     border-radius: 50%;
+    overflow: hidden;
+}
+
+.qna-profile-img a {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.qna-profile-img img {
+    width: 75%;
 }
 
 .qna-board-profile-details {
@@ -121,6 +135,13 @@
     font-size: 12px;
     font-weight: 400;
     color: #6b7280;
+}
+
+
+.article-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
 }
 
 
