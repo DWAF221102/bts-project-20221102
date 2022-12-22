@@ -1,17 +1,7 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 Manifest-Version: 1.0
 Main-Class: com.btsproject.btsproject20221102.BtsProject20221102Applicat
  ion
-
-=======
->>>>>>> origin/yeonho
+ 
 Manifest-Version: 1.0
 Main-Class: com.btsproject.btsproject20221102.BtsProject20221102Applicat
  ion
-
-<<<<<<< HEAD
-=======
->>>>>>> 6bcaa68f54f2ac580dfcf2c56431adf149398b72
->>>>>>> origin/yeonho
