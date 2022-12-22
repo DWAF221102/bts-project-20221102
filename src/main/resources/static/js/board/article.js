@@ -314,6 +314,7 @@ class CommentService {
         return this.#instance;
     }
 
+
     setCommentNum(responseData) {
         const commentNum = document.querySelector(".comment-num");
         commentNum.innerHTML = `
@@ -378,6 +379,7 @@ class CommentService {
 
     setComment(responseData) {
         let comment = responseData.comment;
+        let recommentCount = new Array(); 
         if(comment.length != 0) {
             const commentUl = document.querySelector(".comment-ul");
             for(let i = comment.length; i >  0; i--) {
@@ -415,14 +417,11 @@ class CommentService {
                         </div>
                     </li> 
                 `;
-
-                
-
-                
                 
                 let recomment = comment[index].recomment;
-                // console.log(recomment);
+                
                 if(recomment.length != 0) {
+                    recommentCount.push(recomment.length);
                     const recommentDiv = document.querySelector(".recomment" + index);
                     recommentDiv.innerHTML += `
                         <div class="delete-recomment">            
@@ -462,7 +461,7 @@ class CommentService {
             const showRecommentUl = document.querySelectorAll(".recomment-ul");
             const showRecommentSpan = document.querySelectorAll(".show-recomment-span")
             for(let i = 0; i < showRecommentButton.length; i++) {
-                this.showRecomment(showRecommentButton, showRecommentUl, showRecommentSpan);
+                this.showRecomment(showRecommentButton[i], showRecommentUl[i], showRecommentSpan[i], recommentCount[i]);
             }
         }
 
@@ -482,25 +481,24 @@ class CommentService {
 
     }
 
-    showRecomment(button, ul, span) {
-
+    showRecomment(button, ul, span, recommentCount) {
         button.onclick = () => {
             span.innerText = "댓글 모두 숨기기";
             
             ul.classList.remove("none");
 
-            this.removeRecomment(button, ul, span);
+            this.removeRecomment(button, ul, span, recommentCount);
         }
     }
         
-    removeRecomment(button, ul, span) {
+    removeRecomment(button, ul, span, recommentCount) {
 
         button.onclick = () => {
             span.innerText = `댓글 ${recommentCount}개 보기`;
             
             ul.classList.add("none");     
             
-            this.showRecomment(button, ul, span);
+            this.showRecomment(button, ul, span, recommentCount);
         }
     }
 
@@ -566,7 +564,6 @@ class CommentService {
         }
         const recommentButton = document.querySelectorAll(".button-recomment");
         
-        // console.log(recommentButton);
         for(let i = 0; i < recommentButton.length; i++) {
             recommentButton[i].onclick = () => {
                 let recomentTextarea = document.querySelectorAll(".recomment-textarea");
