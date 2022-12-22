@@ -93,6 +93,12 @@ public class PageController {
         return "account/detailsOfActivityScrap";
     }
 
+    // 포인트 충전
+    @GetMapping("/point")
+    public String pointCharge(){
+        return "account/point/point";
+    }
+
 
     // QNA
     @GetMapping("/question")

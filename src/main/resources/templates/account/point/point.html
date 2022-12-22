@@ -52,62 +52,104 @@
                         <span>결제 금액</span>
                     </div>
                     <div class="right-payment-amount">
-                        <ul class="payment-amount-list">
-                            <li class="payment-point-price">
-                                <div class="payment-point-box">
-                                    <span class="payment-point">10,000</span>
-                                    <span class="payment-currency">Point</span>
-                                </div>
-                                <div class="payment-price">
-                                    <span>10,000원</span>
-                                </div>
-                            </li>
-                            <li class="payment-point-price">
-                                <div class="payment-point-box">
-                                    <span class="payment-point">20,000</span>
-                                    <span class="payment-currency">Point</span>
-                                </div>
-                                <div class="payment-price">
-                                    <span>20,000원</span>
-                                </div>
-                            </li>
-                            <li class="payment-point-price">
-                                <div class="payment-point-box">
-                                    <span class="payment-point">30,000</span>
-                                    <span class="payment-currency">Point</span>
-                                </div>
-                                <div class="payment-price">
-                                    <span>30,000원</span>
-                                </div>
-                            </li>
-                            <li class="payment-point-price">
-                                <div class="payment-point-box">
-                                    <span class="payment-point">40,000</span>
-                                    <span class="payment-currency">Point</span>
-                                </div>
-                                <div class="payment-price">
-                                    <span>40,000원</span>
-                                </div>
-                            </li>
-                            <li class="payment-point-price">
-                                <div class="payment-point-box">
-                                    <span class="payment-point">50,000</span>
-                                    <span class="payment-currency">Point</span>
-                                </div>
-                                <div class="payment-price">
-                                    <span>50,000원</span>
-                                </div>
-                            </li>
-                            <li class="payment-point-price">
-                                <div class="payment-point-box">
-                                    <span class="payment-point"></span>
-                                    <span class="payment-currency">Point</span>
-                                </div>
-                                <div class="payment-price">
-                                    <span>직접 입력</span>
-                                </div>
-                            </li>
-                        </ul>
+                        <form action="">
+                            <ul class="payment-amount-list">
+                                <!-- input-radio -->
+                                <!-- name: 라디오버튼의 이름. name이 같은 radio끼리 선택이 가능함. -->
+                                <!-- value: 선택 항목의 고유 값
+                                            여기에 지정한 값들이 제출 버튼을 누르면 서버로 전송됨. -->
+                                <!-- checked: 화면이 로딩될 때, 해당 항목은 기본으로 선택이 된 채 보여짐. -->
+
+                                <!-- label -->
+                                <!-- -폼 양식에 이름 붙이는 태그. -->
+                                <!-- label의 for값과 양식의 id 값이 같으면 연결된다. -->
+                                <!-- label을 클릭하면, 연결된 양식에 입력할 수 있도록 하거나, 체크를 해제한다. -->
+
+                                <li class="payment-point-price">
+                                    <label>
+                                        <div class="payment-point-box">
+                                            <input class="radio-input" type="radio" name="radio-input" value="5000"
+                                                checked>
+                                            <span class="payment-point">5,000</span>
+                                            <span class="payment-currency">Point</span>
+                                        </div>
+                                        <div class="payment-price">
+                                            <span>5,000원</span>
+                                        </div>
+                                    </label>
+                                </li>
+
+
+                                <li class="payment-point-price">
+                                    <label>
+                                        <div class="payment-point-box">
+                                            <input class="radio-input" type="radio" name="radio-input" value="10000">
+                                            <span class="payment-point">10,000</span>
+                                            <span class="payment-currency">Point</span>
+                                        </div>
+                                        <div class="payment-price">
+                                            <span>10,000원</span>
+                                        </div>
+                                    </label>
+                                </li>
+
+
+                                <li class="payment-point-price">
+                                    <label>
+                                        <div class="payment-point-box">
+                                            <input class="radio-input" type="radio" name="radio-input" value="20000">
+                                            <span class="payment-point">20,000</span>
+                                            <span class="payment-currency">Point</span>
+                                        </div>
+                                        <div class="payment-price">
+                                            <span>20,000원</span>
+                                        </div>
+                                    </label>
+                                </li>
+
+
+                                <li class="payment-point-price">
+                                    <label>
+                                        <div class="payment-point-box">
+                                            <input class="radio-input" type="radio" name="radio-input" value="30000">
+                                            <span class="payment-point">30,000</span>
+                                            <span class="payment-currency">Point</span>
+                                        </div>
+                                        <div class="payment-price">
+                                            <span>30,000원</span>
+                                        </div>
+                                    </label>
+                                </li>
+
+
+                                <li class="payment-point-price">
+                                    <label>
+                                        <div class="payment-point-box">
+                                            <input class="radio-input" type="radio" name="radio-input" value="40000">
+                                            <span class="payment-point">40,000</span>
+                                            <span class="payment-currency">Point</span>
+                                        </div>
+                                        <div class="payment-price">
+                                            <span>40,000원</span>
+                                        </div>
+                                    </label>
+                                </li>
+
+
+                                <li class="payment-point-price">
+                                    <label>
+                                        <div class="payment-point-box">
+                                            <input class="radio-input" type="radio" name="radio-input" value="50000">
+                                            <span class="payment-point">50,000</span>
+                                            <span class="payment-currency">Point</span>
+                                        </div>
+                                        <div class="payment-price">
+                                            <span>50,000원</span>
+                                        </div>
+                                    </label>
+                                </li>
+                            </ul>
+                        </form>
                     </div>
                 </div>
 
@@ -116,19 +158,62 @@
                     <div class="left-payment-method">
                         <span>결제 수단</span>
                     </div>
-                    <div class="right-payment-method">
-
+                    <div class="right-payment-method"> <!--높이 100% -->
+                        <div class="payment-method-box"> <!--높이 95% -->
+                            <div class="payment-type"> <!--높이 25% -->
+                                <div class="simple-payment">간편 결제</div>
+                                <div class="credit-card">신용 카드</div>
+                            </div>
+                            <div class="detail-payment-type">
+                                <div class="detail-payment-type-content">
+                                    <span>결제 방식을 선택해주세요.</span>
+                                </div>
+                                <div class="detail-payment">
+                                    <div class="content-box">
+                                        <span>결제 방식</span>
+                                    </div>
+                                    <ul class="detail-payment-type-list">
+                                        <li class="payment-type-list"><input class="payment-checkbox"
+                                                type="checkbox">카카오 페이
+                                        </li>
+                                        <li class="payment-type-list"><input class="payment-checkbox"
+                                                type="checkbox">네이버 페이
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
+                <!-- 결제 전 주의사항 및 체크 -->
+                <div class=" payment-agree">
+                    <div class="left-payment-agree">
+                        <span>동의 및 결제 전 <br>주의사항</span>
+                    </div>
+                    <div class="right-payment-agree">
+                        <div class="payment-agree-content">
+                            결제를 위해서는 카카오톡 또는 카카오페이 모바일 앱이 필요합니다.
+                            카카오페이 고객센터 : 1644-7405
+                        </div>
+                        <div class="payment-agree-notice">
+                            <div class="checkbox">
+                                <input class="input-checkbox" type="checkbox">
+                            </div>
+                            <div class="payment-agree-notice-content">
+                                <a href="#">상품 가격 및 유효기간</a><span>을 확인 하였으며, </span><a href="#">계약
+                                    관련 고지
+                                    사항</a><span>과 </span><a href="#">가상 재화 정책 </a><span>및 결제 진행에 동의
+                                    합니다.</span>
+                            </div>
 
-                <div class="payment-agree">
-
+                        </div>
+                    </div>
                 </div>
 
-
+                <!-- 결제 버튼 -->
                 <div class="payment-button">
-
+                    <a href="#">결제하기</a>
                 </div>
             </div>
         </div>
@@ -136,7 +221,7 @@
 
 
 
-
+    <script src="/static/js/account/point/point.js"></script>
 </body>
 
 </html>

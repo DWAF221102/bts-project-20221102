@@ -128,19 +128,21 @@
 }
 
 .payment-header-box {
-    border: 1px solid orange;
+    border: 1px solid #606060;
     border-radius: 5px;
     width: 100%;
-    padding: 5px 3px;
-    background-color: orange;
+    padding: 5px 10px;
+    color: #FFFFFF;
+    background-color: #606060;
 }
 
 .payment-header-content {
-    font-size: 16px;
+    font-size: 13px;
 }
 
 .payment-amount,
-.payment-method {
+.payment-method,
+.payment-agree {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -148,7 +150,8 @@
 }
 
 .left-payment-amount,
-.left-payment-method {
+.left-payment-method,
+.left-payment-agree {
     border-top: 1px solid #bebebe;
     width: 15%;
     height: 100%;
@@ -179,6 +182,15 @@
     background-color: #f3f3f3;
 }
 
+.payment-point-price:hover {
+    border: 3px solid orange;
+    background-color: orange;
+}
+
+.payment-point-price:hover {
+    cursor: pointer;
+}
+
 .payment-point-box {
     display: flex;
     justify-content: flex-start;
@@ -188,6 +200,10 @@
     padding-left: 17px;
     color: #434343;
     background-color: #fff;
+}
+
+.radio-input {
+    opacity: 0;
 }
 
 .payment-point {
@@ -213,29 +229,180 @@
 }
 
 /* 결제 수단 */
-.right-payment-method {}
-
-
-
-
-
-
-
-
-/* .payment-method {
-    width: 100%;
-    height: 30%;
-    background-color: lightpink;
-} */
-
-.payment-agree {
-    width: 100%;
-    height: 30%;
-    background-color: slateblue;
+.right-payment-method {
+    width: 84%;
+    height: 100%;
 }
 
+.payment-method-box {
+    border: 1px solid #bebebe;
+    width: 100%;
+    height: 95%;
+}
+
+.payment-type {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 40%;
+    height: 25%;
+
+    padding-top: 5px;
+}
+
+.simple-payment,
+.credit-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #bebebe;
+    width: 45%;
+    height: 100%;
+
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.simple-payment:hover,
+.credit-card:hover {
+    border: 3px solid orange;
+}
+
+.detail-payment-type {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 75%;
+}
+
+.detail-payment-type-content {
+    width: 100%;
+    height: 35%;
+    padding: 15px;
+}
+
+.detail-payment {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-top: 1px solid #bebebe;
+    width: 100%;
+    height: 65%;
+}
+
+.content-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 25%;
+    font-weight: 700;
+}
+
+.detail-payment-type-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    height: 25%;
+}
+
+.payment-type-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+}
+
+.payment-checkbox {
+    border: 1px solid #bebebe;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+
+
+/* 결제 전 주의사항 및 체크 */
+.right-payment-agree {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #bebebe;
+    border-radius: 3px;
+    width: 84%;
+    height: 100%;
+
+}
+
+.payment-agree-content {
+    border-bottom: 1px solid #bebebe;
+    width: 100%;
+    height: 80%;
+    padding: 20px 20px 10px 20px;
+    font-size: 16px;
+    color: #808080;
+    background-color: #fff;
+}
+
+.payment-agree-notice {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+    padding: 1px;
+    background-color: #f3f3f3;
+}
+
+.checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4%;
+    height: 80%;
+}
+
+.input-checkbox {
+    border: 1px solid;
+    width: 50%;
+    height: 50%;
+    cursor: pointer;
+}
+
+.payment-agree-notice-content {
+    width: 90%;
+    color: #4c4c4C;
+}
+
+.payment-agree-notice-content a {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
+/* 결제 버튼  */
 .payment-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     width: 100%;
     height: 10%;
-    background-color: bisque;
+    padding-top: 30px;
+}
+
+.payment-button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+    border-radius: 5px;
+    width: 144px;
+    height: 45px;
+
+    color: white;
+    cursor: pointer;
+    background-color: red;
 }
