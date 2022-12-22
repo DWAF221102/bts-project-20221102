@@ -25,6 +25,7 @@
 .list_type1 li.title a {color: #111; font-weight: 500;  font-size: 1.06rem; line-height: 36px; overflow: hidden; text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1; -webkit-box-orient: vertical;}
 .list_type1 li.title a:hover {color: #FC5F07;}
 .list_type1 li > .comment {background: url(/static/images/ico_comment.svg) no-repeat left top; padding-left: 20px; font-size: 0.8rem; padding-bottom: 5px; background-size: 14px; margin-left: 10px; text-align: right;}
+.list_type1 li img {width: 24px; height: 24px; border-radius: 50%;}
 
 /*--- User list ---*/
 .m_score  {font-size: 0.72rem; line-height: 24px; padding-left: 16px;}
@@ -35,7 +36,7 @@
 .rank_user dt {font-weight: 500; color:#111; font-size: 1rem; margin-bottom: 16px;}
 .rank_user dd  {width: 100%; padding: 4px 0;}
 .rank_user dd a.m_avatar  {padding-right: 5px;}
-.rank_user dd a.m_avatar img {width: 24px; margin-top: -3px;}
+.rank_user dd a.m_avatar img {width: 24px; height: 24px; border-radius: 50%; margin-top: -3px;}
 .rank_user dd a.m_id {line-height: 24px; font-size: 0.8rem; }
 .rank_user dd a.m_id:hover {color: #3165B4; text-decoration: underline;}
 .rank_user dd .m_score {float: right; }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div class="main_rank" th:fragment="aside">
+        <dl class="rank_user rank-user-list">
+           <dt>Top Rank user</dt>
+           
+        </dl>
+
+        <dl class="rank_user rank-price-list">
+         <dt>Top Rank Price</dt>
+         
+        </dl>
+
+        <div class="user_write">
+         <a href="/notice">
+         <img src="/static/images/ico_write.svg" alt="">
+         버그와 제안 문의하기
+          </a>
+        </div>
+        <script src="/static/js/fragment/aside.js"></script>
+     </div>
+</body>
+</html>

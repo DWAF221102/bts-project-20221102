@@ -102,7 +102,7 @@
             qna_board_mst qbm
                 LEFT OUTER JOIN user_mst um ON(um.id = qbm.user_id)
         ORDER BY qbm.price DESC
-        limit 10
+        limit 5
     </select>
     <select id="loadRankUser" resultType="com.btsproject.btsproject20221102.domain.AsideRankUser">
         SELECT
@@ -116,6 +116,6 @@
         GROUP BY
             um.id
         ORDER BY score_avg DESC
-        limit 10
+        limit 5
     </select>
 </mapper>
