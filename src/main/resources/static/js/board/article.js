@@ -406,7 +406,7 @@ class CommentService {
                         </div>
                         <div class="recomment-container">
                             <div class="recomment-button recomment-button${index}">
-                                <button type="button" class="write-reccoment-button"><span>댓글 쓰기</span></button>
+                                <button type="button" class="write-recomment-button write-recomment-button${index}"><span>댓글 쓰기</span></button>
                             </div>
                             <div class="recomment recomment${index}">
                                 <div class="delete-recomment">            
@@ -474,7 +474,7 @@ class CommentService {
             <button type="button" class="show-recomment">
                 <span class="show-recomment-span">댓글 ${recommentCount}개 보기</span>
             </button>
-            <button type="button" class="write-recomment-button"><span>댓글 쓰기</span></button>
+            <button type="button" class="write-recomment-button write-recomment-button${index}"><span>댓글 쓰기</span></button>
         `;
         
 
@@ -512,8 +512,9 @@ class CommentService {
             userId = principalUser.id;
             userImg = principalUser.user_img;
         }
+        let index = responseData.comment.length;
 
-        for(let i = 0; i < writeRecommentButton.length; i++) {
+        for(let i = 0; i < index; i++) {
             writeRecommentButton[i].onclick = () => {
                 if(userId != 0) {
                     deleteRecomment[i].innerHTML = `
@@ -565,7 +566,7 @@ class CommentService {
         const writeButton = document.querySelectorAll(".write-recomment-button");
 
         let recommentButton = document.querySelector(".button-recomment" + i);
-        console.log(recommentButton);
+        
         recommentButton.onclick = () => {
             let recomentTextarea = document.querySelector(".recomment-textarea" + i);
             let textValue = recomentTextarea.value;
@@ -574,10 +575,11 @@ class CommentService {
             console.log("length: " + responseData.comment.length);
             console.log("index: " + index);
             let commentId = responseData.comment[index].comment_id;
+            console.log(commentId);
             if(textValue != "" && textValue != " " && textValue != null && textValue.replaceAll(" ", "") != "") {
                 if(confirm("댓글을 작성하시겠습니까?")){
                     CommentApi.getInstance().recommentWriteReq(commentId, userId, textValue);
-                    // location.reload();
+                    location.reload();
                 }
             }else {
                 alert("댓글을 입력해주세요.");
