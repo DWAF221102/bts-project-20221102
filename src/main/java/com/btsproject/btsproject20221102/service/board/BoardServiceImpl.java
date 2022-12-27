@@ -160,6 +160,7 @@ public class BoardServiceImpl implements BoardService {
     public ArticleRespDto loadArticle(int id) throws Exception {
         ArticleRespDto result = boardRepository.loadArticle(id).toRespDto();
 
+
         return result;
     }
 

@@ -17,8 +17,10 @@
             </div>
             <section>
                 <div class="board-main-head">
-                    <span class="board-main-header-title">공지사항</span>
-                    <span class="board-main-header-content">bts의 새소식, 이벤트, 행사 정보를 공유하는 공간입니다.</span>
+                    <div class="board-main-title">
+                        <span class="board-main-header-title">공지사항</span>
+                        <span class="board-main-header-content">bts의 새소식, 이벤트, 행사 정보를 공유하는 공간입니다.</span>
+                    </div>
                 </div>
                 <div class="board-main-menu">
                     <div class="write">
@@ -73,7 +75,7 @@
                 </div>
             </section>
             <div class="right-aside">
-                <!-- <aside th:replace="~{fragment/priceaside :: priceaside}"></aside> -->
+                <div th:replace="~{fragment/aside :: aside}"></div>
             </div>
 
         </main>
