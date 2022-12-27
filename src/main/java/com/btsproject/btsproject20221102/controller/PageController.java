@@ -117,6 +117,10 @@ public class PageController {
         return "qna/qnaBoardArticle";
     }
 
+    // QNAUpdate
+    @GetMapping("/qna/update/{id}")
+    public String qnaUpdate(@PathVariable int id) { return "qna/qnaUpdate"; }
+
 
     // 나머지 카테고리(지식, 커뮤니티, 공지)
     @GetMapping("/knowledge")

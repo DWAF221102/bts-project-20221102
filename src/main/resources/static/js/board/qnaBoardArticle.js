@@ -20,6 +20,7 @@ function getList() {
             boardDetails(response.data);
             writer(response.data);
             requestButton(response.data);
+            setUpdateButton(response.data);
         },
         error: (error) => {
             console.log(error);
@@ -243,6 +244,35 @@ class TimeService {
                 }
             }
         }
+    }
+}
+
+function setUpdateButton(responseData) {
+    let userId = 0;
+    if(principalUser != null) {
+        userId = principalUser.id;
+    }
+    if(userId != 0) {
+        if(userId == responseData.userId){
+            const articleInfo = document.querySelector(".article-update-button"); 
+
+            articleInfo.innerHTML += `
+                <div>
+                    <button type="button" class="update-button">
+                        <i class="fa-regular fa-pen-to-square"></i>수정하기
+                    </button>
+                </div>
+            `;
+
+            const updateButton = document.querySelector(".update-button");
+
+            updateButton.onclick = () => {
+                if(confirm("게시물을 수정하시겠습니까?")) {
+                    location.href = "/qna/update/" + responseData.id;
+                }
+            }
+        }
+
     }
 }
 

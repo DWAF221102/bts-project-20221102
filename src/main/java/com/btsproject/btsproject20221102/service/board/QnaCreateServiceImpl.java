@@ -3,8 +3,10 @@ package com.btsproject.btsproject20221102.service.board;
 import com.btsproject.btsproject20221102.domain.Qna;
 import com.btsproject.btsproject20221102.domain.QnaArticle;
 import com.btsproject.btsproject20221102.domain.QnaImgFile;
+import com.btsproject.btsproject20221102.domain.QnaUpdateArticle;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
+import com.btsproject.btsproject20221102.dto.board.QnaUpdateRespDto;
 import com.btsproject.btsproject20221102.exception.CustomInternalServerErrorException;
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
 import lombok.RequiredArgsConstructor;
@@ -136,4 +138,11 @@ public class QnaCreateServiceImpl implements QnaCreateService{
         return false;
     }
 
+    @Override
+    public QnaUpdateRespDto loadQnaUpdate(int id) throws Exception {
+        QnaUpdateArticle qnaUpdateArticle = qnaRepository.updateInfoQna(id);
+        System.out.println(qnaUpdateArticle);
+        System.out.println("동작");
+        return qnaUpdateArticle.toQnaUpdateRespDto();
+    }
 }

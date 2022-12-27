@@ -89,6 +89,8 @@
 .qna-board-profile {
     width: 400px;
     height: 44px;
+    display: flex;
+    justify-content: space-between;
 
     /* background-color: rgb(188, 105, 105); */
 }
@@ -135,6 +137,14 @@
     font-size: 12px;
     font-weight: 400;
     color: #6b7280;
+}
+
+.article-update-button {
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+    margin-right: 4px;
+    
 }
 
 

@@ -47,7 +47,6 @@ public class QnaApi {
     @GetMapping("/qnaLists/{id}")
      public ResponseEntity<?> getQnaCreateList(@PathVariable int id) throws Exception {
 
-
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", qnaCreateService.getQnaArticle(id)));
      }
 

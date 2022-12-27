@@ -25,6 +25,7 @@
     </resultMap>
     <resultMap id="qnaArticle" type="com.btsproject.btsproject20221102.domain.QnaArticle">
         <result property="id" column="id"></result>
+        <result property="user_id" column="user_id"></result>
         <result property="menu_id" column="menu_id"></result>
         <result property="category_name" column="category_name"></result>
         <result property="subcategory_name" column="subcategory_name"></result>
@@ -40,6 +41,33 @@
         <result property="create_date" column="create_date"></result>
         <result property="update_date" column="update_date"></result>
         <collection property="qna_img_files" javaType="list" resultMap="qna_img_files"></collection>
+    </resultMap>
+
+    <resultMap id="qnaUpdateArticle" type="com.btsproject.btsproject20221102.domain.QnaUpdateArticle">
+        <result property="id" column="id"></result>
+        <result property="user_id" column="user_id"></result>
+        <result property="menu_id" column="menu_id"></result>
+        <result property="category_name" column="category_name"></result>
+        <result property="subcategory_name" column="subcategory_name"></result>
+        <result property="status" column="status"></result>
+        <result property="nickname" column="nickname"></result>
+        <result property="title" column="title"></result>
+        <result property="info" column="info"></result>
+        <result property="want_info" column="want_info"></result>
+        <result property="price" column="price"></result>
+        <result property="user_img" column="user_img"></result>
+        <result property="like_count" column="like_count"></result>
+        <result property="view_count" column="view_count"></result>
+        <result property="create_date" column="create_date"></result>
+        <result property="update_date" column="update_date"></result>
+        <collection property="qna_update_img_files" javaType="list" resultMap="qna_update_img_files"></collection>
+    </resultMap>
+
+    <resultMap id="qna_update_img_files" type="com.btsproject.btsproject20221102.domain.QnaUpdateImgFile">
+        <result property="id" column="img_id"></result>
+        <result property="qna_board_id" column="qna_board_id"></result>
+        <result property="origin_name" column="origin_name"></result>
+        <result property="temp_name" column="temp_name"></result>
     </resultMap>
 
 
@@ -91,6 +119,7 @@
     <select id="infoQna" parameterType="Integer" resultMap="qnaArticle">
         select
             qbm.id,
+            qbm.user_id,
             qbm.menu_id,
             cd.category_name,
             sd.subcategory_name,
@@ -235,6 +264,57 @@
             qna_board_img
         where
             qna_board_id = #{boardId}
+
+    </select>
+
+    <select id="updateInfoQna" parameterType="Integer" resultMap="qnaUpdateArticle">
+        select
+        qbm.id,
+        qbm.user_id,
+        qbm.menu_id,
+        cd.category_name,
+        sd.subcategory_name,
+        sm.status,
+        um.nickname,
+        qbm.title,
+        qbm.info,
+        qbm.want_info,
+        qbm.price,
+        um.user_img,
+        ifnull(lm.like_count,0),
+        <!--            ifnull(qbm.view_count, 0),-->
+        qbm.view_count,
+        qbi.temp_name,
+        qbm.create_date,
+        qbm.update_date
+        from
+        qna_board_mst qbm
+        LEFT OUTER JOIN user_mst um ON(um.id = qbm.user_id)
+        LEFT OUTER JOIN category_dtl cd ON(cd.id = qbm.category_id)
+        LEFT OUTER JOIN subcategory_dtl sd ON(sd.id = qbm.category_sub_id)
+        LEFT OUTER JOIN status_mst sm ON(sm.id = qbm.status_id)
+        LEFT OUTER JOIN qna_board_img qbi ON(qbi.qna_board_id = qbm.id)
+        LEFT OUTER JOIN (select
+        board_id,
+        COUNT(*) AS like_count
+        from
+        like_mst
+        GROUP BY
+        board_id) lm ON (lm.board_id = qbm.id)
+        where
+        qbm.id = #{id}
+    </select>
+
+    <select id = "getQnaUpdateImgList" parameterType="Integer" resultMap="qna_update_img_files">
+        select
+        id,
+        qna_board_id,
+        origin_name,
+        temp_name
+        from
+        qna_board_img
+        where
+        qna_board_id = #{boardId}
 
     </select>
 

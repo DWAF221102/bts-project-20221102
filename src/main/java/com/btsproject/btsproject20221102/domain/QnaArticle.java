@@ -18,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class QnaArticle {
     private int id;
+    private int user_id;
     private int menu_id;
 
     private String category_name;
@@ -49,6 +50,7 @@ public class QnaArticle {
     public QnaCreateRespDto toQnaCreateRespDto() {
         return QnaCreateRespDto.builder()
                 .id(id)
+                .userId(user_id)
                 .menuId(menu_id)
                 .categoryName(category_name)
                 .subcategoryName(subcategory_name)

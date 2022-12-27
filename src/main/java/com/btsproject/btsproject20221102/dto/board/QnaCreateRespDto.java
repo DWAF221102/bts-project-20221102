@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 public class QnaCreateRespDto {
     private int id;
+    private int userId;
     private int menuId;
     private String categoryName;
     private String subcategoryName;
