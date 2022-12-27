@@ -2,9 +2,12 @@ package com.btsproject.btsproject20221102.controller;
 
 
 import com.btsproject.btsproject20221102.domain.User;
+import com.btsproject.btsproject20221102.dto.account.PointDto;
 import com.btsproject.btsproject20221102.repository.account.AccountRepository;
+import com.btsproject.btsproject20221102.service.account.AccountService;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -13,11 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class PageController {
 
-
+    AccountService accountService;
 
     // 메인페이지
     @GetMapping({"/", "/index"})
@@ -77,7 +81,9 @@ public class PageController {
 
     //최근활동 페이지
     @GetMapping("/myactivity/{id}")
-    public String myactivity(@PathVariable int id) {
+    public String myactivity(@PathVariable int id, int totalPoint, Model model) {
+        model.addAttribute("totalPoint", totalPoint);
+        log.info("포인트" + model);
         return "account/detailsOfActivity";
     }
     @GetMapping("/myactivity/article/{id}")
@@ -94,8 +100,9 @@ public class PageController {
     }
 
     // 포인트 충전
-    @GetMapping("/point")
-    public String pointCharge(){
+    @GetMapping("/point/{userId}")
+    public String pointCharge( @PathVariable int userId, Model model){
+
         return "account/point/point";
     }
 

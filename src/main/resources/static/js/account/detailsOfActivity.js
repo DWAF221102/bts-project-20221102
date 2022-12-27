@@ -22,7 +22,7 @@ window.onload = () => {
             <!-- 회원정보 상세 영역 -->
             <div class="profile-detail">
                 <h2>${responseData.nickname}</h2>
-                <p><i class="fa-solid fa-star"></i>${scoreAvg}</p>
+                <span class="score"><img class="star-image" src="/static/images/star.svg"> ${scoreAvg}</span>
             </div>
         </div>
     </div>

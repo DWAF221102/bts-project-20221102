@@ -32,6 +32,11 @@ public interface AccountRepository {
 
     public List<MyLikeQna> loadMyLikeQna(int userId) throws Exception;
 
+    //포인트
+    public Point point(int totalPoint);
+
+    public void pointCharge(PointCharge pointCharge);
+
 
     /* 프로필 이미지 변경 */
     public int modifyProfileImage(UserProfileImage userProfileImage);

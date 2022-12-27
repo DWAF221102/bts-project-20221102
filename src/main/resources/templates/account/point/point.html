@@ -8,6 +8,9 @@
     <title>포인트 충전</title>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/account/point/point.css">
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
 
 </head>
 
@@ -16,7 +19,7 @@
         <div class="left-side">
             <div class="left-side-container">
                 <div class="point-header">
-                    <img class="logo-image" src="/static/images/logo_bts.png">
+                    <img class="logo-image" src="/static/images/logo.svg">
                     <h2 class="point-header-content">포인트 충전하기</h2>
                 </div>
                 <div class="point-content">
@@ -52,7 +55,7 @@
                         <span>결제 금액</span>
                     </div>
                     <div class="right-payment-amount">
-                        <form action="">
+                        <form name="chargePoint">
                             <ul class="payment-amount-list">
                                 <!-- input-radio -->
                                 <!-- name: 라디오버튼의 이름. name이 같은 radio끼리 선택이 가능함. -->
@@ -212,8 +215,8 @@
                 </div>
 
                 <!-- 결제 버튼 -->
-                <div class="payment-button">
-                    <a href="#">결제하기</a>
+                <div class="payment-button-area">
+                    <a class="payment-button" href="#">결제하기</a>
                 </div>
             </div>
         </div>
