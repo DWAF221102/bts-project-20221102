@@ -64,6 +64,34 @@
         );
     </insert>
 
+    <!-- 포인트 조회 -->
+    <select id="point" resultType="com.btsproject.btsproject20221102.domain.Point">
+        SELECT
+            pm.id,
+            um.id,
+            um.username,
+            pm.total_point,
+            pm.create_date
+
+        FROM
+            user_mst um
+            LEFT OUTER JOIN point_mst pm ON(um.id = pm.user_id)
+        WHERE
+            um.id = #{userId}
+    </select>
+
+    <!--포인트 충전 -->
+    <insert id="pointCharge">
+        INSERT INTO
+            point_dtl
+        VALUE(
+            0,
+            #{point_id},
+            #{type},
+            #{point}
+        )
+    </insert>
+
     <update id="enabledUpdate" parameterType="com.btsproject.btsproject20221102.domain.User">
         update
             user_mst
@@ -212,6 +240,7 @@
         where
             id = #{id}
     </update>
+
 
     <select id="getAuthenticationKey" resultType="com.btsproject.btsproject20221102.domain.Key">
         select
@@ -373,6 +402,7 @@
             from_id = #{userId}
         ORDER BY qlm.create_date DESC
     </select>
+
     <delete id="deleteUser" parameterType="com.btsproject.btsproject20221102.domain.User">
         delete
         from

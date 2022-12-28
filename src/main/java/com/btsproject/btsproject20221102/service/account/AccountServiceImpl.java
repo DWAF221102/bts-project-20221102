@@ -1,9 +1,6 @@
 package com.btsproject.btsproject20221102.service.account;
 
-import com.btsproject.btsproject20221102.domain.Key;
-import com.btsproject.btsproject20221102.domain.User;
-import com.btsproject.btsproject20221102.domain.UserInfo;
-import com.btsproject.btsproject20221102.domain.UserProfileImage;
+import com.btsproject.btsproject20221102.domain.*;
 import com.btsproject.btsproject20221102.dto.account.*;
 import com.btsproject.btsproject20221102.dto.index.AsidePriceListRespDto;
 import com.btsproject.btsproject20221102.exception.CustomValidationException;
@@ -278,5 +275,17 @@ public class AccountServiceImpl implements AccountService {
             list.add(likeqna.toMypLikeQnaRespDto());
         });
         return list;
+    }
+
+
+    // 포인트
+    @Override
+    public Point point(int userId) throws Exception {
+        return accountRepository.point(userId);
+    }
+
+    @Override
+    public void chargePoint(PointDto pointDto) throws Exception {
+
     }
 }

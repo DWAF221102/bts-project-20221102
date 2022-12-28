@@ -128,12 +128,12 @@
 }
 
 .payment-header-box {
-    border: 1px solid #606060;
+    border: 1px solid #FC5F07;
     border-radius: 5px;
     width: 100%;
     padding: 5px 10px;
     color: #FFFFFF;
-    background-color: #606060;
+    background-color: #FC5F07;
 }
 
 .payment-header-content {
@@ -183,13 +183,12 @@
 }
 
 .payment-point-price:hover {
-    border: 3px solid orange;
-    background-color: orange;
+    cursor: pointer;
+    border: 3px solid #ff8000;
+    background-color: #ff8000;
 }
 
-.payment-point-price:hover {
-    cursor: pointer;
-}
+
 
 .payment-point-box {
     display: flex;
@@ -266,7 +265,7 @@
 
 .simple-payment:hover,
 .credit-card:hover {
-    border: 3px solid orange;
+    border: 3px solid #FC5F07;
 }
 
 .detail-payment-type {
@@ -384,7 +383,7 @@
 
 
 /* 결제 버튼  */
-.payment-button {
+.payment-button-area {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -393,16 +392,16 @@
     padding-top: 30px;
 }
 
-.payment-button a {
+.payment-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
+    border: 1px solid #fc5f07;
     border-radius: 5px;
     width: 144px;
     height: 45px;
 
     color: white;
     cursor: pointer;
-    background-color: red;
+    background-color: #fc5f07;
 }

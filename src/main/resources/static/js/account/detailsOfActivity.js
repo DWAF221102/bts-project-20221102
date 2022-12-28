@@ -3,9 +3,14 @@ let url = location.href;
 let userId = url.substring(url.lastIndexOf("/") + 1);
 // 프로필 영역
 window.onload = () => {
+
+
     const profileArea = document.querySelector(".profile-area");
 
     let responseData = userInfoRequest(userId);
+    let pointData = loadPoint(userId);
+
+
     let skill = responseData.skill == null ? "기술 태그를 입력해주세요." : responseData.skill;
     let scoreAvg = parseFloat(responseData.score_avg).toFixed(1);
 
@@ -22,7 +27,7 @@ window.onload = () => {
             <!-- 회원정보 상세 영역 -->
             <div class="profile-detail">
                 <h2>${responseData.nickname}</h2>
-                <p><i class="fa-solid fa-star"></i>${scoreAvg}</p>
+                <span class="score"><img class="star-image" src="/static/images/star.svg"> ${scoreAvg}</span>
             </div>
         </div>
     </div>
@@ -60,7 +65,7 @@ window.onload = () => {
             <div class="point-content-area">
                 <div class="point-content">
                     <b>현재 포인트</b>
-                    <a>10,000P</a>
+                    <a class="point">${pointData.total_point}<span class="currency">Point</span></a>
                 </div>
             </div>
             <div class="point-button-area">
@@ -139,6 +144,28 @@ function userInfoRequest(userId) {
 
     });
     return responseData;
+}
+
+// 포인트 조회
+function loadPoint(userId) {
+    let pointData = null;
+
+    $.ajax({
+        async: false,
+        type: "get",
+        url: "/api/account/myactivity/point/" + userId,
+        dataType: "json",
+        success: (response) => {
+            pointData = response.data;
+            console.log(response);
+            console.log("point: " + pointData);
+        },
+        error: (error) => {
+            console.log(error);
+            alert("포인트 실패");
+        }
+    });
+    return pointData;
 }
 
 // 최근 활동 영역
