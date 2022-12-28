@@ -248,7 +248,8 @@
         LEFT OUTER JOIN user_mst um3 ON (um3.id = rm.user_id)
 
     WHERE
-        bm.id = #{id};
+        bm.id = #{id}
+    ORDER BY cm.create_date asc
     </select>
 
 
