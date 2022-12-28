@@ -99,10 +99,7 @@ public class PageController {
 
     // 포인트 충전
     @GetMapping("/point/{userId}")
-    public String pointCharge( @PathVariable int userId, Model model){
-
-        return "account/point/point";
-    }
+    public String pointCharge( @PathVariable int userId){return "account/point/point";}
 
 
     // QNA

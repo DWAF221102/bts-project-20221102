@@ -1,4 +1,18 @@
 const paymentBtn = document.querySelector(".payment-button");
+let url = location.href;
+let userId = url.substring(url.lastIndexOf("/") + 1);
+
+function requestUserId(userId) {
+    $({
+        async: false,
+        type: "get",
+        url: "/point/" + userId,
+        success: (response) => {
+            console.log(response);
+        },
+        error: (error)
+    })
+}
 
 paymentBtn.onclick = () => {
     console.log("클릭함");
