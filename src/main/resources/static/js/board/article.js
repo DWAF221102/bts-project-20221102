@@ -140,6 +140,38 @@ class CommentApi {
             }
         })
     }
+
+    deleteCommentReq(commentId){
+        $.ajax({
+            async:false,
+            type:"delete",
+            url:"/api/comment/delete/" + commentId,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+            
+        });
+    }
+
+    deleteRecommentReq(recommentId){
+        $.ajax({
+            async:false,
+            type:"delete",
+            url:"/api/recomment/delete/" + recommentId,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+            
+        });
+    }
 }
 
 class ArticleService {
@@ -378,44 +410,91 @@ class CommentService {
 
 
     setComment(responseData) {
+        let userId = 0;
+
+        if(principalUser != null) {
+            userId = principalUser.id;
+        }
+
         let comment = responseData.comment;
         let recommentCount = new Array(); 
         if(comment.length != 0) {
             const commentUl = document.querySelector(".comment-ul");
             for(let i = comment.length; i >  0; i--) {
                 let index = i - 1;
-                commentUl.innerHTML += `
-                    <li>
-                        <div class="user-info">
-                            <div class="user-info-container">
-                                <div class="user-img">
-                                    <a href="/myactivity/${comment[index].comment_user_id}">
-                                        <img src="/image/user/${comment[index].comment_user_img}">
-                                    </a>
-                                </div>
-                                <div class="user-detail">
-                                    <a href="/myactivity/${comment[index].comment_user_id}" class="user-nickname">${comment[index].comment_nickname}</a>
-                                    <div class="user-brief">
-                                        <span>${TimeService.getInstance().setTime(comment[index].comment_create_date)}</span>
+                let commentUserId = comment[index].comment_user_id;
+                let commentId = comment[index].comment_id;
+                if(userId != commentUserId) {
+                    commentUl.innerHTML += `
+                        <li>
+                            <div class="user-info">
+                                <div class="user-info-container">
+                                    <div class="user-img">
+                                        <a href="/myactivity/${comment[index].comment_user_id}">
+                                            <img src="/image/user/${comment[index].comment_user_img}">
+                                        </a>
+                                    </div>
+                                    <div class="user-detail">
+                                        <a href="/myactivity/${comment[index].comment_user_id}" class="user-nickname">${comment[index].comment_nickname}</a>
+                                        <div class="user-brief">
+                                            <span>${TimeService.getInstance().setTime(comment[index].comment_create_date)}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="comment-content">
-                            <p>${comment[index].comment_content}</p>
-                        </div>
-                        <div class="recomment-container">
-                            <div class="recomment-button recomment-button${index}">
-                                <button type="button" class="write-recomment-button write-recomment-button${index}"><span>댓글 쓰기</span></button>
+                            <div class="comment-content">
+                                <p>${comment[index].comment_content}</p>
                             </div>
-                            <div class="recomment recomment${index}">
-                                <div class="delete-recomment">            
-                                
+                            <div class="recomment-container">
+                                <div class="recomment-button recomment-button${index}">
+                                    <button type="button" class="write-recomment-button write-recomment-button${index}"><span>댓글 쓰기</span></button>
+                                </div>
+                                <div class="recomment recomment${index}">
+                                    <div class="delete-recomment">            
+                                    
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li> 
-                `;
+                        </li> 
+                    `;
+                }else {
+                    commentUl.innerHTML += `
+                        <li>
+                            <div class="user-info">
+                                <div class="user-info-container">
+                                    <div class="user-img">
+                                        <a href="/myactivity/${comment[index].comment_user_id}">
+                                            <img src="/image/user/${comment[index].comment_user_img}">
+                                        </a>
+                                    </div>
+                                    <div class="user-detail">
+                                        <a href="/myactivity/${comment[index].comment_user_id}" class="user-nickname">${comment[index].comment_nickname}</a>
+                                        <div class="user-brief">
+                                            <span>${TimeService.getInstance().setTime(comment[index].comment_create_date)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="comment-delete-button comment-delete${commentId}">삭제</button>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                <p>${comment[index].comment_content}</p>
+                            </div>
+                            <div class="recomment-container">
+                                <div class="recomment-button recomment-button${index}">
+                                    <button type="button" class="write-recomment-button write-recomment-button${index}"><span>댓글 쓰기</span></button>
+                                </div>
+                                <div class="recomment recomment${index}">
+                                    <div class="delete-recomment">            
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </li> 
+                    `;
+                }
+                
                 
                 let recomment = comment[index].recomment;
                 
@@ -429,28 +508,59 @@ class CommentService {
                     `;
                     const recommentUl = document.querySelector(".recomment-ul" + index);
                     recomment.forEach(data => {
-                        recommentUl.innerHTML += `
-                            <li class="">
-                                <div class="user-info">
-                                    <div class="user-info-container">
-                                        <div class="user-img">
-                                            <a href="/myactivity/${data.recomment_user_id}">
-                                            <img src="/image/user/${data.recomment_user_img}">
-                                            </a>
-                                        </div>
-                                        <div class="user-detail">
-                                            <a href="/myactivity/${data.recomment_user_id}" class="user-nickname">${data.recomment_nickname}</a>
-                                            <div class="user-brief">
-                                                <span>${TimeService.getInstance().setTime(data.recomment_create_date)}</span>
+                        let commentUserId = data.recomment_user_id;
+                        let recommentId = data.recomment_id;
+                        if(userId != commentUserId){
+                            recommentUl.innerHTML += `
+                                <li class="">
+                                    <div class="user-info">
+                                        <div class="user-info-container">
+                                            <div class="user-img">
+                                                <a href="/myactivity/${data.recomment_user_id}">
+                                                <img src="/image/user/${data.recomment_user_img}">
+                                                </a>
+                                            </div>
+                                            <div class="user-detail">
+                                                <a href="/myactivity/${data.recomment_user_id}" class="user-nickname">${data.recomment_nickname}</a>
+                                                <div class="user-brief">
+                                                    <span>${TimeService.getInstance().setTime(data.recomment_create_date)}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="recomment-content">
-                                    <p>${data.recomment_content}</p>
-                                </div>
-                            </li>
-                        `;
+                                    <div class="recomment-content">
+                                        <p>${data.recomment_content}</p>
+                                    </div>
+                                </li>
+                            `;
+                        }else {
+                            recommentUl.innerHTML += `
+                                <li class="">
+                                    <div class="user-info">
+                                        <div class="user-info-container">
+                                            <div class="user-img">
+                                                <a href="/myactivity/${data.recomment_user_id}">
+                                                <img src="/image/user/${data.recomment_user_img}">
+                                                </a>
+                                            </div>
+                                            <div class="user-detail">
+                                                <a href="/myactivity/${data.recomment_user_id}" class="user-nickname">${data.recomment_nickname}</a>
+                                                <div class="user-brief">
+                                                    <span>${TimeService.getInstance().setTime(data.recomment_create_date)}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button class="recomment-delete-button recomment-delete${recommentId}">삭제</button>
+                                        </div>
+                                    </div>
+                                    <div class="recomment-content">
+                                        <p>${data.recomment_content}</p>
+                                    </div>
+                                </li>
+                            `;
+                        }
+                        
                     });
                     this.recommentButton(index, recomment);
                 }   
@@ -459,9 +569,10 @@ class CommentService {
             const showRecommentUl = document.querySelectorAll(".recomment-ul");
             const showRecommentSpan = document.querySelectorAll(".show-recomment-span")
             for(let i = 0; i < showRecommentButton.length; i++) {
-                this.showRecomment(showRecommentButton[i], showRecommentUl[i], showRecommentSpan[i], recommentCount[i]);
+                this.showRecomment(responseData, showRecommentButton[i], showRecommentUl[i], showRecommentSpan[i], recommentCount[i]);
             }
-            // this.showRecommentWrite(responseData);
+
+            this.commentDeleteButtonEvent(responseData);
         }
 
     }
@@ -480,24 +591,24 @@ class CommentService {
 
     }
 
-    showRecomment(button, ul, span, recommentCount) {
+    showRecomment(responseData, button, ul, span, recommentCount) {
         button.onclick = () => {
             span.innerText = "댓글 모두 숨기기";
             
             ul.classList.remove("none");
-
-            this.removeRecomment(button, ul, span, recommentCount);
+            this.recommentDeleteButtonEvent(responseData);
+            this.removeRecomment(responseData, button, ul, span, recommentCount);
+            
         }
     }
         
-    removeRecomment(button, ul, span, recommentCount) {
+    removeRecomment(responseData, button, ul, span, recommentCount) {
 
         button.onclick = () => {
             span.innerText = `댓글 ${recommentCount}개 보기`;
             
             ul.classList.add("none");     
-            
-            this.showRecomment(button, ul, span, recommentCount);
+            this.showRecomment(responseData, button, ul, span, recommentCount);
         }
     }
 
@@ -585,6 +696,42 @@ class CommentService {
                 alert("댓글을 입력해주세요.");
             }
         }
+    }
+
+    commentDeleteButtonEvent(responseData) {
+        if(responseData.comment.length != 0) {
+            responseData.comment.forEach(data => {
+                let commentDeleteButton = document.querySelector(".comment-delete"+ data.comment_id);
+                if(commentDeleteButton != null) {
+                    commentDeleteButton.onclick = () => {
+                        if(confirm("댓글을 삭제하시겠습니까?")) {
+                            
+                        }
+                    }
+                }
+            })
+        }
+        
+    }
+
+    recommentDeleteButtonEvent(responseData) {
+        if(responseData.comment.length != 0){
+            responseData.comment.forEach(data => {
+                let recomment = data.recomment;
+                if(data.recomment.length != 0) {
+                    console.log(data.recomment.recomment_id);
+                    let recommentDeleteButton = document.querySelector(".recomment-delete"+ data.recomment.recomment_id);
+                    if(recommentDeleteButton != null) {
+                        recommentDeleteButton.onclick = () => {
+                            if(confirm("댓글을 삭제하시겠습니까?")) {
+                                
+                            }
+                        }
+                    }
+                }
+            })
+        }
+        
     }
 }
 
