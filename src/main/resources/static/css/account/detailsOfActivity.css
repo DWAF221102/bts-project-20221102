@@ -140,6 +140,15 @@ main {
     padding-left: 18px;
 }
 
+.point {
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.currency {
+    padding-left: 3px;
+}
+
 /* .point-content a:hover {
     text-decoration: underline;
     font-weight: 500;

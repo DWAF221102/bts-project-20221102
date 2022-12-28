@@ -76,6 +76,8 @@
         FROM
             user_mst um
             LEFT OUTER JOIN point_mst pm ON(um.id = pm.user_id)
+        WHERE
+            um.id = #{userId}
     </select>
 
     <!--포인트 충전 -->

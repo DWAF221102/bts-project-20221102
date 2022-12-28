@@ -33,7 +33,7 @@ public interface AccountRepository {
     public List<MyLikeQna> loadMyLikeQna(int userId) throws Exception;
 
     //포인트
-    public Point point(int totalPoint);
+    public Point point(int userId);
 
     public void pointCharge(PointCharge pointCharge);
 

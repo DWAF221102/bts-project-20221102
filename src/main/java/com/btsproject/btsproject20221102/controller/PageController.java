@@ -81,9 +81,7 @@ public class PageController {
 
     //최근활동 페이지
     @GetMapping("/myactivity/{id}")
-    public String myactivity(@PathVariable int id, int totalPoint, Model model) {
-        model.addAttribute("totalPoint", totalPoint);
-        log.info("포인트" + model);
+    public String myactivity(@PathVariable int id) {
         return "account/detailsOfActivity";
     }
     @GetMapping("/myactivity/article/{id}")

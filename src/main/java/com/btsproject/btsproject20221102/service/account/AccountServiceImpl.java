@@ -280,8 +280,8 @@ public class AccountServiceImpl implements AccountService {
 
     // 포인트
     @Override
-    public Point point(int totalPoint) throws Exception {
-        return accountRepository.point(totalPoint);
+    public Point point(int userId) throws Exception {
+        return accountRepository.point(userId);
     }
 
     @Override
