@@ -309,7 +309,22 @@
             board_id = #{boardId}
     </select>
 
+    <delete id="commentDelete" parameterType="Integer">
+        DELETE
+        FROM
+            comment_mst
+        WHERE
+            id = #{id}
+    </delete>
 
+    <delete id="recommentDelete" parameterType="Integer">
+        DELETE
+        from
+            recomment_mst
+        WHERE
+            id = #{id};
+
+    </delete>
 
 
 <!--    update  -->

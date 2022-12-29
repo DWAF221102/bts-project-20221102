@@ -569,7 +569,7 @@ class CommentService {
             const showRecommentUl = document.querySelectorAll(".recomment-ul");
             const showRecommentSpan = document.querySelectorAll(".show-recomment-span")
             for(let i = 0; i < showRecommentButton.length; i++) {
-                this.showRecomment(responseData, showRecommentButton[i], showRecommentUl[i], showRecommentSpan[i], recommentCount[i]);
+                this.showRecomment(showRecommentButton[i], showRecommentUl[i], showRecommentSpan[i], recommentCount[i]);
             }
 
             this.commentDeleteButtonEvent(responseData);
@@ -591,24 +591,23 @@ class CommentService {
 
     }
 
-    showRecomment(responseData, button, ul, span, recommentCount) {
+    showRecomment(button, ul, span, recommentCount) {
         button.onclick = () => {
             span.innerText = "댓글 모두 숨기기";
             
             ul.classList.remove("none");
-            this.recommentDeleteButtonEvent(responseData);
-            this.removeRecomment(responseData, button, ul, span, recommentCount);
+            this.removeRecomment(button, ul, span, recommentCount);
             
         }
     }
         
-    removeRecomment(responseData, button, ul, span, recommentCount) {
+    removeRecomment(button, ul, span, recommentCount) {
 
         button.onclick = () => {
             span.innerText = `댓글 ${recommentCount}개 보기`;
             
             ul.classList.add("none");     
-            this.showRecomment(responseData, button, ul, span, recommentCount);
+            this.showRecomment(button, ul, span, recommentCount);
         }
     }
 
@@ -705,34 +704,30 @@ class CommentService {
                 if(commentDeleteButton != null) {
                     commentDeleteButton.onclick = () => {
                         if(confirm("댓글을 삭제하시겠습니까?")) {
-                            
+                            CommentApi.getInstance().deleteCommentReq(data.comment_id);
+                            location.reload();
                         }
                     }
+                    if(data.recomment != 0){
+                        data.recomment.forEach(recomment => {
+                            let recommentId = recomment.recomment_id;
+                            let recommentDeleteButton = document.querySelector(".recomment-delete"+ recommentId);
+                            if(recommentDeleteButton != null) {
+                                recommentDeleteButton.onclick = () => {
+                                    if(confirm("댓글을 삭제하시겠습니까?")) {
+                                        CommentApi.getInstance().deleteRecommentReq(recommentId);
+                                        location.reload();
+                                    }
+                                }
+                            }
+                        });
+                    }
                 }
-            })
+            });
         }
         
     }
 
-    recommentDeleteButtonEvent(responseData) {
-        if(responseData.comment.length != 0){
-            responseData.comment.forEach(data => {
-                let recomment = data.recomment;
-                if(data.recomment.length != 0) {
-                    console.log(data.recomment.recomment_id);
-                    let recommentDeleteButton = document.querySelector(".recomment-delete"+ data.recomment.recomment_id);
-                    if(recommentDeleteButton != null) {
-                        recommentDeleteButton.onclick = () => {
-                            if(confirm("댓글을 삭제하시겠습니까?")) {
-                                
-                            }
-                        }
-                    }
-                }
-            })
-        }
-        
-    }
 }
 
 class TotalService {

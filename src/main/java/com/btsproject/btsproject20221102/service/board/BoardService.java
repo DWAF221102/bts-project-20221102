@@ -30,6 +30,8 @@ public interface BoardService {
     public boolean likeRemove(int id) throws Exception;
     public boolean commentWrite(int id ,int userId, String textValue) throws Exception;
     public boolean recommentWrite(int commentId ,int userId, String textValue) throws Exception;
+    public boolean commentDelete(int id) throws Exception;
+    public boolean recommentDelete(int id) throws Exception;
 
     //    ------update------
     public UpdateArticleRespDto loadUpdateArticle(int id) throws Exception;

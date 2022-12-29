@@ -201,6 +201,16 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public boolean commentDelete(int id) throws Exception {
+        return boardRepository.commentDelete(id) > 0 ? true : false;
+    }
+
+    @Override
+    public boolean recommentDelete(int id) throws Exception {
+        return boardRepository.recommentDelete(id) > 0 ? true : false;
+    }
+
+    @Override
     public UpdateArticleRespDto loadUpdateArticle(int id) throws Exception {
 
 
