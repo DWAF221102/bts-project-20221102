@@ -21,8 +21,10 @@ public class QnaUpdateArticle {
     private int menu_id;
 
     private String category_name;
+    private int category_id;
 
     private String subcategory_name;
+    private int category_sub_id;
 
     private String status;
 
@@ -52,7 +54,9 @@ public class QnaUpdateArticle {
                 .userId(user_id)
                 .menuId(menu_id)
                 .categoryName(category_name)
+                .categoryId(category_id)
                 .subcategoryName(subcategory_name)
+                .categorySubId(category_sub_id)
                 .status(status)
                 .nickname(nickname)
                 .title(title)

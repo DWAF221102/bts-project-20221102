@@ -15,7 +15,9 @@ public class QnaUpdateRespDto {
     private int userId;
     private int menuId;
     private String categoryName;
+    private int categoryId;
     private String subcategoryName;
+    private int categorySubId;
     private String status;
     private String nickname;
     private String title;

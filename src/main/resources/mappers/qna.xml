@@ -48,7 +48,9 @@
         <result property="user_id" column="user_id"></result>
         <result property="menu_id" column="menu_id"></result>
         <result property="category_name" column="category_name"></result>
+        <result property="category_id" column="category_id"></result>
         <result property="subcategory_name" column="subcategory_name"></result>
+        <result property="category_sub_id" column="category_sub_id"></result>
         <result property="status" column="status"></result>
         <result property="nickname" column="nickname"></result>
         <result property="title" column="title"></result>
@@ -273,7 +275,9 @@
         qbm.user_id,
         qbm.menu_id,
         cd.category_name,
+        qbm.category_id,
         sd.subcategory_name,
+        qbm.category_sub_id,
         sm.status,
         um.nickname,
         qbm.title,
@@ -317,5 +321,19 @@
         qna_board_id = #{boardId}
 
     </select>
+
+    <update id="qnaUpdateArticle" parameterType="com.btsproject.btsproject20221102.domain.QnaUpdateArticle">
+        update
+            qna_board_mst
+        set
+            category_id = #{category_id},
+            category_sub_id = #{category_sub_id},
+            title = #{title},
+            info = #{info},
+            want_info = #{want_info},
+            price = #{price}
+        where
+            id = #{id}
+    </update>
 
 </mapper>

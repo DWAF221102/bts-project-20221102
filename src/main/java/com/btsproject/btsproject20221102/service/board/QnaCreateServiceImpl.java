@@ -6,6 +6,7 @@ import com.btsproject.btsproject20221102.domain.QnaImgFile;
 import com.btsproject.btsproject20221102.domain.QnaUpdateArticle;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
+import com.btsproject.btsproject20221102.dto.board.QnaUpdateReqDto;
 import com.btsproject.btsproject20221102.dto.board.QnaUpdateRespDto;
 import com.btsproject.btsproject20221102.exception.CustomInternalServerErrorException;
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
@@ -144,5 +145,28 @@ public class QnaCreateServiceImpl implements QnaCreateService{
         System.out.println(qnaUpdateArticle);
         System.out.println("동작");
         return qnaUpdateArticle.toQnaUpdateRespDto();
+    }
+
+    @Override
+    public boolean qnaUpdateArticle(QnaUpdateReqDto qnaUpdateReqDto) throws Exception {
+        int resultCount = 0;
+
+        List<MultipartFile> files = qnaUpdateReqDto.getFiles();
+        List<QnaImgFile> qnaImgFiles = null;
+
+        Qna qna = qnaUpdateReqDto.toQnaEntity();
+        resultCount = qnaRepository.saveQna(qna);
+
+        if(files != null) {
+            int boardId = qna.getId();
+            qnaImgFiles = getQnaImgFiles(files, boardId);
+            resultCount = qnaRepository.saveImgFiles(qnaImgFiles);
+        }
+
+        if(resultCount == 0) {
+            throw new CustomInternalServerErrorException("상품 등록 실패");
+        }
+
+        return true;
     }
 }
