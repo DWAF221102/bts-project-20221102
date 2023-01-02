@@ -1,4 +1,3 @@
-
 let url = location.href;
 let userId = url.substring(url.lastIndexOf("/") + 1);
 // 프로필 영역
@@ -10,7 +9,7 @@ window.onload = () => {
     let responseData = userInfoRequest(userId);
     let pointData = loadPoint(userId);
 
-
+    // 프로필 영역 값(기술, 점수)
     let skill = responseData.skill == null ? "기술 태그를 입력해주세요." : responseData.skill;
     let scoreAvg = parseFloat(responseData.score_avg).toFixed(1);
 
@@ -70,7 +69,7 @@ window.onload = () => {
             </div>
             <div class="point-button-area">
                 <div class="point-button">
-                    <a href="/point" target="_blank">충전하기</a>
+                    <a href="/point/${userId}" target="_blank">충전하기</a>
                 </div>
                 <div class="point-button">
                     <a href="">이용내역</a>

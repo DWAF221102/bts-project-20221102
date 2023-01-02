@@ -52,7 +52,10 @@ main {
     font-weight: 500;
 }
 
-.myprofile-info-input {
+.myprofile-info-input,
+.myprofile-info-input[type=text],
+.myprofile-info-input[type=password] {
+    all: unset;
     margin-top: 10px;
     margin-bottom: 10px;
     border: 1px solid rgb(209 213 219);
