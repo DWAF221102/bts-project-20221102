@@ -355,6 +355,15 @@
             id = #{id}
     </update>
 
+    <delete id="deleteImg" parameterType="String">
+        delete
+        from
+            board_img
+        where
+            temp_name = #{img}
+
+    </delete>
+
     <delete id="deleteArticle" parameterType="Integer">
         delete
         from

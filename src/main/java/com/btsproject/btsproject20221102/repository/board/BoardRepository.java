@@ -30,5 +30,7 @@ public interface BoardRepository {
 //    -----update------
     public UpdateArticle loadUpdateArticle(int id) throws Exception;
     public int updateArticle(UpdateArticle updateArticle) throws Exception;
+
+    public int deleteImg(String img) throws Exception;
     public int deleteArticle(int id) throws Exception;
 }

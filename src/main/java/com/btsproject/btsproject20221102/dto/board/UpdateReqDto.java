@@ -2,6 +2,7 @@ package com.btsproject.btsproject20221102.dto.board;
 
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.lang.Nullable;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -16,8 +17,9 @@ public class UpdateReqDto {
     private String title;
     private String content;
 
+
     private List<String> img;
     private List<String> tempName;
     private List<MultipartFile> Files;
-    private List<String> oldImg;
+    private List<String> deleteImg;
 }

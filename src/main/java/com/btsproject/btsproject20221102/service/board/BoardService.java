@@ -38,4 +38,5 @@ public interface BoardService {
     public boolean updateArticle(UpdateReqDto updateReqDto) throws Exception;
     public boolean updateCancel (UpdateCancelReqDto updateCancelDto) throws Exception;
     public boolean deleteArticle(ArticleDeleteReqDto articleDeleteReqDto) throws Exception;
+
 }
