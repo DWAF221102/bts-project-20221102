@@ -85,7 +85,7 @@ public class AccountServiceImpl implements AccountService {
     // 유저 정보 불러오기
     @Override
     public UserInfo getUserInfo(int userId) throws Exception {
-        log.info("getUserInfo~~" + accountRepository.userInfo(userId));
+//        log.info("getUserInfo~~" + accountRepository.userInfo(userId));
         return accountRepository.userInfo(userId);
     }
 
