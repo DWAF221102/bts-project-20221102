@@ -8,8 +8,9 @@
     <title>포인트 충전</title>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/account/point/point.css">
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/static/js/account/principal.js"></script>
 
 
 </head>
@@ -25,13 +26,12 @@
                 <div class="point-content">
                     <ul>
                         <li class="email">
-                            <span class="notice-payment">결제 알림 메일</span>
-                            <span class="notice-payment-email">이메일@이메일.com</span>
+
                         </li>
                         <li class="point">
                             <span>충전 예정</span>
                             <div class="amount-currency">
-                                <span class="point-amount">10,000</span>
+                                <span class="point-amount"></span>
                                 <span class="point-currency">point</span>
                             </div>
                         </li>
@@ -140,7 +140,7 @@
 
 
                                 <li class="payment-point-price">
-                                    <label>
+                                    <label class="label">
                                         <div class="payment-point-box">
                                             <input class="radio-input" type="radio" name="radio-input" value="50000">
                                             <span class="payment-point">50,000</span>
@@ -221,9 +221,6 @@
             </div>
         </div>
     </div>
-
-
-
     <script src="/static/js/account/point/point.js"></script>
 </body>
 
