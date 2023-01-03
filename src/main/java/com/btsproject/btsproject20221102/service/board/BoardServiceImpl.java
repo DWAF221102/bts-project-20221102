@@ -201,6 +201,16 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public boolean commentDelete(int id) throws Exception {
+        return boardRepository.commentDelete(id) > 0 ? true : false;
+    }
+
+    @Override
+    public boolean recommentDelete(int id) throws Exception {
+        return boardRepository.recommentDelete(id) > 0 ? true : false;
+    }
+
+    @Override
     public UpdateArticleRespDto loadUpdateArticle(int id) throws Exception {
 
 
@@ -221,20 +231,46 @@ public class BoardServiceImpl implements BoardService {
         List<BoardImgFile> files = new ArrayList<BoardImgFile>();
 
         if(result > 0) {
-            updateReqDto.getImg().forEach(img -> {
-                for(int i = 0; i < updateReqDto.getTempName().size(); i++) {
-                    if (updateReqDto.getTempName().get(i).equals(img)) {
-                        Map<String, String> map = new HashMap<String, String>();
-                        map = uploadBoardImg(updateReqDto.getFiles().get(i), updateReqDto.getTempName().get(i));
-                        files.add(BoardImgFile.builder()
-                                .board_id(updateReqDto.getId())
-                                .origin_name(map.get("originName"))
-                                .temp_name(map.get("tempName"))
-                                .build());
+            if(updateReqDto.getImg() != null){
+                updateReqDto.getImg().forEach(img -> {
+                    if(updateReqDto.getTempName() != null) {
+                        for (int i = 0; i < updateReqDto.getTempName().size(); i++) {
+                            if (updateReqDto.getTempName().get(i).equals(img)) {
+                                Map<String, String> map = new HashMap<String, String>();
+                                map = uploadBoardImg(updateReqDto.getFiles().get(i), updateReqDto.getTempName().get(i));
+                                files.add(BoardImgFile.builder()
+                                        .board_id(updateReqDto.getId())
+                                        .origin_name(map.get("originName"))
+                                        .temp_name(map.get("tempName"))
+                                        .build());
+                                try {
+                                    boardRepository.saveBoardImg(files);
+                                } catch (Exception e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                            deleteSummernoteImg(updateReqDto.getTempName().get(i));
+                        }
                     }
-                    deleteSummernoteImg(updateReqDto.getTempName().get(i));
-                }
-            });
+                });
+            }
+
+            if(updateReqDto.getDeleteImg() != null) {
+                updateReqDto.getDeleteImg().forEach(img -> {
+                    try {
+                        boardRepository.deleteImg(img);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    Path uploadPath = Paths.get(filePath + "/board/" + img);
+
+                    File file = new File(uploadPath.toUri());
+                    if(file.exists()) {
+                        file.delete();
+                    }
+                });
+            }
+
             return true;
         }
             return false;
@@ -242,9 +278,12 @@ public class BoardServiceImpl implements BoardService {
     }
     @Override
     public boolean updateCancel(UpdateCancelReqDto updateCancelDto) throws Exception {
-        updateCancelDto.getTempName().forEach(img -> {
-            deleteSummernoteImg(img);
-        });
+        if(updateCancelDto.getTempName() != null){
+            updateCancelDto.getTempName().forEach(img -> {
+                deleteSummernoteImg(img);
+            });
+        }
+
 
         return true;
     }

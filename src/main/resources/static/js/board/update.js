@@ -344,6 +344,7 @@ class UpdateFormData {
     
     formData = new FormData();
     tempNames = new Array();
+    
 
     getFormData() {
         return this.formData;
@@ -358,26 +359,26 @@ class UpdateFormData {
         const title = document.querySelector("#title");
         const content = document.querySelector("#summernote");
         let reContent = content.value.replace(/summernote/g, "board");
-        let oldImgs = this.setImg(responseData.content);
-        let imgs = this.setImg(content.value);
+        let oldImgs = this.findImg(responseData.content);
+        let imgs = this.findImg(content.value);
 
         this.formData.append("id", id);
         this.formData.append("category", category.value);
         this.formData.append("subcategory", subcategory.value);
         this.formData.append("title", title.value);
         this.formData.append("content", reContent);
-        oldImgs.forEach(oldimg => {
-            this.formData.append("oldImg", oldimg);
-        });
         imgs.forEach(img => {
             this.formData.append("img", img);
+        });
+        this.setDeleteImgs(oldImgs, imgs).forEach(img => {
+            this.formData.append("deleteImg", img);
         });
 
         return this.formData;
     }
 
 
-    setImg(content) {
+    findImg(content) {
         let array = new Array();
         let returnData = new Array();
         array = content.split(/[\ /]/);
@@ -411,12 +412,23 @@ class UpdateFormData {
                 $(editor).summernote('insertImage', "/image/summernote/" + fileName);
                 this.formData.append("tempName", fileName);
                 this.formData.append("files", file);
+                this.tempNames.push(fileName);
             },
             error: (error) => {
                 console.log(error);
                 alert("이미지 업로드 실패!");
             }
         })
+    }
+
+    setDeleteImgs(oldImgs, imgs){
+        let deleteImgs = new Array();
+        oldImgs.forEach(img => {
+            if(imgs.indexOf(img) == -1){
+                deleteImgs.push(img);
+            }
+        });
+        return deleteImgs;
     }
 }
 
@@ -506,8 +518,10 @@ class ButtonService {
         updateButton.onclick = () => {
             let formData = UpdateFormData.getInstance().setFormData(responseData);
             if(NullCheck.getInstance().nullCheck(formData)){
-                UpdateApi.getInstance().updateReq(formData);
-                location.href = "/article/" + id;
+                if(confirm("수정하시겠습니까?")){
+                    UpdateApi.getInstance().updateReq(formData);
+                    location.href = "/article/" + id;
+                }
             }
         };
     }
@@ -521,6 +535,7 @@ class ButtonService {
             let fromDate = UpdateFormData.getInstance().setFormData(responseData);
             
             if(confirm("취소하시겠습니까???")){
+                
                 UpdateApi.getInstance().cancelReq(fromDate);
                 
                 location.href = "/article/" + id;
