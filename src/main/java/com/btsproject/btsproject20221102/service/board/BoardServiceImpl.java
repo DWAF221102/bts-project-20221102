@@ -293,8 +293,19 @@ public class BoardServiceImpl implements BoardService {
         int id = articleDeleteReqDto.getId();
 
         if(boardRepository.deleteArticle(id) > 0) {
-            if(articleDeleteReqDto.getOldImg() != null) {
-                articleDeleteReqDto.getOldImg().forEach(img -> {
+            if(articleDeleteReqDto.getImg() != null) {
+                articleDeleteReqDto.getImg().forEach(img -> {
+                    Path uploadPath = Paths.get(filePath + "/board/" + img);
+
+                    File file = new File(uploadPath.toUri());
+                    if(file.exists()) {
+                        file.delete();
+                    }
+                });
+            }
+
+            if(articleDeleteReqDto.getDeleteImg() != null) {
+                articleDeleteReqDto.getDeleteImg().forEach(img -> {
                     Path uploadPath = Paths.get(filePath + "/board/" + img);
 
                     File file = new File(uploadPath.toUri());

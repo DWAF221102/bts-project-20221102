@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 public class ArticleDeleteReqDto {
     private int id;
-    private List<String> oldImg;
+    private List<String> img;
+    private List<String> deleteImg;
     private List<String> tempName;
 }
