@@ -24,4 +24,6 @@ public interface QnaRepository {
     public List<QnaLoadList> qnaLoadBoard(Map<String, Object> map) throws Exception;
 
     public QnaUpdateArticle updateInfoQna(int id) throws Exception;
+
+    public int updateDelete(int id) throws Exception;
 }

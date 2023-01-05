@@ -4,10 +4,7 @@ import com.btsproject.btsproject20221102.domain.Qna;
 import com.btsproject.btsproject20221102.domain.QnaArticle;
 import com.btsproject.btsproject20221102.domain.QnaImgFile;
 import com.btsproject.btsproject20221102.domain.QnaUpdateArticle;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
-import com.btsproject.btsproject20221102.dto.board.QnaUpdateReqDto;
-import com.btsproject.btsproject20221102.dto.board.QnaUpdateRespDto;
+import com.btsproject.btsproject20221102.dto.board.*;
 import com.btsproject.btsproject20221102.exception.CustomInternalServerErrorException;
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
 import lombok.RequiredArgsConstructor;
@@ -168,5 +165,13 @@ public class QnaCreateServiceImpl implements QnaCreateService{
         }
 
         return true;
+    }
+
+    @Override
+    public boolean updateDeleteArticle(QnaDeleteReqDto qnaDeleteReqDto) throws Exception {
+        int id = qnaDeleteReqDto.getId();
+        qnaRepository.updateDelete(id);
+
+        return false;
     }
 }
