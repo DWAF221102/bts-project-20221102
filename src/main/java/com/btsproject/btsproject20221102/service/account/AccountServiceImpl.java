@@ -278,14 +278,21 @@ public class AccountServiceImpl implements AccountService {
     }
 
 
+
+
+
+
     // 포인트
     @Override
     public Point point(int userId) throws Exception {
         return accountRepository.point(userId);
     }
 
-    @Override
-    public void chargePoint(PointDto pointDto) throws Exception {
 
+    // 포인트 충전
+    @Override
+    public void chargePoint(PointChargeDto pointChargeDto) throws Exception {
+        accountRepository.pointCharge(pointChargeDto.toPointCharge());
+        log.info("포인트 정보: " + pointChargeDto.toPointCharge());
     }
 }
