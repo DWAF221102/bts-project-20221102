@@ -35,6 +35,7 @@ public interface AccountRepository {
     //포인트
     public Point point(int userId);
 
+    // 포인트 충전
     public void pointCharge(PointCharge pointCharge);
 
 

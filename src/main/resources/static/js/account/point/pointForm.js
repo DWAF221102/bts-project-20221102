@@ -47,7 +47,7 @@ paymentBtn.onclick = () => {
 
     // 포인트 값과 구매자의 이름, 이메일
     const point = document.querySelector("input[name='radio-input']:checked").value;
-    console.log(userId);
+    console.log(point);
     const IMP = window.IMP;
     IMP.init("imp37835071");
     requestPay();
@@ -64,25 +64,8 @@ paymentBtn.onclick = () => {
         }, function (rsp) {
             console.log(rsp);
             if (rsp.success) {  // 결제 성공
-                $.ajax({
-                    async: false,
-                    type: "post",
-                    url: "/api/account/point/charge",
-                    data: {
-                        "point": point,
-                        "userId": userId
-                    },
-                    success: (response) => {
-                        console.log(response);
-                        console.log("전송 성공");
-                    },
-                    error: (error) => {
-                        console.log(data);
-                        console.log(error);
-                        console.log("전송 실패");
-                    }
-                });
                 alert("결제가 완료되었습니다.");
+                chargePoint.submit();
             } else {  // 결제 실패
                 console.log(rsp.error_msg);
                 alert("결제에 실패하였습니다.");

@@ -114,6 +114,14 @@ public class AccountApi {
         return ResponseEntity.ok(new CMRespDto<>(1,"포인트 불러오기 완료", accountService.point(userId)));
     }
 
+    // 포인트 충전
+    @PostMapping("/point/charge")
+    public ResponseEntity<?> chargePoint(PointChargeDto pointChargeDto) throws Exception {
+        // flag 어떻게 할건지??
+        accountService.chargePoint(pointChargeDto);
+        return ResponseEntity.ok(new CMRespDto<>(1, "포인트 충전 완료", pointChargeDto));
+    }
+
 
     // 최근 게시물
     @GetMapping("/myactivity/{userid}")

@@ -50,5 +50,5 @@ public interface AccountService {
 
     public Point point(int totalPoint) throws Exception;
 
-    public void chargePoint(PointDto pointDto) throws Exception;
+    public void chargePoint(PointChargeDto pointChargeDto) throws Exception;
 }
