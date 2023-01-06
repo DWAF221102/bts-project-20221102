@@ -2,6 +2,7 @@ package com.btsproject.btsproject20221102.controller.api.qna;
 
 import com.btsproject.btsproject20221102.domain.Qna;
 import com.btsproject.btsproject20221102.dto.CMRespDto;
+import com.btsproject.btsproject20221102.dto.board.QnaDeleteReqDto;
 import com.btsproject.btsproject20221102.dto.board.QnaUpdateReqDto;
 import com.btsproject.btsproject20221102.dto.board.UpdateReqDto;
 import com.btsproject.btsproject20221102.service.board.QnaCreateService;
@@ -29,6 +30,11 @@ public class QnaUpdateApi {
 
         log.info("{}", qnaUpdateReqDto);
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", qnaCreateService.qnaUpdateArticle(qnaUpdateReqDto)));
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> delete(QnaDeleteReqDto qnaDeleteReqDto) throws Exception {
+        return ResponseEntity.ok(new CMRespDto<>(1, "Successfully",qnaCreateService.updateDeleteArticle(qnaDeleteReqDto)));
     }
 
 

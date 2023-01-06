@@ -5,6 +5,7 @@ window.onload = () => {
 const fileAddButton = document.querySelector(".qna-image-button")
 const fileInput = document.querySelector(".file-input")
 const submitButton = document.querySelector(".submit-button")
+const deleteButton = document.querySelector(".delete-button")
 
 let productImageFiles = new Array();
 
@@ -275,4 +276,36 @@ function request(formData) {
 
 }
 
+deleteButton.onclick = () => {
+    let url = location.href;
+    let id = url.substring(url.lastIndexOf("/") + 1);
+    let formData = new FormData();
+
+    formData.append("id", id)
+    
+    deleteReq(formData);
+}
+
+
+
+function deleteReq(formData) {
+
+    $.ajax({
+        async: false,
+        type: "delete",
+        url: "/api/qnaUpdate/delete",
+        enctype: "multipart/form-data",
+        contentType: false,
+        processData: false,
+        data: formData,
+        dataType: "json",
+        success: (response) => {
+            console.log(response);
+            alert("삭제완료")
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    })
+}
     

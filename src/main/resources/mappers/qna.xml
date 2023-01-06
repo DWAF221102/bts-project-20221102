@@ -336,4 +336,12 @@
             id = #{id}
     </update>
 
+    <delete id="updateDelete" parameterType="Integer">
+        delete
+        from
+        qna_board_mst
+        where
+        id = #{id}
+    </delete>
+
 </mapper>
