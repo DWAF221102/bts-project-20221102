@@ -440,7 +440,7 @@ section {
     align-content: center;
 }
 
-.page-num button {
+.page-num-button {
     border: none;
     padding: 16px 16px 0px 16px;
     
@@ -450,14 +450,13 @@ section {
     background-color: white;
 }
 
-.page-num button:hover {
+.page-num-button:hover {
     color: #FC5F07;
 }
 
-.page-num button:nth-child(1) {
-    border-top: 1px solid #FC5F07;
+/* .page-num-button:nth-child(1) {
     color: rgb#FC5F07;
-}
+} */
 
 .next-button button {
     border: none;
@@ -650,4 +649,10 @@ section {
 
 .main_rank {
     all: unset;
+}
+
+ul, li {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
 }

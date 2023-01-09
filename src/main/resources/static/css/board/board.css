@@ -506,7 +506,7 @@ section {
     border: none;
     padding-top: 16px;
 
-    color: #7f7f7f;
+    color: #bdbdbd;
     background-color: white;
 }
 
@@ -535,7 +535,6 @@ section {
 }
 
 .page-num-blue-button {
-    /* border-top: 1px solid #FC5F07; */
     color: #FC5F07;
 }
 

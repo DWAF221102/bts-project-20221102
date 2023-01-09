@@ -657,7 +657,7 @@ class PageService {
         for(let i = firstIndex; i <= lastIndex; i++) {
             if(i == this.getNowPage()) {
                 pageNum.innerHTML += `
-                    <li><button type="button" class="page-num-button page-num-blue-button">${i}</button></li>
+                    <li><button type="button" class="page-num-button blue-button">${i}</button></li>
                 `;
             }else {
                 pageNum.innerHTML += `
