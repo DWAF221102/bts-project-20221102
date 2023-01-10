@@ -180,7 +180,7 @@ class BoardLoad {
         });
         if(responseData.length != 0){
             PageService.getInstance().addService(responseData[0].totalCount);
-            console.log()
+            
         }else {
             PageService.getInstance().addService(1);
         }
@@ -588,7 +588,6 @@ class PageService {
     setNowPage(nowPage){this.nowPage = nowPage}
 
     addService(totalCount){
-        console.log(this.nowPage);
         this.setLastPage(totalCount);
         this.setSearchPage(totalCount);
         this.setBottomPageMovement(totalCount);
@@ -602,13 +601,13 @@ class PageService {
     }
     
     setSearchPage(totalCount) {
-        console.log(QnaBoardReqParams.getInstance().getPage());
-        console.log(this.getNowPage());
         this.setNowPage(QnaBoardReqParams.getInstance().getPage());
         const searchPageNum = document.querySelectorAll(".search-page-num span");
         const searchPageButton = document.querySelectorAll(".search-page-button button");
         
         const lastPage = this.setLastPage(totalCount);
+        console.log("totalCount: " + totalCount);
+        console.log("lastPage: " + lastPage);
 
         searchPageNum[0].innerText = QnaBoardReqParams.getInstance().getPage();
         searchPageNum[2].innerText = lastPage
@@ -644,11 +643,6 @@ class PageService {
     setBottomPageNum(totalCount) {
         const firstIndex = this.getNowPage() % 5 == 0 ? this.getNowPage() - 4 : this.getNowPage() - (this.getNowPage() % 5) +1;
         const lastIndex = firstIndex + 4 <= this.setLastPage(totalCount) ? firstIndex + 4 : this.setLastPage(totalCount);
-
-        console.log(this.getNowPage());
-        console.log(firstIndex);
-        console.log(lastIndex);
-        console.log(this.setLastPage(totalCount))
         
         const pageNum = document.querySelector(".page-num");
         pageNum.innerHTML = "";

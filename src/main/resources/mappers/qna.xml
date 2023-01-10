@@ -177,7 +177,7 @@
         ifnull(cm.comment_count,0),
         ifnull(rm.recomment_count,0),
         ifnull(lm.like_count,0),
-        pc.total_count
+        ifnull(pc.total_count,0)
     from
         qna_board_mst qbm
         LEFT OUTER JOIN user_mst um ON(um.id = qbm.user_id)
@@ -205,23 +205,26 @@
                         like_mst
                     GROUP BY
                         board_id) lm ON (lm.board_id = qbm.id)
-        LEFT OUTER JOIN (SELECT
-                            COUNT(*) AS total_count
-                        from
-                            qna_board_mst qbm2
-                            left outer join user_mst um2 on (um2.id = qbm2.user_id)
-<!--                        where-->
-<!--                            bm2.menu_id = #{menu_id}-->
-<!--                        <if test="category_id != 99">-->
-<!--                            and bm2.category_id = #{category_id}-->
-<!--                        </if>-->
-<!--                        <if test="subcategory_id != 99">-->
-<!--                            and bm2.subcategory_id = #{subcategory_id}-->
-<!--                        </if>-->
-<!--                        <if test='searchValue != null || searchValue !=""'>-->
-<!--                            and (um2.nickname like concat('%', #{searchValue}, '%') or bm2.title like concat('%', #{searchValue}, '%'))-->
-<!--                        </if>-->
-                        ) pc ON (1=1)
+    LEFT OUTER JOIN (SELECT
+                        COUNT(*) AS total_count
+                    from
+                        qna_board_mst qbm2
+                        left outer join user_mst um2 on (um2.id = qbm2.user_id)
+                    where
+                        1 = 1
+                        <if test="category_id != 99">
+                            and qbm2.category_id = #{category_id}
+                        </if>
+                        <if test="subcategory_id != 99">
+                            and qbm2.category_sub_id = #{subcategory_id}
+                        </if>
+                        <if test='searchValue != null || searchValue !=""'>
+                            and (um2.nickname like concat('%', #{searchValue}, '%') or qbm2.title like concat('%', #{searchValue}, '%'))
+                        </if>
+                        <if test="status_id != 99">
+                            and qbm2.status_id = #{status_id}
+                        </if>
+                    ) pc ON (1=1)
     WHERE
         1 = 1
         <if test="category_id != 99">

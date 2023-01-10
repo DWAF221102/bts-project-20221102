@@ -223,7 +223,7 @@ section {
     background-color: white;
 }
 
-.show-list button{
+.show-list-button{
     width: 100%;
 
     border: none;
@@ -235,13 +235,13 @@ section {
     background-color: white;
 }
 
-.show-list button:hover {
+.show-list-button:hover {
     color: #FC5F07;
 }
 
-.show-list button:nth-child(1) {
+/* .show-list button:nth-child(1) {
     color: #FC5F07;
-}
+} */
 
 
 .invisible {
@@ -423,6 +423,10 @@ section {
     background-color: white;
 }
 
+.previous-button button:hover {
+    color: #FC5F07;
+}
+
 .previous-button i {
     width: 16px;
     height: 16px;
@@ -454,20 +458,17 @@ section {
     color: #FC5F07;
 }
 
-/* .page-num-button:nth-child(1) {
-    color: rgb#FC5F07;
-} */
 
 .next-button button {
     border: none;
     padding-top: 16px;
 
-    color: #7f7f7f;
+    color: #bdbdbd;
     background-color: white;
 }
 
 .next-button button:hover {
-    color: black;
+    color: #FC5F07;
 }
 
 .next-button span {

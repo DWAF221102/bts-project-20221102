@@ -36,40 +36,49 @@ function img(data) {
     articleImgList = new Array();
 
     let k = 0;
-    qnaImg.innerHTML = `
-    <div class="img-box">
-        <i class="fa-shrap fa-solid fa-angle-left"></i>
-        <i class="fa-shrap fa-solid fa-angle-right"></i>
-        <img class="img-content" src="/image/qna/${data.qnaImgFiles[k].temp_name}">
-    </div>
-    `;
+    if(qnaImgFiles.length != 0) {
+        qnaImg.innerHTML = `
+        <div class="img-box">
+            <i class="fa-shrap fa-solid fa-angle-left"></i>
+            <i class="fa-shrap fa-solid fa-angle-right"></i>
+            <img class="img-content" src="/image/qna/${data.qnaImgFiles[k].temp_name}">
+        </div>
+        `;
+        
+        for(let i = 0; i < qnaImgFiles.length; i++){
+            articleImgList.push(data.qnaImgFiles[i].temp_name);
+            console.log(articleImgList);
     
-    for(let i = 0; i < qnaImgFiles.length; i++){
-        articleImgList.push(data.qnaImgFiles[i].temp_name);
-        console.log(articleImgList);
-
-    };
-
-    const rightButton = document.querySelector(".fa-angle-right");
-    rightButton.onclick = () => {
-        if(k < qnaImgFiles.length-1){
-            const imgContent = document.querySelector(".img-content");
-            k++;
-            imgContent.src = `/image/qna/${articleImgList[k]}`;
-            console.log([k])
+        };
+    
+        const rightButton = document.querySelector(".fa-angle-right");
+        rightButton.onclick = () => {
+            if(k < qnaImgFiles.length-1){
+                const imgContent = document.querySelector(".img-content");
+                k++;
+                imgContent.src = `/image/qna/${articleImgList[k]}`;
+                console.log([k])
+            }
+    
         }
-
-    }
-
-    const leftButton = document.querySelector(".fa-angle-left");
-    leftButton.onclick = () => {
-        if(k < qnaImgFiles.length && k>=1){
-            const imgContent = document.querySelector(".img-content");
-            k--;
-            imgContent.src = `/image/qna/${articleImgList[k]}`;
-            console.log([k])
+    
+        const leftButton = document.querySelector(".fa-angle-left");
+        leftButton.onclick = () => {
+            if(k < qnaImgFiles.length && k>=1){
+                const imgContent = document.querySelector(".img-content");
+                k--;
+                imgContent.src = `/image/qna/${articleImgList[k]}`;
+                console.log([k])
+            }
+    
         }
-
+    }else {
+        qnaImg.innerHTML = `
+        <div class="img-box">
+            
+            <img class="img-content" src="/image/qna/no_image.png">
+        </div>
+        `;
     }
 
 }

@@ -81,11 +81,8 @@ public class QnaBoardServiceImpl implements QnaBoardService{
 //        map.put("menu_id", menuId);
 
         map.put("category_id", categoryId);
-        log.info("category .. {}",map.get("category_id"));
         map.put("subcategory_id", Integer.parseInt(subcategoryId));
-        log.info("subCateogy .. {}",map.get("subcategory_id"));
         map.put("status_id", Integer.parseInt(statusId));
-        log.info("statusId .. {}",map.get("status_id"));
         map.put("show_list", showList);
         map.put("searchValue", searchValue);
 
@@ -94,7 +91,6 @@ public class QnaBoardServiceImpl implements QnaBoardService{
 
 
         qnaRepository.qnaLoadBoard(map).forEach(list -> {
-//            log.info("list >> {}", list);
             result.add(list.toQnaBoardRespDto());
         });
 
