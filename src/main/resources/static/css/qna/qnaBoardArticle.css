@@ -22,6 +22,7 @@
 
     /* background-color: rgb(135, 135, 209); */
 }
+
 /* ---------------- 이미지 ------------------------ */
 
 .qna-board-img {
@@ -38,6 +39,7 @@
     /* 이미지 비율이 무너지지만 크게 상관없어서 그냥 400*400
     꽉 차게 보이도록 우선 넣음 */
 }
+
 .img-box {
     display: flex;
     justify-content: center;
@@ -144,7 +146,7 @@
     align-items: center;
     margin-top: 4px;
     margin-right: 4px;
-    
+
 }
 
 
@@ -465,15 +467,16 @@
 }
 
 .modal-description {
+    padding-top: 10px;
     font-size: 12px;
     color: #4B5563;
 }
 
 .modal-button {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    padding-top: 10px;
+    padding-top: 45px;
 }
 
 .modal-button-left {
@@ -485,8 +488,8 @@
     border-radius: 10px;
     border: 0px;
 
-    width: 60px;
-    height: 30px;
+    width: 85px;
+    height: 35px;
 }
 
 .modal-button-right {
@@ -498,8 +501,8 @@
     border-radius: 10px;
     border: 0px;
 
-    width: 60px;
-    height: 30px;
+    width: 85px;
+    height: 35px;
 }
 
 
@@ -511,7 +514,7 @@
     width: 100%;
     height: 100%;
     display: flex;
-    display: none;
+    /* display: none; */
     /* 나중에 none으로 하고 js 만들어야함 */
 
     background-color: rgba(0, 0, 0, 0.4);
@@ -570,9 +573,9 @@
     text-align: left;
 }
 
-.star-title {
+/* .star-title {
     padding-top: 5px;
-}
+} */
 
 .modal-star-area {
     width: 100%;
@@ -580,10 +583,45 @@
 
 .modal-star {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    font-size: 25px;
+    width: 80%;
+    font-size: 32px;
 }
+
+.reviwe-form fieldset {
+    display: inline-block;
+    direction: rtl;
+    border: 0;
+}
+
+.reviewStar-input {
+    display: none;
+}
+
+.modal-star label {
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+
+.reviwe-form label:hover {
+    cursor: pointer;
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.reviwe-form label:hover~label {
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.reviewStar-input:checked~label {
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+
+
+
+
+
 
 .modal-user-description {
     display: flex;
@@ -591,6 +629,7 @@
     justify-content: left;
     align-items: flex-start;
     margin: 0;
+    padding-top: 10px;
     font-size: 12px;
     font-weight: 300;
     color: #4B5563;
@@ -614,8 +653,6 @@
     resize: none;
     border-radius: 5px;
     padding: 5px;
-    margin-left: 5px;
-    margin-bottom: 5px;
 
     font-size: 14px;
     font-weight: 400;

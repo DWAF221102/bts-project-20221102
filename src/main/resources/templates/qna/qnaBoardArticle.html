@@ -81,9 +81,9 @@
                                     <div class="qna-board-info-category-right">
                                         프로그램/버전
                                     </div>
-    
+
                                 </div>
-    
+
                                 <div class="qna-board-price">
                                     <div class="qna-board-price-left">
                                         질문금액
@@ -218,9 +218,16 @@
         <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
     <script src="/static/js/board/qnaBoardArticle.js"></script>
+    <script src="/static/js/board/qnaModal.js"></script>
 </body>
+
+
+
+
+
+<!--       답변자 모달창       -->
 <div class="modal">
-    <div class="modal-body">
+    <!-- <div class="modal-body">
         <div class="modal-title">답변내용</div>
         <div>
             <div class="modal-detail">원인분석</div>
@@ -237,10 +244,14 @@
             <button class="modal-button-left">save</button>
             <button class="modal-button-right">cancel</button>
         </div>
-    </div>
+    </div> -->
 </div>
+
+
+<!--       질문자 모달창       -->
 <div class="modal-user">
-    <div class="modal-user-body">
+
+    <!-- <div class="modal-user-body">
         <div class="modal-user-review">답변 리뷰</div>
         <div class="modal-user-detail">
             <div class="modal-user-title">
@@ -259,7 +270,22 @@
                 </div>
             </div>
             <div class="modal-star-area">
-                <div class="modal-star">☆☆☆☆☆</div>
+                <div class="modal-star">
+                    <form class="reviwe-form" name="myform" id="myform">
+                        <fieldset>
+                            <input type="radio" class="reviewStar-input" name="reviewStar" value="1" id="rate1"><label
+                                class="reviewStar-label" for="rate1">★</label>
+                            <input type="radio" class="reviewStar-input" name="reviewStar" value="2" id="rate2"><label
+                                class="reviewStar-label" for="rate2">★</label>
+                            <input type="radio" class="reviewStar-input" name="reviewStar" value="3" id="rate3"><label
+                                class="reviewStar-label" for="rate3">★</label>
+                            <input type="radio" class="reviewStar-input" name="reviewStar" value="4" id="rate4"><label
+                                class="reviewStar-label" for="rate4">★</label>
+                            <input type="radio" class="reviewStar-input" name="reviewStar" value="5" id="rate5"><label
+                                class="reviewStar-label" for="rate5">★</label>
+                        </fieldset>
+                    </form>
+                </div>
                 <div class="modal-user-description">
                     <p>별점의 갯수에 따라 지급액 산정이 달라집니다.</p>
                     <p>- 5개: 100%지급 -4개:80%지급 - 3개: 60%지급</p>
@@ -278,7 +304,7 @@
             <button class="modal-button-right">cancel</button>
         </div>
 
-    </div>
+    </div> -->
 </div>
 
 </html>
