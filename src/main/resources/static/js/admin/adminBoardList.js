@@ -1,19 +1,19 @@
-const searchBtn = document.querySelector(".search-button");
-const searchInput = document.querySelector(".search-input");
+const listSearchBtn = document.querySelector(".list-search-button");
+const listSearchInput = document.querySelector(".list-search-input");
 let searchValue = "";
 
 /////////////////////////////////////////////////////////////////
 loadBoardListRequest(searchValue);
 /////////////////////////////////////////////////////////////////
 
-searchInput.onkeyup = () => {
+listSearchInput.onkeyup = () => {
     if(window.event.keyCode === 13) {
-        searchBtn.click();
+        listSearchBtn.click();
     }
 }
 
-searchBtn.onclick = () => {
-    let searchValue = searchInput.value;
+listSearchBtn.onclick = () => {
+    let searchValue = listSearchInput.value;
     loadBoardListRequest(searchValue);  
 }
 

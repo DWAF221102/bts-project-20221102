@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{admin/fragment/adminhead :: adminhead}"></head>
+<!-- <head th:replace="~{admin/fragment/adminhead :: adminhead}"></head> -->
+<head th:replace="~{fragment/head :: head}"></head>
 <head>
     <title>adminQnAList</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/fragment/adminaside.css">
     <link rel="stylesheet" href="/static/css/admin/adminList.css">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
     <div id="container">
+        <div th:replace="~{fragment/header :: header}"></div>
         <main>
             <div class="main-container">
                 <aside th:replace="~{admin/fragment/adminaside :: adminaside}"></aside>
@@ -18,9 +22,9 @@
                         </div>
 
                         <div class="userlist-search-button">
-                            <input type="text" class="search-input" placeholder="검색어를 입력하세요.">
+                            <input type="text" class="list-search-input" placeholder="검색어를 입력하세요.">
                             <div>
-                                <button type="button" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                <button type="button" class="list-search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </div>
                         
