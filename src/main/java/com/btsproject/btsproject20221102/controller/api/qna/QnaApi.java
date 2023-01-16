@@ -67,4 +67,12 @@ public class QnaApi {
                 qnaBoardService.loadQnaBoard(page, categoryId, subcategoryId, statusId, showList, searchValue)));
 
      }
+
+
+     // 질문자 모달 정보(별점, 후기)
+     @PostMapping("/question/article/modal")
+     public ResponseEntity<?> answererModal(){
+
+         return ResponseEntity.ok(new CMRespDto<>(1, "질문자 모달 정보", true));
+     }
 }
