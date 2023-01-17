@@ -282,8 +282,11 @@ deleteButton.onclick = () => {
     let formData = new FormData();
 
     formData.append("id", id)
+    if(confirm("게시글을 삭제하시겠습니까?")){
+        deleteReq(formData);
+        location.replace("/question")
+    }
     
-    deleteReq(formData);
 }
 
 
