@@ -1,11 +1,7 @@
 package com.btsproject.btsproject20221102.service.board;
 
-import com.btsproject.btsproject20221102.domain.BoardImgFile;
 import com.btsproject.btsproject20221102.domain.QnaImgFile;
-import com.btsproject.btsproject20221102.dto.board.BoardRespDto;
-import com.btsproject.btsproject20221102.dto.board.QnaBoardRespDto;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
+import com.btsproject.btsproject20221102.dto.board.*;
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -100,4 +96,14 @@ public class QnaBoardServiceImpl implements QnaBoardService{
 
         return result;
     }
+
+    @Override
+    public boolean answererModal(QnaAnswerModalReqDto qnaAnswerModalReqDto) throws Exception {
+        qnaRepository.answererModal(qnaAnswerModalReqDto.toAnswererModal());
+        log.info("서비스 ID: " + qnaAnswerModalReqDto.getId());
+        log.info("서비스 원인 분석: " + qnaAnswerModalReqDto.getCauserAnalysis());
+        log.info("서비스 해결 방안: " + qnaAnswerModalReqDto.getSolutionPlan());
+        return true;
+    }
+
 }

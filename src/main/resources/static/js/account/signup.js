@@ -3,7 +3,7 @@ const signupInput = document.querySelectorAll(".general-signup-input");
 
 // let randomKey = self.crypto.randomUUID().toString().replaceAll("-", "");
 
-for(let i = 0; i < signupInput.length; i++) {
+for (let i = 0; i < signupInput.length; i++) {
     signupInput[i].onkeyup = () => {
         if (window.event.keyCode === 13) {
             if (i != 4) {
@@ -70,7 +70,7 @@ function emailSend() {
         contentType: "application/json",
         data: JSON.stringify(params),
         dataType: "json",
-        success : (response) => {
+        success: (response) => {
             location.replace("/index");
         },
         error: (error) => {

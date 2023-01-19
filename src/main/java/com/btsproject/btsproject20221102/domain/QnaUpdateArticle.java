@@ -32,6 +32,7 @@ public class QnaUpdateArticle {
     private String title;
     private String info;
     private String want_info;
+
     private int price;
     private String user_img;
     private int like_count;

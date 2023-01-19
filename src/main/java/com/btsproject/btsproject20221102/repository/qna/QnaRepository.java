@@ -1,7 +1,6 @@
 package com.btsproject.btsproject20221102.repository.qna;
 
 import com.btsproject.btsproject20221102.domain.*;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -26,4 +25,6 @@ public interface QnaRepository {
     public QnaUpdateArticle updateInfoQna(int id) throws Exception;
 
     public int updateDelete(int id) throws Exception;
+
+    public int answererModal(QnaAnswererModal answererModal) throws Exception;
 }
