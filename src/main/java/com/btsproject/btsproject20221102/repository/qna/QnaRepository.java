@@ -9,7 +9,7 @@ import java.util.Map;
 @Mapper
 public interface QnaRepository {
 
-    public int saveQna(Qna qna ) throws Exception;
+    public int saveQna(Qna qna) throws Exception;
     public int saveImgFiles(List<QnaImgFile> qna_img_files) throws Exception;
     public List<Qna> getQnaList(int id) throws Exception;
 

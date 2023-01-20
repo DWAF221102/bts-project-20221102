@@ -116,10 +116,9 @@ public class BoardServiceImpl implements BoardService {
                     }
 
                 });
+                boardRepository.saveBoardImg(files);
             }
 
-
-            boardRepository.saveBoardImg(files);
         }
         return true;
     }

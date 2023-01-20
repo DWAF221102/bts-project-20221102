@@ -91,6 +91,8 @@
         #{title},
         #{info},
         #{want_info},
+        null,
+        null,
         #{price},
         1,
         now(),
