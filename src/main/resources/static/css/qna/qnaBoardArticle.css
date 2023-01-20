@@ -106,10 +106,11 @@
 .qna-profile-img {
     display: flex;
     justify-content: center;
+    /* position: relative; */
     /* align-items: flex-end; */
     width: 44px;
     height: 44px;
-    background-color: rgb(105, 105, 105);
+    /* background-color: rgb(105, 105, 105); */
     border-radius: 50%;
     overflow: hidden;
 }
@@ -121,8 +122,53 @@
 }
 
 .qna-profile-img img {
-    width: 75%;
+    width: 100%;
 }
+
+.hover-area {
+    width: 54px;
+    height: 64px;
+
+    position: relative;
+    cursor: pointer;
+}
+
+.hover-profile {
+    display: none;
+}
+
+.hover-area:hover .hover-profile {
+    width: 150px;
+    height: 100px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: -95px;
+    left: 36px;
+    z-index: 1;
+    
+    border-radius: 5px 5px 5px 0px;
+    border: 1px solid black;
+    background-color: #b9babc;
+}
+
+/* .hover-profile:hover {
+    width: 150px;
+    height: 100px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: -95px;
+    left: 36px;
+    
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: #b9babc;
+} */
 
 .qna-board-profile-details {
     padding-top: 2px;
@@ -246,6 +292,18 @@
 }
 
 .request-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.request-choise {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.request-pass {
     font-size: 18px;
     font-weight: 600;
     color: #ffffff;
@@ -402,6 +460,7 @@
 
 /**************************** 답변자 모달창 영역 *******************************/
 .modal {
+    display: none;    /*이건호가 걸어논 css*/
     position: absolute;
     top: 0;
     left: 0;

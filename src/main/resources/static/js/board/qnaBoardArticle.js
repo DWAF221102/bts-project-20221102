@@ -171,17 +171,61 @@ function boardInfo(data) {
 }
 
 function requestButton(data) {
-    const requestButton = document.querySelector(".request-button")
+    const requestButtonArea = document.querySelector(".request-answer")
     let time = TimeService.getInstance().setTime(data.createDate);
 
-    requestButton.innerHTML = `
-    <div>
-        <span class="request-title">답변권한요청</span>
-    </div>
-    <div>
-        <span class="request-time">${time}</span>
-    </div>
-    `
+    if(principalUser == null) {
+        requestButtonArea.innerHTML = `
+            <button type="button" class="request-pass-button request-button">
+                <div>
+                    <span class="request-pass">로그인을 하세요.</span>
+                </div>
+            </button>    
+        `
+        const requestPassBtn = document.querySelector(".request-pass-button");
+
+        requestPassBtn.onclick = () => {
+            alert("로그인을 하세요.");
+            location.replace("/login");
+        }
+        
+    } else if(principalUser.id == data.userId) {
+        requestButtonArea.innerHTML = `
+            <button type="button" class="request-choise-button request-button">
+                <div>
+                    <span class="request-choise">답변자 선택</span>
+                </div>
+                <div>
+                    <span class="request-time">${time}</span>
+                </div>
+            </button>
+        `
+        const requestChoiseBtn = document.querySelector(".request-choise-button");
+
+        // 클릭시 업데이트 날라가야하는 부분
+        // requestChoiseBtn.onclick = () => {
+        //     // 업데이트 날려야함.
+        // }
+
+    } else {
+        requestButtonArea.innerHTML = `
+            <button type="button" class="request-title-button request-button">
+                <div>
+                    <span class="request-title">답변권한요청</span>
+                </div>
+                <div>
+                    <span class="request-time">${time}</span>
+                </div>
+            </button>    
+        `
+
+        const requestTitleBtn = document.querySelector(".request-title-button");
+
+        // 클릭시 유저 인설트 되야하는 부분
+        // requestTitleBtn.onclick = () => {
+        //     // 인설트 되야함.
+        // }
+    }
 }
 
 function boardDetails(data) {
