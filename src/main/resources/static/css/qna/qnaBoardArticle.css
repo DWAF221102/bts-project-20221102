@@ -350,58 +350,125 @@
 
 }
 
-.qna-bottom {
-    /* display: flex;
-    justify-content: center; */
+.a {
+    width: 100%;
+    height: 1000px;
+}
+
+/********************** 해결 완료 후 페이지 ****************** */
+.answer-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 80px;
     width: 840px;
 }
 
 
 .answer-title {
-    margin-top: 80px;
+    display: flex;
+    align-items: center;
+
     border-top: 1px solid #ebebeb;
-    padding-top: 30px;
-
-    font-size: 16px;
-    font-weight: bolder;
+    padding: 15px 0;
+    font-size: 22px;
+    font-weight: 600;
     color: #4b5563;
 }
 
+
+/* 답변자 프로필 영역 */
 .answer-profile {
-    width: 400px;
-    height: 44px;
-    margin-top: 8px;
-
-    /* background-color: rgb(188, 105, 105); */
+    display: flex;
+    align-items: centeranswer-profile;
+    width: 100%;
+    height: 50px;
 }
 
-.answer-detail {
-    font-size: 14px;
-    color: #000000;
-    padding-top: 20px;
-    padding-bottom: 10px;
+.answer-img-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 100%;
+}
+
+.answer-img {
+    border: 1px solid grey;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+
+}
+
+.answer-img img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+.answer-nickname-area {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 50%;
+    height: 100%;
+    padding-left: 10px;
+}
+
+.answer-nickname {
+    font-size: 15px;
+    text-decoration: none;
+    color: #4b5563;
+}
+
+
+/* 답변 내용 영역 */
+.causer-analysis-area,
+.solution-plan-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding-top: 10px;
+
+
+
+
+}
+
+.causer-analysis-title,
+.solution-plan-title {
+    display: flex;
+    align-items: center;
     border-bottom: 1px solid #ebebeb;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    color: #4b5563;
+}
+
+.causer-analysis-content,
+.solution-plan-content {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    color: #4b5563;
 
 }
 
-.answer-details {
-    font-size: 14px;
-    color: #4b5563;
-    padding-top: 10px;
-}
-
-.answer-solutions {
-    font-size: 14px;
-    color: #4b5563;
-    padding-top: 10px;
+.solution-plan-content {
     padding-bottom: 40px;
 }
+
+/* 해결 방안 영역 */
 
 
 
 
 /**************************** 답변자 모달창 영역 *******************************/
-.modal {
+.answere-modal {
     position: absolute;
     top: 0;
     left: 0;
@@ -409,7 +476,6 @@
     width: 100%;
     height: 100%;
     /* display: flex; */
-    /* display: none; */
     /* 나중에 none으로 하고 js 만들어야함 */
 
     background-color: rgba(0, 0, 0, 0.4);
@@ -447,6 +513,10 @@
     color: #4b5563;
     /* padding-bottom: 5px;
     border-bottom: 1px solid #ebebeb; */
+}
+
+.form-input {
+    display: none;
 }
 
 .modal-box {
@@ -517,7 +587,7 @@
 
 
 /*************************** 질문자 모달창 영역 *******************************/
-.modal-user {
+.questione-modal {
     position: absolute;
     top: 0;
     left: 0;
@@ -525,7 +595,6 @@
     width: 100%;
     height: 100%;
     display: flex;
-    display: none;
     /* 나중에 none으로 하고 js 만들어야함 */
 
     background-color: rgba(0, 0, 0, 0.4);
@@ -572,12 +641,7 @@
     padding-top: 20px;
 }
 
-
-
-
 /* 답변자 닉네임 영역 */
-
-
 .modal-user-title {
     width: 50px;
     /* text-align: left; */
@@ -613,7 +677,7 @@
     font-size: 32px;
 }
 
-.reviwe-form fieldset {
+.fieldset {
     display: inline-block;
     direction: rtl;
     border: 0;
@@ -628,12 +692,12 @@
     text-shadow: 0 0 0 #f0f0f0;
 }
 
-.reviwe-form label:hover {
+.fieldset label:hover {
     cursor: pointer;
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 
-.reviwe-form label:hover~label {
+.fieldset label:hover~label {
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 

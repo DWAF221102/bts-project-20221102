@@ -165,87 +165,67 @@
                         </div>
 
                     </div>
-                    <div class="qna-bottom">
+
+
+
+                    <!-- 해결 완료 후 페이지 -->
+                    <div class="answer-area">
                         <div class="answer-title">
-                            답변
+                            <span>답변</span>
                         </div>
+
+                        <!-- 답변자 프로필 영역 -->
                         <div class="answer-profile">
-                            <div class="qna-board-profile-flex">
-                                <a href="" class="qna-profile-img">
-                                    <img src="" alt="">
-                                    <!-- 여기에 들어가는 이미지는 40*40 -->
+
+                            <div class="answer-img-area">
+                                <a href="" class="answer-img">
+                                    <img src="/static/images/profile-icon_34378.png" alt="answer-profile-image">
                                 </a>
-                                <div class="qna-board-profile-details">
-                                    <a href="" class="qna-profile-name">닉네임</a>
-                                    <div class="qna-profile-text">
-                                        <span>좋아요</span>
-                                        <span> </span>
-                                        <span>시간</span>
-                                        <span> </span>
-                                        <span>뷰</span>
-                                    </div>
-                                </div>
+                            </div>
+
+                            <div class="answer-nickname-area">
+                                <a href="" class="answer-nickname">하덕현HDH123</a>
                             </div>
                         </div>
-                        <div>
-                            <div class="answer-detail">원인분석</div>
-                            <div class="answer-details">
-                                원인분석내용
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea accusamus quos impedit
-                                    omnis beatae numquam autem? Asperiores, repellendus. Hic fugit optio dolores libero
-                                    non, dicta labore maiores consectetur dignissimos minima!</p>
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam rem porro repudiandae
-                                    ratione et animi provident dolores voluptas, consequuntur dolorum tenetur sapiente
-                                    obcaecati nemo, ex cupiditate, consequatur iste. Eum, doloremque.</p>
+
+
+                        <!-- 답변 내용 영역 -->
+                        <!-- 원인 분석 영역 -->
+                        <div class="causer-analysis-area">
+                            <div class="causer-analysis-title">
+                                <span>원인분석</span>
+                            </div>
+                            <div class="causer-analysis-content">
+
                             </div>
                         </div>
-                        <div>
-                            <div class="answer-detail">해결방안</div>
-                            <div class="answer-solutions">
-                                해결방안내용
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione perferendis fugiat
-                                    neque amet alias, nostrum aut doloribus, similique nemo placeat dignissimos sunt.
-                                    Aliquid eligendi ducimus, hic tempora in sunt aperiam!</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum, et libero! Id
-                                    aliquam exercitationem libero possimus porro dolorem, molestiae perferendis tenetur
-                                    sed consectetur magni similique molestias corporis officia totam a!</p>
+                        <!-- 해결 방안 영역 -->
+                        <div class="solution-plan-area">
+                            <div class="solution-plan-title">
+                                <span>해결방안</span>
+                            </div>
+                            <div class="solution-plan-content">
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-        <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
+    </main>
+    <footer th:replace="~{fragment/footer :: footer}"></footer>
+    </div>
+
+    <!--       질문자 모달창       -->
+    <!-- <div class="questione-modal">
+    </div> -->
 
     <!--       답변자 모달창       -->
-    <div class="modal">
-        <!-- <div class="modal-body">
-            <div class="modal-title">답변내용</div>
-            <form name="answererForm" method="post" action="/api/qna/question/article/answerermodal">
-                <input class="form-input" type="text" value="" hidden>
-                <div class="modal-box">
-                    <div class="modal-detail">원인분석</div>
-                    <textarea name="causerAnalysis" cols="30" rows="12" placeholder="내용을 입력해 주세요."
-                        class="modal-textarea"></textarea>
-                </div>
-                <div class="modal-box">
-                    <div class="modal-detail">해결방안</div>
-                    <textarea name="solutionPlan" cols="30" rows="14" placeholder="내용을 입력해 주세요."
-                        class="modal-textarea"></textarea>
-                </div>
-
-                <div class="modal-description">
-                    *답변내용 미제출시 정산이 되지않음을 참고하시기 바랍니다.
-                </div>
-                <div class="modal-button">
-                    <button class="save-button" type="button">save</button>
-                </div>
-            </form>
-        </div>-->
-    </div>
+    <!-- <div class="answere-modal">
+    </div> -->
     <script src="/static/js/board/qnaBoardArticle.js"></script>
-    <script src="/static/js/board/qnaModal.js"></script>
+    <!-- <script src="/static/js/board/qnaAnswererModal.js"></script> -->
+    <!-- <script src="/static/js/board/qnaQuestionerModal.js"></script> -->
 </body>
 
 

@@ -9,6 +9,7 @@ import com.btsproject.btsproject20221102.dto.Validation.ValidationSequence;
 import com.btsproject.btsproject20221102.dto.board.QnaAnswerModalReqDto;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
+import com.btsproject.btsproject20221102.dto.board.QnaQuestionerModalReqDto;
 import com.btsproject.btsproject20221102.service.board.QnaBoardService;
 import com.btsproject.btsproject20221102.service.board.QnaCreateService;
 import lombok.RequiredArgsConstructor;
@@ -73,10 +74,11 @@ public class QnaApi {
 
 
      // 질문자 별점정보
-     @PostMapping("/question/article/modal")
-     public ResponseEntity<?> questionerModal(){
+     @PostMapping("/question/article/questionermodal")
+     public ResponseEntity<?> questionerModal(QnaQuestionerModalReqDto qnaQuestionerModalReqDto) throws Exception {
+         qnaBoardService.questionerModal(qnaQuestionerModalReqDto);
 
-         return ResponseEntity.ok(new CMRespDto<>(1, "질문자 모달 정보", true));
+         return ResponseEntity.ok(new CMRespDto<>(1, "질문자 모달 정보", qnaQuestionerModalReqDto));
      }
 
      // 답변자 모달 정보(원인 분석, 해결방법)
