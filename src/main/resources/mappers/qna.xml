@@ -117,7 +117,21 @@
 
 
     </insert>
-    
+
+<!--    Q&A 질문자 별점-->
+    <insert id="questionerModal"
+            parameterType="com.btsproject.btsproject20221102.domain.QnaQuestionerModal">
+
+        insert into
+            score_mst(id, board_id, score, create_date, update_date)
+        values(
+        0,
+        #{board_id},
+        #{score},
+        now(),
+        now()
+        )
+    </insert>
 
 
     <select id="infoQna" parameterType="Integer" resultMap="qnaArticle">
@@ -326,6 +340,16 @@
         qna_board_id = #{boardId}
 
     </select>
+<!--    Q&A 결과 데이터-->
+    <select id="loadQnaResult" resultType="java.lang.Integer">
+        SELECT
+            qbm.causer_analysis,
+            qbm.solution_plan
+        FROM
+            qna_board_mst qbm
+        WHERE
+            id = #{id}
+    </select>
 
     <update id="qnaUpdateArticle" parameterType="com.btsproject.btsproject20221102.domain.QnaUpdateArticle">
         update
@@ -340,9 +364,9 @@
         where
             id = #{id}
     </update>
-
+<!--Q&A 답변자 모달-->
     <update id="answererModal"
-    parameterType="com.btsproject.btsproject20221102.domain.QnaAnswererModal">
+            parameterType="com.btsproject.btsproject20221102.domain.QnaAnswererModal">
         update
             qna_board_mst
         set

@@ -26,5 +26,8 @@ public interface QnaRepository {
 
     public int updateDelete(int id) throws Exception;
 
+    public int questionerModal(QnaQuestionerModal qnaQuestionerModal) throws Exception;
     public int answererModal(QnaAnswererModal answererModal) throws Exception;
+
+    public int loadQnaResult(QnaAnswererModal answererModal)  throws Exception;
 }

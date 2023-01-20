@@ -1,10 +1,7 @@
 package com.btsproject.btsproject20221102.service.board;
 
 import com.btsproject.btsproject20221102.domain.QnaImgFile;
-import com.btsproject.btsproject20221102.dto.board.QnaAnswerModalReqDto;
-import com.btsproject.btsproject20221102.dto.board.QnaBoardRespDto;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
+import com.btsproject.btsproject20221102.dto.board.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -26,5 +23,6 @@ public interface QnaBoardService {
 
 //    public boolean deleteQnAArticle(int id) throws Exception;
 
+    public boolean questionerModal(QnaQuestionerModalReqDto qnaQuestionerModalReqDto) throws  Exception;
     public boolean answererModal(QnaAnswerModalReqDto qnaAnswerModalReqDto) throws Exception;
 }

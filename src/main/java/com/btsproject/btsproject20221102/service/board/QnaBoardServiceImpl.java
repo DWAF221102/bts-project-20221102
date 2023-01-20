@@ -93,6 +93,16 @@ public class QnaBoardServiceImpl implements QnaBoardService{
         return result;
     }
 
+    // Q&A 질문자 모달
+    @Override
+    public boolean questionerModal(QnaQuestionerModalReqDto qnaQuestionerModalReqDto) throws Exception {
+        qnaRepository.questionerModal(qnaQuestionerModalReqDto.toQuestionerModal());
+        log.info("게시판 ID: " + qnaQuestionerModalReqDto.getBoardId());
+        log.info("점수: " + qnaQuestionerModalReqDto.getScore());
+        return true;
+    }
+
+    // Q&A 답변자 모달
     @Override
     public boolean answererModal(QnaAnswerModalReqDto qnaAnswerModalReqDto) throws Exception {
         qnaRepository.answererModal(qnaAnswerModalReqDto.toAnswererModal());
