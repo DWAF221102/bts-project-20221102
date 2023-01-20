@@ -6,11 +6,13 @@ import com.btsproject.btsproject20221102.aop.annotation.ValidAspect;
 import com.btsproject.btsproject20221102.domain.Qna;
 import com.btsproject.btsproject20221102.dto.CMRespDto;
 import com.btsproject.btsproject20221102.dto.Validation.ValidationSequence;
+import com.btsproject.btsproject20221102.dto.board.QnaAnswerModalReqDto;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
 import com.btsproject.btsproject20221102.service.board.QnaBoardService;
 import com.btsproject.btsproject20221102.service.board.QnaCreateService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Slf4j
 @RequestMapping("/api/qna")
 @RestController
 @RequiredArgsConstructor
@@ -67,4 +70,21 @@ public class QnaApi {
                 qnaBoardService.loadQnaBoard(page, categoryId, subcategoryId, statusId, showList, searchValue)));
 
      }
+
+
+     // 질문자 별점정보
+     @PostMapping("/question/article/modal")
+     public ResponseEntity<?> questionerModal(){
+
+         return ResponseEntity.ok(new CMRespDto<>(1, "질문자 모달 정보", true));
+     }
+
+     // 답변자 모달 정보(원인 분석, 해결방법)
+    @PostMapping("/question/article/answerermodal")
+    public ResponseEntity<?> answererModal(QnaAnswerModalReqDto qnaAnswerModalReqDto) throws Exception {
+         qnaBoardService.answererModal(qnaAnswerModalReqDto);
+         
+
+        return ResponseEntity.ok(new CMRespDto<>(1,"답변자 모달", qnaAnswerModalReqDto));
+    }
 }

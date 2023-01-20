@@ -22,6 +22,7 @@
 
     /* background-color: rgb(135, 135, 209); */
 }
+
 /* ---------------- 이미지 ------------------------ */
 
 .qna-board-img {
@@ -38,6 +39,7 @@
     /* 이미지 비율이 무너지지만 크게 상관없어서 그냥 400*400
     꽉 차게 보이도록 우선 넣음 */
 }
+
 .img-box {
     display: flex;
     justify-content: center;
@@ -144,7 +146,7 @@
     align-items: center;
     margin-top: 4px;
     margin-right: 4px;
-    
+
 }
 
 
@@ -398,7 +400,7 @@
 
 
 
-
+/**************************** 답변자 모달창 영역 *******************************/
 .modal {
     position: absolute;
     top: 0;
@@ -407,7 +409,7 @@
     width: 100%;
     height: 100%;
     /* display: flex; */
-    display: none;
+    /* display: none; */
     /* 나중에 none으로 하고 js 만들어야함 */
 
     background-color: rgba(0, 0, 0, 0.4);
@@ -415,17 +417,22 @@
     /* backgroun-color가 페이지 한면에만 먹히고 스크롤을 내렸을 때 안먹힘 */
 }
 
+
 .modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     position: absolute;
     top: 50%;
     left: 50%;
 
-    width: 400px;
-    height: 600px;
+    width: 25%;
+    height: 68%;
 
     padding: 15px 25px 15px 25px;
 
-    text-align: center;
+    /* text-align: center; */
 
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
@@ -442,14 +449,27 @@
     border-bottom: 1px solid #ebebeb; */
 }
 
+.modal-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 43%;
+}
+
 .modal-detail {
-    text-align: left;
+    display: flex;
+    justify-content: center;
+    /* text-align: left; */
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
     color: #000000;
     padding-top: 5px;
     margin-top: 10px;
-    padding-bottom: 5px;
+    width: 100%;
+    height: 5%;
+    padding: 10px 0 15px;
     border-top: 1px solid #ebebeb;
 }
 
@@ -459,50 +479,44 @@
     /* border: none; */
     resize: none;
     border-radius: 5px;
-    padding: 5px;
-
+    padding: 10px;
+    font-size: 14px;
     margin-bottom: 5px;
 }
 
 .modal-description {
+    padding-top: 10px;
     font-size: 12px;
     color: #4B5563;
 }
 
 .modal-button {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    width: 100%;
     padding-top: 10px;
 }
 
-.modal-button-left {
+
+
+.save-button {
     margin-top: 7px;
-    font-size: 16px;
-    font-weight: 400;
+    border-radius: 10px;
+    border: 0px;
+    width: 150px;
+    height: 35px;
+
+    font-size: 18px;
+
+    cursor: pointer;
     color: #ffffff;
     background-color: #0090f9;
-    border-radius: 10px;
-    border: 0px;
-
-    width: 60px;
-    height: 30px;
-}
-
-.modal-button-right {
-    margin-top: 7px;
-    font-size: 16px;
-    font-weight: 400;
-    color: #ffffff;
-    background-color: #848485;
-    border-radius: 10px;
-    border: 0px;
-
-    width: 60px;
-    height: 30px;
 }
 
 
+
+/*************************** 질문자 모달창 영역 *******************************/
 .modal-user {
     position: absolute;
     top: 0;
@@ -524,8 +538,8 @@
     top: 50%;
     left: 50%;
 
-    width: 20%;
-    height: 50%;
+    width: 25%;
+    height: 35%;
 
     padding: 15px 25px 15px 25px;
 
@@ -538,22 +552,31 @@
     transform: translateX(-50%) translateY(-50%);
 }
 
+/* 헤더 영역 */
 .modal-user-review {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    border-bottom: 1px solid #ebebeb;
+
+    padding-bottom: 10px;
+
+    font-size: 18px;
     font-weight: bolder;
     color: #4b5563;
-    padding-bottom: 3px;
-    border-bottom: 1px solid #ebebeb;
 }
 
 .modal-user-detail {
-    width: 100%;
     display: flex;
+    width: 100%;
     padding-top: 20px;
 }
+
+
+
+
+/* 답변자 닉네임 영역 */
+
 
 .modal-user-title {
     width: 50px;
@@ -570,54 +593,89 @@
     text-align: left;
 }
 
-.star-title {
-    padding-top: 5px;
-}
-
-.modal-star-area {
-    width: 100%;
-}
-
-.modal-star {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-}
-
-.modal-user-description {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: flex-start;
-    margin: 0;
-    font-size: 12px;
-    font-weight: 300;
-    color: #4B5563;
-}
-
-.modal-user-description p {
-    margin: 0;
-    margin-top: 5px;
-}
-
 .modal-user-content {
     font-size: 14px;
     font-weight: 400;
     color: #000000;
 }
 
+/* 별점 영역 */
+.modal-star-area {
+    width: 100%;
+}
+
+.modal-star {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 20%;
+    font-size: 32px;
+}
+
+.reviwe-form fieldset {
+    display: inline-block;
+    direction: rtl;
+    border: 0;
+}
+
+.reviewStar-input {
+    display: none;
+}
+
+.modal-star label {
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+
+.reviwe-form label:hover {
+    cursor: pointer;
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.reviwe-form label:hover~label {
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.reviewStar-input:checked~label {
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.modal-user-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 60%;
+    padding-top: 10px;
+    font-size: 13px;
+    color: #4B5563;
+    /* background-color: red; */
+}
+
+.modal-user-description p {
+    margin: 0;
+    margin-top: 7px;
+}
+
+
+
 .user-textarea {
     width: 100%;
     height: 100%;
-    /* border: none; */
     resize: none;
     border-radius: 5px;
     padding: 5px;
-    margin-left: 5px;
-    margin-bottom: 5px;
 
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 15px;
     color: #000000;
+}
+
+.modal-user-button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    padding-top: 25px;
 }

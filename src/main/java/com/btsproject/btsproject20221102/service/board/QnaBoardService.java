@@ -1,6 +1,7 @@
 package com.btsproject.btsproject20221102.service.board;
 
 import com.btsproject.btsproject20221102.domain.QnaImgFile;
+import com.btsproject.btsproject20221102.dto.board.QnaAnswerModalReqDto;
 import com.btsproject.btsproject20221102.dto.board.QnaBoardRespDto;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
 import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
@@ -24,4 +25,6 @@ public interface QnaBoardService {
                                               String searchValue) throws Exception;
 
 //    public boolean deleteQnAArticle(int id) throws Exception;
+
+    public boolean answererModal(QnaAnswerModalReqDto qnaAnswerModalReqDto) throws Exception;
 }

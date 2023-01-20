@@ -339,6 +339,18 @@
             id = #{id}
     </update>
 
+    <update id="answererModal"
+    parameterType="com.btsproject.btsproject20221102.domain.QnaAnswererModal">
+        update
+            qna_board_mst
+        set
+            causer_analysis = #{causer_analysis},
+            solution_plan = #{solution_plan}
+        where
+            id = #{id}
+
+    </update>
+
     <delete id="updateDelete" parameterType="Integer">
         delete
         from

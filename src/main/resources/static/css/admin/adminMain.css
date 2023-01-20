@@ -14,10 +14,10 @@ section {
 }
 
 .section-container {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
 }
 
@@ -29,4 +29,3 @@ section {
 .section-container h1 {
     font-size: 80px;
 }
-
