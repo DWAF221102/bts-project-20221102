@@ -1,5 +1,6 @@
 window.onload = () => {
     getList();
+    answerCheckService();
 }
 
 function getList() {
@@ -329,5 +330,21 @@ function setUpdateButton(responseData) {
     }
 }
 
+function answerCheckService() {
+    const imgs = document.querySelectorAll(".qna-board-req-list");
 
+    imgs.forEach(img => {
+        img.onclick = () => {
+            const classes = img.classList;
+            if(classes.contains("check")){
+                img.classList.remove("check");
+            }else{
+                imgs.forEach(oldImg => {
+                    oldImg.classList.remove("check");
+                })
+                img.classList.add("check");
+            }
+        }
+    });
+}
 

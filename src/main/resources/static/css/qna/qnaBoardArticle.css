@@ -802,3 +802,7 @@
 
     padding-top: 25px;
 }
+
+.check {
+    opacity: 0.5;
+}
