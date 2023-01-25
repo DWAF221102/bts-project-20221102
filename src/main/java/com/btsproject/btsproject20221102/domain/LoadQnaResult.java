@@ -19,6 +19,9 @@ public class LoadQnaResult {
         return LoadQnaResultRespDto.builder()
                 .id(id)
                 .causerAnalysis(causer_analysis)
+                .solutionPlan(solution_plan)
                 .build();
     }
+
+
 }
