@@ -31,6 +31,10 @@ public class QnaArticle {
     private String title;
     private String info;
     private String want_info;
+
+    private String causer_analysis;
+
+    private String solution_plan;
     private int price;
     private String user_img;
     private int like_count;
@@ -59,6 +63,8 @@ public class QnaArticle {
                 .title(title)
                 .info(info)
                 .wantInfo(want_info)
+                .causerAnalysis(causer_analysis)
+                .solutionPlan(solution_plan)
                 .price(price)
                 .userImg(user_img)
                 .likeCount(like_count)

@@ -114,6 +114,7 @@ public class QnaCreateServiceImpl implements QnaCreateService{
     public QnaCreateRespDto getQnaArticle(int id) throws Exception {
         QnaArticle qnaArticle = qnaRepository.infoQna(id);
         System.out.println(qnaArticle);
+        log.info("원인 분석: " + qnaArticle.getCauser_analysis());
         return qnaArticle.toQnaCreateRespDto();
 
     }

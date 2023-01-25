@@ -15,12 +15,13 @@ public class LoadQnaResult {
     private String causer_analysis;
     private String solution_plan;
 
-    public LoadQnaResultRespDto toQnaResult(){
+    public LoadQnaResultRespDto toQnaResult() {
         return LoadQnaResultRespDto.builder()
                 .id(id)
                 .causerAnalysis(causer_analysis)
                 .solutionPlan(solution_plan)
                 .build();
     }
+}
 
 

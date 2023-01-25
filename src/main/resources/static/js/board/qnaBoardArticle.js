@@ -1,6 +1,7 @@
 window.onload = () => {
     getList();
     answerCheckService();
+    // loadAnswer();
 }
 
 function getList() {
@@ -22,6 +23,8 @@ function getList() {
             writer(response.data);
             requestButton(response.data);
             setUpdateButton(response.data);
+            loadAnswer(response.data);
+
         },
         error: (error) => {
             console.log(error);
@@ -37,7 +40,7 @@ function img(data) {
     articleImgList = new Array();
 
     let k = 0;
-    if(qnaImgFiles.length != 0) {
+    if (qnaImgFiles.length != 0) {
         qnaImg.innerHTML = `
         <div class="img-box">
             <i class="fa-shrap fa-solid fa-angle-left"></i>
@@ -45,35 +48,35 @@ function img(data) {
             <img class="img-content" src="/image/qna/${data.qnaImgFiles[k].temp_name}">
         </div>
         `;
-        
-        for(let i = 0; i < qnaImgFiles.length; i++){
+
+        for (let i = 0; i < qnaImgFiles.length; i++) {
             articleImgList.push(data.qnaImgFiles[i].temp_name);
             console.log(articleImgList);
-    
+
         };
-    
+
         const rightButton = document.querySelector(".fa-angle-right");
         rightButton.onclick = () => {
-            if(k < qnaImgFiles.length-1){
+            if (k < qnaImgFiles.length - 1) {
                 const imgContent = document.querySelector(".img-content");
                 k++;
                 imgContent.src = `/image/qna/${articleImgList[k]}`;
                 console.log([k])
             }
-    
+
         }
-    
+
         const leftButton = document.querySelector(".fa-angle-left");
         leftButton.onclick = () => {
-            if(k < qnaImgFiles.length && k>=1){
+            if (k < qnaImgFiles.length && k >= 1) {
                 const imgContent = document.querySelector(".img-content");
                 k--;
                 imgContent.src = `/image/qna/${articleImgList[k]}`;
                 console.log([k])
             }
-    
+
         }
-    }else {
+    } else {
         qnaImg.innerHTML = `
         <div class="img-box">
             
@@ -175,7 +178,7 @@ function requestButton(data) {
     const requestButtonArea = document.querySelector(".request-answer")
     let time = TimeService.getInstance().setTime(data.createDate);
 
-    if(principalUser == null) {
+    if (principalUser == null) {
         requestButtonArea.innerHTML = `
             <button type="button" class="request-pass-button request-button">
                 <div>
@@ -189,8 +192,8 @@ function requestButton(data) {
             alert("로그인을 하세요.");
             location.replace("/login");
         }
-        
-    } else if(principalUser.id == data.userId) {
+
+    } else if (principalUser.id == data.userId) {
         requestButtonArea.innerHTML = `
             <button type="button" class="request-choise-button request-button">
                 <div>
@@ -335,13 +338,13 @@ function answerCheckService() {
     const imgs = document.querySelectorAll(".qna-board-req-list");
     const checkAreas = document.querySelectorAll(".check-area");
 
-    for(let i = 0; i < hoverAreaes.length; i++) {
+    for (let i = 0; i < hoverAreaes.length; i++) {
         hoverAreaes[i].onclick = () => {
             const classes = imgs[i].classList;
-            if(classes.contains("check")){
+            if (classes.contains("check")) {
                 imgs[i].classList.remove("check");
                 checkAreas[i].classList.add("none");
-            }else{
+            } else {
                 imgs.forEach(img => {
                     img.classList.remove("check");
                 })
@@ -356,3 +359,59 @@ function answerCheckService() {
 
 }
 
+function loadAnswer(data) {
+
+    const answerArea = document.querySelector(".answer-area");
+
+    const causerAnalysis = data.causerAnalysis;
+    const solutionPlan = data.solutionPlan;
+
+    console.log(causerAnalysis);
+    console.log(solutionPlan);
+
+    if (causerAnalysis != null && solutionPlan != null) {
+        answerArea.innerHTML = `
+         <div class="answer-title">
+                            <span>답변</span>
+                        </div>
+
+                        <!-- 답변자 프로필 영역 -->
+                        <div class="answer-profile">
+
+                            <div class="answer-img-area">
+                                <a href="" class="answer-img">
+                                    <img src="/static/images/profile-icon_34378.png" alt="answer-profile-image">
+                                </a>
+                            </div>
+
+                            <div class="answer-nickname-area">
+                                <a href="" class="answer-nickname">하덕현HDH123</a>
+                            </div>
+                        </div>
+
+
+                        <!-- 답변 내용 영역 -->
+                        <!-- 원인 분석 영역 -->
+                        <div class="causer-analysis-area">
+                            <div class="causer-analysis-title">
+                                <span>${data.causerAnalysis}</span>
+                            </div>
+                            <div class="causer-analysis-content">
+
+                            </div>
+                        </div>
+                        <!-- 해결 방안 영역 -->
+                        <div class="solution-plan-area">
+                            <div class="solution-plan-title">
+                                <span>${data.solutionPlan}</span>
+                            </div>
+                            <div class="solution-plan-content">
+
+                            </div>
+                        </div>
+        `
+    }
+
+
+
+}

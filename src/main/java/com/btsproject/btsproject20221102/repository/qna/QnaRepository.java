@@ -26,8 +26,10 @@ public interface QnaRepository {
 
     public int updateDelete(int id) throws Exception;
 
+    // Q&A 모달창
     public int questionerModal(QnaQuestionerModal qnaQuestionerModal) throws Exception;
     public int answererModal(QnaAnswererModal answererModal) throws Exception;
 
-    public int loadQnaResult(QnaAnswererModal answererModal)  throws Exception;
+    // 답변 완료후 데이터 불러오기
+//    public List<LoadQnaResult> loadQnaResult(Map<String, Object> map)  throws Exception;
 }

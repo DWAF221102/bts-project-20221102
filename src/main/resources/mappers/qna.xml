@@ -146,6 +146,8 @@
             qbm.title,
             qbm.info,
             qbm.want_info,
+            qbm.causer_analysis,
+            qbm.solution_plan,
             qbm.price,
             um.user_img,
             ifnull(lm.like_count,0),
@@ -341,7 +343,9 @@
 
     </select>
 <!--    Q&A 결과 데이터-->
-    <select id="loadQnaResult" resultType="java.lang.Integer">
+    <select id="loadQnaResult"
+            parameterType="hashmap"
+            resultType="com.btsproject.btsproject20221102.domain.LoadQnaResult">
         SELECT
             qbm.causer_analysis,
             qbm.solution_plan

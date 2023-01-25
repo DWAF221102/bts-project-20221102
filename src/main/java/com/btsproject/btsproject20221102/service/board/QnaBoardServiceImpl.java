@@ -1,5 +1,6 @@
 package com.btsproject.btsproject20221102.service.board;
 
+import com.btsproject.btsproject20221102.domain.LoadQnaResult;
 import com.btsproject.btsproject20221102.domain.QnaImgFile;
 import com.btsproject.btsproject20221102.dto.board.*;
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
@@ -112,4 +113,22 @@ public class QnaBoardServiceImpl implements QnaBoardService{
         return true;
     }
 
+
+//    @Override
+//    public List<LoadQnaResultRespDto> loadQnaResult(int id, String causerAnalysis, String solutionPlan) throws Exception {
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        map.put("causerAnalysis", causerAnalysis);
+//        map.put("solutionPlan", solutionPlan);
+//
+//        List<LoadQnaResultRespDto> result = new ArrayList<LoadQnaResultRespDto>();
+//
+//
+//        qnaRepository.loadQnaResult(map).forEach(list -> {
+//            result.add(list.toQnaResult());
+//        });
+//
+//        log.info("원인 분석: " + causerAnalysis);
+//        log.info("문제 해결: " + solutionPlan);
+//        return result;
+//    }
 }

@@ -3,13 +3,11 @@ package com.btsproject.btsproject20221102.controller.api.qna;
 
 import com.btsproject.btsproject20221102.aop.annotation.LogAspect;
 import com.btsproject.btsproject20221102.aop.annotation.ValidAspect;
+import com.btsproject.btsproject20221102.domain.LoadQnaResult;
 import com.btsproject.btsproject20221102.domain.Qna;
 import com.btsproject.btsproject20221102.dto.CMRespDto;
 import com.btsproject.btsproject20221102.dto.Validation.ValidationSequence;
-import com.btsproject.btsproject20221102.dto.board.QnaAnswerModalReqDto;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
-import com.btsproject.btsproject20221102.dto.board.QnaQuestionerModalReqDto;
+import com.btsproject.btsproject20221102.dto.board.*;
 import com.btsproject.btsproject20221102.service.board.QnaBoardService;
 import com.btsproject.btsproject20221102.service.board.QnaCreateService;
 import lombok.RequiredArgsConstructor;
@@ -50,7 +48,6 @@ public class QnaApi {
 
     @GetMapping("/qnaLists/{id}")
      public ResponseEntity<?> getQnaCreateList(@PathVariable int id) throws Exception {
-
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", qnaCreateService.getQnaArticle(id)));
      }
 
@@ -89,4 +86,14 @@ public class QnaApi {
 
         return ResponseEntity.ok(new CMRespDto<>(1,"답변자 모달", qnaAnswerModalReqDto));
     }
+
+    // 답변 완료 후 결과 가져오기
+//    @GetMapping("/question/article/answer")
+//    public ResponseEntity<?> oadQnaResult(@RequestParam int id,
+//                                          @RequestParam String causerAnalysis,
+//                                          @RequestParam String solutionPlan) throws Exception {
+//
+//         return ResponseEntity.ok().body(new CMRespDto<>(1, "답변 결과 가져오기", qnaBoardService.loadQnaResult(id, causerAnalysis, solutionPlan)));
+//    }
+
 }

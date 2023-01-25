@@ -24,6 +24,7 @@ public class Qna {
     private String title;
     private String info;
     private String want_info;
+
     private int price;
 
     private List<QnaImgFile> qna_img_files;

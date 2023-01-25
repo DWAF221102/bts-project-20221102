@@ -25,4 +25,6 @@ public interface QnaBoardService {
 
     public boolean questionerModal(QnaQuestionerModalReqDto qnaQuestionerModalReqDto) throws  Exception;
     public boolean answererModal(QnaAnswerModalReqDto qnaAnswerModalReqDto) throws Exception;
+
+//    public List<LoadQnaResultRespDto> loadQnaResult(int id, String causerAnalysis, String solutionPlan) throws Exception;
 }
