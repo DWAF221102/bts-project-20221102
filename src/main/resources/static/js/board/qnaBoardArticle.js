@@ -1,5 +1,6 @@
 window.onload = () => {
     getList();
+    answerCheckService();
 }
 
 function getList() {
@@ -329,5 +330,29 @@ function setUpdateButton(responseData) {
     }
 }
 
+function answerCheckService() {
+    const hoverAreaes = document.querySelectorAll(".hover-area");
+    const imgs = document.querySelectorAll(".qna-board-req-list");
+    const checkAreas = document.querySelectorAll(".check-area");
 
+    for(let i = 0; i < hoverAreaes.length; i++) {
+        hoverAreaes[i].onclick = () => {
+            const classes = imgs[i].classList;
+            if(classes.contains("check")){
+                imgs[i].classList.remove("check");
+                checkAreas[i].classList.add("none");
+            }else{
+                imgs.forEach(img => {
+                    img.classList.remove("check");
+                })
+                checkAreas.forEach(checkArea => {
+                    checkArea.classList.add("none");
+                })
+                imgs[i].classList.add("check");
+                checkAreas[i].classList.remove("none");
+            }
+        }
+    }
+
+}
 
