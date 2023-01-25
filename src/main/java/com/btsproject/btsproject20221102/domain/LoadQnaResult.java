@@ -18,8 +18,10 @@ public class LoadQnaResult {
     public LoadQnaResultRespDto toQnaResult(){
         return LoadQnaResultRespDto.builder()
                 .id(id)
-                .causer_analysis(causer_analysis)
-    }
-    })
+//                .causer_analysis(causer_analysis)
+                .build();
 
-}
+    }
+    }
+
+
