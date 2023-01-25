@@ -331,20 +331,28 @@ function setUpdateButton(responseData) {
 }
 
 function answerCheckService() {
+    const hoverAreaes = document.querySelectorAll(".hover-area");
     const imgs = document.querySelectorAll(".qna-board-req-list");
+    const checkAreas = document.querySelectorAll(".check-area");
 
-    imgs.forEach(img => {
-        img.onclick = () => {
-            const classes = img.classList;
+    for(let i = 0; i < hoverAreaes.length; i++) {
+        hoverAreaes[i].onclick = () => {
+            const classes = imgs[i].classList;
             if(classes.contains("check")){
-                img.classList.remove("check");
+                imgs[i].classList.remove("check");
+                checkAreas[i].classList.add("none");
             }else{
-                imgs.forEach(oldImg => {
-                    oldImg.classList.remove("check");
+                imgs.forEach(img => {
+                    img.classList.remove("check");
                 })
-                img.classList.add("check");
+                checkAreas.forEach(checkArea => {
+                    checkArea.classList.add("none");
+                })
+                imgs[i].classList.add("check");
+                checkAreas[i].classList.remove("none");
             }
         }
-    });
+    }
+
 }
 

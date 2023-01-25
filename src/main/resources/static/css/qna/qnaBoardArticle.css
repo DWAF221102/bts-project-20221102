@@ -170,6 +170,22 @@
     background-color: #b9babc;
 } */
 
+.check-area {
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+    top: -60px;
+
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    color: gray;
+}
+
+
 .qna-board-profile-details {
     padding-top: 2px;
     padding-left: 7px;
@@ -805,4 +821,8 @@
 
 .check {
     opacity: 0.5;
+}
+
+.none {
+    display: none;
 }
