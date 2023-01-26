@@ -15,6 +15,8 @@ public interface QnaRepository {
 
     public QnaArticle infoQna(int id) throws Exception;
 
+    public QnaAnswerInfo getAnswerInfo(int id) throws Exception;
+
     public int deleteQna(int id) throws Exception;
 
     public List<QnaImgFile> getQnaImgList(int id) throws Exception;

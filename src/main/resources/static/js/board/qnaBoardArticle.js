@@ -1,7 +1,7 @@
 window.onload = () => {
     getList();
     answerCheckService();
-    // loadAnswer();
+    loadAnswer();
 }
 
 function getList() {
@@ -362,12 +362,26 @@ function answerCheckService() {
 function loadAnswer(data) {
 
     const answerArea = document.querySelector(".answer-area");
-
+    const uri = location.href;
+    const id = uri.substring(uri.lastIndexOf("/") + 1);
     const causerAnalysis = data.causerAnalysis;
     const solutionPlan = data.solutionPlan;
 
-    console.log(causerAnalysis);
-    console.log(solutionPlan);
+    $.ajax({
+        async: false,
+        type: "get",
+        url: "/api/qna/question/article/answer/" + id,
+        dataType: "json",
+        success: (response) => {
+            console.log(response);
+
+        },
+        error: (error) => {
+            console.log(error);
+            alert("전송 실패");
+        }
+
+    })
 
     if (causerAnalysis != null && solutionPlan != null) {
         answerArea.innerHTML = `

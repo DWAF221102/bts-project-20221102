@@ -87,13 +87,11 @@ public class QnaApi {
         return ResponseEntity.ok(new CMRespDto<>(1,"답변자 모달", qnaAnswerModalReqDto));
     }
 
-    // 답변 완료 후 결과 가져오기
-//    @GetMapping("/question/article/answer")
-//    public ResponseEntity<?> oadQnaResult(@RequestParam int id,
-//                                          @RequestParam String causerAnalysis,
-//                                          @RequestParam String solutionPlan) throws Exception {
-//
-//         return ResponseEntity.ok().body(new CMRespDto<>(1, "답변 결과 가져오기", qnaBoardService.loadQnaResult(id, causerAnalysis, solutionPlan)));
-//    }
+    // 답변자 정보 가져오기
+    @GetMapping("/question/article/answer/{id}")
+    public ResponseEntity<?> getAnswerInfo(@PathVariable int id) throws Exception {
+
+         return ResponseEntity.ok().body(new CMRespDto<>(1, "답변 결과 가져오기", qnaCreateService.getAnswerInfo(id)));
+    }
 
 }

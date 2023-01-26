@@ -33,7 +33,6 @@ public class QnaArticle {
     private String want_info;
 
     private String causer_analysis;
-
     private String solution_plan;
     private int price;
     private String user_img;
@@ -41,11 +40,6 @@ public class QnaArticle {
     private int view_count;
 
     private List<QnaImgFile> qna_img_files;
-
-
-
-
-
 
     private LocalDateTime create_date;
     private LocalDateTime update_date;

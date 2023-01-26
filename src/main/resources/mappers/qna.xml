@@ -23,6 +23,11 @@
         <result property="update_date" column="update_date"></result>
         <collection property="qna_img_files" javaType="list" resultMap="qna_img_files"></collection>
     </resultMap>
+<!--    <resultMap id="qnaAnswerInfo" type="com.btsproject.btsproject20221102.domain.QnaAnswerInfo">-->
+<!--        <result property="id" column="id"></result>-->
+<!--        <result property="nickname" column="nickname"></result>-->
+<!--        <result property="user_img" column="user_img"></result>-->
+<!--    </resultMap>-->
     <resultMap id="qnaArticle" type="com.btsproject.btsproject20221102.domain.QnaArticle">
         <result property="id" column="id"></result>
         <result property="user_id" column="user_id"></result>
@@ -34,6 +39,8 @@
         <result property="title" column="title"></result>
         <result property="info" column="info"></result>
         <result property="want_info" column="want_info"></result>
+        <result property="causer_analysis" column="causer_analysis"></result>
+        <result property="solution_plan" column="solution_plan"></result>
         <result property="price" column="price"></result>
         <result property="user_img" column="user_img"></result>
         <result property="like_count" column="like_count"></result>
@@ -71,6 +78,7 @@
         <result property="origin_name" column="origin_name"></result>
         <result property="temp_name" column="temp_name"></result>
     </resultMap>
+
 
 
 
@@ -353,6 +361,37 @@
             qna_board_mst qbm
         WHERE
             id = #{id}
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <select id="getAnswerInfo" resultType="com.btsproject.btsproject20221102.domain.QnaAnswerInfo">
+        SELECT
+            qbm.id,
+
+            um.nickname,
+            um.user_img
+        FROM
+            qna_board_mst qbm
+            LEFT OUTER JOIN request_mst rm on(rm.qna_board_id = qbm.id)
+            LEFT OUTER JOIN flag_mst fm ON(fm.flag = rm.flag_id)
+            LEFT OUTER JOIN user_mst um ON(um.id = rm.user_id)
+        WHERE
+            qbm.id = #{id}
     </select>
 
     <update id="qnaUpdateArticle" parameterType="com.btsproject.btsproject20221102.domain.QnaUpdateArticle">
