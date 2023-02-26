@@ -1,6 +1,6 @@
 window.onload = () => {
     getList();
-    answerCheckService();
+    // answerCheckService();
     loadAnswer();
 }
 
@@ -24,7 +24,7 @@ function getList() {
             requestButton(response.data);
             setUpdateButton(response.data);
             loadAnswer(response.data);
-
+            answerCheckService(response.data);
         },
         error: (error) => {
             console.log(error);
@@ -178,57 +178,152 @@ function requestButton(data) {
     const requestButtonArea = document.querySelector(".request-answer")
     let time = TimeService.getInstance().setTime(data.createDate);
 
-    if (principalUser == null) {
-        requestButtonArea.innerHTML = `
+    console.log(data.status)
+
+    if(data.status == "대기중") {
+        
+        if(principalUser == null) {
+            requestButtonArea.innerHTML = `
+                <button type="button" class="request-pass-button request-button">
+                    <div>
+                        <span class="request-pass">로그인을 하세요.</span>
+                    </div>
+                </button>    
+            `
+            const requestPassBtn = document.querySelector(".request-pass-button");
+    
+            requestPassBtn.onclick = () => {
+                alert("로그인을 하세요.");
+                location.replace("/login");
+            }
+            
+        } else if(principalUser.id == data.userId) {
+            requestButtonArea.innerHTML = `
+                <button type="button" class="request-choise-button request-button">
+                    <div>
+                        <span class="request-choise">답변자 선택</span>
+                    </div>
+                    <div>
+                        <span class="request-time">${time}</span>
+                    </div>
+                </button>
+            `
+
+            // 클릭시 업데이트 날라가야하는 부분
+
+            const requestChoiseBtn = document.querySelector(".request-choise-button");
+
+            requestChoiseBtn.onclick = () => {
+                const requestTitle = document.querySelector(".qna-board-req-title");
+                const requestUser = document.querySelector(".qna-board-req-lists");
+    
+                requestTitle.innerHTML = `
+                    선택된 답변자
+                `
+    
+                requestUser.innerHTML = `
+                <div class="qna-profile-img qna-board-req-list">
+                    <img src="/static/images/spon_meow.jpg" alt="">
+                </div>
+                <div>
+                    <div>닉네임: <a href="">연호슈밤</a></div>
+                    <div>별점: 4.8</div>
+                    <div>스택: 자바, 자바스프링 등</div>
+                </div>
+                `
+            }
+        } else {
+            requestButtonArea.innerHTML = `
+                <button type="button" class="request-title-button request-button">
+                    <div>
+                        <span class="request-title">답변권한요청</span>
+                    </div>
+                    <div>
+                        <span class="request-time">${time}</span>
+                    </div>
+                </button>    
+            `
+    
+            // const requestTitleBtn = document.querySelector(".request-title-button");
+            // 클릭시 유저 인설트 되야하는 부분
+            // requestTitleBtn.onclick = () => {
+            //     // 인설트 되야함.
+            // }
+        }
+    } else if(data.status == "진행중") {
+        if(principalUser == null) {
+            requestButtonArea.innerHTML = `
             <button type="button" class="request-pass-button request-button">
                 <div>
                     <span class="request-pass">로그인을 하세요.</span>
                 </div>
             </button>    
-        `
-        const requestPassBtn = document.querySelector(".request-pass-button");
-
-        requestPassBtn.onclick = () => {
-            alert("로그인을 하세요.");
-            location.replace("/login");
+            `
+            const requestPassBtn = document.querySelector(".request-pass-button");
+    
+            requestPassBtn.onclick = () => {
+                alert("로그인을 하세요.");
+                location.replace("/login");
+            }
+        } else if(principalUser.id == data.userId) {
+            requestButtonArea.innerHTML = `
+                <button type="button" class="request-ok-button request-button">
+                    <div>
+                        <span class="request-choise">답변 완료(끝내기)</span>
+                    </div>
+                    <div>
+                        <span class="request-time">${time}</span>
+                    </div>
+                </button>
+            `
         }
+        // 나중에 else if를 통해서 선택된 답변자 id와 id를 비교해서 띄워야함.
+        // else는 그 외 웹 사용자들에게 띄워 줄 답변중... 대기중... 등으로 변경
+        else {
+            requestButtonArea.innerHTML = `
+                <button type="button" class="request-answer-button request-button">
+                    <div>
+                        <span class="request-choise">답변하기</span>
+                    </div>
+                    <div>
+                        <span class="request-time">${time}</span>
+                    </div>
+                </button>
+            `
+        }
+    } else if(data.status == "답변완료") {
+        // 덕현이형 작업한 부분 불러와야함.
 
-    } else if (principalUser.id == data.userId) {
-        requestButtonArea.innerHTML = `
-            <button type="button" class="request-choise-button request-button">
-                <div>
-                    <span class="request-choise">답변자 선택</span>
-                </div>
-                <div>
-                    <span class="request-time">${time}</span>
-                </div>
-            </button>
+        const requestTitle = document.querySelector(".qna-board-req-title");
+        const requestUser = document.querySelector(".qna-board-req-lists");
+
+        requestTitle.innerHTML = `
+            선택된 답변자
         `
-        const requestChoiseBtn = document.querySelector(".request-choise-button");
 
-        // 클릭시 업데이트 날라가야하는 부분
-        // requestChoiseBtn.onclick = () => {
-        //     // 업데이트 날려야함.
-        // }
-
+        requestUser.innerHTML = `
+            <div class="qna-profile-img qna-board-req-list">
+                <img src="/static/images/spon_meow.jpg" alt="">
+            </div>
+            <div>
+                <div>닉네임: <a href="">연호슈밤</a></div>
+                <div>별점: 4.8</div>
+                <div>스택: 자바, 자바스프링 등</div>
+            </div>
+        `
+        
+        requestButtonArea.innerHTML = `
+                <button type="button" class="request-ok-button request-button">
+                    <div>
+                        <span class="request-choise">답변 완료된 게시물</span>
+                    </div>
+                    <div>
+                        <span class="request-time">${time}</span>
+                    </div>
+                </button>
+        `
     } else {
-        requestButtonArea.innerHTML = `
-            <button type="button" class="request-title-button request-button">
-                <div>
-                    <span class="request-title">답변권한요청</span>
-                </div>
-                <div>
-                    <span class="request-time">${time}</span>
-                </div>
-            </button>    
-        `
-
-        const requestTitleBtn = document.querySelector(".request-title-button");
-
-        // 클릭시 유저 인설트 되야하는 부분
-        // requestTitleBtn.onclick = () => {
-        //     // 인설트 되야함.
-        // }
+        console.log(data.status);
     }
 }
 
@@ -333,30 +428,31 @@ function setUpdateButton(responseData) {
     }
 }
 
-function answerCheckService() {
+function answerCheckService(data) {
     const hoverAreaes = document.querySelectorAll(".hover-area");
     const imgs = document.querySelectorAll(".qna-board-req-list");
     const checkAreas = document.querySelectorAll(".check-area");
 
-    for (let i = 0; i < hoverAreaes.length; i++) {
-        hoverAreaes[i].onclick = () => {
-            const classes = imgs[i].classList;
-            if (classes.contains("check")) {
-                imgs[i].classList.remove("check");
-                checkAreas[i].classList.add("none");
-            } else {
-                imgs.forEach(img => {
-                    img.classList.remove("check");
-                })
-                checkAreas.forEach(checkArea => {
-                    checkArea.classList.add("none");
-                })
-                imgs[i].classList.add("check");
-                checkAreas[i].classList.remove("none");
+    if(principalUser.id == data.userId) {
+        for(let i = 0; i < hoverAreaes.length; i++) {
+            hoverAreaes[i].onclick = () => {
+                const classes = imgs[i].classList;
+                if(classes.contains("check")){
+                    imgs[i].classList.remove("check");
+                    checkAreas[i].classList.add("none");
+                }else{
+                    imgs.forEach(img => {
+                        img.classList.remove("check");
+                    })
+                    checkAreas.forEach(checkArea => {
+                        checkArea.classList.add("none");
+                    })
+                    imgs[i].classList.add("check");
+                    checkAreas[i].classList.remove("none");
+                }
             }
         }
     }
-
 }
 
 function loadAnswer(data) {
