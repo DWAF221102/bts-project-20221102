@@ -77,6 +77,7 @@ public class AccountServiceImpl implements AccountService {
         return true;
     }
 
+    // 회원가입
     @Override
     public boolean signup(SignupReqDto signupReqDto) throws Exception {
         return accountRepository.save(signupReqDto.toUserEntity()) != 0;
