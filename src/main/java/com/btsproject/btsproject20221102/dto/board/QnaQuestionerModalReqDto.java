@@ -8,6 +8,9 @@ import lombok.Data;
 public class QnaQuestionerModalReqDto {
     private int boardId;
 
+    // 질문자 아이디
+    // 답변자 아이디
+
     private float score;
 
     public QnaQuestionerModal toQuestionerModal(){

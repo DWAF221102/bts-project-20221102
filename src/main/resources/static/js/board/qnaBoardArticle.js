@@ -359,6 +359,7 @@ function answerCheckService() {
 
 }
 
+// 답변 완료 후 답변 추가 페이지
 function loadAnswer(data) {
 
     const answerArea = document.querySelector(".answer-area");
@@ -380,7 +381,6 @@ function loadAnswer(data) {
             console.log(error);
             alert("전송 실패");
         }
-
     })
 
     if (causerAnalysis != null && solutionPlan != null) {
@@ -388,7 +388,6 @@ function loadAnswer(data) {
          <div class="answer-title">
                             <span>답변</span>
                         </div>
-
                         <!-- 답변자 프로필 영역 -->
                         <div class="answer-profile">
 

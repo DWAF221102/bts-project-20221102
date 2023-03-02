@@ -61,10 +61,16 @@ function answererModalReq() {
                     dataType: "json",
                     success: (Response) => {
                         console.log("답변자 정보 전송 성공");
+                        // location.href = "";
+
+                        // 질문자 별점 완료 되면 
+                        // 게시물 완료로 location이 됨.
+                        // 이걸 flag로 만들어 답변자랑 질문자 모두
+                        //flag가 1이 되도록 해야함
 
                     },
                     error: (error) => {
-                        console.log("답변자 정보 전송 실패");
+                        alert("답변자 정보 전송 실패");
                         console.log(error);
                     }
                 });
