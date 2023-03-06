@@ -94,4 +94,13 @@ public class QnaApi {
          return ResponseEntity.ok().body(new CMRespDto<>(1, "답변 결과 가져오기", qnaCreateService.getAnswerInfo(id)));
     }
 
+    // 답변자 등록 저장
+    @PostMapping("/request/user/save")
+    public ResponseEntity<?> requestUserSave(@RequestBody RequestUserReqDto requestUserReqDto) throws Exception {
+
+         qnaBoardService.checkRequestUser(requestUserReqDto);
+
+         return ResponseEntity.ok(new CMRespDto<>(1, "답변자 등록완료", qnaBoardService.requestUserSave(requestUserReqDto)));
+    }
+
 }

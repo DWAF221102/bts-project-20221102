@@ -244,11 +244,31 @@ function requestButton(data) {
                 </button>    
             `
     
-            // const requestTitleBtn = document.querySelector(".request-title-button");
+            const requestTitleBtn = document.querySelector(".request-title-button");
             // 클릭시 유저 인설트 되야하는 부분
-            // requestTitleBtn.onclick = () => {
-            //     // 인설트 되야함.
-            // }
+            requestTitleBtn.onclick = () => {
+                let requestUserInfo = {
+                    qnaBoardId: data.id,
+                    userId: principalUser.id
+                }
+
+                $.ajax({
+                    async: false,
+                    type: "post",
+                    url: "/api/qna/request/user/save",
+                    contentType: "application/json",
+                    data: JSON.stringify(requestUserInfo),
+                    dataType: "json",
+                    success: (response) => {
+                        console.log(response.data);
+                        alert("답변요청 완료.");
+                    },
+                    error: (error) => {
+                        console.log(error);
+                        alert(error.responseJSON.data.requestUser);
+                    }
+                });
+            }
         }
     } else if(data.status == "진행중") {
         if(principalUser == null) {

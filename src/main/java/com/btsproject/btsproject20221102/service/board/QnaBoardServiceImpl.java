@@ -3,7 +3,9 @@ package com.btsproject.btsproject20221102.service.board;
 import com.btsproject.btsproject20221102.domain.LoadQnaResult;
 import com.btsproject.btsproject20221102.domain.QnaAnswerInfo;
 import com.btsproject.btsproject20221102.domain.QnaImgFile;
+import com.btsproject.btsproject20221102.domain.RequestUser;
 import com.btsproject.btsproject20221102.dto.board.*;
+import com.btsproject.btsproject20221102.exception.CustomValidationException;
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -115,7 +117,25 @@ public class QnaBoardServiceImpl implements QnaBoardService{
     }
 
 
+    // QnA 답변자 저장
+    @Override
+    public boolean requestUserSave(RequestUserReqDto requestUserReqDto) throws Exception {
+        log.info("request >> " + requestUserReqDto.toRequestUserEntity());
+        log.info("request >> " + requestUserReqDto.getUserId());
+        log.info("request >> " + requestUserReqDto.getQnaBoardId());
+        return qnaRepository.requestUserSave(requestUserReqDto.toRequestUserEntity()) != 0;
+    }
 
+    @Override
+    public boolean checkRequestUser(RequestUserReqDto requestUserReqDto) throws Exception {
 
+        RequestUser user = qnaRepository.findRequestUser(requestUserReqDto.toRequestUserEntity());
 
+        if(user != null) {
+            Map<String, String> errorMap = new HashMap<String, String>();
+            errorMap.put("requestUser", "이미 답변자 요청을 하셨습니다.");
+            throw new CustomValidationException("CheckRequestUser Error", errorMap);
+        }
+        return true;
+    }
 }
