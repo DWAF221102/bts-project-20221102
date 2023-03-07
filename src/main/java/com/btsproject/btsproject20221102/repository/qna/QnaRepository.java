@@ -42,4 +42,7 @@ public interface QnaRepository {
 
     public RequestUser findRequestUser(RequestUserReqDto requestUserReqDto) throws Exception;
 
+//    public List<RequestUserList> loadRequestUser(int qnaBoardId) throws Exception;
+
+    public List<RequestUserList> loadRequestUser(int qnaBoardId) throws Exception;
 }

@@ -2,6 +2,7 @@ window.onload = () => {
     getList();
     // answerCheckService();
     loadAnswer();
+    // getRequestUserList();
 }
 
 function getList() {
@@ -25,6 +26,7 @@ function getList() {
             setUpdateButton(response.data);
             loadAnswer(response.data);
             answerCheckService(response.data);
+            getRequestUserList(response.data);
         },
         error: (error) => {
             console.log(error);
@@ -174,11 +176,55 @@ function boardInfo(data) {
 
 }
 
+// qna 답변자 목록 부르기
+
+function getRequestUserList(data) {
+    let qnaBoardId = data.id;
+    let responseData = null;
+
+        $.ajax({
+            async: false,
+            type: "get",
+            url: "/api/qna/request/user/list/" + qnaBoardId,
+            dataType: "json",
+            success: (response) => {
+                responseData = response.data;
+                loadRequestUserList(responseData);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+}
+
+function loadRequestUserList(responseData) {
+    const reqUserLists = document.querySelector(".qna-board-req-lists");
+
+    reqUserLists.innerHTML = "";
+
+    responseData.forEach(data => {
+
+        reqUserLists.innerHTML += `
+            <div class="hover-area">
+                <div class="qna-profile-img qna-board-req-list">
+                    <a href="/myactivity/${data.userId}"><img src="image/user/${data.userImg}"></a>
+                </div>
+                <div class="hover-profile hover-togle">
+                    <div>닉네임: <a href="/myactivity/${data.userId}">${data.nickName}</a></div>
+                    <div>별점: ${data.scoreAvg}</div>
+                    <div>스택: ${data.skill}</div>
+                </div>
+                <div class="check-area none">
+                    <img src="/static/images/pngwing.com.png" alt="">
+                </div>
+            </div>
+        `
+    })
+}
+
 function requestButton(data) {
     const requestButtonArea = document.querySelector(".request-answer")
     let time = TimeService.getInstance().setTime(data.createDate);
-
-    console.log(data.status)
 
     if(data.status == "대기중") {
         
@@ -233,6 +279,7 @@ function requestButton(data) {
                 `
             }
         } else {
+            
             requestButtonArea.innerHTML = `
                 <button type="button" class="request-title-button request-button">
                     <div>
@@ -262,6 +309,7 @@ function requestButton(data) {
                     success: (response) => {
                         console.log(response.data);
                         alert("답변요청 완료.");
+                        location.reload();
                     },
                     error: (error) => {
                         console.log(error);
@@ -387,7 +435,6 @@ class TimeService {
         let day = date.getDate();
         let hour = date.getHours();
         let minute = date.getMinutes();
-        console.log(date);
 
         let cYear = Number(creatDate.substring(0, creatDate.indexOf("년")));
         let cMonth = Number(creatDate.substring(creatDate.indexOf("년") + 1, creatDate.indexOf("월")));

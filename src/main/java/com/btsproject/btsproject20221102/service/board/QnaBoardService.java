@@ -31,4 +31,7 @@ public interface QnaBoardService {
     public boolean requestUserSave(RequestUserReqDto requestUserReqDto) throws Exception;
 
     public boolean checkRequestUser(RequestUserReqDto requestUserReqDto) throws Exception;
+
+    // qna 답변자목록 가져오기
+    public List<RequestUserListRespDto> getRequestUserList(int qnaBoardId) throws Exception;
 }

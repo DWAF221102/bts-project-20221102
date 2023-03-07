@@ -103,4 +103,10 @@ public class QnaApi {
          return ResponseEntity.ok(new CMRespDto<>(1, "답변자 등록완료", qnaBoardService.requestUserSave(requestUserReqDto)));
     }
 
+    // 답변자 리스트 들고오기
+    @GetMapping("/request/user/list/{qnaBoardId}")
+    public ResponseEntity<?> getRequestUser(@PathVariable int qnaBoardId) throws Exception {
+         return ResponseEntity.ok(new CMRespDto<>(1, "getRequestUserSuccess", qnaBoardService.getRequestUserList(qnaBoardId)));
+    }
+
 }

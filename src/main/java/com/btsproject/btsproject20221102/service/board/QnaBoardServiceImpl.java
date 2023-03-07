@@ -1,9 +1,7 @@
 package com.btsproject.btsproject20221102.service.board;
 
-import com.btsproject.btsproject20221102.domain.LoadQnaResult;
-import com.btsproject.btsproject20221102.domain.QnaAnswerInfo;
-import com.btsproject.btsproject20221102.domain.QnaImgFile;
-import com.btsproject.btsproject20221102.domain.RequestUser;
+import com.btsproject.btsproject20221102.domain.*;
+import com.btsproject.btsproject20221102.dto.account.MyprofileBoardRespDto;
 import com.btsproject.btsproject20221102.dto.board.*;
 import com.btsproject.btsproject20221102.exception.CustomValidationException;
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
@@ -137,5 +135,17 @@ public class QnaBoardServiceImpl implements QnaBoardService{
             throw new CustomValidationException("CheckRequestUser Error", errorMap);
         }
         return true;
+    }
+
+    @Override
+    public List<RequestUserListRespDto> getRequestUserList(int qnaBoardId) throws Exception {
+
+        log.info("id >> " + qnaBoardId);
+
+        List<RequestUserListRespDto> list = new ArrayList<RequestUserListRespDto>();
+        qnaRepository.loadRequestUser(qnaBoardId).forEach(user -> {
+            list.add(user.requestUserListResp());
+        });
+        return list;
     }
 }

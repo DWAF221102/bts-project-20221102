@@ -91,7 +91,6 @@
 
 
 
-
     <insert id="saveQna" parameterType="com.btsproject.btsproject20221102.domain.Qna" useGeneratedKeys="true" keyProperty="id">
 <!--       쿼리 어떻게 짜야되는지 질문-->
         insert into
@@ -415,7 +414,32 @@
             qna_board_id = #{qna_board_id} AND user_id = #{user_id}
     </select>
 
-    <update id="qnaUpdateArticle" parameterType="com.btsproject.btsproject20221102.domain.QnaUpdateArticle">
+    <!--    답변자 목록 불러오기-->
+    <select id="loadRequestUser"
+            resultType="com.btsproject.btsproject20221102.domain.RequestUserList">
+
+            SELECT
+                rm.id,
+                rm.qna_board_id,
+                rm.user_id,
+
+                um.nickname,
+                IFNULL(AVG(sm.score), 0) AS score_avg,
+                um.skill,
+                um.user_img
+            FROM
+                request_mst rm
+                LEFT OUTER JOIN user_mst um ON(um.id = rm.user_id)
+                LEFT OUTER JOIN score_mst sm ON(sm.answerer_id = um.id)
+            WHERE
+                rm.qna_board_id = #{qnaBoardId}
+            GROUP BY
+                rm.id
+            ORDER BY rm.update_date ASC
+    </select>
+
+
+    <update id="qnaUpdateArticle"  parameterType="com.btsproject.btsproject20221102.domain.QnaUpdateArticle">
         update
             qna_board_mst
         set
