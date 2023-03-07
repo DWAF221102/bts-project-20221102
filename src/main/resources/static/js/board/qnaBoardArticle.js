@@ -1,8 +1,7 @@
 window.onload = () => {
     getList();
     // answerCheckService();
-    loadAnswer();
-    // getRequestUserList();
+    // loadAnswer();
 }
 
 function getList() {
@@ -24,9 +23,9 @@ function getList() {
             writer(response.data);
             requestButton(response.data);
             setUpdateButton(response.data);
-            loadAnswer(response.data);
-            answerCheckService(response.data);
-            getRequestUserList(response.data);
+            // loadAnswer(response.data);
+            // answerCheckService(response.data);
+            // getRequestUserList(response.data);
         },
         error: (error) => {
             console.log(error);
@@ -176,57 +175,13 @@ function boardInfo(data) {
 
 }
 
-// qna 답변자 목록 부르기
-
-function getRequestUserList(data) {
-    let qnaBoardId = data.id;
-    let responseData = null;
-
-        $.ajax({
-            async: false,
-            type: "get",
-            url: "/api/qna/request/user/list/" + qnaBoardId,
-            dataType: "json",
-            success: (response) => {
-                responseData = response.data;
-                loadRequestUserList(responseData);
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        });
-}
-
-function loadRequestUserList(responseData) {
-    const reqUserLists = document.querySelector(".qna-board-req-lists");
-
-    reqUserLists.innerHTML = "";
-
-    responseData.forEach(data => {
-
-        reqUserLists.innerHTML += `
-            <div class="hover-area">
-                <div class="qna-profile-img qna-board-req-list">
-                    <a href="/myactivity/${data.userId}"><img src="image/user/${data.userImg}"></a>
-                </div>
-                <div class="hover-profile hover-togle">
-                    <div>닉네임: <a href="/myactivity/${data.userId}">${data.nickName}</a></div>
-                    <div>별점: ${data.scoreAvg}</div>
-                    <div>스택: ${data.skill}</div>
-                </div>
-                <div class="check-area none">
-                    <img src="/static/images/pngwing.com.png" alt="">
-                </div>
-            </div>
-        `
-    })
-}
-
 function requestButton(data) {
     const requestButtonArea = document.querySelector(".request-answer")
     let time = TimeService.getInstance().setTime(data.createDate);
 
     if(data.status == "대기중") {
+
+        getRequestUserList(data);
         
         if(principalUser == null) {
             requestButtonArea.innerHTML = `
@@ -319,6 +274,25 @@ function requestButton(data) {
             }
         }
     } else if(data.status == "진행중") {
+
+        const requestTitle = document.querySelector(".qna-board-req-title");
+        const requestUser = document.querySelector(".qna-board-req-lists");
+
+        requestTitle.innerHTML = `
+            선택된 답변자
+        `
+
+        requestUser.innerHTML = `
+            <div class="qna-profile-img qna-board-req-list">
+                <img src="/static/images/spon_meow.jpg" alt="">
+            </div>
+            <div>
+                <div>닉네임: <a href="">연호슈밤</a></div>
+                <div>별점: 4.8</div>
+                <div>스택: 자바, 자바스프링 등</div>
+            </div>
+        `
+
         if(principalUser == null) {
             requestButtonArea.innerHTML = `
             <button type="button" class="request-pass-button request-button">
@@ -344,6 +318,12 @@ function requestButton(data) {
                     </div>
                 </button>
             `
+
+            const requestOkBtn = document.querySelector(".request-ok-button");
+
+            requestOkBtn.onclick = () => {
+                updateStatus(data);
+            }
         }
         // 나중에 else if를 통해서 선택된 답변자 id와 id를 비교해서 띄워야함.
         // else는 그 외 웹 사용자들에게 띄워 줄 답변중... 대기중... 등으로 변경
@@ -495,6 +475,9 @@ function setUpdateButton(responseData) {
     }
 }
 
+
+// 현재 밑에 getRequestUserList의 데이터를 받아서 실행해야하는데
+// 작동이 안됨;
 function answerCheckService(data) {
     const hoverAreaes = document.querySelectorAll(".hover-area");
     const imgs = document.querySelectorAll(".qna-board-req-list");
@@ -520,6 +503,86 @@ function answerCheckService(data) {
             }
         }
     }
+}
+
+// qna 답변자 목록 부르기
+function getRequestUserList(data) {
+    let qnaBoardId = data.id;
+    let responseData = null;
+
+        $.ajax({
+            async: false,
+            type: "get",
+            url: "/api/qna/request/user/list/" + qnaBoardId,
+            dataType: "json",
+            success: (response) => {
+                responseData = response.data;
+                loadRequestUserList(responseData);
+                answerCheckService(responseData);
+                console.log(responseData);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+}
+
+function loadRequestUserList(responseData) {
+    const reqUserLists = document.querySelector(".qna-board-req-lists");
+
+    reqUserLists.innerHTML = "";
+
+    responseData.forEach(data => {
+        let scoreAvg = parseFloat(data.scoreAvg).toFixed(1);
+
+        reqUserLists.innerHTML += `
+            <div class="hover-area">
+                <div class="qna-profile-img qna-board-req-list">
+                    <img src="/image/user/${data.userImg}">
+                </div>
+                <div class="hover-profile hover-togle">
+                    <div>닉네임: <a href="/myactivity/${data.userId}">${data.nickName}</a></div>
+                    <div>별점: ${scoreAvg}</div>
+                    <div>스택: ${data.skill}</div>
+                </div>
+                <div class="check-area none">
+                    <img src="/static/images/pngwing.com.png" alt="">
+                </div>
+            </div>
+        `
+    })
+}
+
+// qna status 값 업데이트 
+function updateStatus(data) {
+    let statusIdChange = 0;
+
+    if(data.status == '대기중') {
+        statusIdChange = 2
+    } else if(data.status == '진행중') {
+        statusIdChange = 3
+    }
+
+    let statusInfo = {
+        boardId: data.id,
+        statusId: statusIdChange
+    };
+
+    $.ajax({
+        async: false,
+        type: "put",
+        url: "/api/qna/status/update",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(statusInfo),
+        success: (response) => {
+            console.log("status변경완료");
+            location.reload();
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    })
 }
 
 function loadAnswer(data) {

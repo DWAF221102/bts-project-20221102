@@ -109,4 +109,11 @@ public class QnaApi {
          return ResponseEntity.ok(new CMRespDto<>(1, "getRequestUserSuccess", qnaBoardService.getRequestUserList(qnaBoardId)));
     }
 
+    // status 업데이트
+    @PutMapping("/status/update")
+    public ResponseEntity<?> statusUpdate(@RequestBody QnaStatusUpdateReqDto qnaStatusUpdateReqDto) throws Exception {
+
+         return ResponseEntity.ok(new CMRespDto<>(1, "statusUpdateSuccess", qnaBoardService.updateStatus(qnaStatusUpdateReqDto)));
+    }
+
 }

@@ -464,6 +464,14 @@
             id = #{id}
 
     </update>
+    <update id="updateQnaStatus">
+        UPDATE
+            qna_board_mst
+        SET
+            status_id = #{status_id}
+        WHERE
+            id = #{id}
+    </update>
 
     <delete id="updateDelete" parameterType="Integer">
         delete

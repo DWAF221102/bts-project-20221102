@@ -148,4 +148,9 @@ public class QnaBoardServiceImpl implements QnaBoardService{
         });
         return list;
     }
+
+    @Override
+    public boolean updateStatus(QnaStatusUpdateReqDto qnaStatusUpdateReqDto) throws Exception {
+        return qnaRepository.updateQnaStatus(qnaStatusUpdateReqDto.toStatusUpdate()) != 0;
+    }
 }

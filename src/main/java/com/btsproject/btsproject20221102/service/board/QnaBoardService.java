@@ -34,4 +34,7 @@ public interface QnaBoardService {
 
     // qna 답변자목록 가져오기
     public List<RequestUserListRespDto> getRequestUserList(int qnaBoardId) throws Exception;
+
+    // qna status 업데이트
+    public boolean updateStatus(QnaStatusUpdateReqDto qnaStatusUpdateReqDto) throws Exception;
 }
