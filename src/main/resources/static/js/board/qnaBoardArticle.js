@@ -2,6 +2,7 @@ window.onload = () => {
     getList();
     // answerCheckService();
     loadAnswer();
+    
 }
 
 function getList() {
@@ -25,6 +26,8 @@ function getList() {
             setUpdateButton(response.data);
             loadAnswer(response.data);
             answerCheckService(response.data);
+            selectAnswer();
+            
         },
         error: (error) => {
             console.log(error);
@@ -453,6 +456,51 @@ function answerCheckService(data) {
             }
         }
     }
+}
+
+function selectAnswer() {
+    const requestButton = document.querySelector(".request-ok-button");
+    
+    requestButton.onclick = () => {
+        const check = document.querySelector(".check");
+        let nickname = null;
+
+        if(check != null) {
+            const reqList = document.querySelectorAll(".qna-board-req-list");
+            for(let i = 0; i < reqList.length; i++) {
+                if(reqList[i].classList.contains("check")){
+                    const hoverProfileNickname = document.querySelectorAll(".hover-profile-nickname");
+                    nickname = hoverProfileNickname[i].innerText;
+                    
+                    if(confirm(nickname+ "님을 선택하시겠습니까?")) {
+                        selectAnswerApi(nickname);
+                    }
+                }
+            }
+        }else{
+            alert("답변자를 선택해 주세요");
+            
+        }
+        
+    }
+}
+
+function selectAnswerApi(nickname) {
+    $.ajax({
+        async: false,
+        type: "put",
+        url: "/api/qna/question/article/answer/select" + nickname,
+        dataType: "json",
+        success: (response) => {
+            console.log(response);
+            alert("선택완료");
+        },
+        error: (error) => {
+            console.log(error);
+            console.log("답변자 선택 실패");
+        }
+
+    })
 }
 
 function loadAnswer(data) {

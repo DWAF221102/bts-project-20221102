@@ -94,4 +94,11 @@ public class QnaApi {
          return ResponseEntity.ok().body(new CMRespDto<>(1, "답변 결과 가져오기", qnaCreateService.getAnswerInfo(id)));
     }
 
+    //답변자 선택
+    @PutMapping("/question/article/answer/select/{nickname}")
+    public ResponseEntity<?> selectAnswer(@PathVariable String nickname) throws Exception {
+
+         return ResponseEntity.ok().body(new CMRespDto<>(1, "답변자 선택 완료", null));
+    }
+
 }
