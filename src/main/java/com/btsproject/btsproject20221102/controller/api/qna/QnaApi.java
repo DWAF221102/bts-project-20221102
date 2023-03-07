@@ -98,7 +98,8 @@ public class QnaApi {
     @PutMapping("/question/article/answer/select/{nickname}")
     public ResponseEntity<?> selectAnswer(@PathVariable String nickname) throws Exception {
 
-         return ResponseEntity.ok().body(new CMRespDto<>(1, "답변자 선택 완료", null));
+        return ResponseEntity.ok().body(new CMRespDto<>(1, "답변자 선택 완료", null));
+    }
     // 답변자 등록 저장
     @PostMapping("/request/user/save")
     public ResponseEntity<?> requestUserSave(@RequestBody RequestUserReqDto requestUserReqDto) throws Exception {
