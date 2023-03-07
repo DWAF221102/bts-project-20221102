@@ -27,4 +27,14 @@ public interface QnaBoardService {
     public boolean answererModal(QnaAnswerModalReqDto qnaAnswerModalReqDto) throws Exception;
 
 
+    // Qna 답변유저 저장
+    public boolean requestUserSave(RequestUserReqDto requestUserReqDto) throws Exception;
+
+    public boolean checkRequestUser(RequestUserReqDto requestUserReqDto) throws Exception;
+
+    // qna 답변자목록 가져오기
+    public List<RequestUserListRespDto> getRequestUserList(int qnaBoardId) throws Exception;
+
+    // qna status 업데이트
+    public boolean updateStatus(QnaStatusUpdateReqDto qnaStatusUpdateReqDto) throws Exception;
 }
