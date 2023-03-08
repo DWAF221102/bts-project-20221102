@@ -402,6 +402,7 @@ function loadAnswer(data) {
                             </div>
                         </div>
 
+
                         <!-- 답변 내용 영역 -->
                         <!-- 원인 분석 영역 -->
                         <div class="causer-analysis-area">
