@@ -1,6 +1,7 @@
 package com.btsproject.btsproject20221102.repository.qna;
 
 import com.btsproject.btsproject20221102.domain.*;
+import com.btsproject.btsproject20221102.dto.board.RequestUserReqDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -34,4 +35,14 @@ public interface QnaRepository {
 
     // 답변 완료후 데이터 불러오기
 //    public List<LoadQnaResult> loadQnaResult(Map<String, Object> map)  throws Exception;
+
+
+    // Q&A 답변자 등록
+    public int requestUserSave(RequestUser requestUser) throws Exception;
+
+    public RequestUser findRequestUser(RequestUserReqDto requestUserReqDto) throws Exception;
+
+    public List<RequestUserList> loadRequestUser(int qnaBoardId) throws Exception;
+
+    public int updateQnaStatus(Qna qna) throws Exception;
 }

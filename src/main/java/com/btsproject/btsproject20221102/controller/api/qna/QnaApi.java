@@ -94,4 +94,32 @@ public class QnaApi {
          return ResponseEntity.ok().body(new CMRespDto<>(1, "답변 결과 가져오기", qnaCreateService.getAnswerInfo(id)));
     }
 
+    //답변자 선택
+    @PutMapping("/question/article/answer/select/{nickname}")
+    public ResponseEntity<?> selectAnswer(@PathVariable String nickname) throws Exception {
+
+        return ResponseEntity.ok().body(new CMRespDto<>(1, "답변자 선택 완료", null));
+    }
+    // 답변자 등록 저장
+    @PostMapping("/request/user/save")
+    public ResponseEntity<?> requestUserSave(@RequestBody RequestUserReqDto requestUserReqDto) throws Exception {
+
+         qnaBoardService.checkRequestUser(requestUserReqDto);
+
+         return ResponseEntity.ok(new CMRespDto<>(1, "답변자 등록완료", qnaBoardService.requestUserSave(requestUserReqDto)));
+    }
+
+    // 답변자 리스트 들고오기
+    @GetMapping("/request/user/list/{qnaBoardId}")
+    public ResponseEntity<?> getRequestUser(@PathVariable int qnaBoardId) throws Exception {
+         return ResponseEntity.ok(new CMRespDto<>(1, "getRequestUserSuccess", qnaBoardService.getRequestUserList(qnaBoardId)));
+    }
+
+    // status 업데이트
+    @PutMapping("/status/update")
+    public ResponseEntity<?> statusUpdate(@RequestBody QnaStatusUpdateReqDto qnaStatusUpdateReqDto) throws Exception {
+
+         return ResponseEntity.ok(new CMRespDto<>(1, "statusUpdateSuccess", qnaBoardService.updateStatus(qnaStatusUpdateReqDto)));
+    }
+
 }
