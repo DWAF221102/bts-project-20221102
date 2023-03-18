@@ -1,22 +1,16 @@
 .container {
     display: flex;
     width: 100%;
-
 }
 
 /* 왼쪽 영역 */
 .left-side {
     display: flex;
     flex-direction: column;
-
     border-right: 1px solid #bebebe;
     width: 15%;
-    /* 높이 나중에 수정 */
     height: 850px;
     padding-left: 25px;
-
-
-    /* background-color: antiquewhite; */
 }
 
 .left-side-container {
@@ -31,8 +25,6 @@
     align-items: center;
     width: 100%;
     height: 20%;
-
-    /* background-color: blueviolet; */
 }
 
 .logo-image {
@@ -60,7 +52,6 @@
     width: 100%;
     height: 200px;
     padding-top: 50px;
-    /* background-color: aquamarine; */
 }
 
 .email {
@@ -102,7 +93,6 @@
 
 
 /* 오른쪽 영역 */
-
 .right-side {
     display: flex;
     justify-content: center;
@@ -115,14 +105,12 @@
     width: 90%;
     height: 750px;
     padding-top: 20px;
-    /* background-color: blanchedalmond; */
 }
 
 .payment-header {
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 100%;
     height: 8%;
 }
@@ -170,10 +158,7 @@
 .payment-amount-list {
     display: flex;
     justify-content: space-between;
-
 }
-
-
 
 .payment-point-price {
     border: 1px solid #bebebe;
@@ -182,25 +167,20 @@
     background-color: #f3f3f3;
 }
 
-.payment-point-price:hover {
-    border: 3px solid #ff8000;
-    background-color: #ff8000;
-}
-
-.payment-point-price label:hover {
-    cursor: pointer;
-}
-
+.payment-point-price:nth-child(1),
+.payment-point-price:hover,
 .payment-point-price.active {
     border: 3px solid #ff8000;
     background-color: #ff8000;
 }
 
+.payment-point-price:hover {
+    cursor: pointer;
+}
+
 .price.active {
     color: white;
 }
-
-
 
 .payment-point-box {
     display: flex;
@@ -230,10 +210,9 @@
 .payment-price {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
     height: 65%;
-    padding-top: 15px;
 
     font-size: 25px;
     color: #716e6e;
@@ -253,13 +232,12 @@
 
 .payment-type {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
-
     width: 40%;
     height: 25%;
-
     padding-top: 5px;
+    padding-left: 10px;
 }
 
 .simple-payment,
@@ -270,9 +248,9 @@
     border: 1px solid #bebebe;
     width: 45%;
     height: 100%;
-
     cursor: pointer;
     font-size: 18px;
+    background-color: #ff8000;
 }
 
 .simple-payment:hover,
@@ -334,8 +312,6 @@
     margin-right: 5px;
 }
 
-
-
 /* 결제 전 주의사항 및 체크 */
 .right-payment-agree {
     display: flex;
@@ -344,7 +320,6 @@
     border-radius: 3px;
     width: 84%;
     height: 100%;
-
 }
 
 .payment-agree-content {
@@ -392,8 +367,6 @@
     cursor: pointer;
 }
 
-
-
 /* 결제 버튼  */
 .payment-button-area {
     display: flex;
@@ -412,7 +385,6 @@
     border-radius: 5px;
     width: 144px;
     height: 45px;
-
     color: white;
     cursor: pointer;
     background-color: #fc5f07;

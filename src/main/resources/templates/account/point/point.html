@@ -11,8 +11,6 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="/static/js/account/principal.js"></script>
-
-
 </head>
 
 <body>
@@ -48,14 +46,12 @@
                         <span class="payment-header-content">포인트 구매 창입니다.</span>
                     </div>
                 </div>
-
                 <!-- 결제 금액 -->
                 <div class="payment-amount">
                     <div class="left-payment-amount">
                         <span>결제 금액</span>
                     </div>
                     <div class="right-payment-amount">
-                        <!-- <form name="chargePoint" action="/api/account/point/charge" method="post"> -->
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <ul class="payment-amount-list">
                             <!-- input-radio -->
@@ -142,20 +138,18 @@
                                 </label>
                             </li>
                         </ul>
-                        <!-- </form> -->
                     </div>
                 </div>
-
                 <!-- 결제 수단 -->
                 <div class="payment-method">
                     <div class="left-payment-method">
                         <span>결제 수단</span>
                     </div>
-                    <div class="right-payment-method"> <!--높이 100% -->
-                        <div class="payment-method-box"> <!--높이 95% -->
-                            <div class="payment-type"> <!--높이 25% -->
+                    <div class="right-payment-method">
+                        <div class="payment-method-box">
+                            <div class="payment-type">
                                 <div class="simple-payment">간편 결제</div>
-                                <div class="credit-card">신용 카드</div>
+                                <!-- <div class="credit-card">신용 카드</div> -->
                             </div>
                             <div class="detail-payment-type">
                                 <div class="detail-payment-type-content">
@@ -169,16 +163,15 @@
                                         <li class="payment-type-list"><input class="payment-checkbox"
                                                 type="checkbox">카카오 페이
                                         </li>
-                                        <li class="payment-type-list"><input class="payment-checkbox"
+                                        <!-- <li class="payment-type-list"><input class="payment-checkbox"
                                                 type="checkbox">네이버 페이
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- 결제 전 주의사항 및 체크 -->
                 <div class=" payment-agree">
                     <div class="left-payment-agree">
@@ -199,11 +192,9 @@
                                     사항</a><span>과 </span><a href="#">가상 재화 정책 </a><span>및 결제 진행에 동의
                                     합니다.</span>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
                 <!-- 결제 버튼 -->
                 <div class="payment-button-area">
                     <button class="payment-button" type="button">결제하기</button>
