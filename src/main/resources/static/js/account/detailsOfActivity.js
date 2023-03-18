@@ -16,81 +16,81 @@ window.onload = () => {
 
     if (principalUser == null) {
         profileArea.innerHTML = `
-     <!-- 회원 정보 영역 -->
-    <div class="profile">
-        <div class="profile-detail-area">
-            <!-- 프로필사진 영역 -->
-            <div class="profile-image">
-                <img src="/image/user/${responseData.user_img}" alt="">
+        <!-- 회원 정보 영역 -->
+            <div class="profile">
+                <div class="profile-detail-area">
+                    <!-- 프로필사진 영역 -->
+                    <div class="profile-image">
+                        <img src="/image/user/${responseData.user_img}" alt="">
+                    </div>
+                    <!-- 회원정보 상세 영역 -->
+                    <div class="profile-detail">
+                        <h2>${responseData.nickname}</h2>
+                        <span class="score"><img class="star-image" src="/static/images/star.svg"> ${scoreAvg}</span>
+                    </div>
+                </div>
             </div>
-            <!-- 회원정보 상세 영역 -->
-            <div class="profile-detail">
-                <h2>${responseData.nickname}</h2>
-                <span class="score"><img class="star-image" src="/static/images/star.svg"> ${scoreAvg}</span>
+            <!-- 스킬 입력 영역 -->
+            <div class="skill-area">
+                ${skill}
             </div>
-        </div>
-    </div>
-    <!-- 스킬 입력 영역 -->
-    <div class="skill-area">
-        ${skill}
-    </div>
-    <!-- 메뉴 영역 -->
-    <div class="menu-list-area">
-        <div class="menu-list">
-            <a class="recent" href="/myactivity/${userId}"><span>최근 활동</span></a>
-            <a class="article" href="/myactivity/article/${userId}"><span>게시물</span></a>
-            <a class="qna" href="/myactivity/qna/${userId}"><span>Q&A</span></a>
-            <a class="like" href="/myactivity/scrap/${userId}"><span>좋아요</span></a>
-        </div>
-    </div>
-    `
+            <!-- 메뉴 영역 -->
+            <div class="menu-list-area">
+                <div class="menu-list">
+                    <a class="recent" href="/myactivity/${userId}"><span>최근 활동</span></a>
+                    <a class="article" href="/myactivity/article/${userId}"><span>게시물</span></a>
+                    <a class="qna" href="/myactivity/qna/${userId}"><span>Q&A</span></a>
+                    <a class="like" href="/myactivity/scrap/${userId}"><span>좋아요</span></a>
+                </div>
+            </div>
+            `
     } else if (userId == principalUser.id) {
         profileArea.innerHTML = `
-     <!-- 회원 정보 영역 -->
-    <div class="profile">
-        <div class="profile-detail-area">
-            <!-- 프로필사진 영역 -->
-            <div class="profile-image">
-                <img src="/image/user/${responseData.user_img}" alt="">
-            </div>
-            <!-- 회원정보 상세 영역 -->
-            <div class="profile-detail">
-                <h2>${responseData.nickname}</h2>
-                <p><i class="fa-solid fa-star"></i>${scoreAvg}</p>
-            </div>
-        </div>
-        <!-- 포인트 영역 -->
-        <div class="point-area">
-            <div class="point-content-area">
-                <div class="point-content">
-                    <b>현재 포인트</b>
-                    <a class="point">${pointData.total_point}<span class="currency">Point</span></a>
+        <!-- 회원 정보 영역 -->
+            <div class="profile">
+                <div class="profile-detail-area">
+                    <!-- 프로필사진 영역 -->
+                    <div class="profile-image">
+                        <img src="/image/user/${responseData.user_img}" alt="">
+                    </div>
+                    <!-- 회원정보 상세 영역 -->
+                    <div class="profile-detail">
+                        <h2>${responseData.nickname}</h2>
+                        <p><i class="fa-solid fa-star"></i>${scoreAvg}</p>
+                    </div>
+                </div>
+                <!-- 포인트 영역 -->
+                <div class="point-area">
+                    <div class="point-content-area">
+                        <div class="point-content">
+                            <b>현재 포인트</b>
+                            <a class="point">${pointData.total_point}<span class="currency">Point</span></a>
+                        </div>
+                    </div>
+                    <div class="point-button-area">
+                        <div class="point-button">
+                            <a href="/point/${userId}" target="_blank">충전하기</a>
+                        </div>
+                        <div class="point-button">
+                            <a href="">이용내역</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="point-button-area">
-                <div class="point-button">
-                    <a href="/point/${userId}" target="_blank">충전하기</a>
-                </div>
-                <div class="point-button">
-                    <a href="">이용내역</a>
+            <!-- 스킬 입력 영역 -->
+            <div class="skill-area">
+                ${skill}
+            </div>
+            <!-- 메뉴 영역 -->
+            <div class="menu-list-area">
+                <div class="menu-list">
+                    <a class="recent" href="/myactivity/${userId}"><span>최근 활동</span></a>
+                    <a class="article" href="/myactivity/article/${userId}"><span>게시물</span></a>
+                    <a class="qna" href="/myactivity/qna/${userId}"><span>Q&A</span></a>
+                    <a class="like" href="/myactivity/scrap/${userId}"><span>좋아요</span></a>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- 스킬 입력 영역 -->
-    <div class="skill-area">
-        ${skill}
-    </div>
-    <!-- 메뉴 영역 -->
-    <div class="menu-list-area">
-        <div class="menu-list">
-            <a class="recent" href="/myactivity/${userId}"><span>최근 활동</span></a>
-            <a class="article" href="/myactivity/article/${userId}"><span>게시물</span></a>
-            <a class="qna" href="/myactivity/qna/${userId}"><span>Q&A</span></a>
-            <a class="like" href="/myactivity/scrap/${userId}"><span>좋아요</span></a>
-        </div>
-    </div>
-    `
+            `
     } else {
         profileArea.innerHTML = `
      <!-- 회원 정보 영역 -->
@@ -135,7 +135,6 @@ function userInfoRequest(userId) {
         dataType: "json",
         success: (response) => {
             responseData = response.data;
-            console.log(responseData);
         },
         error: (error) => {
             console.log(error);
@@ -156,8 +155,6 @@ function loadPoint(userId) {
         dataType: "json",
         success: (response) => {
             pointData = response.data;
-            console.log(response);
-            console.log("point: " + pointData);
         },
         error: (error) => {
             console.log(error);
@@ -167,7 +164,7 @@ function loadPoint(userId) {
     return pointData;
 }
 
-// 최근 활동 영역
+// 최근 활동 불러오기
 loadRecentActivityRequest(userId);
 
 function loadRecentActivityRequest(userId) {
@@ -189,13 +186,13 @@ function loadRecentActivityRequest(userId) {
     });
 }
 
+// 최근 게시물 영역
 function loadRecentActivity(responseData) {
     const boardList = document.querySelector(".board-list");
-
+    // console.log()
     boardList.innerHTML = "";
 
     responseData.forEach(data => {
-
         if (data.menuName == null) {
             boardList.innerHTML += `
                 <li>
@@ -225,7 +222,7 @@ function loadRecentActivity(responseData) {
                             <div class="post-date">${data.createDate}</div>
                         </div>
                         <div class="article-href">
-                            <a class="article-content" href="/article/${data.boardId}">${data.title}</a>
+                            <a class="article-content" href="/article/${data.id}">${data.title}</a>
                         </div>
                     </div>
                 </li>

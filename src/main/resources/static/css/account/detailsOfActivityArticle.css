@@ -176,13 +176,13 @@ main {
 }
 
 .menu-list a:nth-child(2) {
-    border-bottom: 2px solid #0090f9;
-    color: #0090f9;
+    border-bottom: 2px solid #FC5F07;
+    color: #FC5F07;
 }
 
 .menu-list a:hover {
-    border-bottom: 2px solid #0090f9;
-    color: #0090f9;
+    border-bottom: 2px solid #FC5F07;
+    color: #FC5F07;
 }
 
 
@@ -196,7 +196,7 @@ main {
 }
 
 .boader-area ul {
-    height: 100%;
+    height: auto;
 }
 
 .boader-area ul li {
@@ -220,12 +220,13 @@ main {
 }
 
 .post-subcategory {
-    color: #0090f9;
+    color: #FC5F07;
 }
 
-.article-href {
+.post-main {
+    display: flex;
+    justify-content: space-between;
     margin-top: 5px;
-
 }
 
 .article-href a:hover {

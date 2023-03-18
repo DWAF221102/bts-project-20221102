@@ -301,38 +301,39 @@
     <select id="loadRecentBoardList"
             resultType="com.btsproject.btsproject20221102.domain.LoadRecentboardList">
         SELECT
-            um.id,
-            um.nickname,
+        um.id,
+        um.nickname,
 
-            md.menu_name,
-            bm.id,
-            bm.title,
-            bm.create_date
+        md.menu_name,
+        bm.id,
+        bm.title,
+        bm.create_date
         FROM
-            user_mst um
-            LEFT OUTER JOIN board_mst bm ON(bm.user_id = um.id)
-            LEFT OUTER JOIN menu_dtl md ON(md.id = bm.menu_id)
+        user_mst um
+        LEFT OUTER JOIN board_mst bm ON(bm.user_id = um.id)
+        LEFT OUTER JOIN menu_dtl md ON(md.id = bm.menu_id)
         WHERE
-            bm.user_id = #{userId}
+        bm.user_id = #{userId}
+
 
         UNION ALL
 
         SELECT
-            um.id,
-            um.nickname,
+        um.id,
+        um.nickname,
 
-            md.menu_name,
-            qm.id,
-            qm.title,
-            qm.create_date
+        md.menu_name,
+        qm.id,
+        qm.title,
+        qm.create_date
         FROM
-            qna_board_mst qm
-            LEFT OUTER JOIN user_mst um ON(um.id = qm.user_id)
-            LEFT OUTER JOIN menu_dtl md ON(md.id = qm.menu_id)
+        qna_board_mst qm
+        LEFT OUTER JOIN user_mst um ON(um.id = qm.user_id)
+        LEFT OUTER JOIN menu_dtl md ON(md.id = qm.menu_id)
         WHERE
-            qm.user_id = #{userId}
+        qm.user_id = #{userId}
         ORDER BY
-            create_date desc;
+        create_date desc;
     </select>
 
 

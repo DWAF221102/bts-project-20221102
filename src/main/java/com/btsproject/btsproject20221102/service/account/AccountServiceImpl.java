@@ -240,6 +240,7 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.loadRecentBoardList(userId).forEach(board -> {
             boardList.add(board.toRecentBoardListRespDto());
         });
+        log.info("보드리스트: " + boardList);
         return boardList;
     }
     @Override
@@ -248,6 +249,7 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.loadMyprofileBoard(userId).forEach(myboard -> {
             list.add(myboard.toMyprofileBoardRespDto());
         });
+        log.info("보드리스트2: " + list);
         return list;
     }
 

@@ -176,13 +176,13 @@ main {
 }
 
 .menu-list a:nth-child(3) {
-    border-bottom: 2px solid #0090f9;
-    color: #0090f9;
+    border-bottom: 2px solid #FC5F07;
+    color: #FC5F07;
 }
 
 .menu-list a:hover {
-    border-bottom: 2px solid #0090f9;
-    color: #0090f9;
+    border-bottom: 2px solid #FC5F07;
+    color: #FC5F07;
 }
 
 
@@ -220,7 +220,7 @@ main {
 }
 
 .post-subcategory {
-    color: #0090f9;
+    color: #FC5F07;
 }
 
 .post-main {
