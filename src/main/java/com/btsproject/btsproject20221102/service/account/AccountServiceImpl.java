@@ -229,7 +229,7 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.modifyPassword(user);
     }
 
-    // 활동내역
+    //　내 활동내역
     @Override
     public List<RecentBoardListRespDto> loadRecentBoardList(int userId) throws Exception {
         List<RecentBoardListRespDto> boardList = new ArrayList<RecentBoardListRespDto>();

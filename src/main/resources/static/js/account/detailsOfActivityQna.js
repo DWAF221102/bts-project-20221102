@@ -3,7 +3,7 @@ loadMyQnaRequest(userId);
 //////////////////////////////////////////////////////////////////
 
 function loadMyQnaRequest(userId) {
-    let responseData= null;
+    let responseData = null;
 
     $.ajax({
         async: false,
@@ -22,9 +22,9 @@ function loadMyQnaRequest(userId) {
 
 function loadMyQna(responseData) {
     const qnaList = document.querySelector(".qna-list");
-    
+
     qnaList.innerHTML = "";
-    
+
     responseData.forEach(data => {
 
         qnaList.innerHTML += `
@@ -32,22 +32,22 @@ function loadMyQna(responseData) {
                 <div class="post">
                     <div class="post-header">
                         <div class="post-title">
-                            <div class="post-subcategory">${data.subcategoryName}</div>
-                            <div>관련 질문을 하였습니다.</div>
+                            <div class="post-menu">${data.subcategoryName}</div>
+                            <div  class="post-content">관련 질문을 하였습니다.</div>
                         </div>
-                        <div>${data.createDate}</div>
+                        <div class="post-date">${data.createDate}</div>
                     </div>
                     <div class="post-main">
                         <div class="article-href">
-                            <a href="/question/article/${data.id}">${data.title}</a>
+                            <a class="article-content" href="/question/article/${data.id}">${data.title}</a>
                         </div>
-                        <div>
-                            상태: ${data.status}
+                        <div class="status">
+                            <span>상태:</span><span class="status-content">${data.status}</span>
                         </div>
                     </div>
                 </div>
             </li>
         `;
-    
+
     });
 }

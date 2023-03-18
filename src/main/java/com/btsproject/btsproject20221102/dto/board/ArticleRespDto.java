@@ -17,7 +17,7 @@ public class ArticleRespDto {
     private int userId;
     private String userImg;
     private String nickname;
-    @DateTimeFormat(pattern = "yyyy년MM월dd일HH시mm분ss초")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createDate;
     private int viewCount;
     private List<Like> like;
