@@ -25,7 +25,6 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
-
     private final AccountRepository accountRepository;
 
     @Value("${file.path}")
@@ -230,26 +229,24 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.modifyPassword(user);
     }
 
-
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // 활동내역
     @Override
     public List<RecentBoardListRespDto> loadRecentBoardList(int userId) throws Exception {
         List<RecentBoardListRespDto> boardList = new ArrayList<RecentBoardListRespDto>();
         accountRepository.loadRecentBoardList(userId).forEach(board -> {
             boardList.add(board.toRecentBoardListRespDto());
         });
-        log.info("보드리스트: " + boardList);
+
         return boardList;
     }
+
+
     @Override
     public List<MyprofileBoardRespDto> loadMyprofileBoardList(int userId) throws Exception {
         List<MyprofileBoardRespDto> list = new ArrayList<MyprofileBoardRespDto>();
         accountRepository.loadMyprofileBoard(userId).forEach(myboard -> {
             list.add(myboard.toMyprofileBoardRespDto());
         });
-        log.info("보드리스트2: " + list);
         return list;
     }
 

@@ -17,9 +17,7 @@ import java.time.format.DateTimeFormatter;
 public class LoadRecentboardList {
     private int user_id;
     private String nickname;
-
-
-    private int id;
+    private int board_id;
     private String menu_name;
     private String title;
     private LocalDateTime create_date;
@@ -28,7 +26,7 @@ public class LoadRecentboardList {
     return RecentBoardListRespDto.builder()
             .userId(user_id)
             .nickname(nickname)
-            .boardId(id)
+            .boardId(board_id)
             .menuName(menu_name)
             .title(title)
             .createDate(create_date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
