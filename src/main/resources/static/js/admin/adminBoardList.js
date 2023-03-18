@@ -7,14 +7,14 @@ loadBoardListRequest(searchValue);
 /////////////////////////////////////////////////////////////////
 
 listSearchInput.onkeyup = () => {
-    if(window.event.keyCode === 13) {
+    if (window.event.keyCode === 13) {
         listSearchBtn.click();
     }
 }
 
 listSearchBtn.onclick = () => {
     let searchValue = listSearchInput.value;
-    loadBoardListRequest(searchValue);  
+    loadBoardListRequest(searchValue);
 }
 
 function loadBoardListRequest(searchValue) {
@@ -24,7 +24,7 @@ function loadBoardListRequest(searchValue) {
         async: false,
         url: "/api/admin/boardlist",
         data: {
-            "searchValue" : searchValue
+            "searchValue": searchValue
         },
         dataType: "json",
         success: (response) => {
@@ -39,31 +39,31 @@ function loadBoardListRequest(searchValue) {
 }
 
 function loadBoardList(responseData) {
-    const listBody = document.querySelector(".list-body");
+    const listBody = document.querySelector(".board-list-body");
 
     listBody.innerHTML = "";
 
     responseData.forEach(data => {
-        
+
         listBody.innerHTML += `
             <tr>
                 <td>${data.nickname}</td>
                 <td>${data.categoryName}</td>
                 <td>${data.subcategoryName}</td>
                 <td>${data.title}</td>
-                <td><a href="/article/${data.id}"><button type="button">상세보기</button></a></td>
-                <td><button type="button" class="board-delete-button">삭제</button></td>
+                <td><a href="/article/${data.id}"><button class="detail-button" type="button">상세보기</button></a></td>
+                <td><button type="button" class="board-delete-button delete">삭제</button></td>
             </tr>
         `
-    }); 
+    });
 }
 
 function deleteboard(responseData) {
     const deleteBtns = document.querySelectorAll(".board-delete-button");
-   
+
     deleteBtns.forEach((deleteBtn, index) => {
         deleteBtn.onclick = () => {
-            if(confirm("정말로 삭제하시겠습니까?")) {
+            if (confirm("정말로 삭제하시겠습니까?")) {
                 deleteBoardRequest(responseData[index].id);
             }
         }
@@ -75,7 +75,7 @@ function deleteBoardRequest(id) {
         async: false,
         type: "delete",
         url: "/api/admin/boardlist/delete/" + id,
-        dataType:"json",
+        dataType: "json",
         success: (response) => {
             alert("게시판 삭제 완료.")
             location.reload();
