@@ -136,6 +136,7 @@ public class QnaBoardServiceImpl implements QnaBoardService{
     @Override
     public RequestUserListRespDto getSelectedUser(int id) throws Exception {
 
+
         return qnaRepository.getAnswerUser(id).requestUserListResp();
     }
 
