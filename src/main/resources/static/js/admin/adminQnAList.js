@@ -102,7 +102,11 @@ function loadQnAList(responseData) {
                 <td>${data.subcategoryName}</td>
                 <td>${data.title}</td>
                 <td>${data.status}</td>
-                <td><a href="/question/article/${data.id}"><button class="detail-button" type="button" class="detail-button">상세보기</button></a></td>
+                <td>
+                    <a class="detail" href="/question/article/${data.id}">
+                        <button class="detail-button" type="button" class="detail-button">상세보기</button>
+                    </a>
+                </td>
                 <td><button type="button" class="qna-delete-button  delete">삭제</button></td>
             </tr>
         `

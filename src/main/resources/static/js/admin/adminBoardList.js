@@ -51,7 +51,11 @@ function loadBoardList(responseData) {
                 <td>${data.categoryName}</td>
                 <td>${data.subcategoryName}</td>
                 <td>${data.title}</td>
-                <td><a href="/article/${data.id}"><button class="detail-button" type="button">상세보기</button></a></td>
+                <td>
+                    <a class="detail" href="/article/${data.id}">
+                        <button class="detail-button" type="button">상세보기</button>
+                    </a>
+                </td>
                 <td><button type="button" class="board-delete-button delete">삭제</button></td>
             </tr>
         `
