@@ -95,10 +95,11 @@ public class QnaApi {
     }
 
     //답변자 선택
-    @PutMapping("/question/article/answer/select/{nickname}")
-    public ResponseEntity<?> selectAnswer(@PathVariable String nickname) throws Exception {
+    @PutMapping("/question/article/answer/select")
+    public ResponseEntity<?> selectAnswer(@RequestParam int id ,
+                                          @RequestParam int userId) throws Exception {
 
-        return ResponseEntity.ok().body(new CMRespDto<>(1, "답변자 선택 완료", null));
+        return ResponseEntity.ok().body(new CMRespDto<>(1, "답변자 선택 완료", qnaBoardService.selectRequestUser(id, userId)));
     }
     // 답변자 등록 저장
     @PostMapping("/request/user/save")
@@ -122,4 +123,12 @@ public class QnaApi {
          return ResponseEntity.ok(new CMRespDto<>(1, "statusUpdateSuccess", qnaBoardService.updateStatus(qnaStatusUpdateReqDto)));
     }
 
+    // 답변자 들고오기
+    @GetMapping("/load/answer/selected/{id}")
+    public ResponseEntity<?> getAnswer(@PathVariable int id) throws Exception {
+
+         log.info("id >>>{}", id);
+
+         return ResponseEntity.ok(new CMRespDto<>(1, "Success", qnaBoardService.getSelectedUser(id)));
+    }
 }

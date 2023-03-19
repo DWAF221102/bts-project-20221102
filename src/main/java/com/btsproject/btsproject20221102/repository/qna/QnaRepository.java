@@ -1,6 +1,7 @@
 package com.btsproject.btsproject20221102.repository.qna;
 
 import com.btsproject.btsproject20221102.domain.*;
+import com.btsproject.btsproject20221102.dto.board.RequestUserListRespDto;
 import com.btsproject.btsproject20221102.dto.board.RequestUserReqDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -39,6 +40,12 @@ public interface QnaRepository {
 
     // Q&A 답변자 등록
     public int requestUserSave(RequestUser requestUser) throws Exception;
+
+    public int statusUpdate(int id) throws Exception;
+
+    public int flagUpdate(int id , int user_id) throws Exception;
+
+    public RequestUserList getAnswerUser(int id) throws Exception;
 
     public RequestUser findRequestUser(RequestUserReqDto requestUserReqDto) throws Exception;
 
