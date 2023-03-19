@@ -125,6 +125,21 @@ public class QnaBoardServiceImpl implements QnaBoardService{
     }
 
     @Override
+    public boolean selectRequestUser(int id, int userId) throws Exception {
+        int flag = 0;
+        flag = qnaRepository.statusUpdate(id);
+        flag = qnaRepository.flagUpdate(id, userId);
+
+        return flag != 0;
+    }
+
+    @Override
+    public RequestUserListRespDto getSelectedUser(int id) throws Exception {
+
+        return qnaRepository.getAnswerUser(id).requestUserListResp();
+    }
+
+    @Override
     public boolean checkRequestUser(RequestUserReqDto requestUserReqDto) throws Exception {
 
         RequestUser user = qnaRepository.findRequestUser(requestUserReqDto.toRequestUserEntity());

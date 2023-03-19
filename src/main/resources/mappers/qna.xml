@@ -438,6 +438,50 @@
             ORDER BY rm.update_date ASC
     </select>
 
+    <!-- 답변자 선택 후 업데이트  -->
+
+    <update id="statusUpdate" parameterType="Integer">
+        UPDATE
+            qna_board_mst
+        SET
+            status_id = 2
+        WHERE
+            id = #{id};
+
+    </update>
+
+
+    <update id="flagUpdate" parameterType="Integer">
+        UPDATE
+            request_mst
+        SET
+            flag_id = 1
+        WHERE
+            qna_board_id = #{id}
+        and
+            user_id = #{user_id};
+    </update>
+
+    <select id="getAnswerUser" parameterType="Integer" resultType="com.btsproject.btsproject20221102.domain.RequestUserList">
+        SELECT
+            um.id AS user_id,
+            um.nickname,
+            um.skill,
+            IFNULL(AVG(sm.score), 0) AS score_avg,
+            um.user_img
+        FROM
+            user_mst um
+            LEFT OUTER JOIN score_mst sm ON(sm.answerer_id = um.id)
+        WHERE
+            um.id = (select
+                        user_id
+                    FROM
+                        request_mst
+                    WHERE
+                        qna_board_id = #{id}
+                    and
+                        flag_id = 1);
+    </select>
 
     <update id="qnaUpdateArticle"  parameterType="com.btsproject.btsproject20221102.domain.QnaUpdateArticle">
         update
