@@ -223,8 +223,13 @@ function requestButton(data) {
                 `
     
                 requestUser.innerHTML = `
-                <div class="qna-profile-img qna-board-req-list">
-                    <img src="/static/images/spon_meow.jpg" alt="">
+                <div class="click-area">
+                    <div class="qna-profile-img qna-board-req-list">
+                        <img src="/static/images/spon_meow.jpg" alt="">
+                    </div>
+                    <div class="check-area none">
+                        <img src="/static/images/pngwing.com.png" alt="">
+                    </div>
                 </div>
                 <div>
                     <div>닉네임: <a href="">연호슈밤</a></div>
@@ -283,8 +288,13 @@ function requestButton(data) {
         `
 
         requestUser.innerHTML = `
-            <div class="qna-profile-img qna-board-req-list">
-                <img src="/static/images/spon_meow.jpg" alt="">
+            <div class="click-area">
+                <div class="qna-profile-img qna-board-req-list">
+                    <img src="/static/images/spon_meow.jpg" alt="">
+                </div>
+                <div class="check-area none">
+                    <img src="/static/images/pngwing.com.png" alt="">
+                </div>
             </div>
             <div>
                 <div>닉네임: <a href="">연호슈밤</a></div>
@@ -350,8 +360,13 @@ function requestButton(data) {
         `
 
         requestUser.innerHTML = `
-            <div class="qna-profile-img qna-board-req-list">
-                <img src="/static/images/spon_meow.jpg" alt="">
+            <div class="click-area">
+                <div class="qna-profile-img qna-board-req-list">
+                    <img src="/static/images/spon_meow.jpg" alt="">
+                </div>
+                <div class="check-area none">
+                    <img src="/static/images/pngwing.com.png" alt="">
+                </div>
             </div>
             <div>
                 <div>닉네임: <a href="">연호슈밤</a></div>
@@ -476,16 +491,15 @@ function setUpdateButton(responseData) {
 }
 
 
-// 현재 밑에 getRequestUserList의 데이터를 받아서 실행해야하는데
-// 작동이 안됨;
 function answerCheckService(data) {
-    const hoverAreaes = document.querySelectorAll(".hover-area");
+    console.log("실행");
+    const clickAreaes = document.querySelectorAll(".click-area");
     const imgs = document.querySelectorAll(".qna-board-req-list");
     const checkAreas = document.querySelectorAll(".check-area");
 
     if(principalUser.id == data.userId) {
-        for(let i = 0; i < hoverAreaes.length; i++) {
-            hoverAreaes[i].onclick = () => {
+        for(let i = 0; i < clickAreaes.length; i++) {
+            clickAreaes[i].onclick = () => {
                 const classes = imgs[i].classList;
                 if(classes.contains("check")){
                     imgs[i].classList.remove("check");
@@ -565,6 +579,7 @@ function getRequestUserList(data) {
                 loadRequestUserList(responseData);
                 answerCheckService(responseData);
                 console.log(responseData);
+                console.log("getRequestUserList");
             },
             error: (error) => {
                 console.log(error);
