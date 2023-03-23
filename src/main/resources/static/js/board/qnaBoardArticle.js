@@ -325,6 +325,7 @@ function requestButton(data) {
         }
     } else if(data.status == "답변완료") {
         // 덕현이형 작업한 부분 불러와야함.
+        let user = loadAnswerApi(data.id);
 
         const requestTitle = document.querySelector(".qna-board-req-title");
         const requestUser = document.querySelector(".qna-board-req-lists");
@@ -459,7 +460,7 @@ function setUpdateButton(responseData) {
     }
 }
 
-
+// 답변자 체크 이미지 클릭 이벤트, 재효
 function answerCheckService(data) {
     const hoverAreaes = document.querySelectorAll(".hover-area");
     const imgs = document.querySelectorAll(".qna-board-req-list");
@@ -519,6 +520,7 @@ function selectAnswer(id, data) {
         
     }
 }
+
 
 function selectedUser(data) {
     const requestTitle = document.querySelector(".qna-board-req-title");
@@ -614,6 +616,7 @@ function loadRequestUserList(responseData) {
     })
 }
 
+// 답변자 데이터 가져오기, 재효
 function loadAnswerApi(id) {
     let user = null;
     $.ajax ({

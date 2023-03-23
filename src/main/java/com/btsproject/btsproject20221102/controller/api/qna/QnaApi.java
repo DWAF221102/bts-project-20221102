@@ -127,7 +127,6 @@ public class QnaApi {
     @GetMapping("/load/answer/selected/{id}")
     public ResponseEntity<?> getAnswer(@PathVariable int id) throws Exception {
 
-         log.info("id >>>{}", id);
 
          return ResponseEntity.ok(new CMRespDto<>(1, "Success", qnaBoardService.getSelectedUser(id)));
     }

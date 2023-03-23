@@ -438,7 +438,7 @@
             ORDER BY rm.update_date ASC
     </select>
 
-    <!-- 답변자 선택 후 업데이트  -->
+    <!-- 답변자 선택 후 업데이트, 재효 -->
 
     <update id="statusUpdate" parameterType="Integer">
         UPDATE
@@ -450,7 +450,7 @@
 
     </update>
 
-
+<!--  선택 미선택 업데이트, 재효  -->
     <update id="flagUpdate" parameterType="Integer">
         UPDATE
             request_mst
@@ -462,6 +462,7 @@
             user_id = #{user_id};
     </update>
 
+<!--  매칭된 답변자 정보 가져오기, 재효 -->
     <select id="getAnswerUser" parameterType="Integer" resultType="com.btsproject.btsproject20221102.domain.RequestUserList">
         SELECT
             um.id as user_id,
