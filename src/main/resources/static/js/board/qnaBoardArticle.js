@@ -4,6 +4,7 @@ window.onload = () => {
     // loadAnswer();
 }
 
+// 게시글 정보 요청
 function getList() {
     const uri = location.href;
     const id = uri.substring(uri.lastIndexOf("/") + 1);
@@ -135,7 +136,6 @@ function writer(data) {
 }
 
 function titleCreate(data) {
-
     const qnaTitle = document.querySelector(".qna-board-top");
     qnaTitle.innerHTML = `
         <div>
@@ -175,15 +175,16 @@ function boardInfo(data) {
 
 }
 
+
+
 function requestButton(data) {
     const requestButtonArea = document.querySelector(".request-answer")
     let time = TimeService.getInstance().setTime(data.createDate);
 
-    if(data.status == "대기중") {
-
+    if (data.status == "대기중") {
         let requestUser = getRequestUserList(data);
 
-        if(principalUser == null) {
+        if (principalUser == null) {
             requestButtonArea.innerHTML = `
                 <button type="button" class="request-pass-button request-button">
                     <div>
@@ -192,13 +193,13 @@ function requestButton(data) {
                 </button>    
             `
             const requestPassBtn = document.querySelector(".request-pass-button");
-    
+
             requestPassBtn.onclick = () => {
                 alert("로그인을 하세요.");
                 location.replace("/login");
             }
-            
-        } else if(principalUser.id == data.userId) {
+
+        } else if (principalUser.id == data.userId) {
             requestButtonArea.innerHTML = `
                 <button type="button" class="request-choise-button request-button">
                     <div>
@@ -209,15 +210,13 @@ function requestButton(data) {
                     </div>
                 </button>
             `;
-            if(requestUser != null) {
+            if (requestUser != null) {
                 selectAnswer(data.id, requestUser);
             }
-            
+
             // 클릭시 업데이트 날라가야하는 부분 -> 함수로 처리 -> selectedUser()
-            
 
         } else {
-            
             requestButtonArea.innerHTML = `
                 <button type="button" class="request-title-button request-button">
                     <div>
@@ -228,7 +227,7 @@ function requestButton(data) {
                     </div>
                 </button>    
             `
-    
+
             const requestTitleBtn = document.querySelector(".request-title-button");
             // 클릭시 유저 인설트 되야하는 부분
             requestTitleBtn.onclick = () => {
@@ -256,7 +255,7 @@ function requestButton(data) {
                 });
             }
         }
-    } else if(data.status == "진행중") {
+    } else if (data.status == "진행중") {
         let user = loadAnswerApi(data.id);
 
         const requestTitle = document.querySelector(".qna-board-req-title");
@@ -277,7 +276,7 @@ function requestButton(data) {
             </div>
         `
 
-        if(principalUser == null) {
+        if (principalUser == null) {
             requestButtonArea.innerHTML = `
             <button type="button" class="request-pass-button request-button">
                 <div>
@@ -286,12 +285,12 @@ function requestButton(data) {
             </button>    
             `
             const requestPassBtn = document.querySelector(".request-pass-button");
-    
+
             requestPassBtn.onclick = () => {
                 alert("로그인을 하세요.");
                 location.replace("/login");
             }
-        } else if(principalUser.id == data.userId) {
+        } else if (principalUser.id == data.userId) {
             requestButtonArea.innerHTML = `
                 <button type="button" class="request-ok-button request-button">
                     <div>
@@ -323,7 +322,7 @@ function requestButton(data) {
                 </button>
             `
         }
-    } else if(data.status == "답변완료") {
+    } else if (data.status == "답변완료") {
         // 덕현이형 작업한 부분 불러와야함.
 
         const requestTitle = document.querySelector(".qna-board-req-title");
@@ -343,7 +342,7 @@ function requestButton(data) {
                 <div>스택: ${user.skill}</div>
             </div>
         `
-        
+
         requestButtonArea.innerHTML = `
                 <button type="button" class="request-ok-button request-button">
                     <div>
@@ -466,18 +465,18 @@ function answerCheckService(data) {
     const checkAreas = document.querySelectorAll(".check-area");
 
     let userId = null;
-    if(principalUser != null) {
+    if (principalUser != null) {
         userId = principalUser.id;
-    } 
+    }
 
-    if(userId == data.userId) {
-        for(let i = 0; i < hoverAreaes.length; i++) {
+    if (userId == data.userId) {
+        for (let i = 0; i < hoverAreaes.length; i++) {
             hoverAreaes[i].onclick = () => {
                 const classes = imgs[i].classList;
-                if(classes.contains("check")){
+                if (classes.contains("check")) {
                     imgs[i].classList.remove("check");
                     checkAreas[i].classList.add("none");
-                }else{
+                } else {
                     imgs.forEach(img => {
                         img.classList.remove("check");
                     })
@@ -490,33 +489,33 @@ function answerCheckService(data) {
             }
         }
     }
-    
+
 }
 
 // 답변 완료 후 답변 추가 페이지
 function selectAnswer(id, data) {
     const requestButton = document.querySelector(".request-choise-button");
-    
+
     requestButton.onclick = () => {
         const check = document.querySelector(".check");
 
-        if(check != null) {
+        if (check != null) {
             const reqList = document.querySelectorAll(".qna-board-req-list");
-            for(let i = 0; i < reqList.length; i++) {
-                if(reqList[i].classList.contains("check")){
+            for (let i = 0; i < reqList.length; i++) {
+                if (reqList[i].classList.contains("check")) {
                     let nickname = data[i].nickName;
-                    
-                    if(confirm(nickname+ "님을 선택하시겠습니까?")) {
+
+                    if (confirm(nickname + "님을 선택하시겠습니까?")) {
                         selectAnswerApi(id, data[i].userId);
                         selectedUser(data[i]);
                     }
                 }
             }
-        }else{
+        } else {
             alert("답변자를 선택해 주세요");
-            
+
         }
-        
+
     }
 }
 
@@ -542,8 +541,8 @@ function selectedUser(data) {
 
 function selectAnswerApi(id, userId) {
     let data = {
-        "id" : id,
-        "userId" : userId 
+        "id": id,
+        "userId": userId
     }
 
     $.ajax({
@@ -568,22 +567,22 @@ function getRequestUserList(data) {
     let qnaBoardId = data.id;
     let responseData = null;
 
-        $.ajax({
-            async: false,
-            type: "get",
-            url: "/api/qna/request/user/list/" + qnaBoardId,
-            dataType: "json",
-            success: (response) => {
-                responseData = response.data;
-                loadRequestUserList(responseData);
-                answerCheckService(data);
-                console.log(responseData);
-                
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        });
+    $.ajax({
+        async: false,
+        type: "get",
+        url: "/api/qna/request/user/list/" + qnaBoardId,
+        dataType: "json",
+        success: (response) => {
+            responseData = response.data;
+            loadRequestUserList(responseData);
+            answerCheckService(data);
+            console.log(responseData);
+
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    });
 
     return responseData;
 }
@@ -614,9 +613,10 @@ function loadRequestUserList(responseData) {
     })
 }
 
+
 function loadAnswerApi(id) {
     let user = null;
-    $.ajax ({
+    $.ajax({
         async: false,
         type: "get",
         url: "/api/qna/load/answer/selected/" + id,
@@ -636,9 +636,9 @@ function loadAnswerApi(id) {
 function updateStatus(data) {
     let statusIdChange = 0;
 
-    if(data.status == '대기중') {
+    if (data.status == '대기중') {
         statusIdChange = 2
-    } else if(data.status == '진행중') {
+    } else if (data.status == '진행중') {
         statusIdChange = 3
     }
 
@@ -664,8 +664,9 @@ function updateStatus(data) {
     })
 }
 
-function loadAnswer(data) {
 
+// 답변 완료 후 답변 내용 - 하덕현
+function loadAnswer(data) {
     const answerArea = document.querySelector(".answer-area");
     const uri = location.href;
     const id = uri.substring(uri.lastIndexOf("/") + 1);

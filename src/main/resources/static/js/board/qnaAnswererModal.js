@@ -3,7 +3,7 @@ const uri = location.href;
 const id = uri.substring(uri.lastIndexOf("/") + 1);
 
 
-// 답변자 모달창 불러오기
+// 답변자 원인분석, 해결방안 페이지 로드
 loadAnswererModal();
 function loadAnswererModal() {
     answererModal.innerHTML = `
@@ -33,7 +33,7 @@ function loadAnswererModal() {
     `
 }
 
-// 답변자 모달 정보 전송
+// 답변자 원인분석, 해결방안 전송
 answererModalReq();
 function answererModalReq() {
     const textarea = document.querySelectorAll(".modal-textarea");
