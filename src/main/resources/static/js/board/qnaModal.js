@@ -1,18 +1,14 @@
+
 const questionerModal = document.querySelector(".modal-user");  // 질문자 모달창
 const answererModal = document.querySelector(".modal");         // 답변자 모달창
 const reviewForm = document.querySelector("form");              // 별점
 const uri = location.href;
 const id = uri.substring(uri.lastIndexOf("/") + 1);
 
-
-
-
-
-
-
-
 // 답변자 모달창 불러오기
 loadAnswererModal();
+answererModalReq();
+
 function loadAnswererModal() {
     answererModal.innerHTML = `
     <div class="modal-body">
@@ -41,12 +37,10 @@ function loadAnswererModal() {
     `
 }
 
-answererModalReq();
 function answererModalReq() {
     const textarea = document.querySelectorAll(".modal-textarea");
     const answererForm = document.querySelector("form");
     const saveButton = document.querySelector(".save-button");
-
 
     saveButton.onclick = () => {
         alert(id)

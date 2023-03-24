@@ -483,21 +483,31 @@ function selectAnswer(userId, id, data) {
 
                         if (principalUser != null) {
                             if (userId == principalUser.id) {
-                                questionerModal();
+                                localStorage.setItem("modalFunction", "questionerModal");
                             }
                         }
                         if (data[i].userId == principalUser.id) {
-                            answererModal();
+                            localStorage.setItem("modalFunction", "answererModal");
                         }
                     }
                 }
             }
         } else {
             alert("답변자를 선택해 주세요");
-
         }
     }
 }
+
+// Add event listener to window before unloading the page
+window.addEventListener("beforeunload", () => {
+    const modalFunction = localStorage.getItem("modalFunction");
+    if (modalFunction) {
+        // Execute the function stored in local storage
+        window[modalFunction]();
+        // Remove the stored function from local storage
+        localStorage.removeItem("modalFunction");
+    }
+});
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 

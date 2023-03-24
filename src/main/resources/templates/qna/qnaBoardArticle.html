@@ -103,34 +103,14 @@
                                         문제설명
                                     </div>
                                     <div class="qna-error-description">
-                                        <p class="error-details">1. 문제 ~~~</p>
-                                        <p class="error-details">2. 문제 ~~~~</p>
-                                        <p class="error-details">3. 문제 ~~~~</p>
-                                        <p class="error-details"> Lorem, ipsum dolor sit amet consectetur adipisicing
-                                            elit. Excepturi a placeat dignissimos voluptatibus, quisquam voluptate
-                                            obcaecati qui, aliquam cumque recusandae repellendus tenetur eius molestias
-                                            adipisci? Saepe animi recusandae expedita eveniet.</p>
-                                        <p class="error-details">Lorem ipsum dolor sit amet consectetur adipisicing
-                                            elit. Blanditiis numquam, corrupti quis maiores ipsam, quam nulla ratione
-                                            sunt saepe eum beatae est tempora iure veniam hic quae nesciunt adipisci
-                                            tempore.</p>
-                                        <p class="error-details">Lorem ipsum dolor sit amet consectetur, adipisicing
-                                            elit. Asperiores nulla atque provident! Iure, similique optio voluptas
-                                            necessitatibus debitis atque recusandae repellendus odio tenetur cumque sint
-                                            excepturi libero a fugit? Nam.</p>
+
                                     </div>
 
                                     <div class="qna-error-title">
                                         희망결과
                                     </div>
                                     <div class="qna-error-description">
-                                        <p class="error-details">1. 희망결과 ~~~</p>
-                                        <p class="error-details">2. 희망결과 ~~~~</p>
-                                        <p class="error-details">3. 희망결과 ~~~~</p>
-                                        <p class="error-details">Lorem, ipsum dolor sit amet consectetur adipisicing
-                                            elit. Quos voluptatem eveniet rem obcaecati impedit autem assumenda, cum
-                                            tempore iusto temporibus laborum sequi ratione quisquam adipisci nam
-                                            accusantium dolores est harum!</p>
+
                                     </div>
                                 </div>
 
@@ -163,32 +143,20 @@
                     </div>
                 </div>
             </div>
+
+        </main>
     </div>
-    </main>
     <footer th:replace="~{fragment/footer :: footer}"></footer>
-    </div>
 
 
-    <!--                 모달창 영역               -->
-    <!-- 유저 id, principal에 따라 페이지를 나누고 모달창을 따로 해야함 -->
-
-    <!--       질문자 모달창       -->
-    <!-- <div class="questione-modal">
-    </div> -->
-
-    <!--       답변자 모달창       -->
-    <!-- <div class="answere-modal">
-
-    </div> -->
-
-    <!--///////////////////////////////////////////////// -->
 
 
-    <script src="/static/js/board/qnaBoardArticle.js"></script>
+
+    <!-- <script type="module" src="/static/js/board/qnaBoardArticle.js"></script> -->
     <script src="/static/js/board/qnaMatching.js"></script>
-    <!-- <script src="/static/js/board/qnaModal.js"></script> --> <!--이건호가 주석해놈-->
-    <!-- <script src="/static/js/board/qnaAnswererModal.js"></script> -->
-    <script src="/static/js/board/qnaQuestionerModal.js"></script>
+    <script type="module" src="/static/js/board/modalTest.js"></script>
+    <script type="module" src="/static/js/board/qnaAnswererModal.js"></script>
+    <script type="module" src="/static/js/board/qnaQuestionerModal.js"></script>
 </body>
 
 </html>

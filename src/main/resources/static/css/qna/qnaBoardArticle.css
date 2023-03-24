@@ -393,22 +393,19 @@
     height: 1000px;
 }
 
-/**************************** 답변자 원인분석, 해결방안 영역 - 하덕현 *******************************/
-.answere-modal {
-    /* display: none;    이건호가 걸어논 css */
+.modal-area {
     position: absolute;
     top: 0;
     left: 0;
 
     width: 100%;
     height: 100%;
-    /* display: flex; */
-    /* 나중에 none으로 하고 js 만들어야함 */
-
-    background-color: rgba(0, 0, 0, 0.4);
-
-    /* backgroun-color가 페이지 한면에만 먹히고 스크롤을 내렸을 때 안먹힘 */
+    /* background-color: rgba(0, 0, 0, 0.4); */
+    background-color: rgba(0, 0, 0, 0.457);
 }
+
+/**************************** 답변자 원인분석, 해결방안 영역 - 하덕현 *******************************/
+
 
 
 .modal-body {
@@ -514,21 +511,7 @@
 
 
 /*************************** 질문자 별점 영역 - 하덕현 *******************************/
-.questione-modal {
-    position: absolute;
-    display: none;
-    top: 0;
-    left: 0;
 
-    width: 100%;
-    height: 100%;
-
-    /* 나중에 none으로 하고 js 만들어야함 */
-
-    background-color: rgba(0, 0, 0, 0.4);
-
-    /* backgroun-color가 페이지 한면에만 먹히고 스크롤을 내렸을 때 안먹힘 */
-}
 
 .modal-user-body {
     position: absolute;
@@ -582,11 +565,13 @@
 
 .modal-titles {
     width: 50px;
+    font-size: 18px;
     text-align: left;
 }
 
 .modal-user-content {
-    font-size: 14px;
+    padding-left: 5px;
+    font-size: 16px;
     font-weight: 400;
     color: #000000;
 }
@@ -639,9 +624,9 @@
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    height: 60%;
-    padding-top: 10px;
-    font-size: 13px;
+    height: 80%;
+    padding-top: 20px;
+    font-size: 14px;
     color: #4B5563;
     /* background-color: red; */
 }
