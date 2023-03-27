@@ -465,8 +465,71 @@ function selectedUser(data) {
 }
 
 // 답변자 선택 버튼
+// function selectAnswer(userId, id, data) {
+//     const requestButton = document.querySelector(".request-choise-button");
+
+//     requestButton.onclick = () => {
+//         const check = document.querySelector(".check");
+
+//         if (check != null) {
+//             const reqList = document.querySelectorAll(".qna-board-req-list");
+//             for (let i = 0; i < reqList.length; i++) {
+//                 if (reqList[i].classList.contains("check")) {
+//                     let nickname = data[i].nickName;
+
+//                     if (confirm(nickname + "님을 선택하시겠습니까?")) {
+//                         selectAnswerApi(id, data[i].userId);
+//                         selectedUser(data[i]);
+
+//                         if (principalUser != null) {
+//                             if (userId == principalUser.id) {
+//                                 questionerModal();
+//                             }
+//                         }
+//                         if (data[i].userId == principalUser.id) {
+//                             answererModal();
+//                         }
+//                         // Check if the user has already confirmed the prompt and saved the functions to local storage
+//                         if (window.localStorage.getItem('functionsSaved') === 'true') {
+//                             // Retrieve the saved functions from local storage
+//                             const questionerFunction = window.localStorage.getItem('questionerFunction');
+//                             const answererFunction = window.localStorage.getItem('answererFunction');
+
+//                             // Run the saved functions
+//                             eval(questionerFunction);
+//                             eval(answererFunction);
+//                         } else {
+//                             // Prompt the user to confirm and save the functions
+//                             if (confirm(nickname + "님을 선택하시겠습니까?")) {
+//                                 // Save the functions to local storage
+//                                 window.localStorage.setItem('functionsSaved', 'true');
+//                                 window.localStorage.setItem('questionerFunction', questionerModal.toString());
+//                                 window.localStorage.setItem('answererFunction', answererModal.toString());
+
+//                                 // Run the functions
+//                                 questionerModal();
+//                                 answererModal();
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         } else {
+//             alert("답변자를 선택해 주세요");
+//         }
+//     }
+// }
+
 function selectAnswer(userId, id, data) {
     const requestButton = document.querySelector(".request-choise-button");
+
+    // Check if there is saved data in localStorage
+    const savedData = JSON.parse(window.localStorage.getItem('savedData'));
+    if (savedData) {
+        // Trigger the function with the saved data
+        const { userId, id, data } = savedData;
+        selectAnswer(userId, id, data);
+    }
 
     requestButton.onclick = () => {
         const check = document.querySelector(".check");
@@ -483,12 +546,16 @@ function selectAnswer(userId, id, data) {
 
                         if (principalUser != null) {
                             if (userId == principalUser.id) {
-                                localStorage.setItem("modalFunction", "questionerModal");
+                                questionerModal();
+                            }
+
+                            if (data[i].userId == principalUser.id) {
+                                answererModal();
                             }
                         }
-                        if (data[i].userId == principalUser.id) {
-                            localStorage.setItem("modalFunction", "answererModal");
-                        }
+
+                        // Save the data to localStorage
+                        window.localStorage.setItem('savedData', JSON.stringify({ userId, id, data }));
                     }
                 }
             }
@@ -496,18 +563,21 @@ function selectAnswer(userId, id, data) {
             alert("답변자를 선택해 주세요");
         }
     }
+
+    // Trigger the function with the saved data when the user tries to leave the page
+    window.addEventListener('beforeunload', () => {
+        const savedData = JSON.parse(window.localStorage.getItem('savedData'));
+        if (savedData) {
+            const { userId, id, data } = savedData;
+            selectAnswer(userId, id, data);
+        }
+    });
 }
 
-// Add event listener to window before unloading the page
-window.addEventListener("beforeunload", () => {
-    const modalFunction = localStorage.getItem("modalFunction");
-    if (modalFunction) {
-        // Execute the function stored in local storage
-        window[modalFunction]();
-        // Remove the stored function from local storage
-        localStorage.removeItem("modalFunction");
-    }
-});
+
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -698,6 +768,7 @@ function requestButton(data) {
                     </div>
                 </button>
         `
+        loadAnswer(data);
     } else {
         console.log(data.status);
     }

@@ -475,6 +475,7 @@ function selectAnswer(userId, id, data) {
             const reqList = document.querySelectorAll(".qna-board-req-list");
             for (let i = 0; i < reqList.length; i++) {
                 if (reqList[i].classList.contains("check")) {
+                    let answererData = data[i];
                     let nickname = data[i].nickName;
 
                     if (confirm(nickname + "님을 선택하시겠습니까?")) {
@@ -483,11 +484,12 @@ function selectAnswer(userId, id, data) {
 
                         if (principalUser != null) {
                             if (userId == principalUser.id) {
-                                questionerModal();
+                                questionerModal(answererData);
                             }
-                        }
-                        if (data[i].userId == principalUser.id) {
-                            answererModal();
+
+                            if (data[i].userId == principalUser.id) {
+                                answererModal();
+                            }
                         }
                     }
                 }
@@ -688,6 +690,7 @@ function requestButton(data) {
                     </div>
                 </button>
         `
+        loadAnswer(data);
     } else {
         console.log(data.status);
     }
@@ -712,14 +715,15 @@ function loadAnswer(data) {
     const causerAnalysis = data.causerAnalysis;
     const solutionPlan = data.solutionPlan;
 
+
     $.ajax({
         async: false,
         type: "get",
         url: "/api/qna/question/article/answer/" + id,
         dataType: "json",
         success: (response) => {
-            console.log(response);
-
+            let answererData = response.data;
+            answerInfo(answererData)
         },
         error: (error) => {
             console.log(error);
@@ -727,45 +731,83 @@ function loadAnswer(data) {
         }
     })
 
-    if (causerAnalysis != null && solutionPlan != null) {
-        answerArea.innerHTML = `
-         <div class="answer-title">
-                            <span>답변</span>
-                        </div>
-                        <!-- 답변자 프로필 영역 -->
-                        <div class="answer-profile">
+    function answerInfo(answererData) {
+        if (causerAnalysis != null && solutionPlan != null) {
+            answerArea.innerHTML = `
+            <div class="answer-title">
+                <span>답변</span>
+            </div>
+            <!-- 답변자 프로필 영역 -->
+            <div class="answer-profile">
+                <div class="answer-img-area">
+                    <a href="" class="answer-img">
+                        <img src="/image/user/${answererData.userImg}">                               
+                    </a>
+                </div>
 
-                            <div class="answer-img-area">
-                                <a href="" class="answer-img">
-                                    <img src="/static/images/profile-icon_34378.png" alt="answer-profile-image">
-                                </a>
-                            </div>
-
-                            <div class="answer-nickname-area">
-                                <a href="" class="answer-nickname">하덕현HDH123</a>
-                            </div>
-                        </div>
-
-                        <!-- 답변 내용 영역 -->
-                        <!-- 원인 분석 영역 -->
-                        <div class="causer-analysis-area">
-                            <div class="causer-analysis-title">
-                                <span>${data.causerAnalysis}</span>
-                            </div>
-                            <div class="causer-analysis-content">
-
-                            </div>
-                        </div>
-                        <!-- 해결 방안 영역 -->
-                        <div class="solution-plan-area">
-                            <div class="solution-plan-title">
-                                <span>${data.solutionPlan}</span>
-                            </div>
-                            <div class="solution-plan-content">
-
-                            </div>
-                        </div>
+                <div class="answer-nickname-area">
+                    <a href="" class="answer-nickname">${answererData.nickname}</a>
+                </div>
+            </div>
+            <!-- 답변 내용 영역 -->
+            <!-- 원인 분석 영역 -->
+            <div class="causer-analysis-area">
+                <div class="causer-analysis-title">
+                    <span>원인분석</span>
+                </div>
+                <div class="causer-analysis-content">
+                    ${data.causerAnalysis}
+                </div>
+            </div>
+            <!-- 해결 방안 영역 -->
+            <div class="solution-plan-area">
+                <div class="solution-plan-title">
+                    <span>해결방안</span>
+                </div>
+                <div class="solution-plan-content">
+                    ${data.solutionPlan}
+                </div>
+            </div>
         `
+        }
+        if (causerAnalysis == null && solutionPlan == null) {
+            answerArea.innerHTML = `
+            <div class="answer-title">
+                <span>답변</span>
+            </div>
+            <!-- 답변자 프로필 영역 -->
+            <div class="answer-profile">
+                <div class="answer-img-area">
+                    <a href="" class="answer-img">
+                        <img src="/image/user/${answererData.userImg}">                               
+                    </a>
+                </div>
+
+                <div class="answer-nickname-area">
+                    <a href="" class="answer-nickname">${answererData.nickname}</a>
+                </div>
+            </div>
+            <!-- 답변 내용 영역 -->
+            <!-- 원인 분석 영역 -->
+            <div class="causer-analysis-area">
+                <div class="causer-analysis-title">
+                    <span>원인분석</span>
+                </div>
+                <div class="causer-analysis-content">
+                    <p>원인분석이 없습니다.</p>
+                </div>
+            </div>
+            <!-- 해결 방안 영역 -->
+            <div class="solution-plan-area">
+                <div class="solution-plan-title">
+                    <span>해결방안</span>
+                </div>
+                <div class="solution-plan-content">
+                    <p>해결방안이 없습니다.</p>
+                </div>
+            </div>
+        `
+        }
     }
 
 }

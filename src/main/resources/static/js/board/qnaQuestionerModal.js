@@ -1,15 +1,13 @@
-export function questionerModal() {
-    console.log("questionerModal() 실행")
+export function questionerModal(answererData) {
     const body = document.querySelector("body");  // 질문자 모달창
-    const reviewForm = document.querySelector("form");              // 별점
     const uri = location.href;
     const id = uri.substring(uri.lastIndexOf("/") + 1);
 
     // 질문자 모달창 불러오기
-    loadQuestionerModal();
-    requestScore();
+    loadQuestionerModal(answererData);
+    requestScore(answererData);
 
-    function loadQuestionerModal() {
+    function loadQuestionerModal(answererData) {
         body.innerHTML += `
             <div class="modal-area">
                 <div class="modal-user-body">
@@ -23,7 +21,7 @@ export function questionerModal() {
                             </div>
                         </div>
                         <div class="modal-user-content">
-                            답변자 닉네임
+                            ${answererData.nickName}
                         </div>
                     </div>
                     <div class="modal-user-detail">
@@ -66,13 +64,13 @@ export function questionerModal() {
         `
     }
 
-    function requestScore() {
+    function requestScore(answererData) {
         const saveButton = document.querySelector(".save-button");
-
+        console.log(answererData)
+        console.log(answererData.userId)
         // 질문자 모달 데이터 전송
         saveButton.onclick = () => {
-            // const questionerId = 
-            // const anwererId
+
             const score = document.querySelector("input[name='score']:checked");
             let msg = null;
 
@@ -85,6 +83,8 @@ export function questionerModal() {
                 else {
                     let modlaData = {
                         boardId: id,
+                        questionerId: principalUser.id,
+                        answererId: answererData.userId,
                         score: score.value
                     };
                     $.ajax({
@@ -94,7 +94,8 @@ export function questionerModal() {
                         data: modlaData,
                         dataType: "json",
                         success: (Response) => {
-
+                            location.reload();
+                            alert("완료 버튼을 클릭해주세요.")
 
                         },
                         error: (error) => {
@@ -108,5 +109,3 @@ export function questionerModal() {
         }
     }
 }
-
-

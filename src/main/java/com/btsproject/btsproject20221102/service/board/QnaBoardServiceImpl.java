@@ -118,9 +118,6 @@ public class QnaBoardServiceImpl implements QnaBoardService{
     // QnA 답변자 저장
     @Override
     public boolean requestUserSave(RequestUserReqDto requestUserReqDto) throws Exception {
-        log.info("request >> " + requestUserReqDto.toRequestUserEntity());
-        log.info("request >> " + requestUserReqDto.getUserId());
-        log.info("request >> " + requestUserReqDto.getQnaBoardId());
         return qnaRepository.requestUserSave(requestUserReqDto.toRequestUserEntity()) != 0;
     }
 

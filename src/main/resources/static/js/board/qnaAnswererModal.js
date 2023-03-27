@@ -40,8 +40,9 @@ export function answererModal() {
     function answererModalReq() {
         const textarea = document.querySelectorAll(".modal-textarea");
         const saveButton = document.querySelector(".save-button");
-
+        let flag = 0;
         saveButton.onclick = () => {
+
             let answererData = {
                 id: id,
                 causerAnalysis: textarea[0].value,
@@ -63,12 +64,8 @@ export function answererModal() {
                         dataType: "json",
                         success: (Response) => {
                             console.log("답변자 정보 전송 성공");
-                            // location.href = "";
-
-                            // 질문자 별점 완료 되면 
-                            // 게시물 완료로 location이 됨.
-                            // 이걸 flag로 만들어 답변자랑 질문자 모두
-                            //flag가 1이 되도록 해야함
+                            location.reload();
+                            alert("완료 버튼을 클릭해주세요.")
 
                         },
                         error: (error) => {

@@ -139,10 +139,12 @@
             parameterType="com.btsproject.btsproject20221102.domain.QnaQuestionerModal">
 
         insert into
-            score_mst(id, board_id, score, create_date, update_date)
+            score_mst
         values(
         0,
         #{board_id},
+        #{questioner_id},
+        #{answerer_id},
         #{score},
         now(),
         now()
