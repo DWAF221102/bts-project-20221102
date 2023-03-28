@@ -16,6 +16,7 @@
   
 ## 🛠️ 개발 환경
   * Java 11
+  * HTML5, CSS3, Javascript
   * IDE: IntelliJ IDEA 2021, Visual Studio Code
   * Framework: Springboot
   * Database: MariaDB
