@@ -59,4 +59,22 @@
 3. Q&A 관리
  * Q&A를 관리하며 검색, 삭제 할 수 있다.
  <br>
+ 
 ## 📷 참고 이미지
+### 메인 페이지
+![screencapture-localhost-8000-2023-03-19-18_06_52](https://user-images.githubusercontent.com/103559398/228175416-ed820ad3-cef7-416c-9ccd-0addaf07bf90.png)
+
+### 게시판
+![screencapture-localhost-8000-knowledge-2023-03-19-18_15_51](https://user-images.githubusercontent.com/103559398/228176004-d895827f-501d-4f3e-a21c-9f055b2eff96.png)
+![screencapture-localhost-8000-knowledge-write-2023-03-19-18_15_59](https://user-images.githubusercontent.com/103559398/228176352-7d29246b-bf26-4ff7-b1dd-8ecdaf4c701a.png)
+![screencapture-localhost-8000-article-246-2023-03-19-19_54_29](https://user-images.githubusercontent.com/103559398/228176434-3baf333c-2fec-4c45-801c-7b955a4ba4ad.png)
+
+### Q&A
+![screencapture-localhost-8000-question-2023-03-19-18_10_55](https://user-images.githubusercontent.com/103559398/228176167-e79849f8-6e32-4295-96ec-762a319cf9e0.png)
+![screencapture-localhost-8000-question-article-644-2023-03-26-19_33_52](https://user-images.githubusercontent.com/103559398/228176565-7e65590d-98c5-4155-a7db-874b75af4ef8.png)
+
+### 관리자 페이지
+![screencapture-localhost-8000-admin-2023-03-19-20_04_16 (1)](https://user-images.githubusercontent.com/103559398/228176761-ba09c3dd-9ce9-4c1f-8d9f-870c63d5385f.png)
+![screencapture-localhost-8000-admin-userlist-2023-03-19-20_04_28](https://user-images.githubusercontent.com/103559398/228176885-2d49b289-cdcf-4cfb-bfa0-651ff8f11a3f.png)
+![screencapture-localhost-8000-admin-questionlist-2023-03-19-20_04_46](https://user-images.githubusercontent.com/103559398/228176971-3dde09ac-4a51-47fa-a197-f89a09051572.png)
+![screencapture-localhost-8000-admin-boardlist-2023-03-19-20_05_20](https://user-images.githubusercontent.com/103559398/228177038-c3b4039e-f504-49d5-bb30-9d226ed591b0.png)
