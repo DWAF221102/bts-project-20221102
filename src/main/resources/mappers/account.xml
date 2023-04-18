@@ -303,9 +303,8 @@
         SELECT
             um.id,
             um.nickname,
-
             md.menu_name,
-            bm.id,
+            bm.id AS board_id,
             bm.title,
             bm.create_date
         FROM
@@ -320,9 +319,8 @@
         SELECT
             um.id,
             um.nickname,
-
             md.menu_name,
-            qm.id,
+            qm.id AS board_id,
             qm.title,
             qm.create_date
         FROM

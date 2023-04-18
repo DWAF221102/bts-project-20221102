@@ -23,6 +23,11 @@
         <result property="update_date" column="update_date"></result>
         <collection property="qna_img_files" javaType="list" resultMap="qna_img_files"></collection>
     </resultMap>
+<!--    <resultMap id="qnaAnswerInfo" type="com.btsproject.btsproject20221102.domain.QnaAnswerInfo">-->
+<!--        <result property="id" column="id"></result>-->
+<!--        <result property="nickname" column="nickname"></result>-->
+<!--        <result property="user_img" column="user_img"></result>-->
+<!--    </resultMap>-->
     <resultMap id="qnaArticle" type="com.btsproject.btsproject20221102.domain.QnaArticle">
         <result property="id" column="id"></result>
         <result property="user_id" column="user_id"></result>
@@ -34,6 +39,8 @@
         <result property="title" column="title"></result>
         <result property="info" column="info"></result>
         <result property="want_info" column="want_info"></result>
+        <result property="causer_analysis" column="causer_analysis"></result>
+        <result property="solution_plan" column="solution_plan"></result>
         <result property="price" column="price"></result>
         <result property="user_img" column="user_img"></result>
         <result property="like_count" column="like_count"></result>
@@ -70,6 +77,15 @@
         <result property="qna_board_id" column="qna_board_id"></result>
         <result property="origin_name" column="origin_name"></result>
         <result property="temp_name" column="temp_name"></result>
+    </resultMap>
+
+    <resultMap id="request_mst" type="com.btsproject.btsproject20221102.domain.RequestUser">
+        <result property="id" column="id"></result>
+        <result property="qna_board_id" column="qna_board_id"></result>
+        <result property="user_id" column="user_id"></result>
+        <result property="flag_id" column="flag_id"></result>
+        <result property="create_date" column="create_date"></result>
+        <result property="update_date" column="update_date"></result>
     </resultMap>
 
 
@@ -133,6 +149,23 @@
         )
     </insert>
 
+    <!--    QnA 답변자 등록 xml-->
+    <insert id="requestUserSave" parameterType="com.btsproject.btsproject20221102.domain.RequestUser"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO
+            request_mst
+        VALUES (
+            0,
+            #{qna_board_id},
+            #{user_id},
+            1,
+            NOW(),
+            NOW()
+        );
+
+    </insert>
+
 
     <select id="infoQna" parameterType="Integer" resultMap="qnaArticle">
         select
@@ -146,6 +179,8 @@
             qbm.title,
             qbm.info,
             qbm.want_info,
+            qbm.causer_analysis,
+            qbm.solution_plan,
             qbm.price,
             um.user_img,
             ifnull(lm.like_count,0),
@@ -341,7 +376,9 @@
 
     </select>
 <!--    Q&A 결과 데이터-->
-    <select id="loadQnaResult" resultType="java.lang.Integer">
+    <select id="loadQnaResult"
+            parameterType="hashmap"
+            resultType="com.btsproject.btsproject20221102.domain.LoadQnaResult">
         SELECT
             qbm.causer_analysis,
             qbm.solution_plan
@@ -351,7 +388,103 @@
             id = #{id}
     </select>
 
-    <update id="qnaUpdateArticle" parameterType="com.btsproject.btsproject20221102.domain.QnaUpdateArticle">
+    <select id="getAnswerInfo" resultType="com.btsproject.btsproject20221102.domain.QnaAnswerInfo">
+        SELECT
+            qbm.id,
+
+            um.nickname,
+            um.user_img
+        FROM
+            qna_board_mst qbm
+            LEFT OUTER JOIN request_mst rm on(rm.qna_board_id = qbm.id)
+            LEFT OUTER JOIN flag_mst fm ON(fm.flag = rm.flag_id)
+            LEFT OUTER JOIN user_mst um ON(um.id = rm.user_id)
+        WHERE
+            qbm.id = #{id}
+    </select>
+
+
+    <!--    답변자 요청 중복검사-->
+    <select id="findRequestUser" resultType="com.btsproject.btsproject20221102.domain.RequestUser">
+        SELECT
+            *
+        FROM
+            request_mst
+        WHERE
+            qna_board_id = #{qna_board_id} AND user_id = #{user_id}
+    </select>
+
+    <!--    답변자 목록 불러오기-->
+    <select id="loadRequestUser"
+            resultType="com.btsproject.btsproject20221102.domain.RequestUserList">
+
+            SELECT
+                rm.id,
+                rm.qna_board_id,
+                rm.user_id,
+
+                um.nickname,
+                IFNULL(AVG(sm.score), 0) AS score_avg,
+                um.skill,
+                um.user_img
+            FROM
+                request_mst rm
+                LEFT OUTER JOIN user_mst um ON(um.id = rm.user_id)
+                LEFT OUTER JOIN score_mst sm ON(sm.answerer_id = um.id)
+            WHERE
+                rm.qna_board_id = #{qnaBoardId}
+            GROUP BY
+                rm.id
+            ORDER BY rm.update_date ASC
+    </select>
+
+    <!-- 답변자 선택 후 업데이트, 재효 -->
+
+    <update id="statusUpdate" parameterType="Integer">
+        UPDATE
+            qna_board_mst
+        SET
+            status_id = 2
+        WHERE
+            id = #{id};
+
+    </update>
+
+<!--  선택 미선택 업데이트, 재효  -->
+    <update id="flagUpdate" parameterType="Integer">
+        UPDATE
+            request_mst
+        SET
+            flag_id = 2
+        WHERE
+            qna_board_id = #{id}
+        and
+            user_id = #{user_id};
+    </update>
+
+<!--  매칭된 답변자 정보 가져오기, 재효 -->
+    <select id="getAnswerUser" parameterType="Integer" resultType="com.btsproject.btsproject20221102.domain.RequestUserList">
+        SELECT
+            um.id as user_id,
+            um.nickname,
+            um.skill,
+            IFNULL(AVG(sm.score), 0) AS score_avg,
+            um.user_img
+        FROM
+            user_mst um
+            LEFT OUTER JOIN score_mst sm ON(sm.answerer_id = um.id)
+        WHERE
+            um.id = (select
+                        user_id
+                    FROM
+                        request_mst
+                    WHERE
+                        qna_board_id = #{id}
+                    and
+                        flag_id = 2);
+    </select>
+
+    <update id="qnaUpdateArticle"  parameterType="com.btsproject.btsproject20221102.domain.QnaUpdateArticle">
         update
             qna_board_mst
         set
@@ -375,6 +508,14 @@
         where
             id = #{id}
 
+    </update>
+    <update id="updateQnaStatus">
+        UPDATE
+            qna_board_mst
+        SET
+            status_id = #{status_id}
+        WHERE
+            id = #{id}
     </update>
 
     <delete id="updateDelete" parameterType="Integer">

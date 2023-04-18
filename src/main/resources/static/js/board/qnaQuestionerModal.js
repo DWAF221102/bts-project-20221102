@@ -74,6 +74,8 @@ function requestScore() {
 
     // 질문자 모달 데이터 전송
     saveButton.onclick = () => {
+        // const questionerId = 
+        // const anwererId
         const score = document.querySelector("input[name='score']:checked");
         let msg = null;
 
@@ -96,9 +98,11 @@ function requestScore() {
                     dataType: "json",
                     success: (Response) => {
                         console.log("별점 정보 전송 성공");
+                        // 질문자 별점 완료 되면
+                        // 게시물 완료로 location이 됨.
                     },
                     error: (error) => {
-                        console.log("후기 정보 전송 실패");
+                        alert("후기 정보 전송 실패");
                         console.log(error);
                     }
                 });

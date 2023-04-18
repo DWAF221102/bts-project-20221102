@@ -21,6 +21,8 @@ public class QnaCreateRespDto {
     private String title;
     private String info;
     private String wantInfo;
+    private String causerAnalysis;
+    private String solutionPlan;
     private int price;
     private String userImg;
     private int likeCount;

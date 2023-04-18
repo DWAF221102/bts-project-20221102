@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<!-- <head th:replace="~{admin/fragment/adminhead :: adminhead}"></head> -->
+
 <head th:replace="~{fragment/head :: head}"></head>
+
 <head>
     <title>adminBoardList</title>
     <link rel="stylesheet" href="/static/css/reset.css">
-    <link rel="stylesheet" href="/static/css/fragment/adminaside.css">
+    <link rel="stylesheet" href="/static/css/admin/adminaside.css">
     <link rel="stylesheet" href="/static/css/admin/adminList.css">
 </head>
+
 <body>
     <div id="container">
-        <div th:replace="~{fragment/header :: header}"></div>
         <main>
             <div class="main-container">
                 <aside th:replace="~{admin/fragment/adminaside :: adminaside}"></aside>
@@ -20,16 +21,18 @@
                             <h2>게시글 목록</h2>
                         </div>
 
-                        <div class="userlist-search-button">
-                            <input type="text" class="list-search-input" placeholder="검색어를 입력하세요.">
+                        <div class="search-area">
+                            <input type="text" class="search-input" placeholder="검색어를 입력하세요.">
                             <div>
-                                <button type="button" class="list-search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                <button type="button" class="search-button">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
                             </div>
                         </div>
-                        
-                        <div class="list-table board-table">
-                            <table class="user-list">
-                                <thead class="list-head">
+
+                        <div class="list-table">
+                            <table class="table">
+                                <thead class="board-list">
                                     <tr>
                                         <th>작성자</th>
                                         <th>대분류</th>
@@ -39,8 +42,8 @@
                                         <th>삭제</th>
                                     </tr>
                                 </thead>
-                                <tbody class="list-body">
-                                    
+                                <tbody class="board-list-body">
+
                                 </tbody>
                             </table>
                         </div>
@@ -51,4 +54,5 @@
     </div>
     <script src="/static/js/admin/adminBoardList.js"></script>
 </body>
+
 </html>

@@ -3,7 +3,7 @@ const uri = location.href;
 const id = uri.substring(uri.lastIndexOf("/") + 1);
 
 
-// 답변자 모달창 불러오기
+// 답변자 원인분석, 해결방안 페이지 로드
 loadAnswererModal();
 function loadAnswererModal() {
     answererModal.innerHTML = `
@@ -33,7 +33,7 @@ function loadAnswererModal() {
     `
 }
 
-// 답변자 모달 정보 전송
+// 답변자 원인분석, 해결방안 전송
 answererModalReq();
 function answererModalReq() {
     const textarea = document.querySelectorAll(".modal-textarea");
@@ -61,10 +61,16 @@ function answererModalReq() {
                     dataType: "json",
                     success: (Response) => {
                         console.log("답변자 정보 전송 성공");
+                        // location.href = "";
+
+                        // 질문자 별점 완료 되면 
+                        // 게시물 완료로 location이 됨.
+                        // 이걸 flag로 만들어 답변자랑 질문자 모두
+                        //flag가 1이 되도록 해야함
 
                     },
                     error: (error) => {
-                        console.log("답변자 정보 전송 실패");
+                        alert("답변자 정보 전송 실패");
                         console.log(error);
                     }
                 });

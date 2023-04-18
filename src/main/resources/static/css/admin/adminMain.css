@@ -6,11 +6,14 @@
 
 .main-container {
     display: flex;
+    width: 100%;
+    height: 100%;
 }
 
 /*section css*/
 section {
     width: 100%;
+    height: 100%;
 }
 
 .section-container {
@@ -18,14 +21,32 @@ section {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 100%;
+    height: 980px;
 
 }
 
-.section-container img {
-    padding: 200px 0px;
-    width: 500px;
+.admin-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
 }
 
-.section-container h1 {
+.admin-logo img {
+    width: 60%;
+    height: 60%;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+}
+
+.content h1 {
     font-size: 80px;
 }

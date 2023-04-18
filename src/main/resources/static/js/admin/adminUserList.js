@@ -1,5 +1,5 @@
-const listSearchBtn = document.querySelector(".list-search-button");
-const listSearchInput = document.querySelector(".list-search-input");
+const listSearchBtn = document.querySelector(".search-button");
+const listSearchInput = document.querySelector(".search-input");
 let searchValue = "";
 
 //////////////////////////////////////////////////////////////////
@@ -9,14 +9,14 @@ loadUserListRequest(searchValue);
 //////////////////////////////////////////////////////////////////
 
 listSearchInput.onkeyup = () => {
-    if(window.event.keyCode === 13) {
+    if (window.event.keyCode === 13) {
         listSearchBtn.click();
     }
 }
 
 listSearchBtn.onclick = () => {
     let searchValue = listSearchInput.value;
-    loadUserListRequest(searchValue);  
+    loadUserListRequest(searchValue);
 }
 
 function loadUserListRequest(searchValue) {
@@ -26,7 +26,7 @@ function loadUserListRequest(searchValue) {
         async: false,
         url: "/api/admin/userlist",
         data: {
-            "searchValue" : searchValue
+            "searchValue": searchValue
         },
         dataType: "json",
         success: (response) => {
@@ -41,7 +41,7 @@ function loadUserListRequest(searchValue) {
 }
 
 function loadUserList(responseData) {
-    const listBody = document.querySelector(".list-body");
+    const listBody = document.querySelector(".user-list-body");
 
     listBody.innerHTML = "";
 
@@ -54,18 +54,18 @@ function loadUserList(responseData) {
                 <td>${data.nickname}</td>
                 <td>${data.phone}</td>
                 <td>${data.roleName}</td>
-                <td><button type="button" class="user-delete-button">삭제</button></td>
+                <td><button type="button" class="user-delete-button delete">삭제</button></td>
             </tr>
         `
-    }); 
+    });
 }
 
 function deleteUser(responseData) {
     const deleteBtns = document.querySelectorAll(".user-delete-button")
-   
+
     deleteBtns.forEach((deleteBtn, index) => {
         deleteBtn.onclick = () => {
-            if(confirm("정말로 탈퇴 시키겠습니까?")) {
+            if (confirm("정말로 탈퇴 시키겠습니까?")) {
                 deleteUserRequest(responseData[index].id);
             }
         }
@@ -77,7 +77,7 @@ function deleteUserRequest(id) {
         async: false,
         type: "delete",
         url: "/api/admin/userlist/delete/" + id,
-        dataType:"json",
+        dataType: "json",
         success: (response) => {
             alert("회원 삭제 완료.")
             location.reload();

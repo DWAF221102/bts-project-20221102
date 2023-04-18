@@ -1,9 +1,6 @@
 package com.btsproject.btsproject20221102.service.board;
 
-import com.btsproject.btsproject20221102.domain.Qna;
-import com.btsproject.btsproject20221102.domain.QnaArticle;
-import com.btsproject.btsproject20221102.domain.QnaImgFile;
-import com.btsproject.btsproject20221102.domain.QnaUpdateArticle;
+import com.btsproject.btsproject20221102.domain.*;
 import com.btsproject.btsproject20221102.dto.board.*;
 import com.btsproject.btsproject20221102.exception.CustomInternalServerErrorException;
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
@@ -116,6 +113,16 @@ public class QnaCreateServiceImpl implements QnaCreateService{
         System.out.println(qnaArticle);
         return qnaArticle.toQnaCreateRespDto();
 
+    }
+
+    @Override
+    public QnaAnswerInfoRespDto getAnswerInfo(int id) throws Exception {
+        QnaAnswerInfo qnaAnswerInfo = qnaRepository.getAnswerInfo(id);
+        log.info("ID: " + qnaAnswerInfo.getId());
+        log.info("답변자 닉네임: " + qnaAnswerInfo.getNickname());
+        log.info("답변자 사진: " + qnaAnswerInfo.getUser_img());
+        System.out.println(qnaAnswerInfo);
+        return qnaAnswerInfo.toAnswerInfo();
     }
 
     @Override

@@ -10,6 +10,7 @@ public interface QnaCreateService {
 
 
     public QnaCreateRespDto getQnaArticle(int id) throws Exception;
+    public QnaAnswerInfoRespDto getAnswerInfo(int id) throws Exception;
     
 
     public boolean deleteQna(int id) throws Exception;

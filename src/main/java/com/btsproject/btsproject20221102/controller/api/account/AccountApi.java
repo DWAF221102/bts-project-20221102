@@ -127,7 +127,7 @@ public class AccountApi {
     @GetMapping("/myactivity/{userid}")
     public ResponseEntity<?> loadRecentActivity(@PathVariable int userid) throws Exception {
 
-        return ResponseEntity.ok(new CMRespDto<>(1, "최근활동 게시물 불러오기 완료",accountService.loadRecentBoardList(userid)));
+        return ResponseEntity.ok(new CMRespDto<>(1, "최근활동 게시물 불러오기 완료", accountService.loadRecentBoardList(userid)));
     }
     @GetMapping("/myactivity/article/{userid}")
     public ResponseEntity<?> loadMyactivityBoard(@PathVariable int userid) throws Exception {
