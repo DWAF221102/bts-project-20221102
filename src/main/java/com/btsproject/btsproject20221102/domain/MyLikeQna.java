@@ -1,6 +1,5 @@
 package com.btsproject.btsproject20221102.domain;
 
-import com.btsproject.btsproject20221102.dto.account.MyLikeBoardRespDto;
 import com.btsproject.btsproject20221102.dto.account.MyLikeQnaRespDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

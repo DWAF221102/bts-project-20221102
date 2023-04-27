@@ -40,7 +40,7 @@ spring:
               - nickname
             clientName: Naver
             authorizationGrantType: authorization_code
-            redirectUri: http://43.200.39.22:8000/login/oauth2/code/naver
+            redirectUri: http://43.200.160.232:8000/login/oauth2/code/naver
           kakao:
             clientId: b83d0f41c645f00cbb4cd4b5224865b8
             clientSecret: FFuEVrMC53mrbRPHoLGwMSjOa0ki0tTj
@@ -50,7 +50,7 @@ spring:
             clientName: Kakao
             clientAuthenticationMethod: POST
             authorizationGrantType: authorization_code
-            redirectUri: http://43.200.39.22:8000/login/oauth2/code/kakao
+            redirectUri: http://43.200.160.232:8000/login/oauth2/code/kakao
 
         provider:
           naver:
@@ -69,5 +69,6 @@ mybatis:
     - /mappers/*.xml
 
 file:
-  path: /home/ubuntu/springboot/project/upload/   # 탄력적 ip 우분투 파일 경로
- # path: C:/project/bts-project-20221102/upload/  # localhost 파일 경로
+#  path: /home/ubuntu/springboot/project/upload/
+#  path: /Users/choiyeonho/bts-project-20221102/upload/
+  path: C:/project/bts-project-20221102/upload/

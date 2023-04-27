@@ -52,7 +52,10 @@ main {
     font-weight: 500;
 }
 
-.myprofile-info-input {
+.myprofile-info-input,
+.myprofile-info-input[type=text],
+.myprofile-info-input[type=password] {
+    all: unset;
     margin-top: 10px;
     margin-bottom: 10px;
     border: 1px solid rgb(209 213 219);
@@ -67,7 +70,7 @@ main {
 
 .myprofile-info-input:focus {
     outline: none;
-    border-color: #000000;
+    border-color: #ff8000;
     border-width: thin;
 }
 
@@ -138,7 +141,7 @@ main {
     cursor: pointer;
     color: white;
     box-shadow: 1px 1px 0 rgba(117, 116, 116, 0.5);
-    background-color: rgb(0 144 249);
+    background-color: #FC5F07;
 }
 
 
@@ -205,7 +208,7 @@ button:hover {
 .account-delete-info a {
     text-decoration: underline;
     font-weight: 600;
-    color: rgb(0 144 249);
+    color: #FC5F07;
     cursor: pointer;
 }
 

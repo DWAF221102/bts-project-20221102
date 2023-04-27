@@ -25,14 +25,14 @@ public class MailServiceImpl implements MailService{
 
     @Override
     public void sendSignupAuthenticationEmail(SendMailDto sendMailDto) throws Exception {
-        sendMailDto.setSubject("[BTS] 회원가입 인증메일입니다.");
+        sendMailDto.setSubject("[DWAF] 회원가입 인증메일입니다.");
         sendMailDto.setContent(createCertifiedContent(sendMailDto.getEmail()));
         sendEmail(sendMailDto);
     }
 
     @Override
     public void sendAccountPasswordEmail(SendMailDto sendMailDto) throws Exception {
-        sendMailDto.setSubject("[BTS] 비밀번호 찾기메일입니다.");
+        sendMailDto.setSubject("[DWAF] 비밀번호 찾기메일입니다.");
         sendMailDto.setContent(passwordSearchContent(sendMailDto.getEmail()));
         sendEmail(sendMailDto);
     }
@@ -65,13 +65,13 @@ public class MailServiceImpl implements MailService{
         accountRepository.saveKey(key);
 
         String content = "<div>\n" +
-                "        <header style=\"width: 100%; height: 80px; background-color: aqua; font-size: 30px; display: flex; align-items: center;\">\n" +
-                "            <h3 style=\"margin-left: 10px;\">BTS홈페이지 인증메일입니다.</h3>\n" +
+                "        <header style=\"width: 100%; height: 80px; font-size: 30px; display: flex; align-items: center;\">\n" +
+                "            <h3 style=\"margin-left: 10px;\">DWAF홈페이지 인증메일입니다.</h3>\n" +
                 "        </header>\n" +
                 "        <main>\n" +
                 "            <div style=\"font-size: 16px; margin-top: 30px;\">\n" +
                 "                <p>회원가입을 축하드립니다.</p>\n" +
-                "                <p>메일 인증을 위하여 밑에 버튼을 클릭해서 홈페이지로 돌아가 다시 로그인해주세요.</p>\n" +
+                "                <p>메일 인증을 위하여 아래의 버튼을 클릭해서 홈페이지로 돌아가 다시 로그인해주세요.</p>\n" +
                 "            </div>\n" +
                 "            <div>\n" +
                 "                <a href=\"http://localhost:8000/authentication/certified?id=" + user.getId() + "&accessKey=" + token + "\"><button style=\"width: 200px; height:60px; margin-top: 30px; cursor: pointer; font-size: 16px; font-weight: 500; background-color: #dbdbdb; border: none;\">인증완료</button></a>\n" +
@@ -99,13 +99,13 @@ public class MailServiceImpl implements MailService{
         accountRepository.saveKey(key);
 
         String content = "<div>\n" +
-                "        <header style=\"width: 100%; height: 80px; background-color: aqua; font-size: 30px; display: flex; align-items: center;\">\n" +
-                "            <h3 style=\"margin-left: 10px;\">BTS홈페이지 인증메일입니다.</h3>\n" +
+                "        <header style=\"width: 100%; height: 80px; font-size: 30px; display: flex; align-items: center;\">\n" +
+                "            <h3 style=\"margin-left: 10px;\">DWAF홈페이지 인증메일입니다.</h3>\n" +
                 "        </header>\n" +
                 "        <main>\n" +
                 "            <div style=\"font-size: 16px; margin-top: 30px;\">\n" +
                 "                <p>비밀번호 찾기 메일입니다.</p>\n" +
-                "                <p>버튼을 클릭하여 비밀번호 변경 페이지로 들어가주세요.</p>\n" +
+                "                <p>아래의 버튼을 클릭하여 비밀번호 변경 페이지로 들어가주세요.</p>\n" +
                 "            </div>\n" +
                 "            <div>\n" +
                 "                <a href=\"http://localhost:8000/authentication/password/modification?id=" + user.getId() + "&accessKey=" + token + "\"><button style=\"width: 200px; height:60px; margin-top: 30px; cursor: pointer; font-size: 16px; font-weight: 500; background-color: #dbdbdb; border: none;\">비밀번호 변경</button></a>\n" +

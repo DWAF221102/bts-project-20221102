@@ -1,10 +1,7 @@
 package com.btsproject.btsproject20221102.service.board;
 
-import com.btsproject.btsproject20221102.domain.Qna;
-import com.btsproject.btsproject20221102.domain.QnaArticle;
-import com.btsproject.btsproject20221102.domain.QnaImgFile;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
+import com.btsproject.btsproject20221102.domain.*;
+import com.btsproject.btsproject20221102.dto.board.*;
 import com.btsproject.btsproject20221102.exception.CustomInternalServerErrorException;
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
 import lombok.RequiredArgsConstructor;
@@ -119,6 +116,16 @@ public class QnaCreateServiceImpl implements QnaCreateService{
     }
 
     @Override
+    public QnaAnswerInfoRespDto getAnswerInfo(int id) throws Exception {
+        QnaAnswerInfo qnaAnswerInfo = qnaRepository.getAnswerInfo(id);
+        log.info("ID: " + qnaAnswerInfo.getId());
+        log.info("답변자 닉네임: " + qnaAnswerInfo.getNickname());
+        log.info("답변자 사진: " + qnaAnswerInfo.getUser_img());
+        System.out.println(qnaAnswerInfo);
+        return qnaAnswerInfo.toAnswerInfo();
+    }
+
+    @Override
     public boolean deleteQna(int id) throws Exception {
         List<QnaImgFile> qnaImgFiles = qnaRepository.getQnaImgList(id);
         if (qnaRepository.deleteQna(id) > 0) {
@@ -136,4 +143,42 @@ public class QnaCreateServiceImpl implements QnaCreateService{
         return false;
     }
 
+    @Override
+    public QnaUpdateRespDto loadQnaUpdate(int id) throws Exception {
+        QnaUpdateArticle qnaUpdateArticle = qnaRepository.updateInfoQna(id);
+        System.out.println(qnaUpdateArticle);
+        System.out.println("동작");
+        return qnaUpdateArticle.toQnaUpdateRespDto();
+    }
+
+    @Override
+    public boolean qnaUpdateArticle(QnaUpdateReqDto qnaUpdateReqDto) throws Exception {
+        int resultCount = 0;
+
+        List<MultipartFile> files = qnaUpdateReqDto.getFiles();
+        List<QnaImgFile> qnaImgFiles = null;
+
+        Qna qna = qnaUpdateReqDto.toQnaEntity();
+        resultCount = qnaRepository.saveQna(qna);
+
+        if(files != null) {
+            int boardId = qna.getId();
+            qnaImgFiles = getQnaImgFiles(files, boardId);
+            resultCount = qnaRepository.saveImgFiles(qnaImgFiles);
+        }
+
+        if(resultCount == 0) {
+            throw new CustomInternalServerErrorException("상품 등록 실패");
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean updateDeleteArticle(QnaDeleteReqDto qnaDeleteReqDto) throws Exception {
+        int id = qnaDeleteReqDto.getId();
+        qnaRepository.updateDelete(id);
+
+        return false;
+    }
 }

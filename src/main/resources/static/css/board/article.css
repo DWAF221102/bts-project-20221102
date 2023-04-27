@@ -54,7 +54,7 @@ section {
 }
 
 .article-category :nth-child(3) {
-    color: rgb(0, 144, 249);
+    color: #FC5F07;
 }
 
 .article-category a:hover {
@@ -127,7 +127,7 @@ section {
 }
 
 .user-star-button:hover {
-    color: rgb(0, 144, 249);
+    color: #FC5F07;
 }
 
 .article-title {
@@ -162,8 +162,8 @@ section {
 
     font-size: 12px;
     font-weight: 500;
-    color: rgb(0, 144, 249);
-    background-color: rgb(159, 217, 255);
+    color: #FC5F07;
+    background-color: #ffcfb4;
 }
 
 .article-categories span:nth-child(2){
@@ -258,7 +258,7 @@ section {
 .write-button button:nth-child(2) {
     border: none;
     color: white;
-    background-color: rgb(0, 144, 249);
+    background-color: #FC5F07;
 }
 
 .comment {
@@ -307,7 +307,7 @@ section {
 
     margin-right: 16px;
 
-    color: rgb(0, 144, 249);
+    color: #FC5F07;
 }
 
 .recomment-write {
@@ -348,7 +348,7 @@ section {
 .recomment-write-button button:nth-child(1) {
     border: none;
     color: white;
-    background-color: rgb(0, 144, 249);
+    background-color: #FC5F07;
 }
 
 .recomment-content {
@@ -357,9 +357,17 @@ section {
 }
 
 .blue-button {
-    color: rgb(0, 144, 249);
+    color: #FC5F07;
 }
 
 .none {
     display: none;
+}
+
+.comment-delete-button, .recomment-delete-button {
+    width: 40px;
+    height: 25px;
+
+    color: white;
+    background-color: rgb(255, 94, 94);
 }

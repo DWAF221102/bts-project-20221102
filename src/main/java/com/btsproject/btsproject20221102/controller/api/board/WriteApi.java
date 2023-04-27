@@ -23,7 +23,6 @@ public class WriteApi {
 
     @PostMapping("/write")
     public ResponseEntity<?> writeApi(WriteReqDto writeReqDto) throws Exception {
-
 //        String title = writeReqDto.getTitle();
 //        for(int i = 0; i < 60; i++) {
 //            writeReqDto.setTitle(title + "-" + (i + 1));

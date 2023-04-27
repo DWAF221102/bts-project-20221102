@@ -1,45 +1,54 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <script src="https://kit.fontawesome.com/6bc6b6ea66.js" crossorigin="anonymous"></script>
-</head>
-
 <body>
-    <header th:fragment="header">
-        <nav class="header-container">
-            <div class="header-flex">
-                <div class="left-nav">
-                    <div class="logo">
-                        <a href="/index"><img src="/static/images/logo.png"></a>
-                    </div>
-                    <div class="nav">
-                        <ul>
-                            <li><a href="/question">Q&A</a></li>
-                            <li><a href="/knowledge">지식</a></li>
-                            <li><a href="/community">커뮤니티</a></li>
-                            <li><a href="/notice">공지사항</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="right-nav">
-                    <div class="search-box">
-                        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <input type="text" class="search-input" placeholder="검색">
-                    </div>
-                    <div class="account-area">
-                        <div class="account">
-                            <a href="/login" class="login-button">로그인</a>
-                        </div>
-                        <div class="account">
-                            <a href="/signup" class="signup-button">회원가입</a>
-                        </div>
-                    </div>
-                </div>
+    <div id="header" th:fragment="header">
+        <div class="head">
+            <a href="/" class="logo"><img src="/static/images/logo.svg"></a>
+            <div id="dwgnb">
+              <ul>
+                <li><a href="/question">Q&A</a> </li>
+                <li><a href="/knowledge">지식</a></li>
+                <li><a href="/community">커뮤니티</a></li>
+                <li><a href="/notice">공지사항</a></li>
+              </ul>
+              <span class="bg"></span>
+  
+              <div class="top_search">
+                <input type="text" class="search-input" placeholder="검색"/>
+                <button type="button" class="search-button">Search</button>
+              </div>
+              <!-- 로그인 전 노출 -->
+              <div class="login_area"><!-- style:display none 삭제 -->
+                <a href="/login">로그인</a>
+                <a href="/signup" class="join">회원가입</a>
+              </div>
+              <!-- 로그인 후 노출 -->
+              <div class="top_info top_info_invisible">
+                
+              </div>
+              <div class="logout">
+               <button type="button" >로그아웃</button>
+              </div>
             </div>
-        </nav>
-        <script src="/static/js/fragment/header.js"></script>
-    </header>
-</body>
+        </div>
+        <!-- //head -->
+        <div class="btn_nav btn_bar">
+          <button type="button" onclick="toggleAllMenu()"><span>전체메뉴 열기</span></button>
+        </div>
+        <div class="nav_close">
+          <button type="button" onclick="toggleAllMenu()"><span>전체메뉴 닫기</span></button>
+        </div>
+        <div class="mask"></div>
 
+        <script type="text/javascript">
+          function toggleAllMenu() {
+              $("#header").toggleClass("open");
+          }
+        </script>
+        <script src="/static/js/fragment/haeder.js"></script>
+      </div>
+      
+</body>
+    
 </html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragment/head :: head}"></head>
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/qna/qnaCreate.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <title>qnaUpdate</title>
+</head>
+<body>
+    <div class="container">
+        <header th:replace="~{fragment/header :: header}"></header>
+        <main>
+
+            <section>
+                <div class="write-text">
+                    <h3>지식 궁금증 해결하기</h3>
+                    <p>
+                        <strong>작성자</strong>님 지식공유 플렛폼 bts에서 궁금증을 해결하세요
+                    </p>
+                </div>
+                    <div class="write-menu">
+                        <div class="write-category">
+                            <label for="categoryCode">카테고리</label>
+                            <select type="text" name="categoryCode" id="categoryCode" class="create-input" onchange="setSubcategory()">
+                                <option value="none" selected>category를 선택해주세요</option>
+                                <option value="1">프로그래밍</option>
+                                <option value="2">건축</option>
+                                <option value="3">영상</option>
+                            </select>
+                        </div>
+                        <div class="write-subcategory">
+                            <label for="subcategoryCode">서브카테고리</label>
+                            <select type="text" id="subcategoryCode" name="subcategoryCode" class="create-input">
+                                <option value="none" selected>category를 먼저 선택해주세요</option>
+                            </select> 
+                        </div>
+                        <div class="write-title">
+                            <label for="title">제목</label>
+                            <input type="text" id="title" name="title" class="create-input" placeholder="제목을 입력해주세요">
+                        </div>
+                    </div>
+                    <div class="write-textarea">
+                        <label for="textarea">문제설명</label>
+                        <textarea class="text-input create-input" placeholder="내용을 입력해주세요."></textarea>
+                    </div>
+                    <div class="write-textarea want-textarea">
+                        <label for="textarea">희망결과</label>
+                        <textarea class="text-input create-input" placeholder="내용을 입력해주세요."></textarea>
+                    </div>
+                    <form enctype="multipart/form-data">
+                        <div class="qna-image-box">
+                            <div class="qna-image">
+                                <div class="qna-image-title">오류이미지</div>
+                                <button type= button class="qna-image-button">추가</button>
+                                <input type="file" class="file-input" name="file" multiple>
+                            </div>
+
+                        </div>
+                    </form>
+                    <div class="product-images">
+                        <!-- 이미지 넣을 공간 -->
+                        
+                    </div>
+
+                    <div class="qna-money">
+                        <div class="money-title">
+                            질문금액
+                        </div>
+                        <div class="money-input">
+                            <p><input type="number" placeholder="질문금액을 입력하세요." step="500" min="0" class="money-inputs create-input"></p>
+                            <!-- 금액을 100단위로 떨어지게 하는거 함수로 나중에 표현 -->
+                            <p class="money-won">P</p>
+                        </div>
+
+                    </div>
+                <div class="write-buttons">
+                    <button type="button" class="submit-button">수정</button>
+                    <button>취소</button>
+                    <button type="button" class="delete-button">삭제</button>
+                </div>
+            </section>
+
+            
+        </main>
+        <footer th:replace="~{fragment/footer :: footer}"></footer>
+    </div>
+    <script src="/static/js/board/qnaUpdate.js"></script>
+</body>
+</html>

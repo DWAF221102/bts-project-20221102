@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 public class QnaCreateRespDto {
     private int id;
+    private int userId;
     private int menuId;
     private String categoryName;
     private String subcategoryName;
@@ -20,6 +21,8 @@ public class QnaCreateRespDto {
     private String title;
     private String info;
     private String wantInfo;
+    private String causerAnalysis;
+    private String solutionPlan;
     private int price;
     private String userImg;
     private int likeCount;
@@ -30,8 +33,8 @@ public class QnaCreateRespDto {
     private List<QnaImgFile> qnaImgFiles;
 
 
-    private LocalDateTime create_date;
-    private LocalDateTime update_date;
+    private String createDate;
+    private LocalDateTime updateDate;
 
 
 }

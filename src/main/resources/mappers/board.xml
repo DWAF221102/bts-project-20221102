@@ -248,7 +248,8 @@
         LEFT OUTER JOIN user_mst um3 ON (um3.id = rm.user_id)
 
     WHERE
-        bm.id = #{id};
+        bm.id = #{id}
+    ORDER BY cm.create_date asc
     </select>
 
 
@@ -308,7 +309,22 @@
             board_id = #{boardId}
     </select>
 
+    <delete id="commentDelete" parameterType="Integer">
+        DELETE
+        FROM
+            comment_mst
+        WHERE
+            id = #{id}
+    </delete>
 
+    <delete id="recommentDelete" parameterType="Integer">
+        DELETE
+        from
+            recomment_mst
+        WHERE
+            id = #{id};
+
+    </delete>
 
 
 <!--    update  -->
@@ -338,6 +354,15 @@
         where
             id = #{id}
     </update>
+
+    <delete id="deleteImg" parameterType="String">
+        delete
+        from
+            board_img
+        where
+            temp_name = #{img}
+
+    </delete>
 
     <delete id="deleteArticle" parameterType="Integer">
         delete

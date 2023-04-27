@@ -1,67 +1,83 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <link rel="stylesheet" href="/static/css/fragment/header.css">
-        <script src="https://kit.fontawesome.com/6bc6b6ea66.js" crossorigin="anonymous"></script>
-        
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="/static/css/fragment/footer.css">
-        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-        <script src="/static/js/account/principal.js"></script>
-        
-        <link rel="stylesheet" href="/static/css/summernote/summernote-lite.css">
-        <script src="/static/js/summernote/summernote-lite.js"></script>
-        <script src="/static/js/summernote/lang/summernote-ko-KR.js"></script>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        
-        
-        <link rel="stylesheet" href="/static/css/reset.css">
-        <link rel="stylesheet" href="/static/css/board/write.css">
+<head>
+    <meta http-equiv="Content-Type" content="text/html">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+	<meta name="keywords" content="컨텐츠 키워드 입력">
+	<meta name="description" content="컨텐츠 설명 입력">
+	<meta property="og:title" content="DWAF" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="주소입력" />
+	<meta property="og:image" content="/static/images/opengraph.png" />
+	<meta property="og:description" content="컨텐츠 설명 입력" />
+	<link href="/static/css/index/common.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="/static/js/account/principal.js"></script>
+   
+    <link rel="stylesheet" href="/static/css/summernote/summernote-lite.css">
+    <script src="/static/js/summernote/summernote-lite.js"></script>
+    <script src="/static/js/summernote/lang/summernote-ko-KR.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
-        <title>커뮤니티글 작성하기</title>
-    </head>
-    <body>
-        <div class="container">
-            <header>
-                <nav class="header-container">
-                    <div class="header-flex">
-                        <div class="left-nav">
-                            <div class="logo">
-                                <a href="/index"><img src="/static/images/logo.png"></a>
-                            </div>
-                            <div class="nav">
-                                <ul>
-                                    <li><a href="/question">Q&A</a></li>
-                                    <li><a href="/knowledge">지식</a></li>
-                                    <li><a href="/community">커뮤니티</a></li>
-                                    <li><a href="/notice">공지사항</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="right-nav">
-                            <div class="search-box">
-                                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                                <input type="text" placeholder="검색">
-                            </div>
-                            <div class="account-area">
-                                <div class="account">
-                                    <a href="/login" class="login-button">로그인</a>
-                                </div>
-                                <div class="account">
-                                    <a href="/signup" class="signup-button">회원가입</a>
-                                </div>
-                            </div>
-                        </div>
+    
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/board/write.css">
+
+    <title>커뮤니티글 작성하기</title>
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+            <div class="head">
+                <a href="/" class="logo"><img src="/static/images/logo.svg"></a>
+                <div id="dwgnb">
+                    <ul>
+                    <li><a href="/question">Q&A</a> </li>
+                    <li><a href="/knowledge">지식</a></li>
+                    <li><a href="/community">커뮤니티</a></li>
+                    <li><a href="/notice">공지사항</a></li>
+                    </ul>
+                    <span class="bg"></span>
+        
+                    <div class="top_search">
+                    <input type="text" class="search-input" placeholder="검색"/>
+                    <button type="button" class="search-button">Search</button>
                     </div>
-                </nav>
-                <script src="/static/js/account/header.js"></script>
-            </header>
+                    <!-- 로그인 전 노출 -->
+                    <div class="login_area"><!-- style:display none 삭제 -->
+                    <a href="/login">로그인</a>
+                    <a href="/signup" class="join">회원가입</a>
+                    </div>
+                    <!-- 로그인 후 노출 -->
+                    <div class="top_info top_info_invisible">
+                    
+                    </div>
+                    <div class="logout">
+                    <button type="button" >로그아웃</button>
+                    </div>
+                </div>
+            </div>
+            <!-- //head -->
+            <div class="btn_nav btn_bar">
+                <button type="button" onclick="toggleAllMenu()"><span>전체메뉴 열기</span></button>
+            </div>
+            <div class="nav_close">
+                <button type="button" onclick="toggleAllMenu()"><span>전체메뉴 닫기</span></button>
+            </div>
+            <div class="mask"></div>
+    
+            <script type="text/javascript">
+                function toggleAllMenu() {
+                    $("#header").toggleClass("open");
+                }
+            </script>
+            <script src="/static/js/fragment/haeder.js"></script>
+        </div>
         <main>
             <section>
                 <div class="write-text">

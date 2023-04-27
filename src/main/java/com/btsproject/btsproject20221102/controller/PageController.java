@@ -2,9 +2,12 @@ package com.btsproject.btsproject20221102.controller;
 
 
 import com.btsproject.btsproject20221102.domain.User;
+import com.btsproject.btsproject20221102.dto.account.PointDto;
 import com.btsproject.btsproject20221102.repository.account.AccountRepository;
+import com.btsproject.btsproject20221102.service.account.AccountService;
 import com.btsproject.btsproject20221102.service.auth.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -13,16 +16,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class PageController {
 
-
+    AccountService accountService;
 
     // 메인페이지
     @GetMapping({"/", "/index"})
     public String index() {
         return "index";
+    }
+
+    @GetMapping("/oldindex")
+    public String oldIndex() {
+        return "oldIndex";
     }
 
     // 통합 검색페이지
@@ -88,6 +97,10 @@ public class PageController {
         return "account/detailsOfActivityScrap";
     }
 
+    // 포인트 충전
+    @GetMapping("/point/{userId}")
+    public String pointCharge(@PathVariable int userId){return "account/point/point";}
+
 
     // QNA
     @GetMapping("/question")
@@ -105,6 +118,10 @@ public class PageController {
 
         return "qna/qnaBoardArticle";
     }
+
+    // QNAUpdate
+    @GetMapping("/qna/update/{id}")
+    public String qnaUpdate(@PathVariable int id) { return "qna/qnaUpdate"; }
 
 
     // 나머지 카테고리(지식, 커뮤니티, 공지)

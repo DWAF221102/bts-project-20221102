@@ -63,9 +63,6 @@ public class AccountApi {
     // 회원 정보 수정
     @PutMapping("/myprofile")
     public ResponseEntity<?> modifyProfile( @RequestBody ModifyReqDto modifyReqDto, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
-
-//        accountService.checkNickname(modifyReqDto.getNickname(), principalDetails);
-//        accountService.checkPhone(modifyReqDto.getPhone(), principalDetails);
         accountService.modifyProfile(principalDetails, modifyReqDto);
         return ResponseEntity.ok(new CMRespDto<>(1,"success", modifyReqDto));
     }
@@ -76,7 +73,6 @@ public class AccountApi {
                                                 MultipartFile file) throws Exception {  // MultipartFile 변수명은 name값과 같게해야함.
 
         accountService.modifyProfileImage(principalDetails, file);
-        log.info("Controller");
         return ResponseEntity.ok(new CMRespDto<>(1, "success", true));
     }
 
@@ -111,10 +107,27 @@ public class AccountApi {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    // 마이페이지 포인트
+    @GetMapping("/myactivity/point/{userId}")
+    public ResponseEntity<?> loadPoint(@PathVariable int userId) throws Exception {
+
+        return ResponseEntity.ok(new CMRespDto<>(1,"포인트 불러오기 완료", accountService.point(userId)));
+    }
+
+    // 포인트 충전
+    @PostMapping("/point/charge")
+    public ResponseEntity<?> chargePoint(PointChargeDto pointChargeDto) throws Exception {
+        // flag 어떻게 할건지??
+        accountService.chargePoint(pointChargeDto);
+        return ResponseEntity.ok(new CMRespDto<>(1, "포인트 충전 완료", pointChargeDto));
+    }
+
+
+    // 최근 게시물
     @GetMapping("/myactivity/{userid}")
     public ResponseEntity<?> loadRecentActivity(@PathVariable int userid) throws Exception {
 
-        return ResponseEntity.ok(new CMRespDto<>(1, "최근활동 게시물 불러오기 완료",accountService.loadRecentBoardList(userid)));
+        return ResponseEntity.ok(new CMRespDto<>(1, "최근활동 게시물 불러오기 완료", accountService.loadRecentBoardList(userid)));
     }
     @GetMapping("/myactivity/article/{userid}")
     public ResponseEntity<?> loadMyactivityBoard(@PathVariable int userid) throws Exception {

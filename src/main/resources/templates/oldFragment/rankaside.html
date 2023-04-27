@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <aside th:fragment="rankaside" class="aside-container" >
+        <div>
+            <span class="aside-title">Top Rank User</span>
+            <div class="aside-list">
+                <ul class="aside-rank-ul">
+                    <li>
+                        <div class="mini-profile">
+                            <img src="/static/images/profileImg.png" style="background-color: antiquewhite;">
+                            <a href="#">userNick1</a>
+                        </div>
+                        <div class="score">
+                            <div><i class="fa-solid fa-star"></i></div>
+                            <span>4.8</span>
+                        </div>
+                    </li>      
+                </ul>
+            </div>
+        </div>
+        <script src="/static/js/oldFragment/rankaside.js"></script>
+    </aside>
+</body>
+</html>

@@ -1,11 +1,9 @@
 package com.btsproject.btsproject20221102.service.board;
 
-import com.btsproject.btsproject20221102.domain.BoardImgFile;
-import com.btsproject.btsproject20221102.domain.QnaImgFile;
-import com.btsproject.btsproject20221102.dto.board.BoardRespDto;
-import com.btsproject.btsproject20221102.dto.board.QnaBoardRespDto;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateReqDto;
-import com.btsproject.btsproject20221102.dto.board.QnaCreateRespDto;
+import com.btsproject.btsproject20221102.domain.*;
+import com.btsproject.btsproject20221102.dto.account.MyprofileBoardRespDto;
+import com.btsproject.btsproject20221102.dto.board.*;
+import com.btsproject.btsproject20221102.exception.CustomValidationException;
 import com.btsproject.btsproject20221102.repository.qna.QnaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -81,11 +79,8 @@ public class QnaBoardServiceImpl implements QnaBoardService{
 //        map.put("menu_id", menuId);
 
         map.put("category_id", categoryId);
-        log.info("category .. {}",map.get("category_id"));
         map.put("subcategory_id", Integer.parseInt(subcategoryId));
-        log.info("subCateogy .. {}",map.get("subcategory_id"));
         map.put("status_id", Integer.parseInt(statusId));
-        log.info("statusId .. {}",map.get("status_id"));
         map.put("show_list", showList);
         map.put("searchValue", searchValue);
 
@@ -94,10 +89,84 @@ public class QnaBoardServiceImpl implements QnaBoardService{
 
 
         qnaRepository.qnaLoadBoard(map).forEach(list -> {
-//            log.info("list >> {}", list);
             result.add(list.toQnaBoardRespDto());
         });
 
         return result;
+    }
+
+    // Q&A 질문자 모달
+    @Override
+    public boolean questionerModal(QnaQuestionerModalReqDto qnaQuestionerModalReqDto) throws Exception {
+        qnaRepository.questionerModal(qnaQuestionerModalReqDto.toQuestionerModal());
+        log.info("게시판 ID: " + qnaQuestionerModalReqDto.getBoardId());
+        log.info("점수: " + qnaQuestionerModalReqDto.getScore());
+        return true;
+    }
+
+    // Q&A 답변자 모달
+    @Override
+    public boolean answererModal(QnaAnswerModalReqDto qnaAnswerModalReqDto) throws Exception {
+        qnaRepository.answererModal(qnaAnswerModalReqDto.toAnswererModal());
+        log.info("서비스 ID: " + qnaAnswerModalReqDto.getId());
+        log.info("서비스 원인 분석: " + qnaAnswerModalReqDto.getCauserAnalysis());
+        log.info("서비스 해결 방안: " + qnaAnswerModalReqDto.getSolutionPlan());
+        return true;
+    }
+
+
+    // QnA 답변자 저장
+    @Override
+    public boolean requestUserSave(RequestUserReqDto requestUserReqDto) throws Exception {
+        log.info("request >> " + requestUserReqDto.toRequestUserEntity());
+        log.info("request >> " + requestUserReqDto.getUserId());
+        log.info("request >> " + requestUserReqDto.getQnaBoardId());
+        return qnaRepository.requestUserSave(requestUserReqDto.toRequestUserEntity()) != 0;
+    }
+
+    @Override
+    public boolean selectRequestUser(int id, int userId) throws Exception {
+        int flag = 0;
+        flag = qnaRepository.statusUpdate(id);
+        flag = qnaRepository.flagUpdate(id, userId);
+
+        return flag != 0;
+    }
+
+    @Override
+    public RequestUserListRespDto getSelectedUser(int id) throws Exception {
+
+
+        return qnaRepository.getAnswerUser(id).requestUserListResp();
+    }
+
+    @Override
+    public boolean checkRequestUser(RequestUserReqDto requestUserReqDto) throws Exception {
+
+        RequestUser user = qnaRepository.findRequestUser(requestUserReqDto.toRequestUserEntity());
+
+        if(user != null) {
+            Map<String, String> errorMap = new HashMap<String, String>();
+            errorMap.put("requestUser", "이미 답변자 요청을 하셨습니다.");
+            throw new CustomValidationException("CheckRequestUser Error", errorMap);
+        }
+        return true;
+    }
+
+    @Override
+    public List<RequestUserListRespDto> getRequestUserList(int qnaBoardId) throws Exception {
+
+        log.info("id >> " + qnaBoardId);
+
+        List<RequestUserListRespDto> list = new ArrayList<RequestUserListRespDto>();
+        qnaRepository.loadRequestUser(qnaBoardId).forEach(user -> {
+            list.add(user.requestUserListResp());
+        });
+        return list;
+    }
+
+    @Override
+    public boolean updateStatus(QnaStatusUpdateReqDto qnaStatusUpdateReqDto) throws Exception {
+        return qnaRepository.updateQnaStatus(qnaStatusUpdateReqDto.toStatusUpdate()) != 0;
     }
 }

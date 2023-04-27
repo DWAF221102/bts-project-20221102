@@ -6,109 +6,360 @@
 
 .main-container {
     display: flex;
+    width: 100%;
+    height: 100%;
 }
 
 /* section css */
 section {
     width: 100%;
-    background-color: #dbdbdb;
+    height: 100%;
 }
 
 .section-container {
     display: flex;
     flex-direction: column;
-
-    margin-top: 20px;
-    width: 1600px;
+    width: 100%;
+    height: 980px;
     padding: 30px;
 }
 
+/* 검색 */
 .section-title {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid black;
     width: 100%;
-    padding: 22.5px 0px;
-
-    border-bottom: 1px solid darkgray;
+    height: 10%;
 }
 
-/* .userlist-search {
-    display: flex;
-    align-items: center;
-
-    margin: 100px auto;
-    width: 1000px;
-
-    border: 1px solid #dbdbdb;
-    border-radius: 5px;
-    background-color: white;
-} */
-
-
-
-.userlist-search-button {
-    display: flex;
-    align-items: center;
-
-    margin: 100px auto;
-    width: 700px;
-
-    border: 1px solid #dbdbdb;
-    border-radius: 5px;
-    background-color: white;
+.section-title h2 {
+    font-size: 28px;
 }
 
-.userlist-search-button input {
-    width: 670px;
-    height: 30px;
-    padding-left: 10px;
+.search-area {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+}
 
-    border: none;
-    border-radius: 5px 0px 0px 5px;
+.search-input {
+    width: 50%;
+    height: 100px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
     outline: none;
 
 }
 
-.userlist-search-button button {
-    padding: 0px 4px;
+.search-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
     border: none;
-    background-color: white;
-
     cursor: pointer;
 }
 
-.userlist-search-button i {
-    width: 20px;
-    height: 20px;
-    /* background-color: black; */
-}
-
-.list-table {
-    height: 480px;
-
-    margin: 0px auto;
-    padding: 10px;
-
-    border: 1px solid white;
-    border-radius: 5px;
-    overflow-y: scroll;
-
-    background-color: white;
-}
-
-.user-list {
-    width: 1200px;
-    border-collapse: collapse;
-}
-
-.list-head {
-    text-align: left;
-}
-
-.list-body tr {
+.search-button i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
     height: 30px;
 }
 
-.list-body td {
+
+/* 테이블 */
+.list-table {
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    background-color: #fefefe;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    border-collapse: collapse;
+}
+
+/* thead */
+.user-list,
+.qna-list,
+.board-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #ababab;
+    width: 100%;
+    height: 50px;
+
+    background-color: #c2c2c2e0;
+}
+
+.user-list tr,
+.qna-list tr,
+.board-list tr {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+}
+
+.user-list th,
+.qna-list th,
+.board-list th {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+/* 유저 thead */
+.user-list th:nth-child(1) {
+    width: 30%;
+    height: 100%;
+}
+
+.user-list th:nth-child(2) {
+    width: 10%;
+    height: 100%;
+}
+
+.user-list th:nth-child(3) {
+    width: 15%;
+    height: 100%;
+}
+
+.user-list th:nth-child(4) {
+    width: 25%;
+    height: 100%;
+}
+
+.user-list th:nth-child(5) {
+    width: 10%;
+    height: 100%;
+}
+
+.user-list th:nth-child(6) {
+    width: 10%;
+    height: 100%;
+}
+
+/* QnA thead */
+.qna-list th:nth-child(1) {
+    width: 20%;
+    height: 100%;
+}
+
+
+.qna-list th:nth-child(2) {
+    width: 12%;
+    height: 100%;
+}
+
+
+.qna-list th:nth-child(3) {
+    width: 12%;
+    height: 100%;
+}
+
+
+.qna-list th:nth-child(4) {
+    width: 30%;
+    height: 100%;
+}
+
+
+.qna-list th:nth-child(5) {
+    width: 9%;
+    height: 100%;
+}
+
+
+.qna-list th:nth-child(6) {
+    width: 9%;
+    height: 100%;
+}
+
+.qna-list th:nth-child(7) {
+    width: 8%;
+    height: 100%;
+}
+
+/* 게시글 thead */
+.board-list th:nth-child(1) {
+    width: 20%;
+    height: 100%;
+}
+
+
+.board-list th:nth-child(2) {
+    width: 15%;
+    height: 100%;
+}
+
+
+.board-list th:nth-child(3) {
+    width: 15%;
+    height: 100%;
+}
+
+.board-list th:nth-child(4) {
+    width: 30%;
+    height: 100%;
+}
+
+.board-list th:nth-child(5) {
+    width: 10%;
+    height: 100%;
+}
+
+.board-list th:nth-child(6) {
+    width: 10%;
+    height: 100%;
+}
+
+/* tbody */
+.user-list-body,
+.qna-list-body,
+.board-list-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-list-body tr,
+.qna-list-body tr,
+.board-list-body tr {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     border-bottom: 1px solid darkgray;
+    width: 100%;
+    height: 40px;
+}
+
+.user-list-body tr td,
+.qna-list-body tr td,
+.board-list-body tr td {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+/* 회원관리 tbody */
+.user-list-body tr td:nth-child(1) {
+    width: 30%;
+    height: 100%;
+}
+
+.user-list-body tr td:nth-child(2) {
+    width: 10%;
+    height: 100%;
+}
+
+.user-list-body tr td:nth-child(3) {
+    width: 15%;
+    height: 100%;
+}
+
+.user-list-body tr td:nth-child(4) {
+    width: 25%;
+    height: 100%;
+}
+
+.user-list-body tr td:nth-child(5) {
+    width: 10%;
+    height: 100%;
+}
+
+.user-list-body tr td:nth-child(6) {
+    width: 10%;
+    height: 100%;
+}
+
+/* QnA tbody */
+.qna-list-body tr td:nth-child(1) {
+    width: 20%;
+    height: 100%;
+}
+
+.qna-list-body tr td:nth-child(2) {
+    width: 12%;
+    height: 100%;
+}
+
+.qna-list-body tr td:nth-child(3) {
+    width: 12%;
+    height: 100%;
+}
+
+.qna-list-body tr td:nth-child(4) {
+    width: 30%;
+    height: 100%;
+}
+
+.qna-list-body tr td:nth-child(5) {
+    width: 9%;
+    height: 100%;
+}
+
+.qna-list-body tr td:nth-child(6) {
+    width: 9%;
+    height: 100%;
+}
+
+.qna-list-body tr td:nth-child(7) {
+    width: 8%;
+    height: 100%;
+}
+
+/* 회원관리 tbody */
+.board-list-body tr td:nth-child(1) {
+    width: 20%;
+    height: 100%;
+}
+
+
+.board-list-body tr td:nth-child(2) {
+    width: 15%;
+    height: 100%;
+}
+
+
+.board-list-body tr td:nth-child(3) {
+    width: 15%;
+    height: 100%;
+}
+
+
+.board-list-body tr td:nth-child(4) {
+    width: 30%;
+    height: 100%;
+}
+
+
+.board-list-body tr td:nth-child(5) {
+    width: 10%;
+    height: 100%;
+}
+
+
+.board-list-body td:nth-child(6) {
+    width: 10%;
+    height: 100%;
 }
 
 .list-body button {
@@ -116,32 +367,54 @@ section {
     cursor: pointer;
 }
 
-/*게시판, 유저 리스트 필요부분*/
-.board-table, .user-table {
-    margin-top: 23px;
-}
-
 /*qna페이지 필요부분*/
 .qna-category-flex {
     width: 100%;
-    display: flex;
-    justify-content: center;
+    height: 40px;
 }
 
 .qna-status-category {
     display: flex;
     justify-content: start;
-
-    width: 1240px;
 }
 
-.qna-status-color {
-    color: blue;
+.qna-status-category div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #fefefe;
+    width: 60px;
+    height: 40px;
 }
 
-.qna-list-table {
-    border-radius: 0px 5px 5px 5px;
+.qna-status-category div button {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
 }
+
+.detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 90%;
+}
+
+.detail-button {
+    width: 80%;
+    height: 80%;
+    color: white;
+    background-color: rgb(252, 95, 7);
+}
+
+.delete {
+    width: 60%;
+    height: 70%;
+    color: white;
+    background-color: red;
+}
+
 
 .qna-status-category button {
     margin-right: 5px;
@@ -156,5 +429,5 @@ section {
 }
 
 .qna-status-category button:hover {
-    background-color: darkgray;
+    background-color: #FC5F07;
 }

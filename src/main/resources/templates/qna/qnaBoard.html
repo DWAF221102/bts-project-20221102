@@ -18,10 +18,9 @@
             </div>
             <section>
                 <div class="board-main-head">
-                    <span class="board-main-header-title">Q&A</span>
-                    <span class="board-main-header-content">좋은 질문과 답변으로 동료의 시간을 아껴주세요.</span>
-                    <div class="board-main-header-img">
-                        <img src="/static/images/questions.svg">
+                    <div class="board-main-title">
+                        <span class="board-main-header-title">Q&A</span>
+                        <span class="board-main-header-content">좋은 질문과 답변으로 동료의 시간을 아껴주세요.</span>
                     </div>
                 </div>
                 <div class="board-main-menu">
@@ -51,7 +50,7 @@
                     </div>
                     <div class="search-input">
                         <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <input type="text" placeholder="지식 내에서 검색">
+                        <input type="text" placeholder="Q&A 내에서 검색">
                     </div>
                     <div class="search-page">
                         <div class="search-page-num">
@@ -122,8 +121,7 @@
                 </div>
             </section>
             <div class="right-aside">
-                <aside th:replace="~{fragment/rankaside :: rankaside}"></aside>
-                <aside th:replace="~{fragment/priceaside :: priceaside}"></aside>
+                <div th:replace="~{fragment/aside :: aside}"></div>
             </div>
 
         </main>

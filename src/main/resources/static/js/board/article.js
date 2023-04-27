@@ -140,6 +140,38 @@ class CommentApi {
             }
         })
     }
+
+    deleteCommentReq(commentId){
+        $.ajax({
+            async:false,
+            type:"delete",
+            url:"/api/comment/delete/" + commentId,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+            
+        });
+    }
+
+    deleteRecommentReq(recommentId){
+        $.ajax({
+            async:false,
+            type:"delete",
+            url:"/api/recomment/delete/" + recommentId,
+            dataType: "json",
+            success: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+            
+        });
+    }
 }
 
 class ArticleService {
@@ -314,6 +346,7 @@ class CommentService {
         return this.#instance;
     }
 
+
     setCommentNum(responseData) {
         const commentNum = document.querySelector(".comment-num");
         commentNum.innerHTML = `
@@ -377,126 +410,209 @@ class CommentService {
 
 
     setComment(responseData) {
+        let userId = 0;
+
+        if(principalUser != null) {
+            userId = principalUser.id;
+        }
+
         let comment = responseData.comment;
+        let recommentCount = new Array(); 
         if(comment.length != 0) {
             const commentUl = document.querySelector(".comment-ul");
             for(let i = comment.length; i >  0; i--) {
                 let index = i - 1;
-                commentUl.innerHTML += `
-                    <li>
-                        <div class="user-info">
-                            <div class="user-info-container">
-                                <div class="user-img">
-                                    <a href="/myactivity/${comment[index].comment_user_id}">
-                                        <img src="/image/user/${comment[index].comment_user_img}">
-                                    </a>
-                                </div>
-                                <div class="user-detail">
-                                    <a href="/myactivity/${comment[index].comment_user_id}" class="user-nickname">${comment[index].comment_nickname}</a>
-                                    <div class="user-brief">
-                                        <span>${TimeService.getInstance().setTime(comment[index].comment_create_date)}</span>
+                let commentUserId = comment[index].comment_user_id;
+                let commentId = comment[index].comment_id;
+                if(userId != commentUserId) {
+                    commentUl.innerHTML += `
+                        <li>
+                            <div class="user-info">
+                                <div class="user-info-container">
+                                    <div class="user-img">
+                                        <a href="/myactivity/${comment[index].comment_user_id}">
+                                            <img src="/image/user/${comment[index].comment_user_img}">
+                                        </a>
+                                    </div>
+                                    <div class="user-detail">
+                                        <a href="/myactivity/${comment[index].comment_user_id}" class="user-nickname">${comment[index].comment_nickname}</a>
+                                        <div class="user-brief">
+                                            <span>${TimeService.getInstance().setTime(comment[index].comment_create_date)}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="comment-content">
-                            <p>${comment[index].comment_content}</p>
-                        </div>
-                        <div class="recomment-container">
-                            <div class="recomment-button">
-                                <button type="button" class="write-reccoment-button"><span>댓글 쓰기</span></button>
+                            <div class="comment-content">
+                                <p>${comment[index].comment_content}</p>
                             </div>
-                            <div class="recomment">
-                                <div class="delete-recomment">
-                                    
+                            <div class="recomment-container">
+                                <div class="recomment-button recomment-button${index}">
+                                    <button type="button" class="write-recomment-button write-recomment-button${index}"><span>댓글 쓰기</span></button>
                                 </div>
-                                <ul class="recomment-ul none">
-                                   
-                                </ul>
+                                <div class="recomment recomment${index}">
+                                    <div class="delete-recomment">            
+                                    
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </li> 
-                `;
-
+                        </li> 
+                    `;
+                }else {
+                    commentUl.innerHTML += `
+                        <li>
+                            <div class="user-info">
+                                <div class="user-info-container">
+                                    <div class="user-img">
+                                        <a href="/myactivity/${comment[index].comment_user_id}">
+                                            <img src="/image/user/${comment[index].comment_user_img}">
+                                        </a>
+                                    </div>
+                                    <div class="user-detail">
+                                        <a href="/myactivity/${comment[index].comment_user_id}" class="user-nickname">${comment[index].comment_nickname}</a>
+                                        <div class="user-brief">
+                                            <span>${TimeService.getInstance().setTime(comment[index].comment_create_date)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="comment-delete-button comment-delete${commentId}">삭제</button>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                <p>${comment[index].comment_content}</p>
+                            </div>
+                            <div class="recomment-container">
+                                <div class="recomment-button recomment-button${index}">
+                                    <button type="button" class="write-recomment-button write-recomment-button${index}"><span>댓글 쓰기</span></button>
+                                </div>
+                                <div class="recomment recomment${index}">
+                                    <div class="delete-recomment">            
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </li> 
+                    `;
+                }
                 
-
-                const recommentUl = document.querySelector(".recomment-ul");
                 
                 let recomment = comment[index].recomment;
+                
                 if(recomment.length != 0) {
-                    this.recommentButton(index, recomment);
+                    recommentCount.push(recomment.length);
+                    const recommentDiv = document.querySelector(".recomment" + index);
+                    recommentDiv.innerHTML += `
+                        <ul class="recomment-ul recomment-ul${index} none">
 
+                        </ul>
+                    `;
+                    const recommentUl = document.querySelector(".recomment-ul" + index);
                     recomment.forEach(data => {
-                        recommentUl.innerHTML += `
-                            <li class="">
-                                <div class="user-info">
-                                    <div class="user-info-container">
-                                        <div class="user-img">
-                                            <a href="/myactivity/${data.recomment_user_id}">
-                                            <img src="/image/user/${data.recomment_user_img}">
-                                            </a>
-                                        </div>
-                                        <div class="user-detail">
-                                            <a href="/myactivity/${data.recomment_user_id}" class="user-nickname">${data.recomment_nickname}</a>
-                                            <div class="user-brief">
-                                                <span>${TimeService.getInstance().setTime(data.recomment_create_date)}</span>
+                        let commentUserId = data.recomment_user_id;
+                        let recommentId = data.recomment_id;
+                        if(userId != commentUserId){
+                            recommentUl.innerHTML += `
+                                <li class="">
+                                    <div class="user-info">
+                                        <div class="user-info-container">
+                                            <div class="user-img">
+                                                <a href="/myactivity/${data.recomment_user_id}">
+                                                <img src="/image/user/${data.recomment_user_img}">
+                                                </a>
+                                            </div>
+                                            <div class="user-detail">
+                                                <a href="/myactivity/${data.recomment_user_id}" class="user-nickname">${data.recomment_nickname}</a>
+                                                <div class="user-brief">
+                                                    <span>${TimeService.getInstance().setTime(data.recomment_create_date)}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="recomment-content">
-                                    <p>${data.recomment_content}</p>
-                                </div>
-                            </li>
-                        `;
+                                    <div class="recomment-content">
+                                        <p>${data.recomment_content}</p>
+                                    </div>
+                                </li>
+                            `;
+                        }else {
+                            recommentUl.innerHTML += `
+                                <li class="">
+                                    <div class="user-info">
+                                        <div class="user-info-container">
+                                            <div class="user-img">
+                                                <a href="/myactivity/${data.recomment_user_id}">
+                                                <img src="/image/user/${data.recomment_user_img}">
+                                                </a>
+                                            </div>
+                                            <div class="user-detail">
+                                                <a href="/myactivity/${data.recomment_user_id}" class="user-nickname">${data.recomment_nickname}</a>
+                                                <div class="user-brief">
+                                                    <span>${TimeService.getInstance().setTime(data.recomment_create_date)}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button class="recomment-delete-button recomment-delete${recommentId}">삭제</button>
+                                        </div>
+                                    </div>
+                                    <div class="recomment-content">
+                                        <p>${data.recomment_content}</p>
+                                    </div>
+                                </li>
+                            `;
+                        }
+                        
                     });
-                }
-               
+                    this.recommentButton(index, recomment);
+                }   
             }
+            const showRecommentButton = document.querySelectorAll(".show-recomment");
+            const showRecommentUl = document.querySelectorAll(".recomment-ul");
+            const showRecommentSpan = document.querySelectorAll(".show-recomment-span")
+            for(let i = 0; i < showRecommentButton.length; i++) {
+                this.showRecomment(showRecommentButton[i], showRecommentUl[i], showRecommentSpan[i], recommentCount[i]);
+            }
+
+            this.commentDeleteButtonEvent(responseData);
         }
 
     }
 
     recommentButton(index, recomment) {
-        const recommentButton = document.querySelectorAll(".recomment-button");
+        const recommentButton = document.querySelector(".recomment-button" + index);
         let recommentCount = recomment.length;
-        recommentButton[index].innerHTML = `
+        
+        recommentButton.innerHTML = `
             <button type="button" class="show-recomment">
                 <span class="show-recomment-span">댓글 ${recommentCount}개 보기</span>
             </button>
-            <button type="button" class="write-reccoment-button"><span>댓글 쓰기</span></button>
+            <button type="button" class="write-recomment-button write-recomment-button${index}"><span>댓글 쓰기</span></button>
         `;
-        let showRecommentButton = document.querySelectorAll(".show-recomment");
-        let recommentUl = document.querySelectorAll(".recomment-ul");
-        let showRecommentSpan = document.querySelectorAll(".show-recomment-span");
-
-        this.showRecomment(showRecommentButton[index], showRecommentSpan[index], recommentCount, recommentUl[index]);
-
         
+
     }
 
-    showRecomment(button, div, recommentCount, recommentUl) {
+    showRecomment(button, ul, span, recommentCount) {
         button.onclick = () => {
-            div.innerText = "댓글 모두 숨기기";
+            span.innerText = "댓글 모두 숨기기";
             
-            recommentUl.classList.remove("none");
-
-            this.removeRecomment(button, div, recommentCount, recommentUl);
+            ul.classList.remove("none");
+            this.removeRecomment(button, ul, span, recommentCount);
+            
         }
     }
         
-    removeRecomment(button, div, recommentCount, recommentUl) {
+    removeRecomment(button, ul, span, recommentCount) {
+
         button.onclick = () => {
-            div.innerText = `댓글 ${recommentCount}개 보기`;
+            span.innerText = `댓글 ${recommentCount}개 보기`;
             
-            recommentUl.classList.add("none");     
-            
-            this.showRecomment(button, div, recommentCount, recommentUl);
+            ul.classList.add("none");     
+            this.showRecomment(button, ul, span, recommentCount);
         }
     }
 
     showRecommentWrite(responseData) {
-        const writeRecommentButton = document.querySelectorAll(".write-reccoment-button");
+        const writeRecommentButton = document.querySelectorAll(".write-recomment-button");
         const deleteRecomment = document.querySelectorAll(".delete-recomment");
 
         let userId = 0;
@@ -506,26 +622,27 @@ class CommentService {
             userId = principalUser.id;
             userImg = principalUser.user_img;
         }
+        let index = responseData.comment.length;
 
-        for(let i = 0; i < writeRecommentButton.length; i++) {
+        for(let i = 0; i < index; i++) {
             writeRecommentButton[i].onclick = () => {
                 if(userId != 0) {
                     deleteRecomment[i].innerHTML = `
-                        <div class="recomment-write ">
+                        <div class="recomment-write">
                             <div class="user-img">
                                 <img src="/image/user/${userImg}">
                             </div>
                             <div class="recomment-write-container">
                                 <div class="recomment-textarea-container">
-                                    <textarea class="recomment-textarea" placeholder="댓글을 입력해주세요."></textarea>
+                                    <textarea class="recomment-textarea recomment-textarea${i}" placeholder="댓글을 입력해주세요."></textarea>
                                 </div>
                                 <div class="recomment-write-button">
-                                    <button type="button" class="button-recomment">댓글 쓰기</button>
+                                    <button type="button" class="button-recomment button-recomment${i}">댓글 쓰기</button>
                                 </div>
                             </div>    
                         </div>
                     `;  
-                    this.recommentButtonEvent(responseData);
+                    this.recommentButtonEvent(responseData, i);
                     this.deleteRecommentWrite(responseData);
                 }else {
                     alert("로그인후 작성가능합니다.");
@@ -538,7 +655,7 @@ class CommentService {
     
 
     deleteRecommentWrite(responseData) {
-        const writeRecommentButton = document.querySelectorAll(".write-reccoment-button");
+        const writeRecommentButton = document.querySelectorAll(".write-recomment-button");
         const deleteRecomment = document.querySelectorAll(".delete-recomment");
 
         for(let i = 0; i < writeRecommentButton.length; i++) {
@@ -550,32 +667,67 @@ class CommentService {
         }
     }
 
-    recommentButtonEvent(responseData) {
+    recommentButtonEvent(responseData, i) {
         let userId = 0;
         if(principalUser != null) {
             userId = principalUser.id;
         }
-        const recommentButton = document.querySelectorAll(".button-recomment");
         
+        const writeButton = document.querySelectorAll(".write-recomment-button");
 
-        for(let i = 0; i < recommentButton.length; i++) {
-            recommentButton[i].onclick = () => {
-                let recomentTextarea = document.querySelectorAll(".recomment-textarea");
-                let textValue = recomentTextarea[i].value;
-                let index = recommentButton.length - i;
-                let commentId = responseData.comment[i].comment_id;
-                if(textValue != "" && textValue != " " && textValue != null && textValue.replaceAll(" ", "") != "") {
-                    if(confirm("댓글을 작성하시겠습니까?")){
-                        CommentApi.getInstance().recommentWriteReq(commentId, userId, textValue);
-                        location.reload();
-                    }
-                }else {
-                    alert("댓글을 입력해주세요.");
+        let recommentButton = document.querySelector(".button-recomment" + i);
+        
+        recommentButton.onclick = () => {
+            let recomentTextarea = document.querySelector(".recomment-textarea" + i);
+            let textValue = recomentTextarea.value;
+            let index = responseData.comment.length - i - 1;
+            console.log("i: " + i);
+            console.log("length: " + responseData.comment.length);
+            console.log("index: " + index);
+            let commentId = responseData.comment[index].comment_id;
+            console.log(commentId);
+            if(textValue != "" && textValue != " " && textValue != null && textValue.replaceAll(" ", "") != "") {
+                if(confirm("댓글을 작성하시겠습니까?")){
+                    CommentApi.getInstance().recommentWriteReq(commentId, userId, textValue);
+                    location.reload();
                 }
+            }else {
+                alert("댓글을 입력해주세요.");
             }
         }
     }
-    
+
+    commentDeleteButtonEvent(responseData) {
+        if(responseData.comment.length != 0) {
+            responseData.comment.forEach(data => {
+                let commentDeleteButton = document.querySelector(".comment-delete"+ data.comment_id);
+                if(commentDeleteButton != null) {
+                    commentDeleteButton.onclick = () => {
+                        if(confirm("댓글을 삭제하시겠습니까?")) {
+                            CommentApi.getInstance().deleteCommentReq(data.comment_id);
+                            location.reload();
+                        }
+                    }
+                    if(data.recomment != 0){
+                        data.recomment.forEach(recomment => {
+                            let recommentId = recomment.recomment_id;
+                            let recommentDeleteButton = document.querySelector(".recomment-delete"+ recommentId);
+                            if(recommentDeleteButton != null) {
+                                recommentDeleteButton.onclick = () => {
+                                    if(confirm("댓글을 삭제하시겠습니까?")) {
+                                        CommentApi.getInstance().deleteRecommentReq(recommentId);
+                                        location.reload();
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        
+    }
+
 }
 
 class TotalService {

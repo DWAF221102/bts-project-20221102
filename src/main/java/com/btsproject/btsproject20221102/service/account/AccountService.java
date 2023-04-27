@@ -1,5 +1,6 @@
 package com.btsproject.btsproject20221102.service.account;
 
+import com.btsproject.btsproject20221102.domain.Point;
 import com.btsproject.btsproject20221102.domain.User;
 import com.btsproject.btsproject20221102.domain.UserInfo;
 import com.btsproject.btsproject20221102.domain.MyLikeQna;
@@ -46,4 +47,8 @@ public interface AccountService {
     public List<MyLikeBoardRespDto> loadMyLikeBoardList(int userId) throws Exception;
 
     public List<MyLikeQnaRespDto> loadMyLikeQnaList(int userId) throws Exception;
+
+    public Point point(int totalPoint) throws Exception;
+
+    public void chargePoint(PointChargeDto pointChargeDto) throws Exception;
 }

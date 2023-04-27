@@ -2,84 +2,66 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragment/head :: head}"></head>
 <head>
-    <title>index</title>
-    <link rel="stylesheet" href="/static/css/index.css">
+	<title>DWAF</title>
 </head>
+
 <body>
-<div id="container">
-    <header th:replace="~{fragment/header :: header}"></header>
+    <!-- header -->
+    <div th:replace="~{fragment/header :: header}"></div>
+    <!-- //header -->
 
-    <main>
-        <div class="main-container">
-            <div>
-                <aside th:replace="~{fragment/rankaside :: rankaside}"></aside>
-                <div class="bug-sos">
-                    <div class="sos-icon">
-                        <a href="/notice"><i class="fa-sharp fa-solid fa-bullhorn"></i></a>
-                    </div>
-                    <span>버그와 제안은 여기에 댓글로 남겨주세요.</span>
-                </div>
+
+    <!--- Main Content -->
+    <div class="dw_container">
+
+      <div class="main_area">
+        <div class="main_panel">
+
+          <!--- Q&A --->
+          <div class="main_list">
+            <h2>Q&A</h2>
+            <div class="qna-data-box">
+              
             </div>
+          </div>
 
-            <section>
-                <div class="quick-board">
-                    <div class="qna-board all-board">
-                        <div class="quick-board-title question-title">
-                            <a href="/question">Q&A</a>
-                            <img src="/static/images/questions.svg">
-                        </div>
-                        <div class="qna-board-list board-list">
-                            <ul class="qna-list-ul">
-                                
-                            </ul>
-                        </div>
-                    </div>
+          <!--- 지식 --->
+          <div class="main_list">
+            <h2>지식</h2>
+            <div class="data-box">
+              
+            </div>
+          </div>
 
-                    <div class="knowledge-board all-board">
-                        <div class="quick-board-title community-title">
-                            <a href="/knowledge">지식</a>
-                            <img src="/static/images/knowledge.svg">
-                        </div>
-                        <div class="knowledge-board-list board-list">
-                            <ul class="five-boardlist">
+           <!--- 커뮤니티 --->
+           <div class="main_list">
+            <h2>커뮤니티</h2>
+            <div class="data-box">
 
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            </div>
+          </div>
 
-                <div class="quick-board">
-                    <div class="community-board all-board">
-                        <div class="quick-board-title knowledge-title">
-                            <a href="/community">커뮤니티</a>
-                            <img src="/static/images/community.svg">
-                        </div>
-                        <div class="community-board-list board-list">
-                            <ul class="five-boardlist">
+           <!--- 공지사항 --->
+           <div class="main_list">
+            <h2>공지사항</h2>
+            <div class="data-box">
+              
+            </div>
+          </div>
 
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="notice-board all-board">
-                        <div class="quick-board-title notice-title">
-                            <a href="/notice">공지</a>
-                            <img src="/static/images/notice.svg">
-                        </div>
-                        <div class="knowledge-board-list board-list">
-                            <ul class="five-boardlist">
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <aside th:replace="~{fragment/priceaside :: priceaside}"></aside>
         </div>
-    </main>
+      </div>
+      <!--- //main_area-->
+
+      <!---Top Rank --->
+      <div th:replace="~{fragment/aside :: aside}"></div>
+      <!--- //Top Rank --->
+
+    </div>
+    <!--- //Main Content-->
+
     <footer th:replace="~{fragment/footer :: footer}"></footer>
-</div>
-<script src="/static/js/index.js"></script>
+
+    <script src="/static/js/index.js"></script>
 </body>
 </html>

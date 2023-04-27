@@ -5,6 +5,7 @@ main {
     width: 100%;
 
     margin-top: 60px;
+    margin-bottom: 200px;
     padding: 0;
 }
 
@@ -224,7 +225,7 @@ form {
     border: 0px;
     margin-left: 10px;
     /* background-color: rgba(142, 142, 142, 0.8); */
-    background-color: rgb(0, 144, 249);
+    background-color: #FF5E5E;
     color: #ffffff;
 }
 
@@ -333,18 +334,28 @@ form {
 }
 
 .write-buttons button:nth-child(1) {
-    margin-right: 12px;
+    
     border: none;
 
     color: white;
-    background-color: rgb(0, 144, 249);
+    background-color: #FC5F07;
 }
 
 
 .write-buttons button:nth-child(2) {
+    margin-left: 12px;
+
     border: 1px solid #dbdbdb;
 
     background-color: white;
+}
+
+.write-buttons button:nth-child(3) {
+    margin-left: 12px;
+    color: white;
+    border: 1px solid #dbdbdb;
+
+    background-color: #7f7f7f;
 }
 
 .file-input {

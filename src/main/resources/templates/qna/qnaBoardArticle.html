@@ -4,7 +4,6 @@
 <head th:replace="~{fragment/head :: head}"></head>
 
 <head>
-
     <title>qnaBoardArticle</title>
     <link rel="stylesheet" href="/static/css/qna/qnaBoardArticle.css">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -40,6 +39,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="article-update-button">
+                                    <!-- <div>
+                                        <button type="button" class="update-button">
+                                            <i class="fa-regular fa-pen-to-square"></i>수정하기
+                                        </button>
+                                    </div> -->
+                                </div>
                             </div>
                         </div>
                         <div class="qna-board-right">
@@ -59,12 +65,9 @@
                                     답변요청 목록
                                 </div>
                                 <div class="qna-board-req-lists">
-                                    <div class="qna-profile-img qna-board-req-list"></div>
-                                    <div class="qna-profile-img qna-board-req-list"></div>
-                                    <div class="qna-profile-img qna-board-req-list"></div>
-                                    <div class="qna-profile-img qna-board-req-list"></div>
-                                </div>
 
+                                </div>
+                                <div>* 자세히 보기는 닉네임 클릭</div>
                             </div>
                             <div class="board-info">
                                 <div class="qna-board-info-category">
@@ -74,9 +77,9 @@
                                     <div class="qna-board-info-category-right">
                                         프로그램/버전
                                     </div>
-    
+
                                 </div>
-    
+
                                 <div class="qna-board-price">
                                     <div class="qna-board-price-left">
                                         질문금액
@@ -87,18 +90,11 @@
                                 </div>
                             </div>
 
-
+                            <!-- 응답버튼 부분 -->
                             <div class="request-answer">
-                                <button class="request-button">
-                                    <div>
-                                        <span class="request-title">답변권한요청</span>
-                                    </div>
-                                    <div>
-                                        <span class="request-time">3분 52초 경과</span>
-                                    </div>
-
-                                </button>
+                                <button type="button"></button>
                             </div>
+
 
                             <div class="qna-board-info">
 
@@ -158,120 +154,41 @@
                         </div>
 
                     </div>
-                    <div class="qna-bottom">
-                        <div class="answer-title">
-                            답변
-                        </div>
-                        <div class="answer-profile">
-                            <div class="qna-board-profile-flex">
-                                <a href="" class="qna-profile-img">
-                                    <img src="" alt="">
-                                    <!-- 여기에 들어가는 이미지는 40*40 -->
-                                </a>
-                                <div class="qna-board-profile-details">
-                                    <a href="" class="qna-profile-name">닉네임</a>
-                                    <div class="qna-profile-text">
-                                        <span>좋아요</span>
-                                        <span> </span>
-                                        <span>시간</span>
-                                        <span> </span>
-                                        <span>뷰</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="answer-detail">원인분석</div>
-                            <div class="answer-details">
-                                원인분석내용
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea accusamus quos impedit
-                                    omnis beatae numquam autem? Asperiores, repellendus. Hic fugit optio dolores libero
-                                    non, dicta labore maiores consectetur dignissimos minima!</p>
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam rem porro repudiandae
-                                    ratione et animi provident dolores voluptas, consequuntur dolorum tenetur sapiente
-                                    obcaecati nemo, ex cupiditate, consequatur iste. Eum, doloremque.</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="answer-detail">해결방안</div>
-                            <div class="answer-solutions">
-                                해결방안내용
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione perferendis fugiat
-                                    neque amet alias, nostrum aut doloribus, similique nemo placeat dignissimos sunt.
-                                    Aliquid eligendi ducimus, hic tempora in sunt aperiam!</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum, et libero! Id
-                                    aliquam exercitationem libero possimus porro dolorem, molestiae perferendis tenetur
-                                    sed consectetur magni similique molestias corporis officia totam a!</p>
-                            </div>
-                        </div>
+
+
+
+                    <!-- 해결 완료 후 페이지 -->
+                    <div class="answer-area">
+
                     </div>
                 </div>
             </div>
-        </main>
-        <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
-    <script src="/static/js/board/qnaBoardArticle.js"></script>
-</body>
-<div class="modal">
-    <div class="modal-body">
-        <div class="modal-title">답변내용</div>
-        <div>
-            <div class="modal-detail">원인분석</div>
-            <textarea name="" id="" cols="30" rows="12" placeholder="내용을 입력해 주세요." class="modal-textarea"></textarea>
-        </div>
-        <div>
-            <div class="modal-detail">해결방안</div>
-            <textarea name="" id="" cols="30" rows="14" placeholder="내용을 입력해 주세요." class="modal-textarea"></textarea>
-        </div>
-        <div class="modal-description">
-            *답변내용 미제출시 정산이 되지않음을 참고하시기 바랍니다.
-        </div>
-        <div class="modal-button">
-            <button class="modal-button-left">save</button>
-            <button class="modal-button-right">cancel</button>
-        </div>
+    </main>
+    <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
-</div>
-<div class="modal-user">
-    <div class="modal-user-body">
-        <div class="modal-user-review">답변 리뷰</div>
-        <div class="modal-user-detail">
-            <div class="modal-user-title">
-                <div class="modal-titles">
-                    답변자
-                </div>
-            </div>
-            <div class="modal-user-content">
-                답변자 닉네임
-            </div>
-        </div>
-        <div class="modal-user-detail">
-            <div class="modal-user-title">
-                <div class="modal-titles star-title">
-                    별점
-                </div>
-            </div>
-            <div class="modal-star-area">
-                <div class="modal-star">☆☆☆☆☆</div>
-                <div class="modal-user-description">
-                    <p>별점의 갯수에 따라 지급액 산정이 달라집니다.</p>
-                    <p>- 5개: 100%지급 -4개:80%지급 - 3개: 60%지급</p>
-                    <p>- 2개: 40%지급 - 1개:20%지급</p>
-                </div>
-            </div>
-        </div>
-        <div class="modal-user-detail">
-            <div class="modal-user-title">
-                <div class="modal-titles">후기</div>
-            </div>
-            <textarea name="" id="" cols="50" rows="10" placeholder="후기를 작성해 주세요." class="user-textarea"></textarea>
-        </div>
-        <div class="modal-button">
-            <button class="modal-button-left">save</button>
-            <button class="modal-button-right">cancel</button>
-        </div>
 
-    </div>
-</div>
+
+    <!--                 모달창 영역               -->
+    <!-- 유저 id, principal에 따라 페이지를 나누고 모달창을 따로 해야함 -->
+
+    <!--       질문자 모달창       -->
+    <!-- <div class="questione-modal">
+    </div> -->
+
+    <!--       답변자 모달창       -->
+    <!-- <div class="answere-modal">
+
+    </div> -->
+
+    <!--///////////////////////////////////////////////// -->
+
+
+    <script src="/static/js/board/qnaBoardArticle.js"></script>
+    <script src="/static/js/board/qnaMatching.js"></script>
+    <!-- <script src="/static/js/board/qnaModal.js"></script> --> <!--이건호가 주석해놈-->
+    <!-- <script src="/static/js/board/qnaAnswererModal.js"></script> -->
+    <script src="/static/js/board/qnaQuestionerModal.js"></script>
+</body>
 
 </html>

@@ -1,9 +1,6 @@
 package com.btsproject.btsproject20221102.service.account;
 
-import com.btsproject.btsproject20221102.domain.Key;
-import com.btsproject.btsproject20221102.domain.User;
-import com.btsproject.btsproject20221102.domain.UserInfo;
-import com.btsproject.btsproject20221102.domain.UserProfileImage;
+import com.btsproject.btsproject20221102.domain.*;
 import com.btsproject.btsproject20221102.dto.account.*;
 import com.btsproject.btsproject20221102.dto.index.AsidePriceListRespDto;
 import com.btsproject.btsproject20221102.exception.CustomValidationException;
@@ -28,7 +25,6 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
-
     private final AccountRepository accountRepository;
 
     @Value("${file.path}")
@@ -80,6 +76,7 @@ public class AccountServiceImpl implements AccountService {
         return true;
     }
 
+    // 회원가입
     @Override
     public boolean signup(SignupReqDto signupReqDto) throws Exception {
         return accountRepository.save(signupReqDto.toUserEntity()) != 0;
@@ -88,7 +85,7 @@ public class AccountServiceImpl implements AccountService {
     // 유저 정보 불러오기
     @Override
     public UserInfo getUserInfo(int userId) throws Exception {
-        log.info("getUserInfo~~" + accountRepository.userInfo(userId));
+//        log.info("getUserInfo~~" + accountRepository.userInfo(userId));
         return accountRepository.userInfo(userId);
     }
 
@@ -232,18 +229,18 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.modifyPassword(user);
     }
 
-
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //　내 활동내역
     @Override
     public List<RecentBoardListRespDto> loadRecentBoardList(int userId) throws Exception {
         List<RecentBoardListRespDto> boardList = new ArrayList<RecentBoardListRespDto>();
         accountRepository.loadRecentBoardList(userId).forEach(board -> {
             boardList.add(board.toRecentBoardListRespDto());
         });
+
         return boardList;
     }
+
+
     @Override
     public List<MyprofileBoardRespDto> loadMyprofileBoardList(int userId) throws Exception {
         List<MyprofileBoardRespDto> list = new ArrayList<MyprofileBoardRespDto>();
@@ -278,5 +275,24 @@ public class AccountServiceImpl implements AccountService {
             list.add(likeqna.toMypLikeQnaRespDto());
         });
         return list;
+    }
+
+
+
+
+
+
+    // 포인트
+    @Override
+    public Point point(int userId) throws Exception {
+        return accountRepository.point(userId);
+    }
+
+
+    // 포인트 충전
+    @Override
+    public void chargePoint(PointChargeDto pointChargeDto) throws Exception {
+        accountRepository.pointCharge(pointChargeDto.toPointCharge());
+        log.info("포인트 정보: " + pointChargeDto.toPointCharge());
     }
 }

@@ -1,17 +1,14 @@
 .qna-board-container {
     display: flex;
     justify-content: center;
-
 }
 
 .qna-board-center {
     display: flex;
     justify-content: center;
-
     width: 840px;
     /* height: 100%; */
     padding-top: 30px;
-
     /* background-color: beige; */
 }
 
@@ -22,13 +19,13 @@
 
     /* background-color: rgb(135, 135, 209); */
 }
+
 /* ---------------- 이미지 ------------------------ */
 
 .qna-board-img {
     width: 400px;
     height: 400px;
     /* background-color: rgb(35, 35, 211); */
-
 }
 
 .img-content {
@@ -38,6 +35,7 @@
     /* 이미지 비율이 무너지지만 크게 상관없어서 그냥 400*400
     꽉 차게 보이도록 우선 넣음 */
 }
+
 .img-box {
     display: flex;
     justify-content: center;
@@ -83,12 +81,11 @@
     cursor: pointer;
 }
 
-
-
-
 .qna-board-profile {
     width: 400px;
     height: 44px;
+    display: flex;
+    justify-content: space-between;
 
     /* background-color: rgb(188, 105, 105); */
 }
@@ -100,10 +97,83 @@
 }
 
 .qna-profile-img {
+    display: flex;
+    justify-content: center;
+    /* position: relative; */
+    /* align-items: flex-end; */
     width: 44px;
     height: 44px;
-    background-color: rgb(105, 105, 105);
+    /* background-color: rgb(105, 105, 105); */
     border-radius: 50%;
+    overflow: hidden;
+}
+
+.qna-profile-img a {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.qna-profile-img img {
+    width: 100%;
+}
+
+.hover-area {
+    width: 54px;
+    height: 64px;
+
+    position: relative;
+    cursor: pointer;
+}
+
+.hover-profile {
+    display: none;
+}
+
+.hover-area:hover .hover-profile {
+    width: 150px;
+    height: 100px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: -95px;
+    left: 36px;
+    z-index: 1;
+
+    border-radius: 5px 5px 5px 0px;
+    border: 1px solid black;
+    background-color: #b9babc;
+}
+
+/* .hover-profile:hover {
+    width: 150px;
+    height: 100px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: -95px;
+    left: 36px;
+    
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: #b9babc;
+} */
+
+.check-area {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -60px;
+    width: 44px;
+    height: 44px;
+    margin: 0px;
+    border-radius: 50%;
+    overflow: hidden;
+    color: gray;
 }
 
 .qna-board-profile-details {
@@ -123,9 +193,18 @@
     color: #6b7280;
 }
 
+.article-update-button {
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+    margin-right: 4px;
+}
 
-
-
+.article-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+}
 
 .qna-board-right {
     width: 420px;
@@ -155,8 +234,6 @@
     font-size: 16px;
     font-weight: 600;
     color: #000000;
-
-
 }
 
 .qna-board-req {
@@ -174,6 +251,7 @@
 
 .qna-board-req-lists {
     display: flex;
+    height: 64px;
 }
 
 .qna-board-req-list {
@@ -185,10 +263,8 @@
     width: 400px;
     display: flex;
     justify-content: space-between;
-
     margin-top: 10px;
     margin-bottom: 10px;
-
 }
 
 .qna-board-price-left {
@@ -201,7 +277,6 @@
 .qna-board-price-right {
     font-size: 18px;
     font-weight: bolder;
-
 }
 
 .request-button {
@@ -209,10 +284,22 @@
     height: 60px;
     border-radius: 10px;
     border: 0px;
-    background-color: #0090f9;
+    background-color: #FC5F07;
 }
 
 .request-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.request-choise {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.request-pass {
     font-size: 18px;
     font-weight: 600;
     color: #ffffff;
@@ -228,17 +315,13 @@
 .qna-board-info {
     width: 400px;
     /* background-color: rgb(177, 69, 130); */
-
-
 }
 
 .qna-board-info-category {
     display: flex;
     justify-content: space-between;
     padding: 10px 0px;
-
     border-bottom: 1px solid #ebebeb;
-
 }
 
 .qna-board-info-category-left {
@@ -251,10 +334,7 @@
     font-size: 12px;
     font-weight: 400;
     color: #000000;
-
 }
-
-.qna-error {}
 
 .qna-error-title {
     font-size: 16px;
@@ -276,12 +356,6 @@
     color: #4B5563;
 }
 
-
-
-
-
-
-
 .qna-board-reference {
     width: 400px;
     padding-top: 30px;
@@ -300,10 +374,8 @@
 .reference-detail-box {
     display: flex;
     justify-content: space-between;
-
     padding: 10px 0px;
     border-bottom: 1px solid #ebebeb;
-
 }
 
 .reference-detail-box i:hover {
@@ -314,61 +386,16 @@
     font-size: 12px;
     font-weight: 400;
     color: #4b5563;
-
 }
 
-.qna-bottom {
-    /* display: flex;
-    justify-content: center; */
-    width: 840px;
+.a {
+    width: 100%;
+    height: 1000px;
 }
 
-
-.answer-title {
-    margin-top: 80px;
-    border-top: 1px solid #ebebeb;
-    padding-top: 30px;
-
-    font-size: 16px;
-    font-weight: bolder;
-    color: #4b5563;
-}
-
-.answer-profile {
-    width: 400px;
-    height: 44px;
-    margin-top: 8px;
-
-    /* background-color: rgb(188, 105, 105); */
-}
-
-.answer-detail {
-    font-size: 14px;
-    color: #000000;
-    padding-top: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ebebeb;
-
-}
-
-.answer-details {
-    font-size: 14px;
-    color: #4b5563;
-    padding-top: 10px;
-}
-
-.answer-solutions {
-    font-size: 14px;
-    color: #4b5563;
-    padding-top: 10px;
-    padding-bottom: 40px;
-}
-
-
-
-
-
-.modal {
+/**************************** 답변자 원인분석, 해결방안 영역 - 하덕현 *******************************/
+.answere-modal {
+    /* display: none;    이건호가 걸어논 css */
     position: absolute;
     top: 0;
     left: 0;
@@ -376,7 +403,6 @@
     width: 100%;
     height: 100%;
     /* display: flex; */
-    display: none;
     /* 나중에 none으로 하고 js 만들어야함 */
 
     background-color: rgba(0, 0, 0, 0.4);
@@ -384,17 +410,22 @@
     /* backgroun-color가 페이지 한면에만 먹히고 스크롤을 내렸을 때 안먹힘 */
 }
 
+
 .modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     position: absolute;
     top: 50%;
     left: 50%;
 
-    width: 400px;
-    height: 600px;
+    width: 25%;
+    height: 68%;
 
     padding: 15px 25px 15px 25px;
 
-    text-align: center;
+    /* text-align: center; */
 
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
@@ -411,14 +442,31 @@
     border-bottom: 1px solid #ebebeb; */
 }
 
+.form-input {
+    display: none;
+}
+
+.modal-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 43%;
+}
+
 .modal-detail {
-    text-align: left;
+    display: flex;
+    justify-content: center;
+    /* text-align: left; */
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
     color: #000000;
     padding-top: 5px;
     margin-top: 10px;
-    padding-bottom: 5px;
+    width: 100%;
+    height: 5%;
+    padding: 10px 0 15px;
     border-top: 1px solid #ebebeb;
 }
 
@@ -428,59 +476,53 @@
     /* border: none; */
     resize: none;
     border-radius: 5px;
-    padding: 5px;
-
+    padding: 10px;
+    font-size: 14px;
     margin-bottom: 5px;
 }
 
 .modal-description {
+    padding-top: 10px;
     font-size: 12px;
     color: #4B5563;
 }
 
 .modal-button {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    width: 100%;
     padding-top: 10px;
 }
 
-.modal-button-left {
+
+
+.save-button {
     margin-top: 7px;
-    font-size: 16px;
-    font-weight: 400;
+    border-radius: 10px;
+    border: 0px;
+    width: 150px;
+    height: 35px;
+
+    font-size: 18px;
+
+    cursor: pointer;
     color: #ffffff;
     background-color: #0090f9;
-    border-radius: 10px;
-    border: 0px;
-
-    width: 60px;
-    height: 30px;
-}
-
-.modal-button-right {
-    margin-top: 7px;
-    font-size: 16px;
-    font-weight: 400;
-    color: #ffffff;
-    background-color: #848485;
-    border-radius: 10px;
-    border: 0px;
-
-    width: 60px;
-    height: 30px;
 }
 
 
-.modal-user {
+
+/*************************** 질문자 별점 영역 - 하덕현 *******************************/
+.questione-modal {
     position: absolute;
+    display: none;
     top: 0;
     left: 0;
 
     width: 100%;
     height: 100%;
-    display: flex;
-    display: none;
+
     /* 나중에 none으로 하고 js 만들어야함 */
 
     background-color: rgba(0, 0, 0, 0.4);
@@ -493,8 +535,8 @@
     top: 50%;
     left: 50%;
 
-    width: 20%;
-    height: 50%;
+    width: 25%;
+    height: 35%;
 
     padding: 15px 25px 15px 25px;
 
@@ -507,23 +549,27 @@
     transform: translateX(-50%) translateY(-50%);
 }
 
+/* 헤더 영역 */
 .modal-user-review {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    border-bottom: 1px solid #ebebeb;
+
+    padding-bottom: 10px;
+
+    font-size: 18px;
     font-weight: bolder;
     color: #4b5563;
-    padding-bottom: 3px;
-    border-bottom: 1px solid #ebebeb;
 }
 
 .modal-user-detail {
-    width: 100%;
     display: flex;
+    width: 100%;
     padding-top: 20px;
 }
 
+/* 답변자 닉네임 영역 */
 .modal-user-title {
     width: 50px;
     /* text-align: left; */
@@ -539,54 +585,196 @@
     text-align: left;
 }
 
-.star-title {
-    padding-top: 5px;
-}
-
-.modal-star-area {
-    width: 100%;
-}
-
-.modal-star {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-}
-
-.modal-user-description {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: flex-start;
-    margin: 0;
-    font-size: 12px;
-    font-weight: 300;
-    color: #4B5563;
-}
-
-.modal-user-description p {
-    margin: 0;
-    margin-top: 5px;
-}
-
 .modal-user-content {
     font-size: 14px;
     font-weight: 400;
     color: #000000;
 }
 
+/* 별점 영역 */
+.modal-star-area {
+    width: 100%;
+}
+
+.modal-star {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 20%;
+    font-size: 32px;
+}
+
+.fieldset {
+    display: inline-block;
+    direction: rtl;
+    border: 0;
+}
+
+.reviewStar-input {
+    display: none;
+}
+
+.modal-star label {
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+
+.fieldset label:hover {
+    cursor: pointer;
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.fieldset label:hover~label {
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.reviewStar-input:checked~label {
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.modal-user-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 60%;
+    padding-top: 10px;
+    font-size: 13px;
+    color: #4B5563;
+    /* background-color: red; */
+}
+
+.modal-user-description p {
+    margin: 0;
+    margin-top: 7px;
+}
+
 .user-textarea {
     width: 100%;
     height: 100%;
-    /* border: none; */
     resize: none;
     border-radius: 5px;
     padding: 5px;
-    margin-left: 5px;
-    margin-bottom: 5px;
 
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 15px;
     color: #000000;
+}
+
+.modal-user-button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    padding-top: 25px;
+}
+
+.check {
+    opacity: 0.5;
+}
+
+.none {
+    display: none;
+}
+
+
+/********************** 답변 완료 후 해결방안 추가 - 하덕현 ****************** */
+.answer-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 80px;
+    width: 840px;
+}
+
+.answer-title {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ebebeb;
+    padding: 15px 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+/* 답변자 프로필 영역 */
+.answer-profile {
+    display: flex;
+    align-items: centeranswer-profile;
+    width: 100%;
+    height: 50px;
+}
+
+.answer-img-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 100%;
+}
+
+.answer-img {
+    border: 1px solid grey;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+
+}
+
+.answer-img img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+.answer-nickname-area {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 50%;
+    height: 100%;
+    padding-left: 10px;
+}
+
+.answer-nickname {
+    font-size: 15px;
+    text-decoration: none;
+    color: #4b5563;
+}
+
+
+/* 답변 내용 영역 */
+.causer-analysis-area,
+.solution-plan-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.causer-analysis-title,
+.solution-plan-title {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ebebeb;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    color: #4b5563;
+}
+
+.causer-analysis-content,
+.solution-plan-content {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    color: #4b5563;
+
+}
+
+.solution-plan-content {
+    padding-bottom: 40px;
 }

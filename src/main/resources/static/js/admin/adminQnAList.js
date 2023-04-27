@@ -1,5 +1,5 @@
-const searchBtn = document.querySelector(".search-button");
-const searchInput = document.querySelector(".search-input");
+const listSearchBtn = document.querySelector(".search-button");
+const listSearchInput = document.querySelector(".search-input");
 const allBtn = document.querySelector(".all-button");
 const waitBtn = document.querySelector(".wait-button");
 const ongoingBtn = document.querySelector(".ongoing-button");
@@ -50,15 +50,15 @@ completionBtn.onclick = () => {
 
 /////////////////////////////////////////////////////////////////
 
-searchInput.onkeyup = () => {
-    if(window.event.keyCode === 13) {
-        searchBtn.click();
+listSearchInput.onkeyup = () => {
+    if (window.event.keyCode === 13) {
+        listSearchBtn.click();
     }
 }
 
-searchBtn.onclick = () => {
-    let searchValue = searchInput.value;
-    loadQnAListRequest(searchValue, statusValue);  
+listSearchBtn.onclick = () => {
+    let searchValue = listSearchInput.value;
+    loadQnAListRequest(searchValue, statusValue);
 
     allBtn.classList.add('qna-status-color');
     waitBtn.classList.remove('qna-status-color');
@@ -73,8 +73,8 @@ function loadQnAListRequest(searchValue, statusValue) {
         async: false,
         url: "/api/admin/qnalist",
         data: {
-            "searchValue" : searchValue,
-            "statusValue" : statusValue
+            "searchValue": searchValue,
+            "statusValue": statusValue
         },
         dataType: "json",
         success: (response) => {
@@ -89,7 +89,7 @@ function loadQnAListRequest(searchValue, statusValue) {
 }
 
 function loadQnAList(responseData) {
-    const listBody = document.querySelector(".list-body");
+    const listBody = document.querySelector(".qna-list-body");
 
     listBody.innerHTML = "";
 
@@ -102,19 +102,23 @@ function loadQnAList(responseData) {
                 <td>${data.subcategoryName}</td>
                 <td>${data.title}</td>
                 <td>${data.status}</td>
-                <td><a href="/question/article/${data.id}"><button type="button" class="detail-button">상세보기</button></a></td>
-                <td><button type="button" class="qna-delete-button">삭제</button></td>
+                <td>
+                    <a class="detail" href="/question/article/${data.id}">
+                        <button class="detail-button" type="button" class="detail-button">상세보기</button>
+                    </a>
+                </td>
+                <td><button type="button" class="qna-delete-button  delete">삭제</button></td>
             </tr>
         `
-    }); 
+    });
 }
 
 function deleteQnA(responseData) {
     const deleteBtns = document.querySelectorAll(".qna-delete-button");
-   
+
     deleteBtns.forEach((deleteBtn, index) => {
         deleteBtn.onclick = () => {
-            if(confirm("정말로 삭제하시겠습니까?")) {
+            if (confirm("정말로 삭제하시겠습니까?")) {
                 deleteQnARequest(responseData[index].id);
             }
         }
@@ -126,7 +130,7 @@ function deleteQnARequest(id) {
         async: false,
         type: "delete",
         url: "/api/admin/qnalist/delete/" + id,
-        dataType:"json",
+        dataType: "json",
         success: (response) => {
             alert("게시판 삭제 완료.")
             location.reload();

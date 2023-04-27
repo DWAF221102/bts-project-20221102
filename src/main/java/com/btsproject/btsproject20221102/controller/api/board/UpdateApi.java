@@ -27,7 +27,6 @@ public class UpdateApi {
     @PutMapping("/update")
     public ResponseEntity<?> updateArticle(UpdateReqDto updateReqDto) throws Exception {
 
-        log.info("{}", updateReqDto);
         return ResponseEntity.ok(new CMRespDto<>(1, "Successfully", boardService.updateArticle(updateReqDto)));
     }
 

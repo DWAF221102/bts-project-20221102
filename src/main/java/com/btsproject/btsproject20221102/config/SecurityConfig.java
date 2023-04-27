@@ -66,7 +66,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();  //Cross site Request forgery로 사이트간 위조 요청, 즉 정상적인 사용자가 의도치 않은 위조요청을 보내는 것을 의미
+        http.csrf()
+                .ignoringAntMatchers("/api/account/point/charge")  // 포인트 충전
+                .disable();  //Cross site Request forgery로 사이트간 위조 요청, 즉 정상적인 사용자가 의도치 않은 위조요청을 보내는 것을 의미
         http.httpBasic().disable();
         http.authorizeRequests()
 
@@ -83,6 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")                 // GET 요청
                 .loginProcessingUrl("/account/login")        // 로그인 로직(PrincipalDetailsService) POST 요청
                 .failureHandler(new AuthFailureHandler())   //실패핸들러
+
                 // oauth 로그인
                 .and()
                 .oauth2Login()
@@ -98,6 +101,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/index")
                 .invalidateHttpSession(true)  // 인증정보를 지우고 세션을 무효화
+
 
                 // 세션 관련
                 .and()

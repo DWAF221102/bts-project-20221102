@@ -2,14 +2,14 @@ let menuId = null;
 
 for(let i = 1; i < 4; i++) {
     menuId = Number(i + 1);
-    const fiveBoardList = document.querySelectorAll(".five-boardlist")[i-1];
-    loadBoardListRequest(fiveBoardList, menuId);
+    const BoardDataList = document.querySelectorAll(".data-box")[i-1];
+    loadBoardListRequest(BoardDataList, menuId);
 }
 
 loadQnAListRequest();
 
 //////////////////////////////////////////////////////////////////////////////
-function loadBoardListRequest(fiveBoardList, menuId) { 
+function loadBoardListRequest(BoardDataList, menuId) { 
     let responseData= null;
 
     $.ajax({
@@ -22,7 +22,7 @@ function loadBoardListRequest(fiveBoardList, menuId) {
         dataType: "json",
         success: (response) => {
             responseData = response.data;
-            loadBoardList(fiveBoardList, responseData);
+            loadBoardList(BoardDataList, responseData);
         },
         error: (error) => {
             console.log(error);
@@ -30,37 +30,29 @@ function loadBoardListRequest(fiveBoardList, menuId) {
     });
 }
 
-function loadBoardList(fiveBoardlist, responseData) {
+function loadBoardList(BoardDataList, responseData) {
     
-    fiveBoardlist.innerHTML = "";
+    BoardDataList.innerHTML = "";
     
     responseData.forEach(data => {
         let totalCommentCount = data.commentCount + data.recommentCount;
         let time = setTime(data.createDate);
-        fiveBoardlist.innerHTML += `
-            <li>
-                <div class="board-list-top">
-                    <div class="board-profile">
-                        <a href="/myactivity/${data.userId}"><img src="/image/user/${data.userImg}"></a>
-                        <a href="/myactivity/${data.userId}" class="board-profile-nick">${data.nickname}</a>
-                        <span>·</span>
-                        <span>${time}</span>
-                    </div>
-                    <div class="recommendation-icon">
-                        <div>
-                            <i class="fa-regular fa-thumbs-up"></i>
-                        </div>
-                        <span>${data.likeCount}</span>
-                        <div>
-                            <i class="fa-regular fa-comment-dots"></i>
-                        </div>
-                        <span>${totalCommentCount}</span>
-                    </div>
-                </div>
-                <div class="board-list-bottom">
+
+        BoardDataList.innerHTML += `
+            <ul class="list_type1">
+                <li>
+                    <a href="/myactivity/${data.userId}"  class="m_avatar"><img src="/image/user/${data.userImg}"></a>
+                    <a href="/myactivity/${data.userId}"  class="m_id">${data.nickname}</a>
+                    <span class="m_time">${time}</span>
+                </li>
+                <li>
+                    <span class="like">${data.likeCount}</span>
+                    <span class="comment">${totalCommentCount}</span>
+                </li>
+                <li class="title">
                     <a href="/article/${data.boardId}">${data.title}</a>
-                </div>
-            </li>
+                </li>
+            </ul>
         `;
     });
 }
@@ -87,33 +79,27 @@ function loadQnAListRequest() {
 }
 
 function loadQnAList(responseData) {
-    const qnaUl = document.querySelector(".qna-list-ul");
+    const qnaDataBox = document.querySelector(".qna-data-box");
     
-    qnaUl.innerHTML = "";
+    qnaDataBox.innerHTML = "";
     
     responseData.forEach(data => {
         let time = setTime(data.createDate);
-        qnaUl.innerHTML += `
-        <li>
-            <div class="board-list-top">
-                <div class="board-profile">
-                    <a href="/myactivity/${data.userId}"><img src="/image/user/${data.userImg}"></a>
-                    <a href="/myactivity/${data.userId}" class="board-profile-nick">${data.nickname}</a>
-                    <span>·</span>
-                    <span>${time}</span>
-                </div>
-                <div class="recommendation-icon">
-                    <div>
-                        <i class="fa-regular fa-thumbs-up"></i>
-                    </div>
-                    <span>${data.likeCount}</span>
-                </div>
-            </div>
-            <div class="qna-list-bottom">
-                <a href="/question/article/${data.boardId}">${data.title}</a>
-                <span>${data.price} P</span>
-            </div>
-        </li>
+        qnaDataBox.innerHTML += `
+            <ul class="list_type1">
+                <li>
+                    <a href="/myactivity/${data.userId}"  class="m_avatar"><img src="/image/user/${data.userImg}"></a>
+                    <a href="/myactivity/${data.userId}"  class="m_id">${data.nickname}</a>
+                    <span class="m_time">${time}</span>
+                </li>
+                <li>
+                    <span class="like">${data.likeCount}</span>
+                    <span class="point">${data.price} P</span>
+                </li>
+                <li class="title">
+                    <a href="/question/article/${data.boardId}">${data.title}</a>
+                </li>
+            </ul>
         `;
     });
 }
