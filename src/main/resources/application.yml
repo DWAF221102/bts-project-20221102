@@ -69,6 +69,6 @@ mybatis:
     - /mappers/*.xml
 
 file:
-#  path: /home/ubuntu/springboot/project/upload/
+  path: /home/ubuntu/springboot/project/upload/
 #  path: /Users/choiyeonho/bts-project-20221102/upload/
-  path: C:/project/bts-project-20221102/upload/
+#  path: C:/project/bts-project-20221102/upload/
